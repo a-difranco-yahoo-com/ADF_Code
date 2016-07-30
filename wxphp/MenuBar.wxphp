@@ -1,0 +1,110 @@
+<?php
+
+class MainFrame extends wxFrame
+{
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+
+
+  function __construct()
+  {
+     // Parent Window ?  /  This Window Id? / Title / Window Position / Window Size
+     parent::__construct(null, -1, "MenuBar wxPHP App", new wxPoint(600, 100), new wxSize(300, 250));
+
+/*
+     $menubar = new wxMenuBar();
+     $file    = new wxMenu();
+     $edit    = new wxMenu();
+     $help    = new wxMenu();
+
+    // File Menu 
+    $file->Append(101, '&Open', 'Open a new document');
+    $file->Append(102, '&Save', 'Save the document');
+    $file->AppendSeparator();
+
+    $quit    = new wxMenuItem($file, 105, '&Quit	Ctrl+Q', 'Quit the Application');
+    $quit->SetBitmap(new wxBitmap('stock_exit.bmp', wxBITMAP_TYPE_BMP)); // No suport for non-bitmaps ??
+    $file->Append($quit);
+
+    // Edit Menu 
+    $edit->Append(201, 'Check Item1', '', wxITEM_CHECK);
+    $edit->Append(202, 'Check Item2', '', wxITEM_CHECK);
+    $submenu = new wxMenu();
+    $submenu->Append(301, 'Radio Item1', wxITEM_RADIO);
+    $submenu->Append(302, 'Radio Item2', wxITEM_RADIO);
+    $submenu->Append(303, 'Radio Item3', wxITEM_RADIO);
+    $edit->AppendSubMenu($submenu, 'Sub Menu', '');
+
+    // Add Menus to Menu Bar
+    $menubar->Append($file, '&File');
+    $menubar->Append($edit, '&Edit');
+    $menubar->Append($help, '&Help');
+
+    $this->SetMenuBar($menubar);
+    $this->CreateStatusBar();
+    $this->Connect(105, wxEVT_COMMAND_MENU_SELECTED, array($this,"onQuit"));
+*/
+
+
+/*
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        toolbar = wx.ToolBar(self, -1, style=wx.TB_HORIZONTAL | wx.NO_BORDER)
+        toolbar.AddSimpleTool(1, wx.Image('stock_new.png', wx.BITMAP_TYPE_PNG).ConvertToBitmap(), 'New', '')
+        toolbar.AddSimpleTool(2, wx.Image('stock_open.png', wx.BITMAP_TYPE_PNG).ConvertToBitmap(), 'Open', '')
+        toolbar.AddSimpleTool(3, wx.Image('stock_save.png', wx.BITMAP_TYPE_PNG).ConvertToBitmap(), 'Save', '')
+        toolbar.AddSeparator()
+        toolbar.AddSimpleTool(4, wx.Image('stock_exit.png', wx.BITMAP_TYPE_PNG).ConvertToBitmap(), 'Exit', '')
+        toolbar.Realize()
+        vbox.Add(toolbar, 0, border=5)
+        self.SetSizer(vbox)
+        self.statusbar = self.CreateStatusBar()
+        self.Centre()
+
+        self.Bind(wx.EVT_TOOL, self.OnNew, id=1)
+        self.Bind(wx.EVT_TOOL, self.OnOpen, id=2)
+        self.Bind(wx.EVT_TOOL, self.OnSave, id=3)
+        self.Bind(wx.EVT_TOOL, self.OnExit, id=4)
+
+    def OnNew(self, event):
+        self.statusbar.SetStatusText('New Command')
+
+    def OnOpen(self, event):
+        self.statusbar.SetStatusText('Open Command')
+
+    def OnSave(self, event):
+        self.statusbar.SetStatusText('Save Command')
+
+    def OnExit(self, event):
+        self.Close()
+*/
+
+  }
+}
+
+class MyApp extends wxApp 
+{
+  function OnInit()
+  {
+    $this->mf = new mainFrame();
+    $this->mf->Show();
+
+    return 0;
+  }
+
+  function OnExit()
+  {
+    return 0;
+  }
+}
+
+$app = new MyApp();
+wxApp::SetInstance($app);
+
+wxEntry();  
+
+?>
+
+
+

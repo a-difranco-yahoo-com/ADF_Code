@@ -1,0 +1,71 @@
+<?php
+
+class MainFrame extends wxFrame
+{
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+
+  function onNew()
+  {
+    $this->statusbar->SetStatusText('New Command');
+  }
+
+  function onOpen()
+  {
+    $this->statusbar->SetStatusText('Open Command');
+  }
+
+  function onSave()
+  {
+    $this->statusbar->SetStatusText('Save Command');
+  }
+
+
+  function __construct()
+  {
+     // Parent Window ?  /  This Window Id? / Title / Window Position / Window Size
+     parent::__construct(null, -1, "Box  Sizer Panels wxPHP App", new wxPoint(400, 120), new wxSize(400, 120));
+
+     $box    = new wxBoxSizer(wxHORIZONTAL);
+     $panel1 = new wxPanel($this, -1, new wxPoint(60, 20), new wxSize(20, 30), wxSIMPLE_BORDER);
+     $panel2 = new wxPanel($this, -1, new wxPoint(60, 20), new wxSize(20, 30), wxRAISED_BORDER);
+     $panel3 = new wxPanel($this, -1, new wxPoint(60, 20), new wxSize(20, 30), wxSUNKEN_BORDER);
+     $panel4 = new wxPanel($this, -1, new wxPoint(60, 20), new wxSize(20, 30), wxNO_BORDER);
+
+     // Add(Obj, Proportion,  Flag/Fill,    Border/Padding
+     $box->Add($panel1, 1, wxEXPAND | wxALL, 3);
+     $box->Add($panel2, 1, wxEXPAND | wxALL, 3);
+     $box->Add($panel3, 1, wxEXPAND | wxALL, 3);
+     $box->Add($panel4, 1, wxEXPAND | wxALL, 3);
+
+     $this->SetSizer($box);
+  }
+}
+
+class MyApp extends wxApp 
+{
+  function OnInit()
+  {
+    $this->mf = new mainFrame();
+    $this->mf->Show();
+
+    return 0;
+  }
+
+  function OnExit()
+  {
+    return 0;
+  }
+}
+
+$app = new MyApp();
+wxApp::SetInstance($app);
+
+wxEntry();  
+
+?>
+
+
+

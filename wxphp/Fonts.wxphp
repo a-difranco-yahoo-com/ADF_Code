@@ -1,0 +1,69 @@
+<?php
+
+class MainFrame extends wxFrame
+{ 
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+
+
+  function __construct()
+  {
+     // Parent Window ?  /  This Window Id? / Title / Window Position / Window Size
+     parent::__construct(null, -1, "Fonts wxPHP App", new wxPoint(400, 120), new wxSize(400, 350));
+
+     $panel = new wxPanel($this, -1);
+     $text1 = "Now listen to me mama\nMama mama\nYou're taking away my last chance
+Don't take it away";
+     $text2 = "'You won't cry for my absence, I know -
+You forgot me long ago.
+Am I that unimportant...?
+Am I so insignificant...?
+Isn't something missing?
+Isn't someone missing me?'";
+
+      $text3 = "'But if I had one wish fulfilled tonight
+I'd ask for the sun to never rise
+If God passed a mic to me to speak
+I'd say stay in bed, world
+Sleep in peace'";
+
+      $font1 = new wxFont(10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL);
+      $font2 = new wxFont(10, wxFONTFAMILY_ROMAN,   wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+      $font3 = new wxFont(10, wxFONTFAMILY_MODERN,  wxFONTSTYLE_SLANT,  wxFONTWEIGHT_LIGHT);
+
+      $lyrics1 = new wxStaticText($panel, -1, $text1, new wxPoint(30, 15), new wxSize(300,150), $style=wxALIGN_CENTRE);
+      $lyrics2 = new wxStaticText($panel, -1, $text2, new wxPoint(30,100), new wxSize(300,150), $style=wxALIGN_CENTRE);
+      $lyrics3 = new wxStaticText($panel, -1, $text3, new wxPoint(30,220), new wxSize(300,150), $style=wxALIGN_CENTRE);
+
+      $lyrics1->SetFont($font1);
+      $lyrics2->SetFont($font2);
+      $lyrics3->SetFont($font3);
+  }
+}
+
+class MyApp extends wxApp 
+{
+  function OnInit()
+  {
+    $this->mf = new mainFrame();
+    $this->mf->Show();
+    return 0;
+  }
+
+  function OnExit()
+  {
+    return 0;
+  }
+}
+
+$app = new MyApp();
+wxApp::SetInstance($app);
+
+wxEntry();  
+
+?>
+
+
+

@@ -1,0 +1,67 @@
+<?php
+
+class MyApp extends wxApp 
+{
+  function OnInit()
+  {
+    $this->mf = new mainFrame();
+    $this->mf->SetSize(400,300);                 // Width x Height
+    $this->mf->SetPosition(new wxPoint(50,50));  // Across x Down
+    $this->mf->SetTitle('Simple Frame V2');      // Width x Height
+    $this->mf->SetCursor(new wxCursor(wxStockCursor.wxCURSOR_ARROW));
+    $this->mf->SetToolTip("This is a frame");    // No need for midlleman object
+    $this->mf->SetIcon(new wxIcon("Tipi.ico", wxBITMAP_TYPE_ICO));    // No need for full file spec
+//    $this->mf->SetIcon(new wxIcon("E:\Php_Code\Tipi.ico", wxBITMAP_TYPE_ICO));    // No need for midlleman object
+    $this->mf->Center();
+    $this->mf->Show();
+
+    return 0;
+  }
+
+  function OnExit()
+  {
+    return 0;
+  }
+}
+
+class MainFrame extends wxFrame
+{
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+
+  function onAbout()
+  {
+    $dlg = new wxMessageDialog(
+        $this,
+        "Welcome to wxPHP!!\nBased on wxWidgets 3.0.0\n\nThis is a minimal wxPHP sample!",
+        "About box...",
+        wxICON_INFORMATION
+    );
+
+    $dlg->ShowModal();
+  }
+
+  function __construct()
+  {
+     parent::__construct(null, null, "Minimal wxPHP App", wxDefaultPosition, new wxSize(350, 260));
+  }
+}
+
+
+$app = new MyApp();
+
+/*
+$frame = new wxFrame(None, -1, '');
+$frame->SetToolTip(wxApp->ToolTip('This is a frame'));
+$frame->SetCursor(wxApp->StockCursor(wx.CURSOR_MAGNIFIER));
+$frame->SetPosition(wxApp->Point(0,0));
+$frame->SetSize(wxApp->Size(300,250));
+$frame->SetTitle('simple2.py');
+$frame->Show();
+*/
+wxApp::SetInstance($app);
+wxEntry();  
+
+?>
