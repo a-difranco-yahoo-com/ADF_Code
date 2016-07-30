@@ -1,0 +1,20 @@
+
+BEGIN
+  DH_SOLVER.Solve_Puzzle(1);
+END;
+/
+
+---
+
+SELECT * FROM     DH_SUMMARY;
+SELECT * FROM V_DOLL_ANALYSIS ORDER By 1, 2;
+SELECT * FROM V_SQUARE_ANALYSIS;
+
+SELECT S.Solution_Id, C.Country, S.Row_No, S.Col_No
+FROM   DH_SOLUTION S
+  JOIN DH_COUNTRY  C ON C.Doll_Id = S.Doll_Id
+WHERE  S.IS_PLACED != 'N'
+ORDER BY 1,  3, 4
+/
+
+

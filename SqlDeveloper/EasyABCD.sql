@@ -1,0 +1,25 @@
+
+BEGIN
+  Ea_Solver.Solve_Puzzle(1);
+END;
+/
+
+SELECT * FROM EA_PROGRESS ORDER BY Solution_Id, Stage Desc;
+SELECT count(*)/6 FROM V_EA_ROW_ANALYSIS;
+SELECT count(*)/6 FROM V_EA_COL_ANALYSIS;
+
+SELECT * FROM  V_EA_ROW_Position_Analysis;
+SELECT * FROM  V_EA_COL_Position_Analysis;
+
+SELECT * FROM V_EA_ROW_ANALYSIS;
+SELECT * FROM V_EA_COL_ANALYSIS;
+SELECT * FROM V_Letter_Row_Analysis ORDER BY IS_U;
+SELECT * FROM V_Letter_Col_Analysis ORDER BY IS_U;
+SELECT * FROM V_SQUARE_Analysis     ORDER BY Is_U;
+
+SELECT Distinct Solution_Id
+FROM   EA_SOLUTION 
+/
+
+
+
