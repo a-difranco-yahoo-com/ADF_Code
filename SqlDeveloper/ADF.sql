@@ -73,5 +73,61 @@ GROUP BY Object_Type
 ORDER BY Count(*) Desc
 /
 
+Create Table Arch_To_Arch
+AS
+/
+
+SELECT *
+FROM  (
+SELECT A, B, C, D, E, F,
+       'N51  30.' || ((20 * (A + E))+ B + C + D) Northing, 
+       'W000 09.' || ((A + B) * (C + D + F)) Westing,
+       18 + Checksum((20 * (A + E))+ B + C + D) + Checksum((A + B) * (C + D + F)) CheckSum
+FROM (
+SELECT A.Nos A, B.Nos B, C.Nos C, D.Nos D, E.Nos E, F.Nos F
+FROM       (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 10) A
+CROSS JOIN (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 10) B
+CROSS JOIN (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 10) C
+CROSS JOIN (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 10) D
+CROSS JOIN (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 10) E
+CROSS JOIN (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 20) F
+WHERE  A.Nos Between 2 AND 2
+AND    B.Nos Between 5 AND 5
+AND    C.Nos Between 4 AND 4
+AND    D.Nos Between 2 AND 2
+AND    E.Nos Between 8 AND 8
+AND    F.Nos Between 1 AND 5
+) )
+Where  Checksum = 29
+/
+SELECT *
+FROM   Arch_To_Arch
+WHERE  A = 3
+AND    B = 5
+AND    C = 4
+AND    D = 2
+AND    E = 8
+/
+SELECT A, count(*)
+FROM   Arch_To_Arch
+GROUP BY A
+ORDER BY A
+/
+
+Create Or Replace Function Checksum(p_Number NUMBER)
+    RETURN NUMBER
+AS
+  Loc_Number   NUMBER := p_number;
+  Loc_Checksum NUMBER := 0;
+BEGIN
+   while Loc_Number > 9
+   Loop
+       Loc_Checksum := Loc_Checksum + mod(Loc_Number, 10);
+       Loc_Number   := floor(Loc_Number / 10);
+   End Loop;
+   
+   Return Loc_Checksum + Loc_Number; 
+END;
+/
 
 
