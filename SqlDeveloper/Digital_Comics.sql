@@ -1,6 +1,4 @@
 
-
-
 SELECT Time_Remaining, Message FROM V$Session_Longops WHERE Time_Remaining > 0;
 SELECT * FROM SYS.V$Session;
 
@@ -8,59 +6,62 @@ SELECT * FROM SYS.V$Session;
 --  DDL for Table MISSING_DIGITAL_COMIC
 --------------------------------------------------------
 
-
-Create Or Replace View Missed_Issue_Mini_Series
-AS
-/
-SELECT Distinct Title, Volume, Low_Issue, high_issue, high_series_run
-FROM   MISSING_DIGITAL_COMIC
-WHERE  Low_series_run  Is Not Null
-AND    High_series_run Is Not Null
-AND NOT (Title  = 'B.P.R.D._ Hell on Earth - The Return of the Master' 
-     AND Volume = 2012  AND Low_Issue = 2 AND High_Issue = 100)
-ORDER BY Title, Volume;
-
-SELECT sin(45) FROM DUAL;
-
-
 BEGIN
-   COMICS.Rebuild_Missing_Single_Issue;
-   COMICS.Rebuild_Missing_Sub_Issue;
-   COMICS.Rebuild_Missing_Mini_Series;
+   COMICS.parse_pull_list;
+   COMICS.Set_ComicId;
+END;
+/
+BEGIN
+   COMICS.Find_Pull_Matches(70);
+   COMICS.Find_Wish_Matches;
 END;
 /
 
 BEGIN
-COMICS.parse_pull_list;
-COMICS.Set_ComicId;
-END;
-/
-BEGIN
-COMICS.Find_High_Pull_Matches(80);
-END;
-/
-
-BEGIN
-  COMICS.Update_Matched_Comics;
-  COMICS.Find_Got_New_Issuees;
+  COMICS.Update_Matched_Pull_List;
+  COMICS.Update_Matched_Wish_List;
+  COMICS.Find_Got_New_Issues;
 END;
 /
 BEGIN
   COMICS.Update_New_Comics;
   COMICS.Update_Got_Comics;
-  COMICS.Update_Digital_Comics;
-  COMICS.Update_BackIssue_Comics;
   COMICS.Update_OneShots_Comics;
-  COMICS.Update_BackIssue_Pull;
+  COMICS.Update_BackIssue_Comics;
+  COMICS.Update_Digital_Comics;
+--
   COMICS.Update_Digital_Pull;
+  COMICS.Update_WishList_Pull;
 END;
 /
 
+ 
+BEGIN
+   COMICS.Rebuild_Summary;
+   COMMIT;
+END;
+/
 
-SELECT Title, Volume, Year, Issue, Count(*)
-FROM   New_Digital_comic
-GROUP BY Title, Volume, Year, Issue
-HAVING Count(*) > 1
-ORDER BY Title, Volume, Year, Issue
+SELECT * FROM V_DIGITAL_MULTI_RUN_DETAIL;
+SELECT * FROM V_DIGITAL_ALL_MULTI_RUN_DETAIL;
 
 /
+
+SELECT * FROM V_DIGITAL_RUN_DETAIL Where Title Like '%Doc%Arc%' ORDER BY Volume, Title, Start_Issue;
+SELECT * FROM V_DIGITAL_RUN_DETAIL Where Title Like '%Fea%It%' ORDER BY Volume, Title, Start_Issue;
+
+
+BEGIN
+   COMICS.Load_Wish_List('Doctor Who_ The Eleventh Doctor Archives', 2015, 26, 38);
+END;
+/
+
+SELECT * FROM WISH_LIST WHERE Title Like '%Mis%Mir%' AND Volume > 1007 ORDER BY Volume, Issue;
+COMMIT;
+
+
+SELECT   Title, Volume, Count(*) Quantity
+FROM     WISH_LIST 
+GROUP BY Title, Volume
+ORDER BY Count(*) Desc;
+
