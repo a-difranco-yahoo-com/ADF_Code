@@ -47,12 +47,11 @@ SELECT * FROM V_DIGITAL_ALL_MULTI_RUN_DETAIL;
 
 /
 
-SELECT * FROM V_DIGITAL_RUN_DETAIL Where Title Like '%Doc%Arc%' ORDER BY Volume, Title, Start_Issue;
-SELECT * FROM V_DIGITAL_RUN_DETAIL Where Title Like '%Fea%It%' ORDER BY Volume, Title, Start_Issue;
+SELECT * FROM V_DIGITAL_RUN_DETAIL Where Title Like '%Who%Arc%' ORDER BY Volume, Title, Start_Issue;
 
 
 BEGIN
-   COMICS.Load_Wish_List('Doctor Who_ The Eleventh Doctor Archives', 2015, 26, 38);
+   COMICS.Load_Wish_List('Conan the Barbarian', 1970,   2, 5);
 END;
 /
 
