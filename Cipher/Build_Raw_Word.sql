@@ -130,6 +130,20 @@ AS
       Return Loc_Line;
    END;
 
+   Function Split_Abbreviations(p_Line  Varchar2)
+      RETURN Varchar2 
+   IS
+      Loc_Line  RAW_TEXT.Line_Of_Text%Type := p_Line;
+   BEGIN
+      FOR UPD_REC IN (SELECT * FROM ABBREVIATED_WORD_SPLIT)
+      LOOP
+         Loc_Line := replace(Loc_Line, ' ' || UPD_REC.Abbreviated_Word || ' ', ' ' || UPD_REC.Split_Words || ' ');
+      END LOOP;
+
+      Return Loc_Line;
+   END;
+
+
    Procedure Extract_Words_From_Lines
    IS
       Loc_Word   Varchar2(2000);
@@ -149,6 +163,7 @@ AS
           Loc_Line := Convert_Apostrophe_To_Quote(Loc_Line);
           Loc_Line := Correct_Abbreviations(Loc_Line);
           Loc_Line := Correct_Run_Together_Words(Loc_Line);
+          Loc_Line := Split_Abbreviations(Loc_Line);
           Loc_Line := ltrim(Loc_Line);
           While Loc_Line IS NOT NULL
           LOOP
