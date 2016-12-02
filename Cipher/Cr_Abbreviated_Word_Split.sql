@@ -192,3 +192,16 @@ INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('BRID
 INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('MINUTE''S',     'MINUTE');
 INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('CREATURE''S',   'CREATURE');
 INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('HOUR''S',       'HOUR');
+--
+INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('D''YE',    'DO YOU');
+INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('HE''LL',   'HE WILL');
+INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('I''LL',    'I WILL');
+INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('I''VE',    'I HAVE');
+INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('SHE''LL',  'SHE WILL');
+INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('THEY''LL', 'THEY WILL');
+INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('YOU''LL',  'YOU WILL');
+INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('YOU''RE',  'YOU ARE');
+INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('YOU''VE',  'YOU HAVE');
+--
+INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('O''CLOCK',   'O CLOCK');
+INSERT INTO ABBREVIATED_WORD_SPLIT (Abbreviated_Word, Split_Words) Values ('D''AULNAIS', 'DE AULNAIS');
