@@ -57,6 +57,34 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
     Add_Clue('YUKI',       43);
   END Setup_Puzzle1;
 
+  Procedure Setup_Puzzle2 AS
+  BEGIN
+    Add_Clue('ABLE',   38);
+    Add_Clue('ACID',   23);
+    Add_Clue('ACRID',  24);
+    Add_Clue('ADMIT',  45);
+    Add_Clue('ADO',    16);
+    Add_Clue('AGREE',  37);
+    Add_Clue('AHEAD',  43);
+    Add_Clue('AISLE',  45);
+    Add_Clue('ALE',    30);
+    Add_Clue('ANIL',   48);
+    Add_Clue('ANKLE',  66);
+    Add_Clue('ANTLER', 52);
+    Add_Clue('ANVIL',  66);
+    Add_Clue('APPLE',  72);
+    Add_Clue('AQUA',   36);
+    Add_Clue('AREA',   12);
+    Add_Clue('ARENA',  24);
+    Add_Clue('ARROW',  27);
+    Add_Clue('AURA',   27);
+    Add_Clue('AWAY',   41);
+    Add_Clue('AWE',    24);
+    Add_Clue('AWFUL',  78);
+    Add_Clue('AXLE',   44);
+    Add_Clue('AZALEA', 49);
+  END Setup_Puzzle2;
+
   Procedure Setup_Puzzle(p_Puzzle_Id NUMBER)
   AS
   BEGIN
@@ -65,6 +93,9 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
     IF p_Puzzle_Id = 1
     Then
        Setup_Puzzle1;
+    ELSIF p_Puzzle_Id = 2
+    Then
+       Setup_Puzzle2;
     END If;
   END;
 
