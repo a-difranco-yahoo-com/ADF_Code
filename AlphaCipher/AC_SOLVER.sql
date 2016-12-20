@@ -1,5 +1,5 @@
 CREATE OR REPLACE PACKAGE AC_SOLVER AS 
-  Procedure Solve_Puzzle(p_Puzzle_Id NUMBER);
+  Procedure Solve_Puzzle(p_Puzzle_Id NUMBER, p_Steps NUMBER);
   Function Score_Clue(SRC_Letters VARCHAR2, TGT_Letters VARCHAR2)
         RETURN NUMBER;
 END AC_SOLVER;
@@ -315,7 +315,7 @@ CREATE OR REPLACE PACKAGE BODY AC_SOLVER AS
      Mark_Clue_As_Processed(p_Clue.Clue_Id);
      Solve_First_Clue(p_Clue);
      Setup_First_Solution_Clue;
-     Eliminate_First_Letters(p_Clue.Clue_Word);
+     Eliminate_First_Letters(p_Clue.Remaining_Letters);
      Process_Null_Clues;
   END;
 
@@ -360,7 +360,7 @@ END;
      Process_First_Clue(Loc_Clue);
      Check_Solution_Clue;
      COMMIT;
-     
+
      While Not Finished
      Loop
        Loc_Clue := Find_Single_Letter_Clue;
