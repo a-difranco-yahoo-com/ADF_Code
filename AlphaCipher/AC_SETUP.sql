@@ -1,6 +1,6 @@
 CREATE OR REPLACE PACKAGE AC_SETUP AS 
 
-  Procedure Setup_Puzzle1;
+  Procedure Setup_Puzzle(p_Puzzle_Id NUMBER);
 
 END AC_SETUP;
 /
@@ -30,8 +30,6 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
 
   Procedure Setup_Puzzle1 AS
   BEGIN
-    Reset_Puzzle;
-
     Add_Clue('AMIES',      36);
     Add_Clue('ASHLEY',     60);
     Add_Clue('BALENCIAGA', 67);
@@ -58,6 +56,17 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
     Add_Clue('WORTH',      64);
     Add_Clue('YUKI',       43);
   END Setup_Puzzle1;
+
+  Procedure Setup_Puzzle(p_Puzzle_Id NUMBER)
+  AS
+  BEGIN
+    Reset_Puzzle;
+    
+    IF p_Puzzle_Id = 1
+    Then
+       Setup_Puzzle1;
+    END If;
+  END;
 
 END AC_SETUP;
 /

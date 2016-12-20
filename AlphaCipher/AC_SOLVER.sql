@@ -1,6 +1,6 @@
 CREATE OR REPLACE PACKAGE AC_SOLVER AS 
-  Procedure Solve_Puzzle;
-    Function Score_Clue(SRC_Letters VARCHAR2, TGT_Letters VARCHAR2)
+  Procedure Solve_Puzzle(p_Puzzle_Id NUMBER);
+  Function Score_Clue(SRC_Letters VARCHAR2, TGT_Letters VARCHAR2)
         RETURN NUMBER;
 END AC_SOLVER;
 /
@@ -348,11 +348,13 @@ END;
      End Loop;
   END;
 
-  Procedure Solve_Puzzle AS
+  Procedure Solve_Puzzle(p_Puzzle_Id NUMBER)
+  AS
     Loc_Clue    AC_CLUE%Rowtype;
     Loc_Letter  VARCHAR2(1);
     Loc_Limit   NUMBER;
   BEGIN
+     AC_SETUP.Setup_Puzzle(p_Puzzle_Id);
      Set_Letters_Used;
      Loc_Clue := Find_Best_First_Clue;
      Process_First_Clue(Loc_Clue);
