@@ -85,17 +85,63 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
     Add_Clue('AZALEA', 49);
   END Setup_Puzzle2;
 
+  Procedure Setup_Puzzle3 AS
+  BEGIN
+    Add_Clue('ANGELOU',  45);
+    Add_Clue('ATWOOD',   55);
+    Add_Clue('BALZAC',   59);
+    Add_Clue('BRAINE',   47);
+    Add_Clue('CONRAD',   59);
+    Add_Clue('EVELYN',   63);
+    Add_Clue('FORESTER', 58);
+    Add_Clue('GASKELL',  47);
+    Add_Clue('GOGOL',    41);
+    Add_Clue('HAMSUN',   53);
+    Add_Clue('HELLER',   35);
+    Add_Clue('JEROME',   53);
+    Add_Clue('KAFKA',    74);
+    Add_Clue('LESSING',  45);
+    Add_Clue('NESBIT',   45);
+    Add_Clue('PARKER',   58);
+    Add_Clue('POTTER',   47);
+    Add_Clue('PROUST',   42);
+    Add_Clue('QUENEAU',  56);
+    Add_Clue('RANSOME',  45);
+    Add_Clue('RENAULT',  40);
+    Add_Clue('SALINGER', 55);
+    Add_Clue('SHUTE',    37);
+    Add_Clue('SYMONS',   50);
+    Add_Clue('WALTON',   49);
+  END Setup_Puzzle3;
+
+  Procedure Setup_Puzzle4 AS
+  BEGIN
+    -- the letters of the word JUMBLE DECREASE in value from left to right
+    Add_Clue('ZERO',     73);
+    Add_Clue('TEN',      15);
+    Add_Clue('ONE',      35);
+    Add_Clue('HUNDREDS', 95);
+    Add_Clue('TWO',      30);
+    Add_Clue('THOUSAND', 93);
+    Add_Clue('PI',       29);
+    Add_Clue('MILLION',  76);
+    Add_Clue('FIVE',     55);
+    Add_Clue('BILLION',  72); 
+    Add_Clue('EIGHT',    41);
+    Add_Clue('CLOCK',    80);
+    Add_Clue('NINE',     15);
+  END Setup_Puzzle4;
+
+
   Procedure Setup_Puzzle(p_Puzzle_Id NUMBER)
   AS
   BEGIN
     Reset_Puzzle;
     
-    IF p_Puzzle_Id = 1
-    Then
-       Setup_Puzzle1;
-    ELSIF p_Puzzle_Id = 2
-    Then
-       Setup_Puzzle2;
+    IF    p_Puzzle_Id = 1 Then  Setup_Puzzle1;
+    ELSIF p_Puzzle_Id = 2 Then  Setup_Puzzle2;
+    ELSIF p_Puzzle_Id = 3 Then  Setup_Puzzle3;
+    ELSIF p_Puzzle_Id = 4 Then  Setup_Puzzle4;
     END If;
   END;
 
