@@ -1,5 +1,5 @@
 CREATE OR REPLACE PACKAGE AC_SOLVER AS 
-  Procedure Solve_Puzzle(p_Puzzle_Id NUMBER, p_Steps NUMBER);
+  Procedure Solve_Puzzle(p_Puzzle_Id NUMBER);
   Function Score_Clue(SRC_Letters VARCHAR2, TGT_Letters VARCHAR2)
         RETURN NUMBER;
 END AC_SOLVER;
