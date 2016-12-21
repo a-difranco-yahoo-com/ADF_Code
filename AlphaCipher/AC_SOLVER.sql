@@ -51,18 +51,6 @@ CREATE OR REPLACE PACKAGE BODY AC_SOLVER AS
      END IF;
   END;
 
-  Procedure Set_Letters_Used
-  AS
-     Loc_Alphabet   Varchar2(26) := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  BEGIN
-    FOR i in 1..26
-    LOOP
-       UPDATE AC_CLUE
-       Set    REMAINING_LETTERS = REMAINING_LETTERS || substr(Loc_Alphabet, i, 1)
-       Where  Clue_Word  Like '%' || substr(Loc_Alphabet, i, 1) || '%';
-    END LOOP;
-  END;
-
   Function Find_Best_First_Clue
         RETURN AC_CLUE%RowType
   AS
@@ -355,7 +343,6 @@ END;
     Loc_Limit   NUMBER;
   BEGIN
      AC_SETUP.Setup_Puzzle(p_Puzzle_Id);
-     Set_Letters_Used;
      Loc_Clue := Find_Best_First_Clue;
      Process_First_Clue(Loc_Clue);
      Check_Solution_Clue;

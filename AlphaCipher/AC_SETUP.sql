@@ -18,6 +18,18 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
 
      PKG_CLUE_ID  := 0;
   END;
+
+  Procedure Set_Letters_Used
+  AS
+     Loc_Alphabet   Varchar2(26) := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  BEGIN
+    FOR i in 1..26
+    LOOP
+       UPDATE AC_CLUE
+       Set    REMAINING_LETTERS = REMAINING_LETTERS || substr(Loc_Alphabet, i, 1)
+       Where  Clue_Word  Like '%' || substr(Loc_Alphabet, i, 1) || '%';
+    END LOOP;
+  END;
   
   Procedure Add_Clue(p_Word  Varchar2, p_Total NUMBER)
   AS
@@ -143,6 +155,7 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
     ELSIF p_Puzzle_Id = 3 Then  Setup_Puzzle3;
     ELSIF p_Puzzle_Id = 4 Then  Setup_Puzzle4;
     END If;
+    Set_Letters_Used;
   END;
 
 END AC_SETUP;
