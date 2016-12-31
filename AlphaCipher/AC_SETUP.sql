@@ -150,9 +150,8 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
 
      IF Loc_Freq Not In (-1, 1)
      THEN
+        Mark_As_Processed(p_Clue.Clue_Word);
         Add_Clue(p_Clue.Remaining_Letters, p_Clue.Clue_Total / Loc_Freq);
-        DELETE FROM AC_CLUE
-        WHERE  Clue_Id    = p_Clue.Clue_Id;    
      END IF;
   END;
   
@@ -180,6 +179,8 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
                                     Compare_Letters(L1.Clue_Word, R1.Clue_Word) New_Word
                              FROM   AC_CLUE  L1
                                JOIN AC_CLUE  R1 ON R1.Clue_Total < L1.Clue_Total
+                                               AND R1.Processed = 'N'
+                             WHERE  L1.Processed = 'N'
                               )
                      WHERE New_Word Is Not Null
                      AND   length(New_Word) < greatest( length(L1), length(R1) ) 
@@ -188,27 +189,39 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
         Add_Clue( rtrim(ADD_REC.New_Word, ':'), ADD_REC.New_Total);
         Mark_As_Processed(ADD_REC.L1);
      END LOOP;
-     Remove_Processed_Clues;
   END;
 
   Procedure Add_New_2v1_Clue
   AS
   BEGIN
      FOR ADD_REC IN (
-                     SELECT Distinct New_Word, New_Total 
+                     SELECT L1, L2, R1, New_Word, New_Total 
                      FROM   (
                              SELECT L1.Clue_Word L1, L2.Clue_Word L2, R1.Clue_Word R1,
                                     abs(L1.Clue_Total + L2.Clue_Total - R1.Clue_Total) New_Total,
                                     Compare_Letters(L1.Clue_Word || L2.Clue_Word, R1.Clue_Word) New_Word
                              FROM   AC_CLUE  L1
-                               JOIN AC_CLUE  L2 ON L2.Clue_Id >= L1.Clue_Id
+                               JOIN AC_CLUE  L2 ON L2.Clue_Id  >= L1.Clue_Id
+                                               AND L2.Processed = 'N'
                                JOIN AC_CLUE  R1 ON R1.Clue_Id Not In (L1.Clue_Id, L2.Clue_Id)
+                                               AND R1.Processed = 'N'
+                             WHERE  L1.Processed = 'N'
                               )
                      WHERE New_Word Is Not Null
                      AND   length(New_Word) < greatest( length(L1), length(L2), length(R1) ) 
                     )
      LOOP
         Add_Clue( rtrim(ADD_REC.New_Word, ':'), ADD_REC.New_Total);
+        If length(ADD_REC.L1) > greatest( length(ADD_REC.L2), length(ADD_REC.R1))
+        Then
+            Mark_As_Processed(ADD_REC.L1);
+        ELSIf length(ADD_REC.L2) > greatest( length(ADD_REC.L1), length(ADD_REC.R1))
+        Then
+            Mark_As_Processed(ADD_REC.L2);
+        ELSIf length(ADD_REC.R1) > greatest( length(ADD_REC.L1), length(ADD_REC.L2))
+        Then
+            Mark_As_Processed(ADD_REC.R1);
+        END If;
      END LOOP;
   END;
 
@@ -223,10 +236,14 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
                                     Compare_Letters(L1.Clue_Word || L2.Clue_Word, R1.Clue_Word || R2.Clue_Word) New_Word
                              FROM   AC_CLUE  L1
                                JOIN AC_CLUE  L2 ON L2.Clue_Id >= L1.Clue_Id
+                                               AND L2.Processed = 'N'
                                JOIN AC_CLUE  R1 ON R1.Clue_Id Not In (L1.Clue_Id, L2.Clue_Id)
                                                AND R1.Clue_Id > L1.Clue_Id
+                                               AND R1.Processed = 'N'
                                JOIN AC_CLUE  R2 ON R2.Clue_Id Not In (L1.Clue_Id, L2.Clue_Id)
                                                AND R2.Clue_Id >= R1.Clue_Id
+                                               AND R2.Processed = 'N'
+                             WHERE  L1.Processed = 'N'
                               )
                      WHERE New_Word Is Not Null
                      AND   length(New_Word) < greatest( length(L1), length(L2), length(R1), length(R2) ) 
@@ -238,18 +255,17 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
 
   Procedure Add_New_Clues
   AS
-    Loc_Last_Clue_Id  NUMBER;
-    Loc_Done          BOOLEAN := FALSE;
+    Loc_Last_Clue_Id  NUMBER := PKG_CLUE_ID - 1;
   BEGIN
-    While Not Loc_Done
+    While Loc_Last_Clue_Id < PKG_CLUE_ID
     Loop
         Loc_Last_Clue_Id := PKG_CLUE_ID;
         Add_New_1v1_Clue;
         IF Loc_Last_Clue_Id = PKG_CLUE_ID Then Add_New_2v1_Clue; End IF;
         IF Loc_Last_Clue_Id = PKG_CLUE_ID Then Add_New_2v2_Clue; End IF;
-        IF Loc_Last_Clue_Id = PKG_CLUE_ID Then Loc_Done := TRUE; End IF;
         Simplify_Clues;
      End Loop;
+     Remove_Processed_Clues;
   END;
 
 /** *********************************************
@@ -360,6 +376,31 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
     Add_Clue('NINE',     15);
   END Setup_Puzzle4;
 
+  Procedure Setup_Puzzle5 AS
+  BEGIN
+    -- the letters of the word JUMBLE DECREASE in value from left to right
+    Add_Clue('BALLET',   45);
+    Add_Clue('CELLO',    43);
+    Add_Clue('CONCERT',  74);
+    Add_Clue('FLUTE',    30);
+    Add_Clue('FUGUE',    50);
+    Add_Clue('GLEE',     66);
+    Add_Clue('JAZZ',     58);
+    Add_Clue('LYRE',     47);
+    Add_Clue('OBOE',     53);
+    Add_Clue('OPERA',    65); 
+    Add_Clue('POLKA',    59);
+    Add_Clue('QUARTET',  50);
+    Add_Clue('SAXOPHONE',134);
+    Add_Clue('SCALE',    51);
+    Add_Clue('SOLO',     37);
+    Add_Clue('SONG',     61);
+    Add_Clue('SOPRANO',  82);
+    Add_Clue('THEME',    72);
+    Add_Clue('VIOLIN',   100);
+    Add_Clue('WALTZ',    34);
+  END Setup_Puzzle5;
+
 
   Procedure Setup_Puzzle(p_Puzzle_Id NUMBER)
   AS
@@ -370,6 +411,7 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
     ELSIF p_Puzzle_Id = 2 Then  Setup_Puzzle2;
     ELSIF p_Puzzle_Id = 3 Then  Setup_Puzzle3;
     ELSIF p_Puzzle_Id = 4 Then  Setup_Puzzle4;
+    ELSIF p_Puzzle_Id = 5 Then  Setup_Puzzle5;
     END If;
     Add_New_Clues;
     Set_Letters_Used;
