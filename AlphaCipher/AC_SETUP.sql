@@ -14,9 +14,9 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
 
   Procedure Reset_Puzzle AS
   BEGIN
+     Execute Immediate 'TRUNCATE TABLE AC_DECREASING_LETTER';
      Execute Immediate 'TRUNCATE TABLE AC_SOLUTION_CLUE';
      Execute Immediate 'TRUNCATE TABLE AC_SOLUTION';
-     Execute Immediate 'TRUNCATE TABLE AC_MESSAGE';
      Execute Immediate 'TRUNCATE TABLE AC_CLUE';
 
      PKG_CLUE_ID  := 0;
@@ -268,6 +268,16 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
      Remove_Processed_Clues;
   END;
 
+  Procedure Add_Decreasing_Letters(p_Word Varchar2)
+  AS
+  BEGIN
+     FOR i in 1..length(p_Word)
+     LOOP
+        INSERT INTO AC_DECREASING_LETTER (Letter, Ordinal)
+        VALUES   (substr(p_Word, i, 1), i);
+     END LOOP;
+  END;
+
 /** *********************************************
     Setup Procedures
     ********************************************* **/
@@ -374,6 +384,7 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
     Add_Clue('EIGHT',    41);
     Add_Clue('CLOCK',    80);
     Add_Clue('NINE',     15);
+    Add_Decreasing_Letters('JUMBLE');
   END Setup_Puzzle4;
 
   Procedure Setup_Puzzle5 AS
