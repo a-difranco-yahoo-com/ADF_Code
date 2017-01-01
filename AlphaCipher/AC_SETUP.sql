@@ -389,7 +389,6 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
 
   Procedure Setup_Puzzle5 AS
   BEGIN
-    -- the letters of the word JUMBLE DECREASE in value from left to right
     Add_Clue('BALLET',   45);
     Add_Clue('CELLO',    43);
     Add_Clue('CONCERT',  74);
@@ -412,6 +411,25 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
     Add_Clue('WALTZ',    34);
   END Setup_Puzzle5;
 
+  Procedure Setup_Puzzle6 AS
+  BEGIN
+    Add_Clue('BASQUE',   98);
+    Add_Clue('CZECH',    82);
+    Add_Clue('FRENCH',   81);
+    Add_Clue('FULA',     35);
+    Add_Clue('HAKKA',    38);
+    Add_Clue('ITALIAN',  42);
+    Add_Clue('KAZAKH',   39);
+    Add_Clue('OJIBWE',   98);
+    Add_Clue('TAGALOG',  64);
+    Add_Clue('TAMIL',    21); 
+    Add_Clue('URDU',     53);
+    Add_Clue('WALLOON',  82);
+    Add_Clue('XHOSA',    73);
+    Add_Clue('YUKIWAPPO',140);
+    Add_Clue('ZULU',     39);
+  END Setup_Puzzle6;
+
 
   Procedure Setup_Puzzle(p_Puzzle_Id NUMBER)
   AS
@@ -423,6 +441,7 @@ CREATE OR REPLACE PACKAGE BODY AC_SETUP AS
     ELSIF p_Puzzle_Id = 3 Then  Setup_Puzzle3;
     ELSIF p_Puzzle_Id = 4 Then  Setup_Puzzle4;
     ELSIF p_Puzzle_Id = 5 Then  Setup_Puzzle5;
+    ELSIF p_Puzzle_Id = 6 Then  Setup_Puzzle6;
     END If;
     Add_New_Clues;
     Set_Letters_Used;
