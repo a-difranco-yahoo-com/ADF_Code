@@ -51,6 +51,18 @@ CREATE OR REPLACE PACKAGE BODY AC_SOLVER AS
      END IF;
   END;
 
+  Function Exists_Solved_Letters
+        RETURN BOOLEAN
+  AS
+     Loc_Min_Len  NUMBER;
+  BEGIN
+     SELECT min(length(Remaining_Letters)) 
+     INTO   Loc_Min_Len
+     FROM   AC_CLUE;
+    
+    RETURN Loc_Min_Len = 1;
+  END;
+
   Function Find_Best_First_Clue
         RETURN AC_CLUE%RowType
   AS
@@ -307,6 +319,24 @@ CREATE OR REPLACE PACKAGE BODY AC_SOLVER AS
      Process_Null_Clues;
   END;
 
+
+  Procedure Process_Solved_Letters
+  AS
+     Loc_Alphabet   Varchar2(26) := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+     Loc_Score      NUMBER;
+     Best_Score     NUMBER := 0;
+     Best_Clue      AC_CLUE%RowType;
+  BEGIN
+    FOR CLUE_REC in (SELECT * FROM AC_CLUE WHERE length(Clue_Word) = 1)
+    LOOP
+       INSERT INTO AC_SOLUTION(Solution_Id, Letter, Amount)
+       VALUES (1, CLUE_REC.Clue_Word, CLUE_REC.Clue_Total);
+
+       Mark_Clue_As_Processed(CLUE_REC.Clue_Id);
+    END LOOP;
+    Setup_First_Solution_Clue;
+  END;
+
   Procedure Process_Single_Letter_Clue(p_Clue AC_CLUE%Rowtype)
   AS
   BEGIN
@@ -336,6 +366,22 @@ END;
      End Loop;
   END;
 
+  Procedure Check_Decreasing_Letters
+  AS
+  BEGIN
+     For SOL_REC in (SELECT Distinct S1.Solution_Id
+                     FROM   AC_SOLUTION          S1
+                       JOIN AC_DECREASING_LETTER L1 ON L1.Letter      = S1.Letter
+                       JOIN AC_SOLUTION          S2 ON S2.Solution_Id = S1.Solution_Id
+                                                   AND S2.Amount      > S1.Amount
+                       JOIN AC_DECREASING_LETTER L2 ON L2.Letter      = S2.Letter
+                                                   AND L2.Ordinal     > L1.Ordinal)
+     Loop
+         DELETE FROM AC_SOLUTION      WHERE Solution_Id = SOL_REC.Solution_Id;
+         DELETE FROM AC_SOLUTION_CLUE WHERE Solution_Id = SOL_REC.Solution_Id;
+     End Loop;
+  END;
+
   Procedure Solve_Puzzle(p_Puzzle_Id NUMBER)
   AS
     Loc_Clue    AC_CLUE%Rowtype;
@@ -343,9 +389,15 @@ END;
     Loc_Limit   NUMBER;
   BEGIN
      AC_SETUP.Setup_Puzzle(p_Puzzle_Id);
-     Loc_Clue := Find_Best_First_Clue;
-     Process_First_Clue(Loc_Clue);
-     Check_Solution_Clue;
+     If Exists_Solved_Letters
+     Then
+        Process_Solved_Letters;
+     Else
+        Loc_Clue := Find_Best_First_Clue;
+        Process_First_Clue(Loc_Clue);
+        Check_Solution_Clue;
+        Check_Decreasing_Letters;
+     End If;
      COMMIT;
 
      While Not Finished
@@ -363,6 +415,7 @@ END;
           Eliminate_Letter(Loc_Letter);
        END IF;
        Check_Solution_Clue;
+       Check_Decreasing_Letters;
        COMMIT;
      End Loop;   
   END Solve_Puzzle;
