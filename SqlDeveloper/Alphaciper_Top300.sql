@@ -1,13 +1,5 @@
 
 
-the letters of the word JUMBLE DECREASE in value from left to right
-ZERO 73 TEN      15 ONE   35 HUNDREDS 95
-TWO  30 THOUSAND 93 PI    29 MILLION  76
-FIVE 55 BILLION  72 EIGHT 41 CLOCK    80
-NINE 15
-
-
-
 Drop Table ComicsTop300 Purge;
 Create Table ComicsTop300 (
 YearMonth    Varchar2(200),
