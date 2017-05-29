@@ -1,9 +1,7 @@
 
-SELECT Time_Remaining, Message FROM V$Session_Longops WHERE Time_Remaining > 0;
 
-SELECT Count(*), Count(Distinct Solution_ID), Count(Distinct Clue_ID)  FROM   ALPHACIPHER.AC_SOLUTION_CLUE;
-SELECT * FROM   ALPHACIPHER.AC_SOLUTION_CLUE;
-SELECT * FROM ALPHACIPHER.AC_CLUE ORDER BY Length(REmaining_Letters), PROCESSED;
+SELECT Time_Remaining, Message FROM V$Session_Longops WHERE Time_Remaining > 0;
+SELECT * FROM V$SEssion;
 
 
 SELECT * FROM GEOCACHE_BY_DAY;
@@ -15,104 +13,6 @@ SELECT * FROM    V_GEOCACHE_BY_MONTH;
 SELECT * FROM    V_GEOCACHE_BY_DAY_OF_MONTH;
 SELECT * FROM    V_GEOCACHE_TO_FIND_BY_MONTH;
 
-
--- => 2 Known Cells : 503 6mins 23s
--- => 4 Known Cells : 283 4mins 43s
-BEGIN
-  KS_PUZZLE.Setup_Puzzle2;
-  KS_ANALYSE.Analyse; 
-  KS_SOLVER.Find_Solution(1000);
-END;
-/
-TRUNCATE Table KS_SOLUTION;
-
-
-SELECT * FROM   KS_SOLUTION;
-SELECT * FROM   KS_SUMSET ORDER BY No_Of_Cells, No_Of_Combinations;
-SELECT *
-FROM   KS_CELL C
-  JOIN Ks_Sumset S ON S.Sumset_Id = C.Sumset_Id
-Order By Ordinal;
-
-
-
-SELECT Solution_Id, Rowno,
-       max( Decode(Colno, 1, Digit, 0) ) Col1,
-       max( Decode(Colno, 2, Digit, 0) ) Col2,
-       max( Decode(Colno, 3, Digit, 0) ) Col3,
-       max( Decode(Colno, 4, Digit, 0) ) Col4,
-       max( Decode(Colno, 5, Digit, 0) ) Col5,
-       max( Decode(Colno, 6, Digit, 0) ) Col6,
-       max( Decode(Colno, 7, Digit, 0) ) Col7,
-       max( Decode(Colno, 8, Digit, 0) ) Col8,
-       max( Decode(Colno, 9, Digit, 0) ) Col9
-FROM   KS_Solution
-GROUP BY Solution_Id, Rowno
-ORDER BY Solution_Id, Rowno
-/
-
-WITH DIGITS AS (SELECT rownum - 1 Nos FROM All_Objects Where Rownum < 11)
-SELECT 'N 51 29.' || E.Nos || '0' || G.Nos Northing,
-       'W 000 09.' ||  (E.Nos + G.Nos - 7) || '16' Westing
-FROM   Digits E
-CROSS JOIN Digits G
-WHERE  (E.Nos + G.Nos - 7) Between 0 and 9
-/
-WITH DIGITS AS (SELECT rownum - 1 Nos FROM All_Objects Where Rownum < 11)
-SELECT E.Nos, Count(*)
-FROM   Digits E
-CROSS JOIN Digits G
-WHERE  (E.Nos + G.Nos - 7) Between 0 and 9
-Group By E.Nos
-Order By 1
-/
-
-SELECT   Object_Type, Count(*)
-FROM     USER_OBJECTS
-GROUP BY Object_Type
-ORDER BY Count(*) Desc
-/
-
-Create Table Arch_To_Arch
-AS
-/
-
-SELECT *
-FROM  (
-SELECT A, B, C, D, E, F,
-       'N51  30.' || ((20 * (A + E))+ B + C + D) Northing, 
-       'W000 09.' || ((A + B) * (C + D + F)) Westing,
-       18 + Checksum((20 * (A + E))+ B + C + D) + Checksum((A + B) * (C + D + F)) CheckSum
-FROM (
-SELECT A.Nos A, B.Nos B, C.Nos C, D.Nos D, E.Nos E, F.Nos F
-FROM       (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 10) A
-CROSS JOIN (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 10) B
-CROSS JOIN (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 10) C
-CROSS JOIN (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 10) D
-CROSS JOIN (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 10) E
-CROSS JOIN (SELECT rownum Nos FROM ALL_OBJECTS WHERE Rownum <= 20) F
-WHERE  A.Nos Between 2 AND 2
-AND    B.Nos Between 5 AND 5
-AND    C.Nos Between 4 AND 4
-AND    D.Nos Between 2 AND 2
-AND    E.Nos Between 8 AND 8
-AND    F.Nos Between 1 AND 5
-) )
-Where  Checksum = 29
-/
-SELECT *
-FROM   Arch_To_Arch
-WHERE  A = 3
-AND    B = 5
-AND    C = 4
-AND    D = 2
-AND    E = 8
-/
-SELECT A, count(*)
-FROM   Arch_To_Arch
-GROUP BY A
-ORDER BY A
-/
 
 Create Or Replace Function Checksum(p_Number NUMBER)
     RETURN NUMBER
@@ -128,6 +28,137 @@ BEGIN
    
    Return Loc_Checksum + Loc_Number; 
 END;
+/
+
+
+SELECT Owner, Segment_Name, Bytes / (1024 * 1024) Mb
+FROM   DBA_SEGMENTS
+WHERE  Owner != 'SYS'
+AND    Segment_Name Like '%SFA%'
+ORDER BY Bytes Desc
+/
+
+SELECT   Tablespace_Name, sum(Bytes) / (1024 * 1024)
+FROM     DBA_FREE_SPACE
+GROUP BY Tablespace_Name
+/
+
+
+SELECT Sysdate + (Time_Remaining/ (60 * 60 * 24) ) ETA, Time_Remaining, Message FROM V$Session_Longops WHERE Time_Remaining > 0 order by 1;
+SELECT S.Username, T.SQL_Text
+FROM   V$Session S
+  JOIN V$Sqlarea T ON T.Sql_Id = S.Sql_Id;
+
+
+--interpret vital telexes
+-- nrpr
+
+Drop   Table GC_IVT Purge;
+Create Table GC_IVT
+AS
+SELECT   Distinct Word, length(Word) Word_Length
+FROM     DICTIONARY.Word_List
+WHERE    length(Word) IN (5, 7, 9)
+AND      translate(Word, 'xINTERPRETVITALTELEXES', 'x') IS NULL
+/
+
+Drop   Table GC_IVT_ANSWER Purge
+/
+Create Table GC_IVT_ANSWER
+AS
+SELECT *
+FROM  (
+SELECT L7.Word W7, L5.Word W5, L9.Word W9, L7.Word || L5.Word || L9.Word Word 
+FROM   GC_IVT L9
+  JOIN GC_IVT L5 ON L5.Word_Length = 5
+  JOIN GC_IVT L7 ON L7.Word_Length = 7
+WHERE  L9.Word_Length = 9
+)
+WHERE  Word Like '%X%'
+AND    Word Like '%V%'
+AND    Word Like '%P%'
+AND    Word Like '%L%L%'
+AND    Word Like '%N%'
+AND    Word Like '%A%'
+AND    Word Like '%S%'
+AND    Word Like '%I%I%'
+AND    Word Like '%R%R%'
+AND    Word Like '%T%T%T%T%'
+AND    Word Like '%E%E%E%E%E%'
+/
+Select * FROM GC_IVT_ANSWER
+Order By W7
+/
+
+SELECT Word
+FROM   DICTIONARY.Word_List
+WHERE  length(Word) = 8
+AND    Word Like '%B%'
+AND    Word Like '%K%'
+AND    Word Like '%P%'
+AND    Word Like '%S%'
+AND    Word Like '%O%O%O%'
+;
+
+drop table DARTS_PL Purge;
+
+CREATE TABLE DARTS_PL ( 
+YEAR NUMBER,
+ROUND VARCHAR2(2),
+PLAYER_H VARCHAR2(50),
+SCORE_H NUMBER,
+SCORE_A NUMBER,
+PLAYER_A VARCHAR2(50))
+/
+SELECT Player_H FROM DARTS_PL
+UNION
+SELECT Player_A FROM DARTS_PL
+/
+
+
+SELECT Player,
+       sum(Decode(Score, 'W', 1, 0)) Ws,
+       sum(Decode(Score, 'D', 1, 0)) Ds,
+       sum(Decode(Score, 'L', 1, 0)) Ls
+FROM  (
+        SELECT Player_H Player, 
+               CASE WHEN Score_H > Score_A THEN 'W'
+                    WHEN Score_H = Score_A THEN 'D'
+                                           ELSE 'L'
+                    END Score
+        FROM   DARTS_PL
+        UNION ALL
+        SELECT Player_A, 
+               CASE WHEN Score_A > Score_H THEN 'W'
+                    WHEN Score_A = Score_H THEN 'D'
+                                           ELSE 'L'
+                    END Score
+        FROM   DARTS_PL
+       ) 
+GROUP BY Player
+ORDER BY Ws - Ds Desc
+/
+
+SELECT Year, Player,
+       sum(CASE WHEN F > A THEN 1 ELSE 0 END) W,
+       sum(CASE WHEN F = A THEN 1 ELSE 0 END) D,
+       sum(CASE WHEN F < A THEN 1 ELSE 0 END) L,
+       sum(F) F, sum(A) A,
+       sum(CASE WHEN F > A THEN 2
+                WHEN F = A THEN 1 ELSE 0 END) Pts
+FROM  (
+        SELECT Year, Player_H Player, Score_H F, Score_A A  FROM   DARTS_PL WHERE (Score_H + Score_A) > 0 AND Round Not Like '%F'
+        UNION ALL
+        SELECT Year, Player_A Player, Score_A F, Score_H A  FROM   DARTS_PL WHERE (Score_H + Score_A) > 0 AND Round Not Like '%F'
+       ) 
+GROUP BY Year, Player
+ORDER BY Year, Pts Desc, F - A Desc
+/
+
+SELECT *
+FROM   DARTS_PL
+WHERE  ROUND = 'F'
+ORDER BY Year
 /
 
 
