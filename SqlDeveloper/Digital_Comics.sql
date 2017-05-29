@@ -12,7 +12,7 @@ BEGIN
 END;
 /
 BEGIN
-   COMICS.Find_Pull_Matches(70);
+   COMICS.Find_Pull_Matches(80);
    COMICS.Find_Wish_Matches;
 END;
 /
@@ -29,7 +29,6 @@ BEGIN
   COMICS.Update_OneShots_Comics;
   COMICS.Update_BackIssue_Comics;
   COMICS.Update_Digital_Comics;
---
   COMICS.Update_Digital_Pull;
   COMICS.Update_WishList_Pull;
 END;
@@ -45,13 +44,9 @@ END;
 SELECT * FROM V_DIGITAL_MULTI_RUN_DETAIL;
 SELECT * FROM V_DIGITAL_ALL_MULTI_RUN_DETAIL;
 
-/
-
-SELECT * FROM V_DIGITAL_RUN_DETAIL Where Title Like '%Who%Arc%' ORDER BY Volume, Title, Start_Issue;
-
 
 BEGIN
-   COMICS.Load_Wish_List('Conan the Barbarian', 1970,   2, 5);
+   COMICS.Load_Wish_List('Sub-Mariner', 1968, 15, 21);
 END;
 /
 
@@ -64,3 +59,8 @@ FROM     WISH_LIST
 GROUP BY Title, Volume
 ORDER BY Count(*) Desc;
 
+SELECT   to_char(Last_Updated, 'MON-YYYY') Month, Count(*)
+FROM     SUBSCRIPTION
+GROUP BY to_char(Last_Updated, 'MON-YYYY')
+ORDER BY 2
+/
