@@ -127,11 +127,11 @@ Stage 7: N51  31.039	W000 04.989
 N51 31. (AA+AB+Y+Y)
 W000 04. (AA x AB x Y) + (Y x Y) + (W+T)
 Questions:
-AC, AD (4, 4) = an old name for this pub was... "called ? and ?" (no. of letters, 2 words)
-King and Keys
+AC, AD (5, 4) = an old name for this pub was... "called ? and ?" (no. of letters, 2 words)
+Kings and Keys
 */
 
-UPDATE GC_ALE_TRAIL SET    AC = 4, AD = 4; -- Not Verified : F / J
+UPDATE GC_ALE_TRAIL SET    AC = 5, AD = 4; -- Not Verified : F / J
 
 Create Or Replace View GC_Ale_Trail_Stage_8
 AS
@@ -168,11 +168,11 @@ Stage 9: N51  31.104	W000 04.781
 N51 31. AE - ((AC x AD x X) + (AA x AA) + (N x Y))
 W000 04. AG - (AC x AD x X)
 Questions:
-AH (11) (Bishopsgate not ERKENWALD) = unusual name found near the bottom (no. of letters)
+AH (9) (ERKENWALD not Bishopsgate) = unusual name found near the bottom (no. of letters)
 AJ 18 (693 - 675)  = result of the subtraction near the bottom (stay positive).
 */
 
-UPDATE GC_ALE_TRAIL SET AH= 11, AJ = (693 - 675); -- Not Verified : F / J / AF
+UPDATE GC_ALE_TRAIL SET AH= 9, AJ = (693 - 675); -- Not Verified : F / J / AF
 
 Create Or Replace View GC_Ale_Trail_Stage_10
 AS
@@ -212,8 +212,8 @@ UPDATE GC_ALE_TRAIL SET AM= 13, AN = 12; -- Not Verified : F / J / AF / AK / AL
 Create Or Replace View GC_Ale_Trail_Stage_12
 AS
 SELECT 'N51  30.' || ((AM * AN * AC) + AJ) Northing,
-       'W000 05.0' || ((AK / AD)) Westing,
-       AK / R Distance, ak, r
+       'W000 05.0' || (AK / AD) Westing,
+       AC, AD, AJ, AK, AM, AN, AK / R Distance, ak, r
 FROM   GC_Ale_Trail
 /
 
@@ -226,7 +226,32 @@ Walk about 100 (AK / R) meters west. When you've done that, seek out P12, which 
 by walking south. (If you do not find within 30m, you probably went south from the wrong place!).
 P13 is also hidden, but is actually less than 30m west from P12.
 P12 Questions:
+
+P12 Questions:
+AP = 6 (Turtle) what was the "gift" that was consumed? (no. of letters)
+AQ = 10 (Wellington) who sent the letter of thanks? (no. of letters in their name, not their title)
+
+P13 Questions: simpsonstavern48
+AR = 3 (‘Guessing the Cheese’) what custom probably started here (no. of words)
+AS = 9 (Vademecum for Maltworms) thats an unusual name for a beer guide! (no. of letters 1st word)
+AT = 8 (‘birdseye) smokers enjoyed a screw of ? (no. of letters 1st word)
 */
+UPDATE GC_ALE_TRAIL SET AP = 6, AQ = 10; -- Not Verified : F / J / AF / AK / AL
+UPDATE GC_ALE_TRAIL SET AR = 3, ASW = 9, AT = 8; -- Not Verified : F / J / AF / AK / AL
+
+Create Or Replace View GC_Ale_Trail_Stage_14
+AS
+SELECT 'N51  30.' || (AF + AK + (AQ * AQ) + (AQ * AQ)) Northing,
+       'W000 05.0' || ((ASW * AT * AR * AR) - (AM + AN + AR)) Westing
+FROM   GC_Ale_Trail
+/
+/*
+Stage 14 + 15:
+P14 - Question: AU = 6 (Timber) what was pickled, but not eaten? (no. of letters)
+P15 - Question: AV = 10 (william III Mary II) Add up the numerals of the gift givers (him and her) and multiply by 2?
+*/
+UPDATE GC_ALE_TRAIL SET AU = 6, AV = 10; -- Not Verified : F / J / AF / AK / AL
+
 
 SELECT * FROM GC_Ale_Trail;
 SELECT * FROM GC_Ale_Trail_Stage_1;
@@ -241,8 +266,69 @@ SELECT * FROM GC_Ale_Trail_Stage_9;
 SELECT * FROM GC_Ale_Trail_Stage_10;
 SELECT * FROM GC_Ale_Trail_Stage_11;
 SELECT * FROM GC_Ale_Trail_Stage_12;
+SELECT * FROM GC_Ale_Trail_Stage_14;
 
+-----------------------------------------------------
+Stage  1: N51 30.728 W000 06.230
+Stage  2: N51 31.171 W000 05.957
+Stage  3: N51 31.160 W000 05.937
+Stage  4: N51 30.994 W000 05.819
+Stage  5: N51 30.945 W000 05.420
+Stage  6: N51 31.055 W000 05.322
+Stage  7: N51 31.039 W000 04.989
+Stage  8: N51 30.980 W000 04.960
+Stage  9: N51 31.092 W000 04.769
+Stage 10: N51 30.738 W000 04.765
+Stage 11: N51 30.565 W000 05.059
+Stage 12: N51 30.798 W000 05.050
+Stage 14: N51 30.777 W000 05.620
+-----------------------------------------------------
 
+P0:  J = Partly occupied by a famous theatre. (number of letters in the theatre's name.)
+P1:  M = "the ? years of the..."
+P2:  Q = and the 2nd famous visitor's surname was ? (No. of letters)
+P3:  R, S = "was built in the precincts of ... in 11??"
+P3:  U, V = be very happy that your next stop is not the once "nearby" building called ? ?, 
+     after your last beer on earth. (no. of letters, 2 words)
+P4:  W, X = what was lost in the battle... "? ?"
+P5:  Y = no. of letters in the longest word.
+P6:  AB = animal featured in a poem (no. of letters)
+P7:  AC, AD = an old name for this pub was... "called ? and ?" (no. of letters, 2 words)
+P8:  AF = (14th - 8th) - 1
+P9:  AH = unusual name found near the bottom (no. of letters)
+P10: AK = a large sum of money was invested by how many people?
+P10: AL = look for the fraction that was revenue.
+P11: AN = no. of letters of the hyphenated word (eg. big-toe is 6)
+P12: AP = what was the "gift" that was consumed? (no. of letters)
+P13: AR = what custom probably started here (no. of words)
+P13: AS = thats an unusual name for a beer guide! (no. of letters 1st word)
+P14: AU = what was pickled, but not eaten? (no. of letters)
+P15: AV = Add up the numerals of the gift givers (him and her) and multiply by 2?
+-----------------------------------------------------
 
+-- FINAL : N51 XX W000 YY
 
+Drop   Table GC_Ale_Trail_Final Purge;
+Create Table GC_Ale_Trail_Final
+AS
+SELECT (J * Q * R * AC * AP * AU) X1,
+       (AK * AP * ASW) X2,
+       AF - ((AH * AN / X) + (AR * AR * AN)) X3,
+       (V * Y * AB * AV) + (AC + AU) Y1,
+       (M * R) - (AK * AL) Y2, M, R, AK, AL,
+       0 XX, 0 YY
+FROM GC_Ale_Trail
+/
+UPDATE GC_Ale_Trail_Final
+SET    XX = (X1 + X2 - X3) / 1000,
+       YY = (Y1 - Y2) / 1000
+/
+
+Create Or Replace View GC_Ale_Trail_Final_Stage
+AS
+SELECT 'N51 ' || XX Northing, 'W000 ' || YY Westing, X1, X2, X3, Y1, Y2, M, R, AK, AL
+FROM   GC_Ale_Trail_Final
+/
+
+Select * From GC_Ale_Trail_Final_Stage;
 
