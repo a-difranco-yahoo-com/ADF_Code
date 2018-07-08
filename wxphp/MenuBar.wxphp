@@ -7,13 +7,26 @@ class MainFrame extends wxFrame
     $this->Destroy();
   }
 
+  function onNew()
+  {
+    $this->statusbar->SetStatusText('New Command');
+  }
+
+  function onOpen()
+  {
+    $this->statusbar->SetStatusText('Open Command');
+  }
+
+  function onSave()
+  {
+    $this->statusbar->SetStatusText('Save Command');
+  }
 
   function __construct()
   {
      // Parent Window ?  /  This Window Id? / Title / Window Position / Window Size
      parent::__construct(null, -1, "MenuBar wxPHP App", new wxPoint(600, 100), new wxSize(300, 250));
 
-/*
      $menubar = new wxMenuBar();
      $file    = new wxMenu();
      $edit    = new wxMenu();
@@ -23,9 +36,8 @@ class MainFrame extends wxFrame
     $file->Append(101, '&Open', 'Open a new document');
     $file->Append(102, '&Save', 'Save the document');
     $file->AppendSeparator();
-
     $quit    = new wxMenuItem($file, 105, '&Quit	Ctrl+Q', 'Quit the Application');
-    $quit->SetBitmap(new wxBitmap('stock_exit.bmp', wxBITMAP_TYPE_BMP)); // No suport for non-bitmaps ??
+    $quit->SetBitmap(new wxBitmap('Images/stock_exit.bmp', wxBITMAP_TYPE_BMP)); // No suport for non-bitmaps ??
     $file->Append($quit);
 
     // Edit Menu 
@@ -43,43 +55,26 @@ class MainFrame extends wxFrame
     $menubar->Append($help, '&Help');
 
     $this->SetMenuBar($menubar);
-    $this->CreateStatusBar();
     $this->Connect(105, wxEVT_COMMAND_MENU_SELECTED, array($this,"onQuit"));
-*/
 
+    $vbox    = new wxBoxSizer(wxVERTICAL);
+    $toolbar = new wxToolBar($this, -1, new wxPoint(600, 100), new wxSize(300, 250), wxTB_HORIZONTAL | wxNO_BORDER);
+    $toolbar->AddTool(1, 'New',  new wxBitmap('Images/stock_new.bmp',  wxBITMAP_TYPE_BMP), 'New Doc');
+    $toolbar->AddTool(2, 'Open', new wxBitmap('Images/stock_open.bmp', wxBITMAP_TYPE_BMP), 'Open Doc');
+    $toolbar->AddTool(3, 'Save', new wxBitmap('Images/stock_save.bmp', wxBITMAP_TYPE_BMP), 'Save Doc');
+    $toolbar->AddSeparator();
+    $toolbar->AddTool(4, 'Exit', new wxBitmap('Images/stock_exit.bmp', wxBITMAP_TYPE_BMP), 'Exit Doc');
+    $toolbar->Realize();
 
-/*
-        vbox = wx.BoxSizer(wx.VERTICAL)
-        toolbar = wx.ToolBar(self, -1, style=wx.TB_HORIZONTAL | wx.NO_BORDER)
-        toolbar.AddSimpleTool(1, wx.Image('stock_new.png', wx.BITMAP_TYPE_PNG).ConvertToBitmap(), 'New', '')
-        toolbar.AddSimpleTool(2, wx.Image('stock_open.png', wx.BITMAP_TYPE_PNG).ConvertToBitmap(), 'Open', '')
-        toolbar.AddSimpleTool(3, wx.Image('stock_save.png', wx.BITMAP_TYPE_PNG).ConvertToBitmap(), 'Save', '')
-        toolbar.AddSeparator()
-        toolbar.AddSimpleTool(4, wx.Image('stock_exit.png', wx.BITMAP_TYPE_PNG).ConvertToBitmap(), 'Exit', '')
-        toolbar.Realize()
-        vbox.Add(toolbar, 0, border=5)
-        self.SetSizer(vbox)
-        self.statusbar = self.CreateStatusBar()
-        self.Centre()
+//	vbox.Add(toolbar, 0, border=5)
+    $this->SetSizer($vbox);
+    $this->statusbar = $this->CreateStatusBar();
+    $this->Centre();
 
-        self.Bind(wx.EVT_TOOL, self.OnNew, id=1)
-        self.Bind(wx.EVT_TOOL, self.OnOpen, id=2)
-        self.Bind(wx.EVT_TOOL, self.OnSave, id=3)
-        self.Bind(wx.EVT_TOOL, self.OnExit, id=4)
-
-    def OnNew(self, event):
-        self.statusbar.SetStatusText('New Command')
-
-    def OnOpen(self, event):
-        self.statusbar.SetStatusText('Open Command')
-
-    def OnSave(self, event):
-        self.statusbar.SetStatusText('Save Command')
-
-    def OnExit(self, event):
-        self.Close()
-*/
-
+    $this->Connect(1, wxEVT_COMMAND_TOOL_CLICKED, array($this,"onNew"));
+    $this->Connect(2, wxEVT_COMMAND_TOOL_CLICKED, array($this,"onOpen"));
+    $this->Connect(3, wxEVT_COMMAND_TOOL_CLICKED, array($this,"onSave"));
+    $this->Connect(4, wxEVT_COMMAND_TOOL_CLICKED, array($this,"onQuit"));
   }
 }
 
