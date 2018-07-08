@@ -1,0 +1,7 @@
+
+
+CREATE TABLE CROSSWORD_CELL (
+Row_No     NUMBER      NOT NULL,
+Column_No  NUMBER      NOT NULL,
+Entry      VARCHAR2(1) NOT NULL)
+/
