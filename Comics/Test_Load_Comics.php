@@ -27,7 +27,7 @@ function find_comics($db, $dir)
 
 $db = new Comic_Oracle();
 
-find_comics($db, "E:/Comics/3 To Trim");
+find_comics($db, "D:/Comics/3 To Trim");
 
 $db->CloseConnection();
 ?>

@@ -1,7 +1,7 @@
 <?php
 
 include('SimpleImage.php');
-$base_dir="F:/Comics/Pics";
+$base_dir="D:/Comics/Pics";
 $base_dir="C:/Downloads/Pictures/Unsorted";
 
 Find_Pics($base_dir);
