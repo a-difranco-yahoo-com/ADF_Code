@@ -185,6 +185,3 @@ wxApp::SetInstance($app);
 wxEntry();  
 
 ?>
-
-
-
