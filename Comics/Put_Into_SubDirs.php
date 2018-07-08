@@ -2,7 +2,7 @@
 
 include 'Comic.php';
 
-find_comics("E:/Comics/Move_To_IDrive");
+find_comics("D:/Comics/Move_To_IDrive");
 
 /* List dir to find comics to move into title specific sub-dirs  */
 function find_comics($dir)
