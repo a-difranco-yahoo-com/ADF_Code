@@ -1,0 +1,6 @@
+
+
+CREATE TABLE CROSSWORD_DIMENSION (
+No_Of_Rows     NUMBER      NOT NULL,
+No_Of_Columns  NUMBER      NOT NULL)
+/
