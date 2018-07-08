@@ -1,0 +1,51 @@
+<?php
+
+class MainFrame extends wxFrame
+{ 
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+
+   function __construct()
+   {
+      // Parent Window ?  /  This Window Id? / Title / Window Position / Window Size
+      parent::__construct(null, -1, "Window Scrolll Event App", new wxPoint(400, 120), new wxSize(400, 350));
+	  
+      $panel = new wxPanel($this, 1);
+      $this->st = new wxStaticText($panel, -1, '0', new wxPoint(30,0));
+      $panel->Connect(1, wxEVT_SCROLL_CHANGED, array($this, "OnScroll") );
+      $panel->SetScrollbar(wxVERTICAL, 0, 6, 50);
+//      $this->Centre();
+  }
+
+  function OnScroll()
+  {
+//     $y = evt.GetPosition();
+//     $this->st.SetLabel(str(y));
+     $this->st.SetLabel('onScroll');
+  }
+}
+
+class MyApp extends wxApp 
+{
+  function OnInit()
+  {
+    $this->mf = new mainFrame();
+    $this->mf->Show();
+
+    return 0;
+  }
+
+  function OnExit()
+  {
+    return 0;
+  }
+}
+
+$app = new MyApp();
+wxApp::SetInstance($app);
+
+wxEntry();  
+
+?>

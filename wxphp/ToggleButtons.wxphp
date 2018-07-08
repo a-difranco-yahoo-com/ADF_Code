@@ -1,0 +1,75 @@
+<?php
+	
+class ToggleButtons extends wxDialog
+{ 
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+ 
+  function ToggleRed($event)
+  {
+      $green = $this->colour->Green();
+      $blue  = $this->colour->Blue();
+	  if ( $this->colour->Red() )
+	      $this->colour->Set(0, $green, $blue);
+	  else
+	      $this->colour->Set(255, $green, $blue);
+      $this->panel->SetBackgroundColour($this->colour);
+   }
+
+  function ToggleGreen($event)
+  {
+      $red   = $this->colour->Red();
+      $blue  = $this->colour->Blue();
+	  if ( $this->colour->Red() )
+	      $this->colour->Set($red, 0, $blue);
+	  else
+	      $this->colour->Set($red, 255, $blue);
+      $this->panel->SetBackgroundColour($this->colour);
+   }
+
+  function ToggleBlue($event)
+  {
+      $red   = $this->colour->Red();
+      $green = $this->colour->Green();
+	  if ( $this->colour->Blue() )
+	      $this->colour->Set($red, $green, 0);
+	  else
+	      $this->colour->Set($red, $green, 255);
+      $this->panel->SetBackgroundColour($this->colour);
+   }
+
+   function __construct()
+  {
+     // Parent Window ?  /  This Window Id? / Title / Window Position / Window Size
+     parent::__construct(null, -1, "Toggle Buttons Dialog wxPHP App", new wxPoint(300, 200), new wxSize(300, 200));
+
+     $this->colour = new wxColour(0, 0, 0);
+//     $this->colour->Set(100, 200, 150);
+
+     new wxToggleButton($this, 1, 'red',   new wxPoint(20, 20));
+     new wxToggleButton($this, 2, 'green', new wxPoint(20, 60));
+     new wxToggleButton($this, 3, 'blue',  new wxPoint(20, 100));
+
+     $this->panel = new wxPanel($this, -1, new wxPoint(150, 20), new wxSize(110, 110), wxSUNKEN_BORDER);
+     $this->panel->SetBackgroundColour($this->colour);
+	 
+     $this->Connect(1, wxEVT_TOGGLEBUTTON, array($this, "ToggleRed") );
+     $this->Connect(2, wxEVT_TOGGLEBUTTON, array($this, "ToggleGreen") );  // Change colours does not work
+     $this->Connect(3, wxEVT_TOGGLEBUTTON, array($this, "ToggleBlue") );		
+
+	 $this->Center();
+     $this->ShowModal();
+     $this->Destroy();
+   }
+}
+
+
+$app = new wxApp();
+wxApp::SetInstance($app);
+new ToggleButtons(NULL, -1, "togglebuttons.py");
+wxEntry();  
+
+?>
+

@@ -1,0 +1,101 @@
+<?php
+	
+
+class MainFrame extends wxFrame
+{
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+
+  function __construct()
+  {
+     parent::__construct(null, -1, "wxPHP Media Player Dialog", wxDefaultPosition, new wxSize(300, 200));
+
+        $panel = new wxPanel($this, -1);
+
+        $pnl1 = new wxPanel($this, -1);
+        $pnl1->SetBackgroundColour(wxBLACK);
+        $pnl2 = new wxPanel($this, -1);
+
+        $menubar   = new wxMenuBar();
+        $file      = new wxMenu();
+        $play      = new wxMenu();
+        $view      = new wxMenu();
+        $tools     = new wxMenu();
+        $favorites = new wxMenu();
+        $help      = new wxMenu();
+
+        $file->Append(101, '&quit', 'Quit application');
+
+        $menubar->Append($file,      '&File');
+        $menubar->Append($play,      '&Play');
+        $menubar->Append($view,      '&View');
+        $menubar->Append($tools,     '&Tools');
+        $menubar->Append($favorites, 'F&avorites');
+        $menubar->Append($help,      '&Help');
+
+        $slider1 = new wxSlider($pnl2, -1, 0, 0, 1000);
+        $pause   = new wxBitmapButton($pnl2, -1, new wxBitmap('Images/stock_media_pause.bmp', wxBITMAP_TYPE_BMP));
+        $play    = new wxBitmapButton($pnl2, -1, new wxBitmap('Images/stock_media_play.bmp',  wxBITMAP_TYPE_BMP));
+        $next    = new wxBitmapButton($pnl2, -1, new wxBitmap('Images/stock_media_next.bmp',  wxBITMAP_TYPE_BMP));
+        $prev    = new wxBitmapButton($pnl2, -1, new wxBitmap('Images/stock_media_prev.bmp',  wxBITMAP_TYPE_BMP));
+        $volume  = new wxBitmapButton($pnl2, -1, new wxBitmap('Images/volume.bmp',            wxBITMAP_TYPE_BMP));
+
+        $slider2 = new wxSlider($pnl2, -1, 0, 0, 100);
+//        $slider2 = new wxSlider($pnl2, -1, 0, 0, 100, new wxPosition(120, -1));
+
+        $vbox  = new wxBoxSizer(wxVERTICAL);
+        $hbox1 = new wxBoxSizer(wxHORIZONTAL);
+        $hbox2 = new wxBoxSizer(wxHORIZONTAL);
+
+        $hbox1->Add($slider1, 1);
+        $hbox2->Add($pause);
+        $hbox2->Add($play, wxRIGHT, 5);
+        $hbox2->Add($next, wxLEFT,  5);
+        $hbox2->Add($prev);
+        $hbox2->Add(150, -1, 1, wxEXPAND | wxALIGN_RIGHT);
+        $hbox2->Add($volume,  wxALIGN_RIGHT);
+        $hbox2->Add($slider2, wxALIGN_RIGHT | wxTOP | wxLEFT, 5);
+        $vbox->Add($hbox1, 1, wxEXPAND | wxBOTTOM, 10);
+        $vbox->Add($hbox2, 1, wxEXPAND);
+        $pnl2->SetSizer($vbox);
+
+        $sizer = new wxBoxSizer(wxVERTICAL);
+        $sizer->Add($pnl1, 1, wxEXPAND);
+        $sizer->Add($pnl2, wxEXPAND | wxBOTTOM | wxTOP, 10);
+
+        $this->SetMinSize(new wxSize(350, 300));
+        $this->SetMenuBar($menubar);
+        $this->CreateStatusBar();
+        $this->SetSizer($sizer);
+        $this->Centre();
+
+        return True; 
+  }
+}
+
+	
+class MyApp extends wxApp 
+{
+  function OnInit()
+  {
+    $this->mf = new MainFrame(NULL, -1, "Player");
+    $this->mf->Show();
+    $this->mf->Center();
+
+    return 0;
+  }
+
+  function OnExit()
+  {
+    return 0;
+  }
+}
+
+$app = new MyApp();
+wxApp::SetInstance($app);
+
+wxEntry();  
+
+?>

@@ -1,0 +1,39 @@
+<?php
+	
+class MyDialog extends wxDialog
+{ 
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+ 
+  function __construct()
+  {
+     // Parent Window ?  /  This Window Id? / Title / Window Position / Window Size
+     parent::__construct(null, -1, "Simple Dialog wxPHP App", new wxPoint(400, 120), new wxSize(400, 350));
+  }
+}
+
+class MyApp extends wxApp 
+{
+  function OnInit()
+  {
+    $this->dia = new MyDialog(None, -1, "simpledialog.py"));
+    $this->dia->ShowModal();
+    $this->dia->Destroy();
+
+    return 0;
+  }
+
+  function OnExit()
+  {
+    return 0;
+  }
+}
+
+$app = new MyApp();
+wxApp::SetInstance($app);
+
+wxEntry();  
+
+?>

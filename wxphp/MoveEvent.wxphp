@@ -1,0 +1,53 @@
+<?php
+
+class MainFrame extends wxFrame
+{ 
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+
+  function onMove()
+  {
+    $this->st1->SetLabel( $this->GetPosition()->x );
+    $this->st2->SetLabel( $this->GetPosition()->y );
+  }
+
+  function __construct()
+  {
+     // Parent Window ?  /  This Window Id? / Title / Window Position / Window Size
+     parent::__construct(null, -1, "Fonts wxPHP App", new wxPoint(400, 120), new wxSize(400, 350));
+
+     new wxStaticText($this, -1, 'x:', new wxPoint(10, 0));
+     new wxStaticText($this, -1, 'y:', new wxPoint(10,20));
+     $this->st1 = new wxStaticText($this, -1, '', new wxPoint(30,  0), new wxSize(300,150), $style=wxALIGN_CENTRE);
+     $this->st2 = new wxStaticText($this, -1, '', new wxPoint(30, 20), new wxSize(300,150), $style=wxALIGN_CENTRE);
+     $this->Connect(-1, wxEVT_MOVE, array($this, "OnMove") );
+     $this->Centre();
+  }
+}
+
+class MyApp extends wxApp 
+{
+  function OnInit()
+  {
+    $this->mf = new mainFrame();
+    $this->mf->Show();
+
+    return 0;
+  }
+
+  function OnExit()
+  {
+    return 0;
+  }
+}
+
+$app = new MyApp();
+wxApp::SetInstance($app);
+
+wxEntry();  
+
+?>
+
+

@@ -1,0 +1,61 @@
+<?php
+
+class MainFrame extends wxFrame
+{ 
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+
+  function onKeyDown($event)
+  {
+      $this->refreshCount++;
+      $this->st1->SetLabel( $this->refreshCount );
+      $keycode = $event->GetKeyCode();
+      $this->st1->SetLabel( $keycode );
+      if ($keycode == WXK_ESCAPE)
+	  {
+	     $ret  = wxMessageBox('Are you sure to quit?', 'Question', wxYES_NO | wxCENTRE | wxNO_DEFAULT, $this);
+         if ($ret == wxYES)
+                $this->Close();
+        $event->Skip();
+	  }
+  }
+  
+  function __construct()
+  {
+     // Parent Window ?  /  This Window Id? / Title / Window Position / Window Size
+     parent::__construct(null, -1, "Key Event wxPHP App", new wxPoint(400, 120), new wxSize(400, 350));
+
+     $panel = new wxPanel($this, 1, new wxPoint(0, 0), new wxSize(400, 350));
+     $panel->SetFocus();	
+	 $panel->Connect(1, wxEVT_KEY_DOWN, array($this, "OnKeyDown") );
+     $this->refreshCount=1;
+     $this->st1 = new wxStaticText($panel, 1, 'x', new wxPoint(30,  40), new wxSize(300,150), $style=wxALIGN_CENTRE); 
+     $this->Centre();
+     $this->Show(TRUE);
+  }
+}
+
+class MyApp extends wxApp 
+{
+  function OnInit()
+  {
+    $this->mf = new mainFrame();
+    $this->mf->Show();
+
+    return 0;
+  }
+
+  function OnExit()
+  {
+    return 0;
+  }
+}
+
+$app = new MyApp();
+wxApp::SetInstance($app);
+
+wxEntry();  
+
+?>

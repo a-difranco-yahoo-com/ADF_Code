@@ -1,0 +1,159 @@
+<?php
+	
+
+class MainFrame extends wxFrame
+{
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+
+  function __construct()
+  {
+     parent::__construct(null, -1, "wxPHP Common Dialogs", wxDefaultPosition, new wxSize(300, 200));
+
+      $this->CreateStatusBar();
+      $menuBar = new wxMenuBar();
+      $menu    = new wxMenu();
+      $menu->Append(99,  "&Message Dialog",      "Shows a Message Dialog");
+      $menu->Append(100, "&Color Dialog",        "Shows a Color Dialog");
+      $menu->Append(101, "&File Dialog",         "Shows a File Dialog");
+      $menu->Append(102, "&Page Setup Dialog",   "Shows a Page Setup Dialog");
+      $menu->Append(103, "&Font Dialog",         "Shows a Font Dialog");
+      $menu->Append(104, "&Directory Dialog",    "Shows a Directory Dialog");
+      $menu->Append(105, "&SingleChoice Dialog", "Shows a SingleChoice Dialog");
+      $menu->Append(106, "&TextEntry Dialog",    "Shows a TextEntry Dialog");
+      $menuBar->Append($menu, "&Dialogs");
+      $this->SetMenuBar($menuBar);
+
+      $this->Connect( 99, wxEVT_MENU, array($this,"message") );
+      $this->Connect(100, wxEVT_MENU, array($this,"choosecolor") );
+      $this->Connect(101, wxEVT_MENU, array($this,"openfile") );
+      $this->Connect(102, wxEVT_MENU, array($this,"pagesetup") );
+      $this->Connect(103, wxEVT_MENU, array($this,"choosefont") );
+      $this->Connect(104, wxEVT_MENU, array($this,"opendir") );
+      $this->Connect(105, wxEVT_MENU, array($this,"singlechoice") );
+      $this->Connect(106, wxEVT_MENU, array($this,"textentry") );
+	 
+  }
+
+  function message($event)
+  {
+     $dia = new wxMessageDialog($this, 'To save one life is as if you have saved the world.', 'Talmud', wxOK|wxICON_INFORMATION);
+     $dia->ShowModal();
+     $dia->Destroy();
+  }
+
+  function choosecolor($event)
+  {
+     $dia = new wxColourDialog($this);
+     $dia->GetColourData()->SetChooseFull(True);
+     if ($dia->ShowModal() == wxID_OK)
+	 {
+        $data = $dia->GetColourData();
+        $this->SetStatusText('You selected: ' . $data->ToString() . '\n');
+     }
+	 $dia->Destroy();
+  }
+
+  function openfile($event)
+  {
+     $dia = new wxFileDialog($this, "Choose a file", getcwd(), "", "*.*", wxFD_OPEN);
+    if ($dia->ShowModal() == wxID_OK)
+	 {
+        $path = $dia->GetPath();
+        $this->SetStatusText('You selected: ' . $path );
+     }
+	 $dia->Destroy();
+  }
+
+  function pagesetup($event)
+  {
+      $dlg = new wxPageSetupDialog($this);
+      if ($dlg->ShowModal() == wxID_OK)
+	  {
+         $data = $dlg->GetPageSetupData();
+         $tl   = $data->GetMarginTopLeft();
+         $br   = $data->GetMarginBottomRight();
+		 $tldim = '[' . $tl->x . ',' . $tl->y  . ']';
+		 $brdim = '[' . $br->x . ',' . $br->y  . ']';
+         $this->SetStatusText('Margins are: ' . $tldim . ' ' . $brdim);
+	  }
+//      $dlg->Destroy(); // Not needed
+  }
+
+   function choosefont($event)
+   {
+      $default_font = new wxFont(10, wxFONTFAMILY_SWISS  , wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL , False, "Verdana");
+      $data = new wxFontData();
+      if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+            $data->EnableEffects(True);
+      $data->SetAllowSymbols(False);
+      $data->SetInitialFont($default_font);
+      $data->SetRange(10, 40);
+$colour = $data->GetColour();
+      $dlg = new wxFontDialog($this, $data);
+      if ($dlg->ShowModal() == wxID_OK)
+	  {
+         $fontdata  = $dlg->GetFontData(); // should be wxFontData but is wxFontDialog
+//         $font     = $dlg->GetFontData()->GetChosenFont();
+//         $color = $fontdata->GetColour();
+//         $text  = 'Face: ' . $font->GetFaceName() . ' Size: ' . $font->GetPointSize() . ' Color: ' . $color->Get();
+//         $this->SetStatusText($text);
+	  }	 
+      $dlg->Destroy();
+   }
+
+   function opendir($event)
+   {
+      $dlg = new wxDirDialog($this, "Choose a directory:", wxDD_DEFAULT_STYLE | wxDD_NEW_DIR_BUTTON);
+      if ($dlg->ShowModal() == wxID_OK)	  
+            $this->SetStatusText('You selected: ' . $dlg->GetPath() );
+      $dlg->Destroy();
+   }
+
+   function singlechoice($event)
+   {
+     $sins = array('Greed', 'Lust', 'Gluttony', 'Pride', 'Sloth', 'Envy', 'Wrath');
+     $dlg  = new wxSingleChoiceDialog($this, 'Seven deadly sins', 'Which one?', $sins, wxCHOICEDLG_STYLE);
+	 if ($dlg->ShowModal() == wxID_OK)	  
+        $this->SetStatusText('You chose: ' . $dlg->GetStringSelection() );
+      $dlg->Destroy();
+   }
+
+   function textentry($event)
+   {
+       $dlg = new wxTextEntryDialog($this, 'Enter some text','Text Entry');
+       $dlg->SetValue("Default");
+       if ($dlg->ShowModal() == wxID_OK)	  
+        $this->SetStatusText('You entered: ' . $dlg->GetValue() );
+      $dlg->Destroy();
+   }
+
+}
+
+
+		
+class MyApp extends wxApp 
+{
+  function OnInit()
+  {
+    $this->mf = new MainFrame(NULL, -1, "Common Dialogs");
+    $this->mf->Show();
+    $this->mf->Center();
+
+    return 0;
+  }
+
+  function OnExit()
+  {
+    return 0;
+  }
+}
+
+$app = new MyApp();
+wxApp::SetInstance($app);
+
+wxEntry();  
+
+?>

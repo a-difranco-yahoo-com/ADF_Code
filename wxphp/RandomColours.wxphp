@@ -1,0 +1,62 @@
+<?php
+
+class MainFrame extends wxFrame
+{ 
+  function onQuit()
+  {
+    $this->Destroy();
+  }
+
+   function __construct()
+   {
+      // Parent Window ?  /  This Window Id? / Title / Window Position / Window Size
+      parent::__construct(null, -1, "Random Colours wxPHP App", new wxPoint(400, 120), new wxSize(400, 350));
+
+      $this->panel  = new wxPanel($this, 1);
+	  $this->colourIndex = 0;
+      $this->timer  = new wxTimer($this);
+      $this->Connect(-1, wxEVT_TIMER, array($this, "OnTimer") );
+      $this->timer->Start(1500);
+      $this->Centre();
+	  }
+
+   function OnTimer()
+   {
+	  $this->colourIndex++;
+	  switch($this->colourIndex)
+	  {
+		  case 1: $newColour = new wxColour('midnight blue'); break;
+		  case 2: $newColour = new wxColour('goldenrod');     break;
+		  case 3: $newColour = new wxColour('cadet blue');	  break;
+		  case 4: $newColour = new wxColour('dark orchid');	  break;
+		  case 5: $newColour = new wxColour('dim grey');      break;
+		  case 6: $newColour = new wxColour('maroon');		  break;
+		  case 7: $newColour = new wxColour('indian red');    break;
+	  }
+	  if ($this->colourIndex == 7) $this->colourIndex = 0;
+      $this->panel->SetBackgroundColour($newColour);
+      $this->panel->Refresh();
+   }
+}
+
+class MyApp extends wxApp 
+{
+  function OnInit()
+  {
+    $this->mf = new mainFrame();
+    $this->mf->Show();
+    return 0;
+  }
+
+  function OnExit()
+  {
+    return 0;
+  }
+}
+
+$app = new MyApp();
+wxApp::SetInstance($app);
+wxEntry();  
+
+?>
+
