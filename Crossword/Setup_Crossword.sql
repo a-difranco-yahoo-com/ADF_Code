@@ -24,7 +24,7 @@ BEGIN
    CROSSWORD.Add_Crossword_Word( 1,  9,  5, 'D', 7, 'CRIMSON');
    CROSSWORD.Add_Crossword_Word( 1, 11,  6, 'D', 5, 'TAKEN');
    CROSSWORD.Add_Crossword_Word( 1, 13,  7, 'D', 7, 'ELEGANT');
-   CROSSWORD.Add_Crossword_Word( 2,  7,  8, 'D', 5, '');
+   CROSSWORD.Add_Crossword_Word( 2,  7,  8, 'D', 5, 'TWEED');
    CROSSWORD.Add_Crossword_Word( 7,  1, 13, 'D', 7, 'COMPILE');
    CROSSWORD.Add_Crossword_Word( 7,  5, 14, 'D', 7, 'ALIBABA');
    CROSSWORD.Add_Crossword_Word( 7, 11, 16, 'D', 7, 'EXPLORE');
