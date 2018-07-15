@@ -17,7 +17,22 @@ include 'CROSSWORD_PDF.php';
       for ($i=0; $i < count($cells); $i++)
       {
          $ThisCell=$cells[$i];
-         $pdf->PrintCell( $ThisCell["ROW_NO"], $ThisCell["COLUMN_NO"], $ThisCell["ENTRY"]);
+         $pdf->PrintCell( $ThisCell["ROW_NO"], $ThisCell["COLUMN_NO"], $ThisCell["ENTRY"], $ThisCell["IS_KEY_CELL"]);
+      }
+
+      $clues = $db->Get_Clues();
+      for ($i=0; $i < count($clues); $i++)
+      {
+         $ThisClue=$clues[$i];
+         $pdf->PrintClueNumber( $ThisClue["ROW_NO"], $ThisClue["COLUMN_NO"], $ThisClue["CLUE_NO"]);
+      }
+
+      $pdf->SetupKeyCellPage();
+      $cells = $db->Get_Key_Cells();
+      for ($i=0; $i < count($cells); $i++)
+      {
+         $ThisCell=$cells[$i];
+         $pdf->PrintKeyCell( $ThisCell["KEY_NO"], $ThisCell["ROW_NO"], $ThisCell["COLUMN_NO"], $ThisCell["ENTRY"], $ThisCell["LOOKUP_VALUE"]);
       }
       $pdf->Output("Crossword.pdf");
    }
