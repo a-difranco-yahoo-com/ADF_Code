@@ -8,6 +8,7 @@ CREATE OR REPLACE PACKAGE CROSSWORD AS
   Procedure Set_Crossword_Size(p_Rows NUMBER, p_Columns NUMBER);
   Procedure Add_Crossword_Word(p_Row   NUMBER,  p_Column NUMBER, p_Clue_No NUMBER,
                                p_AorD VARCHAR2, p_Length NUMBER, p_Word    VARCHAR2);
+  Procedure Add_Key_Cell(p_Row   NUMBER,  p_Column NUMBER);
 
 END;
 /
@@ -51,13 +52,66 @@ CREATE OR REPLACE PACKAGE BODY CROSSWORD AS
      RETURN Loc_Columns;
   END;
 
- PROCEDURE  Check_AorD(p_Clue_No NUMBER, p_AorD VARCHAR2)
+
+  FUNCTION Does_Clue_Exist(p_Clue_No NUMBER, p_AorD VARCHAR2) RETURN BOOLEAN
+  IS
+     Loc_Count NUMBER;
+  BEGIN
+     SELECT Count(*)
+     INTO   Loc_Count
+     FROM   CROSSWORD_CLUE
+     WHERE  Clue_No = p_Clue_No
+     AND    AorD    = p_AorD;
+     
+     RETURN (Loc_Count > 0);
+  END;
+
+  FUNCTION Clue_Cell_Inconsistent(p_Clue_No NUMBER, P_Row NUMBER, P_Column NUMBER) RETURN BOOLEAN
+  IS
+     Loc_Count NUMBER;
+  BEGIN
+     SELECT Count(*)
+     INTO   Loc_Count
+     FROM   CROSSWORD_CLUE
+     WHERE  Clue_No = p_Clue_No
+     AND   (Row_No != p_Row OR Column_No != P_Column);
+     
+     RETURN (Loc_Count > 0);
+  END;
+
+
+  FUNCTION Get_Next_Key_No RETURN NUMBER
+  IS
+     Loc_Next_Key_No NUMBER;
+  BEGIN
+     SELECT nvl(max(Key_No), 0) + 1
+     INTO   Loc_Next_Key_No
+     FROM   CROSSWORD_KEY_CELL;
+     
+     RETURN Loc_Next_Key_No;
+  END;
+
+ PROCEDURE Check_AorD(p_Clue_No NUMBER, p_AorD VARCHAR2)
  IS
   BEGIN
      IF nvl(p_AorD, 'x') NOT IN ('A', 'D')
      THEN
         RAISE_APPLICATION_ERROR(-20123, 'Check_AorD: ' || p_Clue_No || p_AorD ||
                                         ' A(cross)/D(own) is incorrect : ' || p_AorD);
+     END IF;
+  END;
+
+ PROCEDURE Check_Clue(p_Clue_No NUMBER, p_AorD VARCHAR2, P_Row NUMBER, P_Column NUMBER)
+ IS
+  BEGIN
+     IF Does_Clue_Exist(p_Clue_No, p_AorD)
+     THEN
+        RAISE_APPLICATION_ERROR(-20123, 'Check_Clue: ' || p_Clue_No || p_AorD || ' Duplicate clue');
+     END IF;
+
+     IF Clue_Cell_Inconsistent(p_Clue_No, P_Row, P_Column)
+     THEN
+        RAISE_APPLICATION_ERROR(-20123, 'Check_Clue: ' || p_Clue_No || p_AorD || ' Inconsistent clue cell');
      END IF;
   END;
 
@@ -86,6 +140,21 @@ CREATE OR REPLACE PACKAGE BODY CROSSWORD AS
      END IF;
   END;
 
+ PROCEDURE Add_Clue(p_Clue_No NUMBER, p_AorD VARCHAR2, P_Row NUMBER, P_Column NUMBER)
+ IS
+  BEGIN
+     INSERT INTO CROSSWORD_CLUE (Clue_No, AorD, Row_No, Column_No)
+     VALUES (p_Clue_No, p_AorD, P_Row, P_Column);
+  END;
+
+ PROCEDURE Add_Key_Cell(p_Row   NUMBER,  p_Column NUMBER)
+ IS
+     Loc_Key_No NUMBER;
+ BEGIN
+     Loc_Key_No := Get_Next_Key_No;
+     INSERT INTO CROSSWORD_KEY_CELL (Key_No, Row_No, Column_No)
+     VALUES (Loc_Key_No, P_Row, P_Column);
+  END;
 
   Procedure Set_Cell_Entry(p_Row NUMBER, p_Column NUMBER, p_Clue_No NUMBER, p_AorD VARCHAR2, p_Cell VARCHAR2)
   AS
@@ -108,7 +177,9 @@ CREATE OR REPLACE PACKAGE BODY CROSSWORD AS
   Procedure Clear_Crossword AS
   BEGIN
      DELETE FROM CROSSWORD_DIMENSION;
+     DELETE FROM CROSSWORD_KEY_CELL;
      DELETE FROM CROSSWORD_CELL;
+     DELETE FROM CROSSWORD_CLUE;
   END;
 
   Procedure Set_Crossword_Size(p_Rows NUMBER, p_Columns NUMBER)
@@ -134,8 +205,11 @@ CREATE OR REPLACE PACKAGE BODY CROSSWORD AS
      Loc_Pos         NUMBER := 0;
   BEGIN
      Check_AorD       (p_Clue_No, p_AorD);
+     Check_Clue       (p_Clue_No, p_AorD, P_Row, P_Column);
      Check_Word_Length(p_Clue_No, p_AorD, p_Length, p_Word);
   
+     Add_Clue(p_Clue_No, p_AorD, P_Row, P_Column);
+
      IF p_AorD = 'A'
      THEN
         loc_Row_End    := p_Row;
