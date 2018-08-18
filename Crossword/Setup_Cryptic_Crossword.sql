@@ -6,7 +6,7 @@ BEGIN
    CROSSWORD.Add_Crossword_Word( 1,  5,  3, 'A', 9, 'LONGITUDE');
    CROSSWORD.Add_Crossword_Word( 2,  1,  8, 'A', 4, '');
    CROSSWORD.Add_Crossword_Word( 3,  6,  9, 'A', 8, '');  
-   CROSSWORD.Add_Crossword_Word( 4,  1, 10, 'A', 6, ''); 
+   CROSSWORD.Add_Crossword_Word( 4,  1, 10, 'A', 6, 'OPENLY'); 
    CROSSWORD.Add_Crossword_Word( 6,  1, 13, 'A', 5, '');
    CROSSWORD.Add_Crossword_Word( 6,  7, 14, 'A', 7, 'SITUATE');
    CROSSWORD.Add_Crossword_Word( 7,  6, 15, 'A', 3, '');
