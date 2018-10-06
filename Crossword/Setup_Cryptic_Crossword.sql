@@ -4,10 +4,10 @@ BEGIN
    CROSSWORD.Set_Crossword_Size(13, 13);
 
    CROSSWORD.Add_Crossword_Word( 1,  5,  3, 'A', 9, 'LONGITUDE');
-   CROSSWORD.Add_Crossword_Word( 2,  1,  8, 'A', 4, '');
+   CROSSWORD.Add_Crossword_Word( 2,  1,  8, 'A', 4, 'GRAB');
    CROSSWORD.Add_Crossword_Word( 3,  6,  9, 'A', 8, '');  
-   CROSSWORD.Add_Crossword_Word( 4,  1, 10, 'A', 6, 'OPENLY'); 
-   CROSSWORD.Add_Crossword_Word( 6,  1, 13, 'A', 5, '');
+   CROSSWORD.Add_Crossword_Word( 4,  1, 10, 'A', 6, 'OPENLY'); -- 
+   CROSSWORD.Add_Crossword_Word( 6,  1, 13, 'A', 5, 'ADDED');
    CROSSWORD.Add_Crossword_Word( 6,  7, 14, 'A', 7, 'SITUATE');
    CROSSWORD.Add_Crossword_Word( 7,  6, 15, 'A', 3, '');
    CROSSWORD.Add_Crossword_Word( 8,  1, 16, 'A', 7, 'CIRCUIT');
@@ -17,7 +17,7 @@ BEGIN
    CROSSWORD.Add_Crossword_Word(12, 10, 23, 'A', 4, 'STAT');
    CROSSWORD.Add_Crossword_Word(13,  1, 24, 'A', 9, 'GRADIENTS');
 
-   CROSSWORD.Add_Crossword_Word( 1,  1,  1, 'D', 9, 'INNOCENCE');
+   CROSSWORD.Add_Crossword_Word( 1,  1,  1, 'D', 9, 'IGNORANCE');  -- INNOCENCE
    CROSSWORD.Add_Crossword_Word( 1,  3,  2, 'D', 9, 'CALENDERS');
    CROSSWORD.Add_Crossword_Word( 1,  6,  4, 'D', 5, '');
    CROSSWORD.Add_Crossword_Word( 1,  8,  5, 'D', 7, 'GEOCOIN');
@@ -49,7 +49,7 @@ BEGIN
    CROSSWORD.Add_Key_Cell( 3,  6); -- H
    CROSSWORD.Add_Key_Cell( 7, 11); -- I
    CROSSWORD.Add_Key_Cell( 4,  5); -- I
-   CROSSWORD.Add_Key_Cell( 7, 11); -- J
+   CROSSWORD.Add_Key_Cell( 6,  9); -- J
    CROSSWORD.Add_Key_Cell( 2,  2); -- J
 
    COMMIT;
@@ -60,18 +60,13 @@ END;
 -- 9,673
 SELECT Word
 FROM   DICTIONARY.WORD_LIST
-WHERE  length(Word) = 5 
-AND    Word Like '__E_N'
+WHERE  length(Word) = 4
+AND   (Word Like 'O_AY' OR Word Like 'O_AY')
 /
 SELECT Word
 FROM   DICTIONARY.WORD_LIST
-WHERE  length(Word) = 5 
-AND   (Word Like 'O_A__' OR Word Like 'O_B__')
-/
-SELECT Word
-FROM   DICTIONARY.WORD_LIST
-WHERE  length(Word) = 8
-AND   (Word Like 'A_O%' OR Word Like 'B_O%')
+WHERE  length(Word) = 9
+AND    Word Like '%A_C_'
 /
 
 AND    Word Like '%G%'
