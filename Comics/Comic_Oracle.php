@@ -30,12 +30,13 @@ class Comic_Oracle
 
    public function ClearComics()
    {
-      $DeleteText = "DELETE FROM DIGITAL_COMIC";
-
-      $DelStmt = oci_parse($this->Connection, "$DeleteText");
-      oci_execute($DelStmt, OCI_NO_AUTO_COMMIT);
-      oci_free_statement($DelStmt);
-   }
+       $BeginText = "BEGIN";
+       $ProcText3 = "COMICS.Reset_Comics;";   
+       $EndText   = "END;";
+       $stmt = oci_parse($this->Connection, "$BeginText $ProcText3 $EndText");
+       oci_execute($stmt, OCI_DEFAULT);
+       oci_free_statement($stmt);
+	  }
 
    public function AddComic($Title, $Volume, $Year, $Issue, $SubIssue, $SeriesRun)
    {
@@ -74,16 +75,8 @@ class Comic_Oracle
    public function PostLoadRebuilds()
    {
        $BeginText = "BEGIN";
-/*	   
-       $ProcText1 = "COMICS.Rebuild_Missing_Single_Issue;";
-       $ProcText2 = "COMICS.Rebuild_Missing_Sub_Issue;";
-       $ProcText3 = "COMICS.Rebuild_Missing_Mini_Series;";
-*/
        $ProcText3 = "COMICS.Rebuild_Summary;";   
        $EndText   = "END;";
-/*
-       $stmt = oci_parse($this->Connection, "$BeginText $ProcText1 $ProcText2 $ProcText3 $EndText");
-*/
        $stmt = oci_parse($this->Connection, "$BeginText $ProcText3 $EndText");
        oci_execute($stmt, OCI_DEFAULT);
        oci_free_statement($stmt);
