@@ -1,6 +1,6 @@
 
 DELETE FROM   merged_reading_order
-WHERE  List = 'Goblin_Nation'
+WHERE  List = 'Spider_Verse'
 /
 
 DROP   TABLE LIST_HIERARCHY PURGE;
@@ -50,7 +50,7 @@ ORDER BY Level
 
 SELECT List, count(*) 
 FROM   MERGED_READING_ORDER
---WHERE  List IN ('Batman_Year_Zero', 'Multiversity', 'Robin_Rises')
+WHERE  List IN ('Convergence', 'Batman_Endgame', 'Multiversity', 'Gothtopia', 'Superman_Doomed')
 GROUP BY List
 ORDER BY 2
 /
@@ -58,7 +58,8 @@ ORDER BY 2
 
 SELECT *
 FROM   merged_reading_order
-WHERE  List IN ('Goblin_Nation', 'Batman_Year_Zero', '', '', '', '', 'Minimum_Carnage')
+WHERE  List IN ('Convergence', 'Batman_Endgame', 'Multiversity', 'Gothtopia', 'Superman_Doomed')
 --WHERE  Title = 'Batman and Robin'
-Order By List, Title, issue
+--Order By List, Sequence_Number
+Order By List, Title, Sequence_Number
 /
