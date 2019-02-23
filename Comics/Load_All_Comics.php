@@ -54,8 +54,8 @@ function find_comics($db, $basedir, $letterdir, $titledir)
 $db = new Comic_Oracle();
 $db->ClearComics();
 
-find_letter_dir($db, "D:/Comics/Move_To_IDrive");
-find_letter_dir($db, "D:/Comics/View");
+find_letter_dir($db, Comic::Drive . "Comics/Move_To_IDrive");
+find_letter_dir($db, Comic::Drive . "Comics/View");
 
 $db->PostLoadRebuilds();
 $db->Commit();
