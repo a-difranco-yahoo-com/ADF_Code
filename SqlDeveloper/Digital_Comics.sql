@@ -41,8 +41,8 @@ BEGIN
 END;
 /
 
-DEFINE Text="%Mon%Unl%%%"
-SELECT * FROM V_DIGITAL_RUN_DETAIL      WHERE Title Like '%&&Text%' Order By Volume,Title;
+DEFINE Text="%Prome%"
+SELECT * FROM V_DIGITAL_RUN_DETAIL      WHERE upper(Title) Like upper('%&&Text%') Order By Volume,Title,Start_Issue;
 SELECT * FROM V_DIGITAL_WISH_RUN_DETAIL WHERE Title Like '%&&Text%' Order By Title;
 
 SELECT * FROM V_DIGITAL_MULTI_RUN_DETAIL;
@@ -77,3 +77,8 @@ AND    L.Title > 'The She'
 --AND    H.Title Like '%B.P.%'
 ORDER BY L.Title
 /
+
+SELECT * FROM V_DIFFERING_DIGITAL_COMIC_DETAILS
+ORDER BY Title, Issue, Source
+/
+
