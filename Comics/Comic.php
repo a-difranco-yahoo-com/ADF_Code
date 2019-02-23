@@ -13,6 +13,7 @@ class Comic
     protected $LetterDirectory;
     protected $TitleDirectory;
     protected $Rule;
+	const     Drive = 'C:/';
 
 /* Decompose Comic name to extract Title/Volume/Year/Extension */
 public function __construct($comic_name)
