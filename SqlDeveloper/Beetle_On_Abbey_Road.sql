@@ -2,97 +2,97 @@
 ABC DEFG : N 51° 31.946 W 000° 10.668 
 N(CxD)+(G-F)° C+E.(E+F)(D+F)E  W000° (C-B).E(B-E)((A-G)+D))
 /
-CREATE OR REPLACE VIEW V_ABBEY_DIGITS AS SELECT rownum - 2000 Nos FROM ALL_OBJECTS WHERE Rownum <= 10000;
 
-CREATE OR REPLACE VIEW V_ABBEY_DIGITS_A AS SELECT Nos A FROM V_ABBEY_DIGITS WHERE Nos Between -2000 AND 10000;
-CREATE OR REPLACE VIEW V_ABBEY_DIGITS_B AS SELECT Nos B FROM V_ABBEY_DIGITS WHERE Nos Between 11 AND 23;
-CREATE OR REPLACE VIEW V_ABBEY_DIGITS_C AS SELECT Nos C FROM V_ABBEY_DIGITS WHERE Nos Between 22 AND 32;
-CREATE OR REPLACE VIEW V_ABBEY_DIGITS_D AS SELECT Nos D FROM V_ABBEY_DIGITS WHERE Nos Between -9 AND 18;
-CREATE OR REPLACE VIEW V_ABBEY_DIGITS_E AS SELECT Nos E FROM V_ABBEY_DIGITS WHERE Nos Between  0 AND 9;
-CREATE OR REPLACE VIEW V_ABBEY_DIGITS_F AS SELECT Nos F FROM V_ABBEY_DIGITS WHERE Nos Between -9 AND 9;
-CREATE OR REPLACE VIEW V_ABBEY_DIGITS_G AS SELECT Nos G FROM V_ABBEY_DIGITS WHERE Nos Between -534 AND 348;
+SELECT 26 * 26 * 26 * 26 * 9 * 9 * 9 FROM DUAL;
+SELECT 213 * 26 * 26 * 26  FROM DUAL;
 
-SELECT min(A), max(A) FROM V_ABBEY_DIGITS_A;
-SELECT min(B), max(B) FROM V_ABBEY_DIGITS_B;
-SELECT min(C), max(C) FROM V_ABBEY_DIGITS_C; -- 22 32
-SELECT min(D), max(D) FROM V_ABBEY_DIGITS_D; -- -9 18
-SELECT min(E), max(E) FROM V_ABBEY_DIGITS_E;
-SELECT min(F), max(F) FROM V_ABBEY_DIGITS_F; -- -9 9
-SELECT min(G), max(G) FROM V_ABBEY_DIGITS_G; -- -534 348
-
-SELECT    min(A), max(A),   min(B), max(B),   min(C), max(C),   min(D), max(D),   min(E), max(E),   min(F), max(F),   min(G), max(G),   count(*)
-FROM   (
-SELECT  A A, 'B' B, 'C' C, D D, 'E' E, 'F' F, G G, 'x'
---       (C.Nos * D.Nos) + (G.Nos - F.Nos) North_Degrees, (C.Nos + E.Nos) North_Minute,
---       (E.Nos + F.Nos) North_Minute_T1, (D.Nos + F.Nos) North_Minute_T2, E.Nos  North_Minute_T3,
---       (C.Nos - B.Nos) West_Minute,
---        E.Nos  West_Minute_T1, (B.Nos - E.Nos) West_Minute_T2, 
---        (A.Nos - G.Nos + D.Nos) West_Minute_T3
-FROM   DUAL X
-CROSS JOIN  V_ABBEY_DIGITS_A -- A ON A.A Between -552  AND 366
---CROSS JOIN  V_ABBEY_DIGITS_B --B ON B.B Between  0  AND 18
---CROSS JOIN  V_ABBEY_DIGITS_C --C ON C.C Between 22  AND 32
-CROSS JOIN  V_ABBEY_DIGITS_D -- D ON D.D Between -9  AND 18
---CROSS JOIN  V_ABBEY_DIGITS_E --  ON E Between  0  AND 9
---CROSS JOIN  V_ABBEY_DIGITS_F -- F ON F.F Between -9  AND 9
-CROSS JOIN  V_ABBEY_DIGITS_G --G ON G.G Between -534  AND 348
---
-WHERE  1 = 1
---
---AND   (C.Nos * D.Nos) + (G.Nos - F.Nos) = 51 -- North Degree
---AND   (C.Nos + E.Nos)            IN (31, 32) -- North Minute,
---AND    E + F         Between 0  AND 9
---AND    D.Nos + F.Nos         Between 0  AND 9
---AND    E                 Between 0  AND 9
---
---AND    C - B         Between 9  AND 11
---AND    E.Nos                 Between 0  AND 9
---AND    B.Nos - E.Nos         Between 0  AND 9
-AND    A - G + D Between 0  AND 9
-)
-/ 
-
-CREATE OR REPLACE VIEW V_ABBEY_BEETLE
+CREATE TABLE GC_ABBEY_ROAD_BEATLE_ND_T2
 AS
-SELECT  A.Nos A, B.Nos B, C.Nos C, D.Nos D, E.Nos E, F.Nos F, G.Nos G,
-       (C.Nos * D.Nos) + (G.Nos - F.Nos) North_Degrees, (C.Nos + E.Nos) North_Minute,
-       (E.Nos + F.Nos) North_Minute_T1, (D.Nos + F.Nos) North_Minute_T2, E.Nos  North_Minute_T3,
-       (C.Nos - B.Nos) West_Minute,
-        E.Nos   West_Minute_T1, (B.Nos - E.Nos) West_Minute_T2, (A.Nos - G.Nos + D.Nos) West_Minute_T3
-FROM   V_ABBEY_DIGITS_A A
- JOIN  V_ABBEY_DIGITS_E E ON E.Nos                 Between 0  AND 9
- JOIN  V_ABBEY_DIGITS_F F ON E.Nos + F.Nos         Between 0  AND 9
- JOIN  V_ABBEY_DIGITS_D D ON D.Nos + F.Nos         Between 0  AND 9
- JOIN  V_ABBEY_DIGITS_B B ON B.Nos - E.Nos         Between 0  AND 9
- JOIN  V_ABBEY_DIGITS_G G ON A.Nos - G.Nos + D.Nos Between 0  AND 9
- JOIN  V_ABBEY_DIGITS_C C ON C.Nos - B.Nos         Between 9  AND 11
-/ 
-
-
-CREATE OR REPLACE VIEW V_ABBEY_BEETLE_RANGE
-AS
-SELECT *
-FROM   V_ABBEY_BEETLE
-WHERE  North_Degrees = 51
-AND    North_Minute IN (31, 32)
-AND    West_Minute  IN (9, 10, 11)
+WITH
+     LETTER_C AS ( SELECT Rownum C FROM ALL_OBJECTS WHERE Rownum <= 26),
+     LETTER_D AS ( SELECT Rownum D FROM ALL_OBJECTS WHERE Rownum <= 26),
+     LETTER_F AS ( SELECT Rownum F FROM ALL_OBJECTS WHERE Rownum <= 26),     
+     LETTER_G AS ( SELECT Rownum G FROM ALL_OBJECTS WHERE Rownum <= 26)
+SELECT 
+       (C * D) + (G - F) North_Degrees,
+       (D + F)           North_Minute_T2,
+        C, D, F, G
+FROM   DUAL
+  JOIN LETTER_C ON C Between 1 AND 26
+  JOIN LETTER_D ON D Between 1 AND 26
+  JOIN LETTER_F ON F Between 1 AND 26
+  JOIN LETTER_G ON G Between 1 AND 26
+WHERE  (C * D) + (G - F) Between 51 AND 51
+AND    (D + F)           Between 0 AND 9
 /
+CREATE TABLE GC_ABBEY_ROAD_BEATLE_NORTH
+AS
+WITH
+     LETTER_E AS ( SELECT Rownum E FROM ALL_OBJECTS WHERE Rownum <= 26)
+SELECT 
+       North_Degrees,
+       (C + E)           North_Minute,
+       (E + F)           North_Minute_T1, 
+       North_Minute_T2,
+        E                North_Minute_T3,
+        C, D, E, F, G
+FROM   GC_ABBEY_ROAD_BEATLE_ND_T2
+  JOIN LETTER_E ON E Between 1 AND 26
+WHERE  (C + E)           Between 30 AND 32
+AND    (E + F)           Between 0 AND 9
+AND     E                Between 0 AND 9
+/
+
+SELECT * FROM GC_ABBEY_ROAD_BEATLE_NORTH;
+
+CREATE TABLE GC_ABBEY_ROAD_BEATLE
+AS
+WITH LETTER_A AS ( SELECT Rownum A FROM ALL_OBJECTS WHERE Rownum <= 26),
+     LETTER_B AS ( SELECT Rownum B FROM ALL_OBJECTS WHERE Rownum <= 26)
+SELECT 
+       North_Degrees,   North_Minute,
+       North_Minute_T1, North_Minute_T2, North_Minute_T3,
+       (C - B)           West_Minute,
+        E                West_Minute_T1,
+        B - E            West_Minute_T2, 
+       (A - G + D)       West_Minute_T3,
+        A, B, C, D, E, F, G
+FROM   GC_ABBEY_ROAD_BEATLE_NORTH
+  JOIN LETTER_A ON A Between 1 AND 26
+  JOIN LETTER_B ON B Between 1 AND 26
+WHERE  (C - B)           Between 9 AND 11
+AND     E                Between 0 AND 9
+AND     B - E            Between 0 AND 9
+AND    (A - G + D)       Between 0 AND 9
+/
+
+SELECT North_Minute, count(*) FROM GC_ABBEY_ROAD_BEATLE Group By North_Minute;
+
+
 
  
 -- 1st guess : -99	100	0	18	9	29	-9	18	0	9	-9	9	-99	100	58610040
 -- N 51      : -99	100	0	18	9	29	-4	12	0	9	-8	9	-99	98	185533
 -- 31/32     : -99	90	11	16	22	26	-1	6	6	9	-6	3	-99	80	7433
 -- extend range : -199	144	11	16	22	26	-3	11	6	9	-6	3	-197	132
-SELECT    min(A), max(A),   min(B), max(B),   min(C), max(C),   min(D), max(D),   min(E), max(E),   min(F), max(F),   min(G), max(G),   count(*)
-FROM   V_ABBEY_BEETLE_RANGE
+SELECT min(A), max(A),   min(B), max(B),   min(C), max(C),   min(D), max(D),   min(E), max(E),   min(F), max(F),   min(G), max(G),count(*)
+FROM   GC_ABBEY_ROAD_BEATLE
 /
-SELECT West_Minute, min(West_Minute_T1), max(West_Minute_T1)
-FROM   V_ABBEY_BEETLE_RANGE
+SELECT West_Minute, min(West_Minute_T1), max(West_Minute_T1), count(*)
+FROM   GC_ABBEY_ROAD_BEATLE
 GROUP BY West_Minute
 /
-SELECT North_Minute, min(North_Minute_T1), max(North_Minute_T1)
-FROM   V_ABBEY_BEETLE_RANGE
+SELECT North_Minute, min(North_Minute_T1), max(North_Minute_T1), count(*)
+FROM   GC_ABBEY_ROAD_BEATLE
 GROUP BY North_Minute
+/
+SELECT   North_Minute, min(North_Minute_T1), max(North_Minute_T1), West_Minute, min(West_Minute_T1), max(West_Minute_T1), count(*)
+FROM     GC_ABBEY_ROAD_BEATLE
+GROUP BY North_Minute, West_Minute
+ORDER BY North_Minute, West_Minute
+/
+FROM   GC_ABBEY_ROAD_BEATLE
+GROUP BY 
 /
 
 
@@ -113,7 +113,13 @@ SELECT   'N ' || North_Degrees || ' ' || North_Minute || '.' || North_Minute_T1 
          substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ', E, 1) LE,
          substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ', F, 1) LF,
          substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ', G, 1) LG
-FROM     V_ABBEY_BEETLE_RANGE R
+FROM     GC_ABBEY_ROAD_BEATLE R
+WHERE    North_Minute = 31
+AND      West_Minute  = 10
+/
+
+SELECT * FROM ABBEY_BEETLE_COORD
+WHERE  LA || LB || LC || LD || LE || LF || LG  Like 'LMW%F' -- 281FL'
 /
 
 DELETE FROM ABBEY_BEETLE_COORD
