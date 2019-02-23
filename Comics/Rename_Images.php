@@ -1,32 +1,17 @@
 <?php
 
-function rename_images($subdir)
+function rename_image($FromFile, $ToFile)
 {
-  $dir = "D:/Downloads/Themes/DesktopBackground/$subdir/";
-  $nos = 0;
-  $files = scandir($dir);
-  foreach ( $files as $file )
-  {
-     if ( !is_dir("$dir/$file") && $file != '.' && $file != '..' && $file != 'Thumbs.db' )
-     {
-		 $nos++;
-		 $extension = pathinfo($file, PATHINFO_EXTENSION);
-printf("$dir/$file => \n");
-printf("$dir/$subdir$nos" . "." . $extension . "\n\n");
-         rename("$dir/$file", "$dir/$subdir$nos" . "." . $extension);
-     }
-  }
+printf("$FromFile => $ToFile \n");
+         rename("$FromFile", "$ToFile");
 }
 
-  $dir = "E:/Downloads/Themes/DesktopBackground/";
-  $dirs = scandir($dir);
-  foreach ( $dirs as $my_dir )
-  {
-     if ( is_dir("$dir/$my_dir") && $my_dir != '.' && $my_dir != '..' && $file != 'Thumbs.db' )
-     {
-         rename_images($my_dir);
-     }
-  }
+  $dir =  Comic::Drive . "Comics/Download/judge dredd megazine 402";
+  
+  for ($Nos=1; $Nos < 10;   $Nos++)
+	  rename_image($dir . "/0" . $Nos . ".jpg", $dir . "/00" . $Nos . ".jpg");
 
+  for ($Nos=10; $Nos < 100;   $Nos++)
+	  rename_image($dir . "/" . $Nos . ".jpg", $dir . "/0" . $Nos . ".jpg");
 
 ?>
