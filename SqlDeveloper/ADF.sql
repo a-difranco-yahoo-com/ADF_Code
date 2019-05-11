@@ -1,10 +1,11 @@
+
 SELECT * FROM DBA_DIRECTORIES;
 
 Create Or Replace Directory EXPDP_DIR as 'E:\My Dropbox\Dropbox\MyBackup';
 
 SELECT Time_Remaining, Message FROM V$Session_Longops WHERE Time_Remaining > 0;
 SELECT * FROM V$SEssion WHERE Username IS NOT NULL;
-ALTER SYSTEM KILL SESSION '392,	61899'; 
+ALTER SYSTEM KILL SESSION '388,	48841'; 
 SELECT * FROM V$SQLAREA;
 
 SELECT * FROM GEOCACHE_BY_DAY;
@@ -15,22 +16,21 @@ SELECT sum(Days_Found) FROM V_GEOCACHE_TO_FIND_BY_MONTH   ;
 SELECT * FROM    V_GEOCACHE_BY_MONTH;
 SELECT * FROM    V_GEOCACHE_BY_DAY_OF_MONTH Order By  2 Desc;
 SELECT * FROM    V_GEOCACHE_TO_FIND_BY_MONTH;
-SELECT * FROM    GEO_CACHE_RUN_REPORT;
+SELECT Month, Day_Of_Month FROM    GEO_CACHES_ORDERED WHERE Got_Cache = 'N' Order By Day_No;
 
 
 SELECT
-  (1000 - 883) -- 16th Century Pub (Central London)
-+ (1000 - 689) -- Reflections of Neal's Yard
-+ (1000 - 633) -- The Palace of Westminster (Houses of Parliament)
-+ (1000 - 519) -- The Winchester Geese
-+ (1000 - 481) -- Last Delivery (London)
-+ (1000 - 426) -- Under the boardwalk (SE1, London)
--- + (1000 - 411) -- Catastrophe, Calamity, Cataclysm Part 3
--- + (1000 - 393) -- Gibbon's Rent
+  (1000 - 971) -- 16th Century Pub (Central London)
++ (1000 - 768) -- Tower Bridge TB HOTEL
++ (1000 - 739) -- Reflections of Neal's Yard
++ (1000 - 684) -- The Palace of Westminster (Houses of Parliament)
+-- + (1000 - 564) -- The Winchester Geese
+-- + (1000 - 535) -- Gibbon's Rent
+-- + (1000 - 495) -- Last Delivery (London)
        Required
 FROM DUAL
 /
--- 2369
+SELECT to_char(Sysdate + 838, 'DD-MON-YYYY') FROM DUAL;
 
 Create Or Replace Function Checksum(p_Number NUMBER)
     RETURN NUMBER
@@ -63,6 +63,12 @@ GROUP BY Tablespace_Name
 
 SELECT * FROM   ALL_TABLES;
 SELECT * FROM   ALL_USERS Where User_ID between 112 AND 1000 Order By Created Desc;
+SELECT * FROM   DBA_USERS Where Account_Status Not Like '%LOCKED%' AND Username Not Like '%SYS%';
+SELECT * FROM   DBA_USERS Where Account_Status  Like '%GRACE%' AND Username Not Like '%SYS%';
+SELECT 'ALTER USER ' || Username || ' ACCOUNT UNLOCK;' FROM   DBA_USERS Where Account_Status Not Like '%LOCKED%' AND Username Not Like '%SYS%';
+ALTER PROFILE "DEFAULT" LIMIT PASSWORD_VERIFY_FUNCTION NULL;
+
+Alter user ADF identified by 'Sam5Par2'  account unlock;
 
 
 SELECT * FROM V$SESSION WHERE Username Is Not NULL;

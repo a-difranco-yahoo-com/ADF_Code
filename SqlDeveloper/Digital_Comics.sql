@@ -41,7 +41,7 @@ BEGIN
 END;
 /
 
-DEFINE Text="%Prome%"
+DEFINE Text="%Adv%%Co%"
 SELECT * FROM V_DIGITAL_RUN_DETAIL      WHERE upper(Title) Like upper('%&&Text%') Order By Volume,Title,Start_Issue;
 SELECT * FROM V_DIGITAL_WISH_RUN_DETAIL WHERE Title Like '%&&Text%' Order By Title;
 
@@ -50,7 +50,8 @@ SELECT * FROM V_DIGITAL_ALL_MULTI_RUN_DETAIL;
 
 
 BEGIN
-   COMICS.Load_Wish_List('Adventures of Superman Annual',	1987,	6,	6);
+   COMICS.Load_Wish_List('Marvel Mystery Comics', 1939, 77, 78);
+   COMICS.Load_Wish_List('Marvel Mystery Comics', 1939, 81, 81);
 END;
 /
 
@@ -78,7 +79,28 @@ AND    L.Title > 'The She'
 ORDER BY L.Title
 /
 
-SELECT * FROM V_DIFFERING_DIGITAL_COMIC_DETAILS
-ORDER BY Title, Issue, Source
+-- Check discrepancies between Digital Comics + Archive Digital Comic
+
+SELECT Title, count(*) FROM V_DIFFERING_DIGITAL_COMIC_SUMMARY GROUP BY Title ORDER By 2 Desc
 /
+SELECT   Source, Title, Volume, SubIssue, Series_run, min(Issue), max(Issue), min(Year), max(Year), count(*)
+FROM     V_DIGITAL_AND_ARCHIVE_COMIC_DETAILS
+WHERE    Title IN ('Domino_ Hotshots', 'Old Man Quill')
+--AND      SubIssue IS NULL
+AND    Volume = 2019
+--AND    Year IN (2014, 2015)
+GROUP BY Source, Title, Volume, SubIssue, Series_run
+ORDER BY         Title, Volume, SubIssue
+/
+DELETE FROM ARCHIVE_DIGITAL_COMIC
+WHERE    Title IN ('Domino_ Hotshots', 'Old Man Quill')
+--AND      SubIssue IS NULL
+AND    Volume = 2019
+AND    Series_Run is NULL
+/
+
+SELECT * FROM     v_digital_wish_run_detail
+Where  upper(Title) Like '%ATOM%';
+
+
 
