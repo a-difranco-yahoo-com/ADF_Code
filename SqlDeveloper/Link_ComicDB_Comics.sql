@@ -1,52 +1,28 @@
 
 BEGIN
    LINK_COMICDB.Add_Links;
-   LINK_COMICDB.Find_ComicDB_Matches('Unl%Acc', 2013, 0, 'Y');
+   LINK_COMICDB.Find_ComicDB_Matches('%X%Men%20%', 2013, 80, 'Y');
 END;
 /
 
 
-SELECT Title, Volume FROM COMICDB_COMIC MINUS SELECT Title, Volume FROM LINK_COMICDB_COMIC;
-
-
-SELECT Title, Volume, Count(*)
-FROM  (SELECT Title, Volume, Issue, SubIssue FROM COMICDB_COMIC Where Title Like '%%'
-       MINUS
-       SELECT Title, Volume, Issue, SubIssue FROM ARCHIVE_DIGITAL_COMIC)
-WHERE  Title > 'E'       
+SELECT   Title, Volume, Count(*)
+FROM     V_MISSING_COMICDB_COMIC
 GROUP BY Title, Volume
-HAVING   Count(*) = 1
 ORDER BY Count(*) Desc, Title, Volume
 /
-
-
-SELECT 'COMICDB' Src, Title, Volume, min(Issue) Min_Issue, max(Issue) Max_Issue, count(*) Comics
-FROM   COMICDB_COMIC
-WHERE  upper(Title) LIKE '%DEATH%MATE%%'
---AND    Issue > 60
---AND    Volume = 1997
-GROUP BY Title, Volume
---ORDER BY Title, Volume
-UNION
-SELECT 'DIGITAL' SRC, Title, Volume, min(Issue) Min_Issue, max(Issue) Max_Issue, count(*) Comics
-FROM   ARCHIVE_DIGITAL_COMIC
-WHERE  upper(Title) LIKE '%DEATH%MATE%%'
---AND    Issue > 60
---AND    Volume = 1997
-GROUP BY Title, Volume
-ORDER BY Volume, Title
+SELECT * FROM V_MISSING_COMICDB_COMIC
+WHERE  Title Like 'W%%'
+--WHERE    upper(Title) LIKE '%%DEATH%MATE%' --AND Issue BETWEEN 522 AND 524
 /
 
-SELECT Title, Volume, Issue, SubIssue FROM   COMICDB_COMIC         WHERE  upper(Title) LIKE '%DAKEN%%'
-MINUS
-SELECT Title, Volume, Issue, SubIssue FROM   ARCHIVE_DIGITAL_COMIC WHERE  upper(Title) LIKE '%DAKEN%%'
-ORDER BY Volume, Title
+SELECT * FROM V_DIGITAL_AND_COMICDB_COMIC_SUMMARY_DETAILS
+WHERE    upper(Title) LIKE '%VAMPIRELLA%%' -- AND Issue BETWEEN 64 AND 66
+ORDER BY Volume, Src, Title
 /
 
-SELECT * FROM (
-SELECT 'DIGITAL' Source, Title, Volume, Issue, SubIssue FROM   ARCHIVE_DIGITAL_COMIC
-UNION
-SELECT 'COMICDB' Source, Title, Volume, Issue, SubIssue FROM   COMICDB_COMIC
-)
-WHERE  upper(Title) LIKE '%%X%PATR%' --AND Issue > 611
+SELECT * FROM V_DIGITAL_AND_COMICDB_COMIC_DETAILS
+WHERE    upper(Title) LIKE 'X%MEN%19%' -- AND Issue BETWEEN 222 AND 227
+
 /
+
