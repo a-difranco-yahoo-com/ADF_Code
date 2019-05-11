@@ -1,6 +1,6 @@
 
 DELETE FROM   merged_reading_order
-WHERE  List = 'Spider_Verse'
+WHERE  List = 'Gothtopia'
 /
 
 DROP   TABLE LIST_HIERARCHY PURGE;
@@ -24,7 +24,6 @@ FROM  (
 )
 GROUP BY List1, List2
 )
-ORDER BY 1, 2
 /
 
 DELETE
@@ -45,21 +44,21 @@ SELECT L.*, Level
 FROM   LIST_HIERARCHY L
 CONNECT BY PRIOR Second_List = First_List AND Second_List != First_List
 START WITH First_List = Second_List
+--START WITH First_List IN ('Wolverine_Goes_to_Hell', 'Minimum_Carnage', 'X_Termination', 'Spider_Man_Team_Up', 'Revolutionary_War')
 ORDER BY Level
 /
 
 SELECT List, count(*) 
 FROM   MERGED_READING_ORDER
-WHERE  List IN ('Convergence', 'Batman_Endgame', 'Multiversity', 'Gothtopia', 'Superman_Doomed')
+WHERE  List IN ('Apocalypse_Wars')
 GROUP BY List
 ORDER BY 2
 /
 
 
 SELECT *
-FROM   merged_reading_order
-WHERE  List IN ('Convergence', 'Batman_Endgame', 'Multiversity', 'Gothtopia', 'Superman_Doomed')
---WHERE  Title = 'Batman and Robin'
+FROM   MERGED_READING_ORDER
+WHERE  List IN ('Apocalypse_Wars')
 --Order By List, Sequence_Number
 Order By List, Title, Sequence_Number
 /
