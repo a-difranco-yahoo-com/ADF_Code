@@ -24,6 +24,4 @@ End;
 /
 
 
-
- The key is  cache
-Period, dot or full stop
+The key is  cache.
