@@ -20,17 +20,17 @@ SELECT Month, Day_Of_Month FROM    GEO_CACHES_ORDERED WHERE Got_Cache = 'N' Orde
 
 
 SELECT
-  (1000 - 971) -- 16th Century Pub (Central London)
+  (1000 - 972) -- 16th Century Pub (Central London)
 + (1000 - 768) -- Tower Bridge TB HOTEL
-+ (1000 - 739) -- Reflections of Neal's Yard
++ (1000 - 740) -- Reflections of Neal's Yard
 + (1000 - 684) -- The Palace of Westminster (Houses of Parliament)
--- + (1000 - 564) -- The Winchester Geese
--- + (1000 - 535) -- Gibbon's Rent
+-- + (1000 - 565) -- The Winchester Geese
+-- + (1000 - 536) -- Gibbon's Rent
 -- + (1000 - 495) -- Last Delivery (London)
        Required
 FROM DUAL
 /
-SELECT to_char(Sysdate + 838, 'DD-MON-YYYY') FROM DUAL;
+SELECT to_char(Sysdate + 836, 'DD-MON-YYYY') FROM DUAL;
 
 Create Or Replace Function Checksum(p_Number NUMBER)
     RETURN NUMBER
