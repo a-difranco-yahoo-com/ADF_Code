@@ -81,10 +81,8 @@ DELETE FROM GS_ABCDEFGHIJ
 WHERE  No_6s != G
 /
 
-
-SELECT 6210 / ( (1+6+1+0+0) + 0010 ), ((B+C+D+E)*100) + ((A+B+C+D)*10) + (D+E+F)
-FROM GS_ABCDEFGHIJ;
+-- N 51° 26.345 E 000° 09.390
 SELECT * FROM GS_ABCDEFGHIJ;
-
-N 51° 26.345 E 000° 09.390
-
+SELECT 'N 51 26.' || to_number( A||B||C||D ) / ( (C+A+C+H+E) + to_number( E||F||G||H ) ) North,
+       'E 000 9.' || ( ((B+C+D+E)*100) + ((A+B+C+D)*10) + (D+E+F)) West
+FROM   GS_ABCDEFGHIJ;
