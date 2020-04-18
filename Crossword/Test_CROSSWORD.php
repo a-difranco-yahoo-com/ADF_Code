@@ -34,7 +34,7 @@ include 'CROSSWORD_PDF.php';
          $ThisCell=$cells[$i];
          $pdf->PrintKeyCell( $ThisCell["KEY_NO"], $ThisCell["ROW_NO"], $ThisCell["COLUMN_NO"], $ThisCell["ENTRY"], $ThisCell["LOOKUP_VALUE"]);
       }
-      $pdf->Output("Crossword.pdf");
+      $pdf->Output("F", "Crossword.pdf");
    }
 
 
