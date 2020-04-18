@@ -51,6 +51,8 @@ include_pdf($pdf, "Payslip 2019-09-30.pdf");
 include_pdf($pdf, "Payslip 2019-10-31.pdf");
 include_pdf($pdf, "Payslip 2019-11-30.pdf");
 include_pdf($pdf, "Payslip 2019-12-31.pdf");
+include_pdf($pdf, "Payslip 2020-01-31.pdf");
+include_pdf($pdf, "Payslip 2020-02-29.pdf");
 
 $pdf->Output("D:\My Dropbox\Dropbox\MyBackup\Full_Payslip.pdf", "F");
 
