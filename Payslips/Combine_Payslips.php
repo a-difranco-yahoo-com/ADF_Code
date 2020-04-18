@@ -1,7 +1,7 @@
 <?php
 
-require('D:\Php_Code\fpdf_V181\fpdf.php');
-require('D:\Php_Code\fpdi_V161\fpdi.php');
+require('D:\Php_Code\fpdf\fpdf.php');
+require('D:\Php_Code\fpdi\fpdi.php');
 
 function include_pdf($pdf, $PDFfile)
 {
