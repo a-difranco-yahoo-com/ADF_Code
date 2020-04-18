@@ -28,9 +28,9 @@ And      length(Word) IN (5, 7, 9)
 
 DROP TABLE CWC_Combination Purge
 /
-CREATE OR REPLACE VIEW V_CWC_Combination
+CREATE TABLE CWC_Combination
 AS
-SELECT Word7, Word5, Word9
+SELECT Word7, Word5, Word9, 'Y' Valid
 FROM  (
         SELECT W7.Word Word7, W5.Word Word5, W9.Word Word9,
                W7.Word || W5.Word || W9.Word Word759
@@ -51,12 +51,6 @@ AND    Word759 Like '%T%T%T%T%'
 AND    Word759 Like '%V%'
 AND    Word759 Like '%X%'
 /
-
-INSERT INTO CWC_Combination (Word7, Word5, Word9, Valid)
-SELECT Word7, Word5, Word9, 'Y'   FROM V_CWC_Combination
-MINUS
-SELECT Word7, Word5, Word9, 'Y'   FROM   CWC_Combination;
-
 
 
 SELECT * FROM (
