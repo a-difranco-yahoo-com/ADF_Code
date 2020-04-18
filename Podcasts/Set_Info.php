@@ -2,8 +2,8 @@
 
 $TextEncoding = 'UTF-8';
 
-require_once('getid3/getid3.php');
-require_once('getid3/write.php');
+require_once('D:\Php_Code\GetId3\getid3\getid3.php');
+require_once('D:\Php_Code\GetId3\getid3\write.php');
 
 // Initialize getID3 engine
 $getID3 = new getID3;
