@@ -61,12 +61,6 @@ FROM     WISH_LIST
 GROUP BY Title, Volume
 ORDER BY Count(*) Desc;
 
-SELECT   to_char(Last_Updated, 'YYYYMM-MON') Month, Count(*)
-FROM     SUBSCRIPTION
-GROUP BY to_char(Last_Updated, 'YYYYMM-MON')
-ORDER BY 2
-/
-
 
 SELECT L.Title, H.Title, L.Volume, L.Start_Issue, L.End_Issue, L.Series_Run, H.Start_Issue, H.End_Issue, H.Series_Run
 FROM   V_DIGITAL_RUN_DETAIL L
@@ -81,7 +75,7 @@ ORDER BY L.Title
 
 -- Check discrepancies between Digital Comics + Archive Digital Comic
 
-SELECT Title, count(*) FROM V_DIFFERING_DIGITAL_COMIC_SUMMARY GROUP BY Title ORDER By 2 Desc
+SELECT Title, count(*) FROM V_DIFFERING_DIGITAL_COMIC_SUMMARY GROUP BY Title ORDER By 2 Desc, 1
 /
 SELECT   Source, Title, Volume, SubIssue, Series_run, min(Issue), max(Issue), min(Year), max(Year), count(*)
 FROM     V_DIGITAL_AND_ARCHIVE_COMIC_DETAILS
