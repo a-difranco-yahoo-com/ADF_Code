@@ -11,18 +11,17 @@ FROM     V_MISSING_COMICDB_COMIC
 GROUP BY Title, Volume
 ORDER BY Count(*) Desc, Title, Volume
 /
+
 SELECT * FROM V_MISSING_COMICDB_COMIC
-WHERE  Title Like 'W%%'
---WHERE    upper(Title) LIKE '%%DEATH%MATE%' --AND Issue BETWEEN 522 AND 524
+WHERE    upper(Title) LIKE upper('%ol%ian%') -- AND Issue BETWEEN 1 AND 1
 /
 
 SELECT * FROM V_DIGITAL_AND_COMICDB_COMIC_SUMMARY_DETAILS
-WHERE    upper(Title) LIKE '%VAMPIRELLA%%' -- AND Issue BETWEEN 64 AND 66
+WHERE    upper(Title) LIKE upper('%Chillers%%') -- AND Issue BETWEEN 1 AND 1
 ORDER BY Volume, Src, Title
 /
 
 SELECT * FROM V_DIGITAL_AND_COMICDB_COMIC_DETAILS
-WHERE    upper(Title) LIKE 'X%MEN%19%' -- AND Issue BETWEEN 222 AND 227
-
+WHERE    upper(Title) LIKE upper('%Uncanny%X%')  AND Issue BETWEEN 533 AND 535
 /
 
