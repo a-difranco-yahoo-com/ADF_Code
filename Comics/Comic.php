@@ -119,6 +119,7 @@ public function ParseFilename()
     $this->Rule      = 200;
   } else {
      echo("Failed to parse : " . $this->Filename . "\n");
+	 return;
   }
 	
   if ( preg_match("/^([\-]*[0-9]*)$/", $IssueDetails, $matches) ) {
@@ -146,7 +147,7 @@ public function ParseDirectory()
     }
 }
 
-private function FilenameParsed()
+public function FilenameParsed()
 {
    return ($this->Title != "" && $this->Volume != "");
 }
