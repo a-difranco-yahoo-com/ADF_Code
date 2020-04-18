@@ -13,9 +13,11 @@ function find_comics($db, $dir)
      {
          $comic = new Comic($file);
          $comic->ParseFilename();
-
-         $db->AddNewComic($comic->GetTitle(), $comic->GetVolume(),   $comic->GetYear(),
-                          $comic->GetIssue(), $comic->GetSubIssue(), $comic->GetSeriesRun() );
+		 if ( $comic->FilenameParsed() )
+		 {
+            $db->AddNewComic($comic->GetTitle(), $comic->GetVolume(),   $comic->GetYear(),
+                             $comic->GetIssue(), $comic->GetSubIssue(), $comic->GetSeriesRun() );
+		 }
      }
   }
 }

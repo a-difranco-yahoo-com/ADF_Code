@@ -1,6 +1,6 @@
 
 DELETE FROM   merged_reading_order
-WHERE  List = 'Gothtopia'
+WHERE  List IN ('Convergence')
 /
 
 DROP   TABLE LIST_HIERARCHY PURGE;
@@ -48,17 +48,45 @@ START WITH First_List = Second_List
 ORDER BY Level
 /
 
-SELECT List, count(*) 
+SELECT List, count(*) Comics, count(distinct Title) Titles
 FROM   MERGED_READING_ORDER
-WHERE  List IN ('Apocalypse_Wars')
+--WHERE  List IN ('', '', '', '', '', '', 'Civil_War_II')
 GROUP BY List
 ORDER BY 2
 /
-
-
 SELECT *
 FROM   MERGED_READING_ORDER
-WHERE  List IN ('Apocalypse_Wars')
+WHERE  List IN ('', '', '', '', '', '', 'Civil_War_II')
 --Order By List, Sequence_Number
-Order By List, Title, Sequence_Number
+--Order By List, Title, Sequence_Number
+Order By  List, Title, Issue
+/
+SELECT List, Title, min(Issue) Min_Issue, max(Issue) Max_Issue
+FROM   MERGED_READING_ORDER
+WHERE  List IN ('', '', '', '', '', '', 'Civil_War_II')
+Group By  List, Title
+ORDER BY  List, Title
+/
+
+
+SELECT List, Title, Issue_Str,
+       Dense_Rank() OVER (ORDER BY Title) DRank,
+       Dense_Rank() OVER (PARTITION By List ORDER BY Title) DRank
+FROM   MERGED_READING_ORDER
+WHERE  List IN ('', '', '', '', '', '', 'Civil_War_II')
+Order By List, Title, Issue
+/
+
+
+
+SELECT Title, List, min(Issue), max(Issue)
+FROM   MERGED_READING_ORDER
+WHERE  Title IN (SELECT Title
+                 FROM   MERGED_READING_ORDER
+                 WHERE  Title IN (SELECT Title
+                                  FROM   MERGED_READING_ORDER
+                                  WHERE  List IN ('Civil_War_II') )
+                 AND    List NOT IN ('Civil_War_II') )
+Group By Title,List
+Order By Title,List
 /

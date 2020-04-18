@@ -40,8 +40,7 @@ BEGIN
    COMMIT;
 END;
 /
-
-DEFINE Text="%Amaz%%Spid%"
+DEFINE Text="%%super%star%%"
 SELECT * FROM V_DIGITAL_RUN_DETAIL      WHERE upper(Title) Like upper('%&&Text%') Order By Volume,Title,Start_Issue;
 SELECT * FROM V_DIGITAL_WISH_RUN_DETAIL WHERE Title Like '%&&Text%' Order By Title;
 
@@ -50,8 +49,7 @@ SELECT * FROM V_DIGITAL_ALL_MULTI_RUN_DETAIL;
 
 
 BEGIN
-   COMICS.Load_Wish_List('Marvel Mystery Comics', 1939, 77, 78);
-   COMICS.Load_Wish_List('Marvel Mystery Comics', 1939, 81, 81);
+   COMICS.Load_Wish_List('Bandette - Urchin Stories', 2013, 11,	11);
 END;
 /
 
@@ -60,12 +58,6 @@ SELECT   Title, Volume, Count(*) Quantity
 FROM     WISH_LIST 
 GROUP BY Title, Volume
 ORDER BY Count(*) Desc;
-
-SELECT   to_char(Last_Updated, 'YYYYMM-MON') Month, Count(*)
-FROM     SUBSCRIPTION
-GROUP BY to_char(Last_Updated, 'YYYYMM-MON')
-ORDER BY 2
-/
 
 
 SELECT L.Title, H.Title, L.Volume, L.Start_Issue, L.End_Issue, L.Series_Run, H.Start_Issue, H.End_Issue, H.Series_Run
@@ -81,11 +73,11 @@ ORDER BY L.Title
 
 -- Check discrepancies between Digital Comics + Archive Digital Comic
 
-SELECT Title, count(*) FROM V_DIFFERING_DIGITAL_COMIC_SUMMARY GROUP BY Title ORDER By 2 Desc
+SELECT Title, count(*) FROM V_DIFFERING_DIGITAL_COMIC_SUMMARY GROUP BY Title ORDER By 2 Desc, 1
 /
 SELECT   Source, Title, Volume, SubIssue, Series_run, min(Issue), max(Issue), min(Year), max(Year), count(*)
 FROM     V_DIGITAL_AND_ARCHIVE_COMIC_DETAILS
-WHERE    Title Like 'Amazing Spider-Man'
+WHERE    Title IN  ('30 Days of Night')
 --AND      SubIssue IS NULL
 AND    Volume >= 2018
 --AND    Year IN (2014, 2015)
@@ -93,14 +85,16 @@ GROUP BY Source, Title, Volume, SubIssue, Series_run
 ORDER BY         Title, Volume, SubIssue
 /
 DELETE FROM ARCHIVE_DIGITAL_COMIC
-WHERE    Title Like 'Amazing Spider-Man'
+WHERE    Title IN  ('30 Days of Night')
 --AND      SubIssue IS NULL
 AND    Volume >= 2018
-AND    Series_Run is NULL
+AND    Series_Run   IS NULL
 /
 
 SELECT * FROM     v_digital_wish_run_detail
 Where  upper(Title) Like '%ATOM%';
+
+SELECT * FROM DIGITAL_COMIC;
 
 
 

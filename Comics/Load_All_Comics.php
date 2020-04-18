@@ -40,13 +40,16 @@ function find_comics($db, $basedir, $letterdir, $titledir)
      {
          $comic = new Comic($file);
          $comic->ParseFilename();
-         $comic->SetBaseDirectory($basedir);
-         $comic->SetLetterDirectory($letterdir);
-         $comic->SetTitleDirectory($titledir);
-         $comic->CheckDirectory();
+		 if ( $comic->FilenameParsed() )
+		 {
+            $comic->SetBaseDirectory($basedir);
+            $comic->SetLetterDirectory($letterdir);
+            $comic->SetTitleDirectory($titledir);
+            $comic->CheckDirectory();
 
-         $db->AddComic($comic->GetTitle(), $comic->GetVolume(),   $comic->GetYear(),
-                       $comic->GetIssue(), $comic->GetSubIssue(), $comic->GetSeriesRun() );
+            $db->AddComic($comic->GetTitle(), $comic->GetVolume(),   $comic->GetYear(),
+                          $comic->GetIssue(), $comic->GetSubIssue(), $comic->GetSeriesRun() );
+		 }
      }
   }
 }

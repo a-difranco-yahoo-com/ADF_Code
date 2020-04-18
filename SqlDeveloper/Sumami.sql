@@ -13,14 +13,6 @@ Group_4_Total        Number,
 Group_5_Total        Number)
 /
 
-DELETE FROM GS_SUMAMI;
-
-INSERT INTO GS_SUMAMI
-(Combination_String, No_of_Groups, Group_1_Total, Group_2_Total, Group_3_Total, Group_4_Total, Group_5_Total)
-WITH DIGITS AS (SELECT rownum - 1 X FROM All_OBJECTS WHERE Rownum <= 10)
-SELECT X, decode(X, 0, 0, 1), X, 0, 0, 0, 0
-FROM   DIGITS
-/
 
 DECLARE
    Loc_Group_1_Total  NUMBER := 8;
@@ -29,6 +21,14 @@ DECLARE
    Loc_Group_4_Total  NUMBER := 0;
    Loc_Group_5_Total  NUMBER := 0;
 BEGIN
+   DELETE FROM GS_SUMAMI;
+
+   INSERT INTO GS_SUMAMI
+   (Combination_String, No_of_Groups, Group_1_Total, Group_2_Total, Group_3_Total, Group_4_Total, Group_5_Total)
+   WITH DIGITS AS (SELECT rownum - 1 X FROM All_OBJECTS WHERE Rownum <= 10)
+   SELECT X, decode(X, 0, 0, 1), X, 0, 0, 0, 0
+   FROM   DIGITS;
+
   FOR i IN 2..10
   LOOP  
         INSERT INTO GS_SUMAMI
@@ -77,7 +77,10 @@ END;
 
 SELECT sysdate FROM DUAL;
 
-SELECT count(*)
-FROM   GS_SUMAMI
-/
+SELECT count(*) FROM   GS_SUMAMI;
+SELECT   substr(Combination_String, 5, 1), Count(*)
+FROM     GS_SUMAMI
+GROUP BY substr(Combination_String, 5, 1)
+ORDER BY substr(Combination_String, 5, 1)
+;
 
