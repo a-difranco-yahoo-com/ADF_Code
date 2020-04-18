@@ -1,7 +1,7 @@
 <?php
 
 // include getID3() library (can be in a different directory if full path is specified)
-require_once('getid3/getid3.php');
+require_once('D:\Php_Code\GetId3\getid3\getid3.php');
 
 // Initialize getID3 engine
 $getID3 = new getID3;
