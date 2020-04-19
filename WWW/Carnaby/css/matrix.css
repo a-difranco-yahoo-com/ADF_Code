@@ -1,0 +1,104 @@
+   #menu {
+   	  position: absolute;
+   	  text-align: center;
+          width: auto;
+          height: 70px;
+          top: 0;
+          right: 10px;
+          bottom: auto;
+          left: 250px;
+	  background-image: url("../img/logo_bg.jpg")
+	  }
+   #menu A {color: #4e6b95; font-size: 15px; text-decoration: none;}
+   #menu .submenu A {color: #4e6b95; font-size: 13px; text-decoration: none}
+   #menu .submenu {color: #4e6b95; font-size: 13px; text-decoration: none}
+
+   #logo {
+   	      position: absolute;
+	      width: 250px;
+	      height: 70px;
+	      top: 0;
+	      bottom: auto;
+	      right: auto;
+	      left: 0;
+	 }
+   #logo_right {
+   	      position: absolute;
+	      width: 40px;
+	      height: 70px;
+	      top: 0;
+	      bottom: auto;
+	      right: 0;
+	      left: auto
+	      }
+   #main {
+              position: absolute;
+              width: auto;
+              height: auto;
+              top: 70px;
+              right: 0;
+              bottom: 0;
+              left: 0
+	 }
+   A {color: #4e6b95; font-size: 15px; text-decoration: none;}
+   SELECT.left { 
+   	width: 230px; 
+	font-size: 12px
+   	}
+   SELECT.right { 
+   	width: 230px; 
+	font-size: 12px
+   	}
+   BODY {
+	   background-color: #c9dae2;
+           background-image: url("../img/bg.jpg");
+	   background-repeat: repeat-y;
+	   background-position: left;
+   	   font-family: arial
+	   }
+   H1 { font-size: 18px }
+   H2 { font-size: 16px }
+   H3 { font-size: 14px }
+   TABLE.report {
+	font-size: 12px;
+	}
+   TABLE.report TH {
+	font-size: 12px;
+	font-weight: bold;
+	}
+   .form {
+	font-size: 12px;
+	}
+   TABLE.form TD:first-child {
+   	text-align: right
+	}
+   TABLE.form TD+TD {
+   	text-align: left
+	}
+   TABLE.form INPUT[type="text"] {
+   	width: 200px
+	}
+   TABLE.form INPUT[type="password"] {
+   	width: 200px
+	}
+   TABLE.form SELECT {
+   	width: 200px
+	}
+   TABLE.form INPUT.small_input {
+   	width: 30px
+	}
+   TABLE.form SELECT.pay_month {
+   	width: auto
+	}
+   INPUT[type=button] {
+   	font-size: 12px
+	}
+   TEXTAREA.error {
+	font: bold 12px arial;
+	color: #FF0000;
+	background-color: transparent;
+   	width: 230px; 
+	border-width: 0px;
+	padding: 10px;
+	}
+								            }
