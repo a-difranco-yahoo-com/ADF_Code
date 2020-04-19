@@ -73,13 +73,11 @@ foreach ($data->search as $i => $rec) {
 
 if ($go) {
   $stmt = ociparse($conn,
-    "begin WebForm.ContactSearch(:t,:f,:o,:l,:s,:a1,:a2,:a3,:a4,:a5,:a6,:c,:pc,:e,:ret); end;");
+    "begin WebForm.ContactSearch(:t,:f,:l,:a1,:a2,:a3,:a4,:a5,:a6,:c,:pc,:e,:ret); end;");
   $IFAs = ocinewcursor($conn);
   ocibindbyname($stmt, ":t",   $_SESSION['carnaby_contacts_search']['TITLE'],      40);
   ocibindbyname($stmt, ":f",   $_SESSION['carnaby_contacts_search']['FIRST_NAME'], 40);
-  ocibindbyname($stmt, ":o",   $_SESSION['carnaby_contacts_search']['OTHER_NAME'], 40);
   ocibindbyname($stmt, ":l",   $_SESSION['carnaby_contacts_search']['LAST_NAME'],  40);
-  ocibindbyname($stmt, ":s",   $_SESSION['carnaby_contacts_search']['SUFFIX'],     40);
   ocibindbyname($stmt, ":a1",  $_SESSION['carnaby_contacts_search']['ADDRESS_1'],  40);
   ocibindbyname($stmt, ":a2",  $_SESSION['carnaby_contacts_search']['ADDRESS_2'],  40);
   ocibindbyname($stmt, ":a3",  $_SESSION['carnaby_contacts_search']['ADDRESS_3'],  40);
