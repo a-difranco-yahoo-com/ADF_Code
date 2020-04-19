@@ -18,54 +18,50 @@
    <h2> Select date and report type</h2>
    <table class="form">
     <tr>
-     <td>
-      From:
-     <td>
-      <script type="text/javascript" language="JavaScript">doRCCalendar('{$data->from}')</script>
+     <td>From:</td>
+     <td><script type="text/javascript" language="JavaScript">doRCCalendar('{$data->from}')</script></td>
     <tr>
-     <td>
-      To:
-     <td>
-      <script type="text/javascript" language="JavaScript">doRCCalendar('{$data->to}')</script>
+     <td>To:</td>
+     <td><script type="text/javascript" language="JavaScript">doRCCalendar('{$data->to}')</script></td>
     <tr>
-     <td>
-      Prospectus requests:
-     <td>
-      <input type="radio" name="type" value="inv_req" {if $data->type eq "inv_req"} checked {/if} > Investors
+     <td>Prospectus requests:</td>
+     <td><input type="radio" name="type" value="inv_req" {if $data->type eq "inv_req"} checked {/if} > Investors</td>
+    </tr>
     <tr>
-     <td>
-     <td>
-      <input type="radio" name="type" value="enq_req" {if $data->type eq "enq_req"} checked {/if} > Enquirers
+     <td></td>
+     <td><input type="radio" name="type" value="enq_req" {if $data->type eq "enq_req"} checked {/if} > Enquirers</td>
+    </tr>
     <tr>
-     <td>
-     <td>
-      <input type="radio" name="type" value="med_req" {if $data->type eq "med_req"} checked {/if} > Media
+     <td></td>
+     <td><input type="radio" name="type" value="med_req" {if $data->type eq "med_req"} checked {/if} > Media</td>
+    </tr>
     <tr>
+     <td>Details changes:</td>
+     <td><input type="radio" name="type" value="inv_ch" {if $data->type eq "inv_ch"} checked {/if} > Investors</td>
+    </tr>
     <tr>
-     <td>
-      Details changes:
-     <td>
-      <input type="radio" name="type" value="inv_ch" {if $data->type eq "inv_ch"} checked {/if} > Investors
-    <tr>
-    <tr>
-     <td>
-     <td>
-      <input name="enter" value="Generate" type="submit">
-
+     <td></td>
+     <td><input name="enter" value="Generate" type="submit"></td>
+    </tr>
    </table>
+
    <hr>
+
    <h2> List <input name="enter" type="submit" value="File"> </h2>
    <table class="report" border-width="1" border="1" cellspacing="0" cellpadding="1">
-     <tr bgcolor="#e6eef1">
+   <tr bgcolor="#e6eef1">
      {section name=heads loop=$data->header}
-      <th>{$data->header[heads]}
+      <th>{$data->header[heads]}</th>
      {/section}
-     {section name=rows loop=$data->table}
-      <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
+    </tr>
+	
+    {section name=rows loop=$data->table}
+    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
        {section name=cols loop=$data->table[rows]}
-        <td>{$data->table[rows][cols]}
+        <td>{$data->table[rows][cols]}</td>
        {/section}
-     {/section}
+    </tr>
+    {/section}
    </table>
    </form>
   </table>
