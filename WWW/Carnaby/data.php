@@ -6,9 +6,7 @@ $pcode = array("((\\\\w......\\\\w)|())","Not a valid POST CODE (must be padded 
 $searchForm = array(
   array("Title",     "TITLE",      40), //fieldName, dbField, length/array of values
   array("Firstname", "FIRST_NAME", 40),
-  array("Othername", "OTHER_NAME", 40),
   array("Lastname",  "LAST_NAME",  40),
-  array("Suffix",    "SUFFIX",     40),
   array("Address 1", "ADDRESS_1",  60),
   array("Address 2", "ADDRESS_2",  40),
   array("Address 3", "ADDRESS_3",  40),
@@ -23,9 +21,7 @@ $searchForm = array(
 $form1 = array(
   array("Title",     "TITLE",      40), //fieldName, dbField, length/array of values
   array("Firstname", "FIRST_NAME", 40),
-  array("Othername", "OTHER_NAME", 40),
   array("Lastname",  "LAST_NAME",  40),
-  array("Suffix",    "SUFFIX",     40),
   array("Address 1", "ADDRESS_1",  60),
   array("Address 2", "ADDRESS_2",  40),
   array("Address 3", "ADDRESS_3",  40),
