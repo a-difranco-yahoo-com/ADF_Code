@@ -90,19 +90,23 @@ if ($go) {
   ocibindbyname($stmt, ":ret", $IFAs, -1, OCI_B_CURSOR);
   ociexecute($stmt);
   ociexecute($IFAs);
+
+  $Rows=0;
   while (ocifetchinto($IFAs, $row, OCI_ASSOC)) {
     $rec = array(array("PERSON_ID",$row["PERSON_ID"]));
     foreach ($form1 as $f)  $rec[] = array($f[1], $row[$f[1]]);
     foreach ($form2 as $f)  $rec[] = array($f[1], $row[$f[1]]);
     foreach ($form3 as $f)  $rec[] = array($f[1], $row[$f[1]]);
     $data->contacts[]=$rec;
+	$Rows++;
   }
-  if (sizeof($data->contacts))
+  
+  if ( $Rows > 0)
     foreach ($data->contacts as $c) 
       $data->names[]=$c[4][1]." (".$c[1][1]." ".$c[2][1]." ".$c[3][1].")";
   if ($_GET['msg']) {
     $data->errormsg = $_GET['msg'];
-  } elseif (sizeof($data->contacts) == 500) {
+  } elseif ( $Rows == 500) {
     $data->errormsg = "Output too large.\nOnly first 500 records are shown.\nBe more specific next time.";
   }
 }
