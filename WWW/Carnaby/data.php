@@ -38,7 +38,7 @@ $form2 = array(
   array("Telephone Daytime",       "TELEPHONE_DAYTIME",      40),
   array("Telephone Evening",       "TELEPHONE_EVENING",      40),
   array("Telephone Mobile",        "TELEPHONE_MOBILE",       40),
-  array("Status",                  "STATUS",                 "radio",  array('A'=>'A','D'=>'D','S'=>'S','L'=>'L')),
+  array("Status",                  "STATUS",                 "select",  array('A'=>'A','D'=>'D','S'=>'S','L'=>'L'))
 );
 
 $form3 = array(
