@@ -22,16 +22,15 @@ $smarty->assignByRef('data',$data);
 
 switch ($_POST['type']) {
 case "inv_req":
-	$sql = " SELECT DISTINCT i.Person_Id, "
-	     . "        I.Title || ' ' || I.First_Name || ' ' || I.Last_Name INVESTOR_NAME, "
-         . "        I.Address_1, I.Address_2, I.Address_3, I.Address_4, I.Address_5, I.Address_6, "
-		 . "        I.Country,   I.Postcode,   R.Item_Code "
-		 . " FROM   WEB_INVESTOR I "
-         . "   JOIN WEB_REQUEST  R ON R.Investor_Id = I.Person_Id "
-	     . " WHERE   R.Date_Requested BETWEEN "
+	$sql = " SELECT DISTINCT C.Person_Id, "
+	     . "        C.Title || ' ' || C.First_Name || ' ' || C.Last_Name INVESTOR_NAME, "
+         . "        C.Address_1, C.Address_2, C.Address_3, C.Address_4, C.Address_5, C.Address_6, "
+		 . "        C.Country,   C.Postcode,   C.Item_Code "
+		 . " FROM   CONTACT      C "
+         . " WHERE  C.Site_Source  = 'Investor Request' "
+	     . " AND    C.Date_Requested BETWEEN "
 	     . "           to_date('".$data->from . " 00:00:00','DD-MM-YY HH24:MI:SS') "
 	     . "      AND  to_date('".$data->to   . " 23:59:59','DD-MM-YY HH24:MI:SS') ";
-
 
 	$stmt = ociparse($conn,$sql);
 	ociexecute($stmt);
@@ -52,13 +51,15 @@ case "inv_req":
 	break;
 	
 case "enq_req":
-	$sql = " SELECT E.*, NULL \"ITEM_CODE\" "
-  	     . " FROM   WEB_ENQUIRER E "
-         . " WHERE  nvl(lower(Site_Source),'x') != 'carnabymedia_subscribe' "
-	     . " AND    E.Registered_On BETWEEN "
-	     . "        to_date('" . $data->from . " 00:00:00','DD-MM-YY HH24:MI:SS') "
-	     . " AND    to_date('" . $data->to   . " 23:59:59','DD-MM-YY HH24:MI:SS') ";
-
+	$sql = " SELECT DISTINCT C.Person_Id, "
+	     . "        C.Title || ' ' || C.First_Name || ' ' || C.Last_Name INVESTOR_NAME, "
+         . "        C.Address_1, C.Address_2, C.Address_3, C.Address_4, C.Address_5, C.Address_6, "
+		 . "        C.Country,   C.Postcode,   C.Item_Code "
+		 . " FROM   CONTACT      C "
+         . " WHERE  C.Site_Source  = 'Enquirer Request' "
+	     . " AND    C.Date_Requested BETWEEN "
+	     . "           to_date('".$data->from . " 00:00:00','DD-MM-YY HH24:MI:SS') "
+	     . "      AND  to_date('".$data->to   . " 23:59:59','DD-MM-YY HH24:MI:SS') ";
 
 	$stmt = ociparse($conn,$sql);
 	ociexecute($stmt);
@@ -79,12 +80,15 @@ case "enq_req":
 	break;
 	
 case "med_req":
-	$sql = " SELECT E.*, NULL \"ITEM_CODE\" "
-	     . " FROM   WEB_ENQUIRER E "
-	     . " WHERE  nvl(Site_Source,'x') = 'CarnabyMedia_subscribe' "
-	     . " AND    E.Registered_On Between "
-         . "        to_date('" . $data->from . " 00:00:00','DD-MM-YY HH24:MI:SS') "
-         . " AND    to_date('" . $data->to   . " 23:59:59','DD-MM-YY HH24:MI:SS') ";
+	$sql = " SELECT DISTINCT C.Person_Id, "
+	     . "        C.Title || ' ' || C.First_Name || ' ' || C.Last_Name INVESTOR_NAME, "
+         . "        C.Address_1, C.Address_2, C.Address_3, C.Address_4, C.Address_5, C.Address_6, "
+		 . "        C.Country,   C.Postcode,   C.Item_Code "
+		 . " FROM   CONTACT      C "
+         . " WHERE  C.Site_Source  = 'Media Request' "
+	     . " AND    C.Date_Requested BETWEEN "
+	     . "           to_date('".$data->from . " 00:00:00','DD-MM-YY HH24:MI:SS') "
+	     . "      AND  to_date('".$data->to   . " 23:59:59','DD-MM-YY HH24:MI:SS') ";
 
 	//echo $sql;
 	$stmt = ociparse($conn,$sql);
@@ -102,22 +106,35 @@ case "med_req":
 			$row_no++;
 		}
 	}
-	$show=array('TITLE','FIRST_NAME','LAST_NAME','ADDRESS_1','COUNTRY','POSTCODE','PREF_DVD');
+	$show=array('TITLE','FIRST_NAME','LAST_NAME','ADDRESS_1','COUNTRY','POSTCODE','ITEM_CODE');
 	break;
 case "inv_ch":
-	$sql = " SELECT I.Title || ' ' || I.First_Name || ' ' || I.Last_Name INVESTOR_NAME, H.* "
-	     . " FROM   WEB_INVESTOR I"
-		 . "   JOIN WEB_INVESTOR_HISTORY H ON H.Person_Id = H.Person_Id "
-	     . " WHERE  H.Change_DT BETWEEN "
-	     . "        to_date('" . $data->from . " 00:00:00','DD-MM-YY HH24:MI:SS') "
-	     . "   AND  to_date('" . $data->to   . " 23:59:59','DD-MM-YY HH24:MI:SS') ";
+	$sql = " SELECT DISTINCT C.Person_Id, "
+	     . "        C.Title || ' ' || C.First_Name || ' ' || C.Last_Name INVESTOR_NAME, "
+         . "        C.Address_1, C.Address_2, C.Address_3, C.Address_4, C.Address_5, C.Address_6, "
+		 . "        C.Country,   C.Postcode,   C.Item_Code "
+		 . " FROM   CONTACT      C "
+         . " WHERE  C.Site_Source  = 'Investor Channel' "
+	     . " AND    C.Date_Requested BETWEEN "
+	     . "           to_date('".$data->from . " 00:00:00','DD-MM-YY HH24:MI:SS') "
+	     . "      AND  to_date('".$data->to   . " 23:59:59','DD-MM-YY HH24:MI:SS') ";
 
 	$stmt = ociparse($conn,$sql);
 	ociexecute($stmt);
-	while (ocifetchinto($stmt, $row, OCI_RETURN_NULLS + OCI_ASSOC)) {
-		$rows[]=$row;
+	$oldid = -1;
+	$row_no = 0;
+	while (ocifetchinto($stmt, $row, OCI_RETURN_NULLS + OCI_ASSOC))
+	{
+		$id = array_shift($row);
+		if ($id == $oldid) {
+			$rows[$row_no-1]['ITEM_CODE'].="; ".$row['ITEM_CODE'];
+		} else {
+			$oldid=$id;
+			$rows[]=$row;
+			$row_no++;
+		}
 	}
-	$show=array('CHANGE_DT','INVESTOR_NAME');
+	$show=array('TITLE','FIRST_NAME','LAST_NAME','ADDRESS_1','COUNTRY','POSTCODE','ITEM_CODE');
 	break;
 default:
 	$data->from = date('d-m-Y',time()-7*24*3600); //week ago
