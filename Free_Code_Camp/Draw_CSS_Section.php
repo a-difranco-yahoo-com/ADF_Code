@@ -228,9 +228,10 @@
 	   $pdf->AddLessonText("");
 	   $pdf->AddLessonText("Inside the same <style> tag that contains your red-text class, create an entry for p elements and set the font-size to 16 pixels (16px).");
 
-	   $pdf->DrawCodeArea("45");
+	   $pdf->DrawCodeArea("46");
 	   $pdf->AddLessonCode("<style>");
 	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
 	   $pdf->AddLessonCode("  }");
 	   $pdf->AddLessonCode("  p {");
 	   $pdf->AddLessonCode("    font-size: 16px;");
@@ -283,9 +284,10 @@
 	   $pdf->AddLessonText("");
 	   $pdf->AddLessonText("Make all of your p elements use the monospace font.");
 
-	   $pdf->DrawCodeArea("46");
+	   $pdf->DrawCodeArea("47");
 	   $pdf->AddLessonCode("<style>");
 	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
 	   $pdf->AddLessonCode("  }");
 	   $pdf->AddLessonCode("  p {");
 	   $pdf->AddLessonCode("    font-size: 16px;");
@@ -333,7 +335,7 @@
 	   $pdf->AddLessonText("So, let's go ahead and import and apply a Google font (note that if Google is blocked in your country, you will need to skip this challenge).");
 	   $pdf->AddLessonText("To import a Google Font, you can copy the font(s) URL from the Google Fonts library and then paste it in your HTML. For this challenge, we'll import the Lobster font. To do this, copy the following code snippet and paste it into the top of your code editor (before the opening style element):");
 
-	   $pdf->DrawCodeArea("1");
+	   $pdf->DrawCodeArea("2");
 	   $pdf->AddLessonCode("<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>");
 
 	   $pdf->AddLessonText("");
@@ -348,10 +350,11 @@
 	   $pdf->AddLessonText("Create a font-family CSS rule that uses the Lobster font, and ensure that it will be applied to your h2 element.");
 
        $pdf->AddLessonTitle("Import a Google Font (Cont'd)");
-	   $pdf->DrawCodeArea("51");
+	   $pdf->DrawCodeArea("52");
 	   $pdf->AddLessonCode("<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>");
 	   $pdf->AddLessonCode("<style>");
 	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
 	   $pdf->AddLessonCode("  }");
 	   $pdf->AddLessonCode("  p {");
 	   $pdf->AddLessonCode("    font-size: 16px;");
@@ -413,10 +416,11 @@
 	   $pdf->AddLessonText("Note: If you have the Lobster font installed on your computer, you won't see the degradation because your browser is able to find the font.");
 
        $pdf->AddLessonTitle("Specify How Fonts Should Degrade (Cont'd)");
-	   $pdf->DrawCodeArea("51");
+	   $pdf->DrawCodeArea("52");
 	   $pdf->AddLessonCode("<!-- <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'> -->");
 	   $pdf->AddLessonCode("<style>");
 	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
 	   $pdf->AddLessonCode("  }");
 	   $pdf->AddLessonCode("  p {");
 	   $pdf->AddLessonCode("    font-size: 16px;");
@@ -477,10 +481,11 @@
 	   $pdf->AddLessonText("Note: Due to browser implementation differences, you may need to be at 100% zoom to pass the tests on this challenge.");
 
        $pdf->AddLessonTitle("Size Your Images (Cont'd)");
-	   $pdf->DrawCodeArea("55");
+	   $pdf->DrawCodeArea("56");
 	   $pdf->AddLessonCode("<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>");
 	   $pdf->AddLessonCode("<style>");
 	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
 	   $pdf->AddLessonCode("  }");
 	   $pdf->AddLessonCode("  p {");
 	   $pdf->AddLessonCode("    font-size: 16px;");
@@ -550,10 +555,11 @@
 	   $pdf->AddLessonCode("<img class='class1 class'>");
 
        $pdf->AddLessonTitle("Add Borders Around Your Elements (Cont'd)");
-	   $pdf->DrawCodeArea("61");
+	   $pdf->DrawCodeArea("62");
 	   $pdf->AddLessonCode("<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>");
 	   $pdf->AddLessonCode("<style>");
 	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
 	   $pdf->AddLessonCode("  }");
 	   $pdf->AddLessonCode("  p {");
 	   $pdf->AddLessonCode("    font-size: 16px;");
@@ -611,11 +617,11 @@
 	   $pdf->AddLessonText("You can specify a border-radius with pixels. Give your cat photo a border-radius of 10px.");
 	   $pdf->AddLessonText("Note: This challenge allows for multiple possible solutions. For example, you may add border-radius to either the .thick-green-border class or the .smaller-image class.");
 
-       $pdf->AddLessonTitle("Add Rounded Corners with border-radius (Cont'd)");
-	   $pdf->DrawCodeArea("61");
+	   $pdf->DrawCodeArea("23");
 	   $pdf->AddLessonCode("<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>");
 	   $pdf->AddLessonCode("<style>");
 	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
 	   $pdf->AddLessonCode("  }");
 	   $pdf->AddLessonCode("  p {");
 	   $pdf->AddLessonCode("    font-size: 16px;");
@@ -635,6 +641,9 @@
 	   $pdf->AddLessonCode("  }");
 	   $pdf->AddLessonCode("</style>");
 	   $pdf->AddLessonCode("");
+
+       $pdf->AddLessonTitle("Add Rounded Corners with border-radius (Cont'd)");
+	   $pdf->DrawCodeArea("39");
 	   $pdf->AddLessonCode("<h2 class='red-text'>CatPhotoApp</h2>");
 	   $pdf->AddLessonCode("<main>");
 	   $pdf->AddLessonCode("  <p class='red-text'>Click here to view more <a href='#'>cat photos</a>.</p>");
@@ -673,11 +682,11 @@
 	   $pdf->AddLessonText("In addition to pixels, you can also specify the border-radius using a percentage.");
 	   $pdf->AddLessonText("Give your cat photo a border-radius of 50%.");
 
-       $pdf->AddLessonTitle("Make Circular Images with a border-radius (Cont'd)");
-	   $pdf->DrawCodeArea("61");
+	   $pdf->DrawCodeArea("24");
 	   $pdf->AddLessonCode("<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>");
 	   $pdf->AddLessonCode("<style>");
 	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
 	   $pdf->AddLessonCode("  }");
 	   $pdf->AddLessonCode("  p {");
 	   $pdf->AddLessonCode("    font-size: 16px;");
@@ -697,6 +706,9 @@
 	   $pdf->AddLessonCode("  }");
 	   $pdf->AddLessonCode("</style>");
 	   $pdf->AddLessonCode("");
+	   
+       $pdf->AddLessonTitle("Make Circular Images with a border-radius (Cont'd)");
+	   $pdf->DrawCodeArea("38");
 	   $pdf->AddLessonCode("<h2 class='red-text'>CatPhotoApp</h2>");
 	   $pdf->AddLessonCode("<main>");
 	   $pdf->AddLessonCode("  <p class='red-text'>Click here to view more <a href='#'>cat photos</a>.</p>");
@@ -704,6 +716,83 @@
 	   $pdf->AddLessonCode("  <a href='#'><img class='smaller-image thick-green-border' src='https://bit.ly/fcc-relaxing-cat' alt='A cute orange cat lying on its back.'></a>");
 	   $pdf->AddLessonCode("");
 	   $pdf->AddLessonCode("  <div>");
+	   $pdf->AddLessonCode("    <p>Things cats love:</p>");
+	   $pdf->AddLessonCode("    <ul>");
+	   $pdf->AddLessonCode("      <li>cat nip</li>");
+	   $pdf->AddLessonCode("      <li>laser pointers</li>");
+	   $pdf->AddLessonCode("      <li>lasagna</li>");
+	   $pdf->AddLessonCode("    </ul>");
+	   $pdf->AddLessonCode("    <p>Top 3 things cats hate:</p>");
+	   $pdf->AddLessonCode("    <ol>");
+	   $pdf->AddLessonCode("      <li>flea treatment</li>");
+	   $pdf->AddLessonCode("      <li>thunder</li>");
+	   $pdf->AddLessonCode("      <li>other cats</li>");
+	   $pdf->AddLessonCode("    </ol>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <form action='/submit-cat-photo'>");
+	   $pdf->AddLessonCode("    <label><input type='radio' name='indoor-outdoor' checked> Indoor</label>");
+	   $pdf->AddLessonCode("    <label><input type='radio' name='indoor-outdoor'> Outdoor</label><br>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality' checked> Loving</label>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality'> Lazy</label>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality'> Energetic</label><br>");
+	   $pdf->AddLessonCode("    <input type='text' placeholder='cat photo URL' required>");
+	   $pdf->AddLessonCode("    <button type='submit'>Submit</button>");
+	   $pdf->AddLessonCode("  </form>");
+	   $pdf->AddLessonCode("</main>");
+   }
+
+   function GenerateCSSLesson13($pdf) {
+       $pdf->AddLessonTitle("Give a Background Color to a div Element");
+	   $pdf->AddLessonText("You can set an element's background color with the background-color property.");
+	   $pdf->AddLessonText("For example, if you wanted an element's background color to be green, you'd put this within your style element:");
+
+
+	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode(".green-background {");
+	   $pdf->AddLessonCode("  background-color: green;");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Create a class called silver-background with the background-color of silver. Assign this class to your div element.");
+
+	   $pdf->DrawCodeArea("26");
+	   $pdf->AddLessonCode("<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  p {");
+	   $pdf->AddLessonCode("    font-size: 16px;");
+	   $pdf->AddLessonCode("    font-family: monospace;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .smaller-image {");
+	   $pdf->AddLessonCode("    width: 100px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  h2 {");
+	   $pdf->AddLessonCode("    font-family: Lobster, monospace;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .thick-green-border {");
+	   $pdf->AddLessonCode("    border-color: green;");
+	   $pdf->AddLessonCode("    border-width: 10px;");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .silver-background {");
+	   $pdf->AddLessonCode("    background-color: silver;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+
+       $pdf->AddLessonTitle("Give a Background Color to a div Element (Cont'd)");
+	   $pdf->DrawCodeArea("38");
+	   $pdf->AddLessonCode("<h2 class='red-text'>CatPhotoApp</h2>");
+	   $pdf->AddLessonCode("<main>");
+	   $pdf->AddLessonCode("  <p class='red-text'>Click here to view more <a href='#'>cat photos</a>.</p>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <a href='#'><img class='smaller-image thick-green-border' src='https://bit.ly/fcc-relaxing-cat' alt='A cute orange cat lying on its back.'></a>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <div class='silver-background'>");
 	   $pdf->AddLessonCode("    <p>Things cats love:</p>");
 	   $pdf->AddLessonCode("    <ul>");
 	   $pdf->AddLessonCode("      <li>cat nip</li>");
@@ -745,6 +834,7 @@
 	   GenerateCSSLesson10($pdf);
 	   GenerateCSSLesson11($pdf);
 	   GenerateCSSLesson12($pdf);
+	   GenerateCSSLesson13($pdf);
    }
 
 ?>
