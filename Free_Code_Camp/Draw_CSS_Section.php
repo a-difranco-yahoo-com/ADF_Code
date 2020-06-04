@@ -819,6 +819,511 @@
 	   $pdf->AddLessonCode("</main>");
    }
 
+   function GenerateCSSLesson14($pdf) {
+       $pdf->AddLessonTitle("Set the id of an Element");
+	   $pdf->AddLessonText("In addition to classes, each HTML element can also have an id attribute.");
+	   $pdf->AddLessonText("There are several benefits to using id attributes: You can use an id to style a single element and later you'll learn that you can use them to select and modify specific elements with JavaScript.");
+	   $pdf->AddLessonText("id attributes should be unique. Browsers won't enforce this, but it is a widely agreed upon best practice. So please don't give more than one element the same id attribute.");
+	   $pdf->AddLessonText("Here's an example of how you give your h2 element the id of cat-photo-app:");
+
+	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("<h2 id='cat-photo-app'>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Give your form element the id cat-photo-form.");
+
+	   $pdf->DrawCodeArea("26");
+	   $pdf->AddLessonCode("<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  p {");
+	   $pdf->AddLessonCode("    font-size: 16px;");
+	   $pdf->AddLessonCode("    font-family: monospace;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .smaller-image {");
+	   $pdf->AddLessonCode("    width: 100px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  h2 {");
+	   $pdf->AddLessonCode("    font-family: Lobster, monospace;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .thick-green-border {");
+	   $pdf->AddLessonCode("    border-color: green;");
+	   $pdf->AddLessonCode("    border-width: 10px;");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .silver-background {");
+	   $pdf->AddLessonCode("    background-color: silver;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+
+       $pdf->AddLessonTitle("Set the id of an Element (Cont'd)");
+	   $pdf->DrawCodeArea("38");
+	   $pdf->AddLessonCode("<h2 class='red-text'>CatPhotoApp</h2>");
+	   $pdf->AddLessonCode("<main>");
+	   $pdf->AddLessonCode("  <p class='red-text'>Click here to view more <a href='#'>cat photos</a>.</p>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <a href='#'><img class='smaller-image thick-green-border' src='https://bit.ly/fcc-relaxing-cat' alt='A cute orange cat lying on its back.'></a>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <div class='silver-background'>");
+	   $pdf->AddLessonCode("    <p>Things cats love:</p>");
+	   $pdf->AddLessonCode("    <ul>");
+	   $pdf->AddLessonCode("      <li>cat nip</li>");
+	   $pdf->AddLessonCode("      <li>laser pointers</li>");
+	   $pdf->AddLessonCode("      <li>lasagna</li>");
+	   $pdf->AddLessonCode("    </ul>");
+	   $pdf->AddLessonCode("    <p>Top 3 things cats hate:</p>");
+	   $pdf->AddLessonCode("    <ol>");
+	   $pdf->AddLessonCode("      <li>flea treatment</li>");
+	   $pdf->AddLessonCode("      <li>thunder</li>");
+	   $pdf->AddLessonCode("      <li>other cats</li>");
+	   $pdf->AddLessonCode("    </ol>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <form action='/submit-cat-photo' id='cat-photo-form'>");
+	   $pdf->AddLessonCode("    <label><input type='radio' name='indoor-outdoor' checked> Indoor</label>");
+	   $pdf->AddLessonCode("    <label><input type='radio' name='indoor-outdoor'> Outdoor</label><br>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality' checked> Loving</label>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality'> Lazy</label>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality'> Energetic</label><br>");
+	   $pdf->AddLessonCode("    <input type='text' placeholder='cat photo URL' required>");
+	   $pdf->AddLessonCode("    <button type='submit'>Submit</button>");
+	   $pdf->AddLessonCode("  </form>");
+	   $pdf->AddLessonCode("</main>");
+   }
+
+   function GenerateCSSLesson15($pdf) {
+       $pdf->AddLessonTitle("Use an id Attribute to Style an Element");
+	   $pdf->AddLessonText("One cool thing about id attributes is that, like classes, you can style them using CSS.");
+	   $pdf->AddLessonText("However, an id is not reusable and should only be applied to one element. An id also has a higher specificity (importance) than a class so if both are applied to the same element and have conflicting styles, the styles of the id will be applied.");
+	   $pdf->AddLessonText("Here's an example of how you can take your element with the id attribute of cat-photo-element and give it the background color of green. In your style element:");
+
+	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("#cat-photo-element {");
+	   $pdf->AddLessonCode("  background-color: green;");
+	   $pdf->AddLessonCode("}");
+	   
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Note that inside your style element, you always reference classes by putting a . in front of their names. You always reference ids by putting a # in front of their names.");
+	   $pdf->AddLessonText("Try giving your form, which now has the id attribute of cat-photo-form, a green background.");
+
+
+	   $pdf->DrawCodeArea("29");
+	   $pdf->AddLessonCode("<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  p {");
+	   $pdf->AddLessonCode("    font-size: 16px;");
+	   $pdf->AddLessonCode("    font-family: monospace;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .smaller-image {");
+	   $pdf->AddLessonCode("    width: 100px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  h2 {");
+	   $pdf->AddLessonCode("    font-family: Lobster, monospace;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .thick-green-border {");
+	   $pdf->AddLessonCode("    border-color: green;");
+	   $pdf->AddLessonCode("    border-width: 10px;");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .silver-background {");
+	   $pdf->AddLessonCode("    background-color: silver;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("#cat-photo-form {");
+	   $pdf->AddLessonCode("  background-color: green;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+
+       $pdf->AddLessonTitle("Use an id Attribute to Style an Element (Cont'd)");
+	   $pdf->DrawCodeArea("38");
+	   $pdf->AddLessonCode("<h2 class='red-text'>CatPhotoApp</h2>");
+	   $pdf->AddLessonCode("<main>");
+	   $pdf->AddLessonCode("  <p class='red-text'>Click here to view more <a href='#'>cat photos</a>.</p>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <a href='#'><img class='smaller-image thick-green-border' src='https://bit.ly/fcc-relaxing-cat' alt='A cute orange cat lying on its back.'></a>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <div class='silver-background'>");
+	   $pdf->AddLessonCode("    <p>Things cats love:</p>");
+	   $pdf->AddLessonCode("    <ul>");
+	   $pdf->AddLessonCode("      <li>cat nip</li>");
+	   $pdf->AddLessonCode("      <li>laser pointers</li>");
+	   $pdf->AddLessonCode("      <li>lasagna</li>");
+	   $pdf->AddLessonCode("    </ul>");
+	   $pdf->AddLessonCode("    <p>Top 3 things cats hate:</p>");
+	   $pdf->AddLessonCode("    <ol>");
+	   $pdf->AddLessonCode("      <li>flea treatment</li>");
+	   $pdf->AddLessonCode("      <li>thunder</li>");
+	   $pdf->AddLessonCode("      <li>other cats</li>");
+	   $pdf->AddLessonCode("    </ol>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <form action='/submit-cat-photo' id='cat-photo-form'>");
+	   $pdf->AddLessonCode("    <label><input type='radio' name='indoor-outdoor' checked> Indoor</label>");
+	   $pdf->AddLessonCode("    <label><input type='radio' name='indoor-outdoor'> Outdoor</label><br>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality' checked> Loving</label>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality'> Lazy</label>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality'> Energetic</label><br>");
+	   $pdf->AddLessonCode("    <input type='text' placeholder='cat photo URL' required>");
+	   $pdf->AddLessonCode("    <button type='submit'>Submit</button>");
+	   $pdf->AddLessonCode("  </form>");
+	   $pdf->AddLessonCode("</main>");
+   }
+
+   function GenerateCSSLesson16($pdf) {
+       $pdf->AddLessonTitle("Adjust the Padding of an Element");
+	   $pdf->AddLessonText("Now let's put our Cat Photo App away for a little while and learn more about styling HTML.");
+	   $pdf->AddLessonText("You may have already noticed this, but all HTML elements are essentially little rectangles.");
+	   $pdf->AddLessonText("Three important properties control the space that surrounds each HTML element: padding, margin, and border.");
+	   $pdf->AddLessonText("An element's padding controls the amount of space between the element's content and its border.");
+	   $pdf->AddLessonText("Here, we can see that the blue box and the red box are nested within the yellow box. Note that the red box has more padding than the blue box.");
+	   $pdf->AddLessonText("When you increase the blue box's padding, it will increase the distance (padding) between the text and the border around it.");
+	   $pdf->AddLessonText("Change the padding of your blue box to match that of your red box.");
+
+	   $pdf->DrawCodeArea("36");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .injected-text {");
+	   $pdf->AddLessonCode("    margin-bottom: -25px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .box {");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    border-color: black;");
+	   $pdf->AddLessonCode("    border-width: 5px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .yellow-box {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .red-box {");
+	   $pdf->AddLessonCode("    background-color: crimson;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    padding: 20px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .blue-box {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    padding: 20px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<h5 class='injected-text'>margin</h5>");
+	   $pdf->AddLessonCode("<div class='box yellow-box'>");
+	   $pdf->AddLessonCode("  <h5 class='box red-box'>padding</h5>");
+	   $pdf->AddLessonCode("  <h5 class='box blue-box'>padding</h5>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateCSSLesson17($pdf) {
+       $pdf->AddLessonTitle("Adjust the Margin of an Element");
+	   $pdf->AddLessonText("An element's margin controls the amount of space between an element's border and surrounding elements.");
+	   $pdf->AddLessonText("Here, we can see that the blue box and the red box are nested within the yellow box. Note that the red box has a bigger margin than the blue box, making it appear smaller.");
+	   $pdf->AddLessonText("When you increase the blue box's margin, it will increase the distance between its border and surrounding elements.");
+	   $pdf->AddLessonText("Change the margin of the blue box to match that of the red box.");
+
+	   $pdf->DrawCodeArea("38");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .injected-text {");
+	   $pdf->AddLessonCode("    margin-bottom: -25px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .box {");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    border-color: black;");
+	   $pdf->AddLessonCode("    border-width: 5px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .yellow-box {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .red-box {");
+	   $pdf->AddLessonCode("    background-color: crimson;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    padding: 20px;");
+	   $pdf->AddLessonCode("    margin: 20px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .blue-box {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    padding: 20px;");
+	   $pdf->AddLessonCode("    margin: 20px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<h5 class='injected-text'>margin</h5>");
+	   $pdf->AddLessonCode("<div class='box yellow-box'>");
+	   $pdf->AddLessonCode("  <h5 class='box red-box'>padding</h5>");
+	   $pdf->AddLessonCode("  <h5 class='box blue-box'>padding</h5>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateCSSLesson18($pdf) {
+       $pdf->AddLessonTitle("Add a Negative Margin to an Element");
+	   $pdf->AddLessonText("An element's margin controls the amount of space between an element's border and surrounding elements.");
+	   $pdf->AddLessonText("If you set an element's margin to a negative value, the element will grow larger.");
+	   $pdf->AddLessonText("Try to set the margin to a negative value like the one for the red box.");
+	   $pdf->AddLessonText("Change the margin of the blue box to -15px, so it fills the entire horizontal width of the yellow box around it.");
+
+	   $pdf->DrawCodeArea("37");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .injected-text {");
+	   $pdf->AddLessonCode("    margin-bottom: -25px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .box {");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    border-color: black;");
+	   $pdf->AddLessonCode("    border-width: 5px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .yellow-box {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .red-box {");
+	   $pdf->AddLessonCode("    background-color: crimson;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    padding: 20px;");
+	   $pdf->AddLessonCode("    margin: -15px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .blue-box {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    padding: 20px;");
+	   $pdf->AddLessonCode("    margin: -15px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div class='box yellow-box'>");
+	   $pdf->AddLessonCode("  <h5 class='box red-box'>padding</h5>");
+	   $pdf->AddLessonCode("  <h5 class='box blue-box'>padding</h5>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateCSSLesson19($pdf) {
+       $pdf->AddLessonTitle("Add Different Padding to Each Side of an Element");
+	   $pdf->AddLessonText("Sometimes you will want to customize an element so that it has different amounts of padding on each of its sides.");
+	   $pdf->AddLessonText("CSS allows you to control the padding of all four individual sides of an element with the padding-top, padding-right, padding-bottom, and padding-left properties.");
+	   $pdf->AddLessonText("Give the blue box a padding of 40px on its top and left side, but only 20px on its bottom and right side.");
+
+	   $pdf->DrawCodeArea("42");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .injected-text {");
+	   $pdf->AddLessonCode("    margin-bottom: -25px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .box {");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    border-color: black;");
+	   $pdf->AddLessonCode("    border-width: 5px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .yellow-box {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .red-box {");
+	   $pdf->AddLessonCode("    background-color: crimson;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    padding-top: 40px;");
+	   $pdf->AddLessonCode("    padding-right: 20px;");
+	   $pdf->AddLessonCode("    padding-bottom: 20px;");
+	   $pdf->AddLessonCode("    padding-left: 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .blue-box {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    padding-top: 40px;");
+	   $pdf->AddLessonCode("    padding-right: 20px;");
+	   $pdf->AddLessonCode("    padding-bottom: 20px;");
+	   $pdf->AddLessonCode("    padding-left: 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<h5 class='injected-text'>margin</h5>");
+	   $pdf->AddLessonCode("<div class='box yellow-box'>");
+	   $pdf->AddLessonCode("  <h5 class='box red-box'>padding</h5>");
+	   $pdf->AddLessonCode("  <h5 class='box blue-box'>padding</h5>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateCSSLesson20($pdf) {
+       $pdf->AddLessonTitle("Add Different Margins to Each Side of an Element");
+	   $pdf->AddLessonText("Sometimes you will want to customize an element so that it has a different margin on each of its sides.");
+	   $pdf->AddLessonText("CSS allows you to control the margin of all four individual sides of an element with the margin-top, margin-right, margin-bottom, and margin-left properties.");
+	   $pdf->AddLessonText("Give the blue box a margin of 40px on its top and left side, but only 20px on its bottom and right side.");
+
+	   $pdf->DrawCodeArea("42");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .injected-text {");
+	   $pdf->AddLessonCode("    margin-bottom: -25px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .box {");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    border-color: black;");
+	   $pdf->AddLessonCode("    border-width: 5px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .yellow-box {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .red-box {");
+	   $pdf->AddLessonCode("    background-color: crimson;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    margin-top: 40px;");
+	   $pdf->AddLessonCode("    margin-right: 20px;");
+	   $pdf->AddLessonCode("    margin-bottom: 20px;");
+	   $pdf->AddLessonCode("    margin-left: 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .blue-box {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    margin-top: 40px;");
+	   $pdf->AddLessonCode("    margin-right: 20px;");
+	   $pdf->AddLessonCode("    margin-bottom: 20px;");
+	   $pdf->AddLessonCode("    margin-left: 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<h5 class='injected-text'>margin</h5>");
+	   $pdf->AddLessonCode("<div class='box yellow-box'>");
+	   $pdf->AddLessonCode("  <h5 class='box red-box'>padding</h5>");
+	   $pdf->AddLessonCode("  <h5 class='box blue-box'>padding</h5>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateCSSLesson21($pdf) {
+       $pdf->AddLessonTitle("Use Clockwise Notation to Specify the Padding of an Element");
+	   $pdf->AddLessonText("Instead of specifying an element's padding-top, padding-right, padding-bottom, and padding-left properties individually, you can specify them all in one line, like this:");
+
+	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("padding: 10px 20px 10px 20px;");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("These four values work like a clock: top, right, bottom, left, and will produce the exact same result as using the side-specific padding instructions.");
+	   $pdf->AddLessonText("Use Clockwise Notation to give the '.blue-box' class a padding of 40px on its top and left side, but only 20px on its bottom and right side.");
+
+	   $pdf->DrawCodeArea("36");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .injected-text {");
+	   $pdf->AddLessonCode("    margin-bottom: -25px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .box {");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    border-color: black;");
+	   $pdf->AddLessonCode("    border-width: 5px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .yellow-box {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("    padding: 20px 40px 20px 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .red-box {");
+	   $pdf->AddLessonCode("    background-color: crimson;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    padding: 20px 40px 20px 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .blue-box {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    padding: 40px 20px 20px 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<h5 class='injected-text'>margin</h5>");
+	   $pdf->AddLessonCode("<div class='box yellow-box'>");
+	   $pdf->AddLessonCode("  <h5 class='box red-box'>padding</h5>");
+	   $pdf->AddLessonCode("  <h5 class='box blue-box'>padding</h5>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateCSSLesson22($pdf) {
+       $pdf->AddLessonTitle("Use Clockwise Notation to Specify the Margin of an Element");
+	   $pdf->AddLessonText("Let's try this again, but with margin this time.");
+	   $pdf->AddLessonText("Instead of specifying an element's margin-top, margin-right, margin-bottom, and margin-left properties individually, you can specify them all in one line, like this:");
+
+	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("margin: 10px 20px 10px 20px;");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("These four values work like a clock: top, right, bottom, left, and will produce the exact same result as using the side-specific margin instructions.");
+	   $pdf->AddLessonText("Use Clockwise Notation to give the element with the blue-box class a margin of 40px on its top and left side, but only 20px on its bottom and right side.");
+
+	   $pdf->DrawCodeArea("36");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .injected-text {");
+	   $pdf->AddLessonCode("    margin-bottom: -25px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .box {");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    border-color: black;");
+	   $pdf->AddLessonCode("    border-width: 5px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .yellow-box {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("    padding: 20px 40px 20px 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .red-box {");
+	   $pdf->AddLessonCode("    background-color: crimson;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    margin: 20px 40px 20px 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .blue-box {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    color: #fff;");
+	   $pdf->AddLessonCode("    margin: 40px 20px 20px 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<h5 class='injected-text'>margin</h5>");
+	   $pdf->AddLessonCode("<div class='box yellow-box'>");
+	   $pdf->AddLessonCode("  <h5 class='box red-box'>padding</h5>");
+	   $pdf->AddLessonCode("  <h5 class='box blue-box'>padding</h5>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
 
    function GenerateCSSManual($pdf) {
 	   $pdf->AddSubject("Introduction to Basic CSS");
@@ -835,6 +1340,15 @@
 	   GenerateCSSLesson11($pdf);
 	   GenerateCSSLesson12($pdf);
 	   GenerateCSSLesson13($pdf);
+	   GenerateCSSLesson14($pdf);
+	   GenerateCSSLesson15($pdf);
+	   GenerateCSSLesson16($pdf);
+	   GenerateCSSLesson17($pdf);
+	   GenerateCSSLesson18($pdf);
+	   GenerateCSSLesson19($pdf);
+	   GenerateCSSLesson20($pdf);
+	   GenerateCSSLesson21($pdf);
+	   GenerateCSSLesson22($pdf);
    }
 
 ?>
