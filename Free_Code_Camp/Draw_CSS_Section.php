@@ -1324,6 +1324,138 @@
 	   $pdf->AddLessonCode("</div>");
    }
 
+   function GenerateCSSLesson23($pdf) {
+       $pdf->AddLessonTitle("Use Attribute Selectors to Style Elements");
+	   $pdf->AddLessonText("You have been adding id or class attributes to elements that you wish to specifically style. These are known as ID and class selectors. There are other CSS Selectors you can use to select custom groups of elements to style.");
+	   $pdf->AddLessonText("Let's bring out CatPhotoApp again to practice using CSS Selectors.");
+	   $pdf->AddLessonText("For this challenge, you will use the [attr=value] attribute selector to style the checkboxes in CatPhotoApp. This selector matches and styles elements with a specific attribute value. For example, the below code changes the margins of all elements with the attribute type and a corresponding value of radio:");
+
+	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("[type='radio'] {");
+	   $pdf->AddLessonCode("  margin: 20px 0px 20px 0px;");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Using the type attribute selector, try to give the checkboxes in CatPhotoApp a top margin of 10px and a bottom margin of 15px.");
+
+	   $pdf->DrawCodeArea("35");
+	   $pdf->AddLessonCode("<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: red;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  h2 {");
+	   $pdf->AddLessonCode("    font-family: Lobster, monospace;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  p {");
+	   $pdf->AddLessonCode("    font-size: 16px;");
+	   $pdf->AddLessonCode("    font-family: monospace;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .thick-green-border {");
+	   $pdf->AddLessonCode("    border-color: green;");
+	   $pdf->AddLessonCode("    border-width: 10px;");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .smaller-image {");
+	   $pdf->AddLessonCode("    width: 100px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .silver-background {");
+	   $pdf->AddLessonCode("    background-color: silver;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("[type='checkbox'] {");
+	   $pdf->AddLessonCode("  margin: 10px 0px 15px 0px;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+
+       $pdf->AddLessonTitle("Use Attribute Selectors to Style Elements (Cont'd)");
+	   $pdf->DrawCodeArea("38");
+	   $pdf->AddLessonCode("<h2 class='red-text'>CatPhotoApp</h2>");
+	   $pdf->AddLessonCode("<main>");
+	   $pdf->AddLessonCode("  <p class='red-text'>Click here to view more <a href='#'>cat photos</a>.</p>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <a href='#'><img class='smaller-image thick-green-border' src='https://bit.ly/fcc-relaxing-cat' alt='A cute orange cat lying on its back.'></a>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <div class='silver-background'>");
+	   $pdf->AddLessonCode("    <p>Things cats love:</p>");
+	   $pdf->AddLessonCode("    <ul>");
+	   $pdf->AddLessonCode("      <li>cat nip</li>");
+	   $pdf->AddLessonCode("      <li>laser pointers</li>");
+	   $pdf->AddLessonCode("      <li>lasagna</li>");
+	   $pdf->AddLessonCode("    </ul>");
+	   $pdf->AddLessonCode("    <p>Top 3 things cats hate:</p>");
+	   $pdf->AddLessonCode("    <ol>");
+	   $pdf->AddLessonCode("      <li>flea treatment</li>");
+	   $pdf->AddLessonCode("      <li>thunder</li>");
+	   $pdf->AddLessonCode("      <li>other cats</li>");
+	   $pdf->AddLessonCode("    </ol>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <form action='/submit-cat-photo' id='cat-photo-form'>");
+	   $pdf->AddLessonCode("    <label><input type='radio' name='indoor-outdoor' checked> Indoor</label>");
+	   $pdf->AddLessonCode("    <label><input type='radio' name='indoor-outdoor'> Outdoor</label><br>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality' checked> Loving</label>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality'> Lazy</label>");
+	   $pdf->AddLessonCode("    <label><input type='checkbox' name='personality'> Energetic</label><br>");
+	   $pdf->AddLessonCode("    <input type='text' placeholder='cat photo URL' required>");
+	   $pdf->AddLessonCode("    <button type='submit'>Submit</button>");
+	   $pdf->AddLessonCode("  </form>");
+	   $pdf->AddLessonCode("</main>");
+   }
+
+   function GenerateCSSLesson24($pdf) {
+       $pdf->AddLessonTitle("Understand Absolute versus Relative Units");
+	   $pdf->AddLessonText("The last several challenges all set an element's margin or padding with pixels (px). Pixels are a type of length unit, which is what tells the browser how to size or space an item. In addition to px, CSS has a number of different length unit options that you can use.");
+	   $pdf->AddLessonText("The two main types of length units are absolute and relative. Absolute units tie to physical units of length. For example, in and mm refer to inches and millimeters, respectively. Absolute length units approximate the actual measurement on a screen, but there are some differences depending on a screen's resolution.");
+	   $pdf->AddLessonText("Relative units, such as em or rem, are relative to another length value. For example, em is based on the size of an element's font. If you use it to set the font-size property itself, it's relative to the parent's font-size.");
+	   $pdf->AddLessonText("Note: There are several relative unit options that are tied to the size of the viewport. They are covered in the Responsive Web Design Principles section.");
+	   $pdf->AddLessonText("Add a padding property to the element with class red-box and set it to 1.5em.");
+
+	   $pdf->DrawCodeArea("36");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .injected-text {");
+	   $pdf->AddLessonCode("    margin-bottom: -25px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .box {");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    border-color: black;");
+	   $pdf->AddLessonCode("    border-width: 5px;");
+	   $pdf->AddLessonCode("    text-align: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .yellow-box {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("    padding: 20px 40px 20px 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .red-box {");
+	   $pdf->AddLessonCode("    background-color: red;");
+	   $pdf->AddLessonCode("    margin: 20px 40px 20px 40px;");
+	   $pdf->AddLessonCode("    padding: 1.5em;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .green-box {");
+	   $pdf->AddLessonCode("    background-color: green;");
+	   $pdf->AddLessonCode("    margin: 20px 40px 20px 40px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<h5 class='injected-text'>margin</h5>");
+	   $pdf->AddLessonCode("<div class='box yellow-box'>");
+	   $pdf->AddLessonCode("  <h5 class='box red-box'>padding</h5>");
+	   $pdf->AddLessonCode("  <h5 class='box green-box'>padding</h5>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
 
    function GenerateCSSManual($pdf) {
 	   $pdf->AddSubject("Introduction to Basic CSS");
@@ -1349,6 +1481,8 @@
 	   GenerateCSSLesson20($pdf);
 	   GenerateCSSLesson21($pdf);
 	   GenerateCSSLesson22($pdf);
+	   GenerateCSSLesson23($pdf);
+	   GenerateCSSLesson24($pdf);
    }
 
 ?>
