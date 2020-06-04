@@ -1456,6 +1456,380 @@
 	   $pdf->AddLessonCode("</div>");
    }
 
+   function GenerateCSSLesson25($pdf) {
+       $pdf->AddLessonTitle("Style the HTML Body Element");
+	   $pdf->AddLessonText("Now let's start fresh and talk about CSS inheritance.");
+	   $pdf->AddLessonText("Every HTML page has a body element.");
+	   $pdf->AddLessonText("We can prove that the body element exists here by giving it a background-color of black.");
+	   $pdf->AddLessonText("We can do this by adding the following to our style element:");
+
+	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  background-color: black;");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+
+	   $pdf->DrawCodeArea("5");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  background-color: black;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+   }
+
+   function GenerateCSSLesson26($pdf) {
+       $pdf->AddLessonTitle("Inherit Styles from the Body Element");
+	   $pdf->AddLessonText("Now we've proven that every HTML page has a body element, and that its body element can also be styled with CSS.");
+	   $pdf->AddLessonText("Remember, you can style your body element just like any other HTML element, and all your other elements will inherit your body element's styles.");
+	   $pdf->AddLessonText("First, create a h1 element with the text Hello World");
+	   $pdf->AddLessonText("Then, let's give all elements on your page the color of green by adding color: green; to your body element's style declaration.");
+	   $pdf->AddLessonText("Finally, give your body element the font-family of monospace by adding font-family: monospace; to your body element's style declaration.");
+
+	   $pdf->DrawCodeArea("8");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  background-color: black;");
+	   $pdf->AddLessonCode("  color: green;");
+	   $pdf->AddLessonCode("  font-family: monospace;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<h1>Hello World</h1>");
+   }
+
+   function GenerateCSSLesson27($pdf) {
+       $pdf->AddLessonTitle("Prioritize One Style Over Another");
+	   $pdf->AddLessonText("Sometimes your HTML elements will receive multiple styles that conflict with one another.");
+	   $pdf->AddLessonText("For example, your h1 element can't be both green and pink at the same time.");
+	   $pdf->AddLessonText("Let's see what happens when we create a class that makes text pink, then apply it to an element. Will our class override the body element's color: green; CSS property?");
+	   $pdf->AddLessonText("Create a CSS class called pink-text that gives an element the color pink.");
+	   $pdf->AddLessonText("Give your h1 element the class of pink-text.");
+
+	   $pdf->DrawCodeArea("11");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  background-color: black;");
+	   $pdf->AddLessonCode("  color: green;");
+	   $pdf->AddLessonCode("  font-family: monospace;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode(".pink-text{");
+	   $pdf->AddLessonCode("  color: pink;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<h1 class='pink-text'>Hello World</h1>");
+   }
+
+   function GenerateCSSLesson28($pdf) {
+       $pdf->AddLessonTitle("Override Styles in Subsequent CSS");
+	   $pdf->AddLessonText("Our 'pink-text' class overrode our body element's CSS declaration!");
+	   $pdf->AddLessonText("We just proved that our classes will override the body element's CSS. So the next logical question is, what can we do to override our pink-text class?");
+	   $pdf->AddLessonText("Create an additional CSS class called blue-text that gives an element the color blue. Make sure it's below your pink-text class declaration.");
+	   $pdf->AddLessonText("Apply the blue-text class to your h1 element in addition to your pink-text class, and let's see which one wins.");
+	   $pdf->AddLessonText("Applying multiple class attributes to a HTML element is done with a space between them like this:");
+
+	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("class='class1 class2'");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Note: It doesn't matter which order the classes are listed in the HTML element.");
+	   $pdf->AddLessonText("However, the order of the class declarations in the <style> section is what is important. The second declaration will always take precedence over the first. Because .blue-text is declared second, it overrides the attributes of .pink-text");
+
+	   $pdf->DrawCodeArea("14");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  background-color: black;");
+	   $pdf->AddLessonCode("  color: green;");
+	   $pdf->AddLessonCode("  font-family: monospace;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode(".pink-text{");
+	   $pdf->AddLessonCode("  color: pink;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode(".blue-text{");
+	   $pdf->AddLessonCode("  color: blue;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<h1 class='blue-text pink-text'>Hello World</h1>");
+   }
+
+   function GenerateCSSLesson29($pdf) {
+       $pdf->AddLessonTitle("Override Class Declarations by Styling ID Attributes");
+	   $pdf->AddLessonText("We just proved that browsers read CSS from top to bottom in order of their declaration. That means that, in the event of a conflict, the browser will use whichever CSS declaration came last. Notice that if we even had put blue-text before pink-text in our h1 element's classes, it would still look at the declaration order and not the order of their use!");
+	   $pdf->AddLessonText("But we're not done yet. There are other ways that you can override CSS. Do you remember id attributes?");
+	   $pdf->AddLessonText("Let's override your pink-text and blue-text classes, and make your h1 element orange, by giving the h1 element an id and then styling that id.");
+	   $pdf->AddLessonText("Give your h1 element the id attribute of orange-text. Remember, id styles look like this:");
+
+	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("<h1 id='orange-text'>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Leave the blue-text and pink-text classes on your h1 element.");
+	   $pdf->AddLessonText("Create a CSS declaration for your orange-text id in your style element. Here's an example of what this looks like:");
+
+	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("#brown-text {");
+	   $pdf->AddLessonCode("  color: brown;");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Note: It doesn't matter whether you declare this CSS above or below pink-text class, since id attribute will always take precedence.");
+
+	   $pdf->DrawCodeArea("17");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  background-color: black;");
+	   $pdf->AddLessonCode("  color: green;");
+	   $pdf->AddLessonCode("  font-family: monospace;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode(".pink-text{");
+	   $pdf->AddLessonCode("  color: pink;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode(".blue-text{");
+	   $pdf->AddLessonCode("  color: blue;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("#orange-text{");
+	   $pdf->AddLessonCode("  color: orange;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<h1 id='orange-text' class='blue-text pink-text'>Hello World</h1>");
+   }
+
+   function GenerateCSSLesson30($pdf) {
+       $pdf->AddLessonTitle("Override Class Declarations with Inline Styles");
+	   $pdf->AddLessonText("So we've proven that id declarations override class declarations, regardless of where they are declared in your style element CSS.");
+	   $pdf->AddLessonText("There are other ways that you can override CSS. Do you remember inline styles?");
+	   $pdf->AddLessonText("Use an inline style to try to make our h1 element white. Remember, in line styles look like this:");
+
+	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("<h1 style='color: green;'>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Leave the blue-text and pink-text classes on your h1 element.");
+
+	   $pdf->DrawCodeArea("18");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  background-color: black;");
+	   $pdf->AddLessonCode("  color: green;");
+	   $pdf->AddLessonCode("  font-family: monospace;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode(".pink-text{");
+	   $pdf->AddLessonCode("  color: pink;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode(".blue-text{");
+	   $pdf->AddLessonCode("  color: blue;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("#orange-text{");
+	   $pdf->AddLessonCode("  color: orange;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<h1 id='orange-text' class='blue-text pink-text' style='color: white;'>Hello World</h1>");
+   }
+
+   function GenerateCSSLesson31($pdf) {
+       $pdf->AddLessonTitle("Override All Other Styles by using Important");
+	   $pdf->AddLessonText("Yay! We just proved that inline styles will override all the CSS declarations in your style element.");
+	   $pdf->AddLessonText("But wait. There's one last way to override CSS. This is the most powerful method of all. But before we do it, let's talk about why you would ever want to override CSS.");
+	   $pdf->AddLessonText("In many situations, you will use CSS libraries. These may accidentally override your own CSS. So when you absolutely need to be sure that an element has specific CSS, you can use !important");
+	   $pdf->AddLessonText("Let's go all the way back to our pink-text class declaration. Remember that our pink-text class was overridden by subsequent class declarations, id declarations, and inline styles.");
+	   $pdf->AddLessonText("Let's add the keyword !important to your pink-text element's color declaration to make 100% sure that your h1 element will be pink.");
+	   $pdf->AddLessonText("An example of how to do this is:");
+
+	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("color: red !important;");
+
+	   $pdf->AddLessonText("");
+
+	   $pdf->DrawCodeArea("18");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  background-color: black;");
+	   $pdf->AddLessonCode("  color: green;");
+	   $pdf->AddLessonCode("  font-family: monospace;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode(".pink-text{");
+	   $pdf->AddLessonCode("  color: pink; !important");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode(".blue-text{");
+	   $pdf->AddLessonCode("  color: blue;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("#orange-text{");
+	   $pdf->AddLessonCode("  color: orange;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<h1 id='orange-text' class='blue-text pink-text' style='color: white;'>Hello World</h1>");
+   }
+
+   function GenerateCSSLesson32($pdf) {
+       $pdf->AddLessonTitle("Use Hex Code for Specific Colors");
+	   $pdf->AddLessonText("Did you know there are other ways to represent colors in CSS? One of these ways is called hexadecimal code, or hex code for short.");
+	   $pdf->AddLessonText("We usually use decimals, or base 10 numbers, which use the symbols 0 to 9 for each digit. Hexadecimals (or hex) are base 16 numbers. This means it uses sixteen distinct symbols. Like decimals, the symbols 0-9 represent the values zero to nine. Then A,B,C,D,E,F represent the values ten to fifteen. Altogether, 0 to F can represent a digit in hexadecimal, giving us 16 total possible values. You can find more information about hexadecimal numbers here.");
+	   $pdf->AddLessonText("In CSS, we can use 6 hexadecimal digits to represent colors, two each for the red (R), green (G), and blue (B) components. For example, #000000 is black and is also the lowest possible value. You can find more information about the RGB color system here.");
+
+	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  color: #000000;");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Replace the word black in our body element's background-color with its hex code representation, #000000.");
+
+	   $pdf->DrawCodeArea("5");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  background-color: #000000;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+   }
+
+   function GenerateCSSLesson33($pdf) {
+       $pdf->AddLessonTitle("Use Hex Code to Mix Colors");
+	   $pdf->AddLessonText("To review, hex codes use 6 hexadecimal digits to represent colors, two each for red (R), green (G), and blue (B) components.");
+	   $pdf->AddLessonText("From these three pure colors (red, green, and blue), we can vary the amounts of each to create over 16 million other colors!");
+	   $pdf->AddLessonText("For example, orange is pure red, mixed with some green, and no blue. In hex code, this translates to being #FFA500.");
+	   $pdf->AddLessonText("The digit 0 is the lowest number in hex code, and represents a complete absence of color.");
+	   $pdf->AddLessonText("The digit F is the highest number in hex code, and represents the maximum possible brightness.");
+	   $pdf->AddLessonText("Replace the color words in our style element with their correct hex codes.");
+
+	   $pdf->DrawCodeArea("5");
+	   $pdf->AddLessonCode("Color        Hex Code");
+	   $pdf->AddLessonCode("Dodger Blue  #1E90FF");
+	   $pdf->AddLessonCode("Green        #00FF00");
+	   $pdf->AddLessonCode("Orange       #FFA500");
+	   $pdf->AddLessonCode("Red          #FF0000");
+
+	   $pdf->AddLessonText("");
+
+	   $pdf->DrawCodeArea("19");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: #FF0000;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .green-text {");
+	   $pdf->AddLessonCode("    color: #00FF00;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .dodger-blue-text {");
+	   $pdf->AddLessonCode("    color: #1E90FF;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .orange-text {");
+	   $pdf->AddLessonCode("    color: #FFA500;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<h1 class='red-text'>I am red!</h1>");
+	   $pdf->AddLessonCode("<h1 class='green-text'>I am green!</h1>");
+	   $pdf->AddLessonCode("<h1 class='dodger-blue-text'>I am dodger blue!</h1>");
+	   $pdf->AddLessonCode("<h1 class='orange-text'>I am orange!</h1>");
+   }
+
+   function GenerateCSSLesson34($pdf) {
+       $pdf->AddLessonTitle("Use Abbreviated Hex Code");
+	   $pdf->AddLessonText("Many people feel overwhelmed by the possibilities of more than 16 million colors. And it's difficult to remember hex code. Fortunately, you can shorten it.");
+	   $pdf->AddLessonText("For example, red's hex code #FF0000 can be shortened to #F00. This shortened form gives one digit for red, one digit for green, and one digit for blue.");
+	   $pdf->AddLessonText("This reduces the total number of possible colors to around 4,000. But browsers will interpret #FF0000 and #F00 as exactly the same color.");
+	   $pdf->AddLessonText("Go ahead, try using the abbreviated hex codes to color the correct elements.");
+
+	   $pdf->DrawCodeArea("5");
+	   $pdf->AddLessonCode("Color    Short Hex Code");
+	   $pdf->AddLessonCode("Cyan     #0FF");
+	   $pdf->AddLessonCode("Green    #0F0");
+	   $pdf->AddLessonCode("Red      #F00");
+	   $pdf->AddLessonCode("Fuchsia  #F0F");
+
+	   $pdf->AddLessonText("");
+
+	   $pdf->DrawCodeArea("19");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: #F00;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .fuchsia-text {");
+	   $pdf->AddLessonCode("    color: #F0F;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .cyan-text {");
+	   $pdf->AddLessonCode("    color: #0FF;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .green-text {");
+	   $pdf->AddLessonCode("    color: #0F0;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<h1 class='red-text'>I am red!</h1>");
+	   $pdf->AddLessonCode("<h1 class='fuchsia-text'>I am fuchsia!</h1>");
+	   $pdf->AddLessonCode("<h1 class='cyan-text'>I am cyan!</h1>");
+	   $pdf->AddLessonCode("<h1 class='green-text'>I am green!</h1>");
+   }
+
+   function GenerateCSSLesson35($pdf) {
+       $pdf->AddLessonTitle("Use RGB values to Color Elements");
+	   $pdf->AddLessonText("Another way you can represent colors in CSS is by using RGB values.");
+	   $pdf->AddLessonText("The RGB value for black looks like this:");
+
+	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("rgb(0, 0, 0)");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("The RGB value for white looks like this:");
+
+	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("rgb(255, 255, 255)");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Instead of using six hexadecimal digits like you do with hex code, with RGB you specify the brightness of each color with a number between 0 and 255.");
+	   $pdf->AddLessonText("If you do the math, the two digits for one color equal 16 times 16, which gives us 256 total values. So RGB, which starts counting from zero, has the exact same number of possible values as hex code.");
+	   $pdf->AddLessonText("Here's an example of how you'd change the body background to orange using its RGB code.");
+
+	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  background-color: rgb(255, 165, 0);");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Let's replace the hex code in our body element's background color with the RGB value for black: rgb(0, 0, 0)");
+
+	   $pdf->DrawCodeArea("5");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("body {");
+	   $pdf->AddLessonCode("  background-color: rgb(0, 0, 0);");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+   }
+
+   function GenerateCSSLesson36($pdf) {
+       $pdf->AddLessonTitle("Use RGB to Mix Colors");
+	   $pdf->AddLessonText("Just like with hex code, you can mix colors in RGB by using combinations of different values.");
+	   $pdf->AddLessonText("Replace the hex codes in our style element with their correct RGB values.");
+
+	   $pdf->DrawCodeArea("5");
+	   $pdf->AddLessonCode("Color   RGB");
+	   $pdf->AddLessonCode("Blue    rgb(0, 0, 255)");
+	   $pdf->AddLessonCode("Red     rgb(255, 0, 0)");
+	   $pdf->AddLessonCode("Orchid  rgb(218, 112, 214)");
+	   $pdf->AddLessonCode("Sienna  rgb(160, 82, 45)");
+
+	   $pdf->AddLessonText("");
+
+	   $pdf->DrawCodeArea("18");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .red-text {");
+	   $pdf->AddLessonCode("    color: rgb(255, 0, 0);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .orchid-text {");
+	   $pdf->AddLessonCode("    color: rgb(218, 112, 214);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .sienna-text {");
+	   $pdf->AddLessonCode("    color: rgb(160, 82, 45);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .blue-text {");
+	   $pdf->AddLessonCode("    color: rgb(0, 0, 255);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<h1 class='red-text'>I am red!</h1>");
+	   $pdf->AddLessonCode("<h1 class='orchid-text'>I am orchid!</h1>");
+	   $pdf->AddLessonCode("<h1 class='sienna-text'>I am sienna!</h1>");
+	   $pdf->AddLessonCode("<h1 class='blue-text'>I am blue!</h1>");
+   }
+
+
 
    function GenerateCSSManual($pdf) {
 	   $pdf->AddSubject("Introduction to Basic CSS");
@@ -1483,6 +1857,18 @@
 	   GenerateCSSLesson22($pdf);
 	   GenerateCSSLesson23($pdf);
 	   GenerateCSSLesson24($pdf);
+	   GenerateCSSLesson25($pdf);
+	   GenerateCSSLesson26($pdf);
+	   GenerateCSSLesson27($pdf);
+	   GenerateCSSLesson28($pdf);
+	   GenerateCSSLesson29($pdf);
+	   GenerateCSSLesson30($pdf);
+	   GenerateCSSLesson31($pdf);
+	   GenerateCSSLesson32($pdf);
+	   GenerateCSSLesson33($pdf);
+	   GenerateCSSLesson34($pdf);
+	   GenerateCSSLesson35($pdf);
+	   GenerateCSSLesson36($pdf);
    }
 
 ?>
