@@ -450,6 +450,399 @@
 	   $pdf->AddLessonCode("</div>");
    }
 
+   function GenerateAVDLesson10($pdf) {
+       $pdf->AddLessonTitle("Adjust the Size of a Header Versus a Paragraph Tag");
+	   $pdf->AddLessonText("The font size of header tags (h1 through h6) should generally be larger than the font size of paragraph tags. This makes it easier for the user to visually understand the layout and level of importance of everything on the page. You use the font-size property to adjust the size of the text in an element.");
+	   $pdf->AddLessonText("To make the heading significantly larger than the paragraph, change the font-size of the h4 tag to 27 pixels.");
+
+	   $pdf->DrawCodeArea("28");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  h4 {");
+	   $pdf->AddLessonCode("    text-align: center; ");
+	   $pdf->AddLessonCode("    background-color: rgba(45, 45, 45, 0.1);");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("    font-size: 27px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  p {");
+	   $pdf->AddLessonCode("    text-align: justify;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .links {");
+	   $pdf->AddLessonCode("    text-align: left; ");
+	   $pdf->AddLessonCode("    color: black;");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .fullCard {");
+	   $pdf->AddLessonCode("    width: 245px;");
+	   $pdf->AddLessonCode("    border: 1px solid #ccc;");
+	   $pdf->AddLessonCode("    border-radius: 5px;");
+	   $pdf->AddLessonCode("    margin: 10px 5px;");
+	   $pdf->AddLessonCode("    padding: 4px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .cardContent {");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .cardText {");
+	   $pdf->AddLessonCode("    margin-bottom: 30px;");
+	   $pdf->AddLessonCode("  }");
+	   
+       $pdf->AddLessonTitle("Adjust the background-color Property of Text (Cont'd)");
+	   $pdf->DrawCodeArea("19");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div class='fullCard'>");
+	   $pdf->AddLessonCode("  <div class='cardContent'>");
+	   $pdf->AddLessonCode("    <div class='cardText'>");
+	   $pdf->AddLessonCode("      <h4><s>Google</s>Alphabet</h4>");
+	   $pdf->AddLessonCode("      <hr>");
+	   $pdf->AddLessonCode("      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("    <div class='cardLinks'>");
+	   $pdf->AddLessonCode("      <a href='https://en.wikipedia.org/wiki/Larry_Page' target='_blank' class='links'>Larry Page</a>");
+	   $pdf->AddLessonCode("      <a href='https://en.wikipedia.org/wiki/Sergey_Brin' target='_blank' class='links'>Sergey Brin</a>");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateAVDLesson11($pdf) {
+       $pdf->AddLessonTitle("Add a box-shadow to a Card-like Element");
+	   $pdf->AddLessonText("The box-shadow property applies one or more shadows to an element.");
+	   $pdf->AddLessonText("The box-shadow property takes values for");
+	   $pdf->AddLessonBullet("offset-x (how far to push the shadow horizontally from the element),");
+	   $pdf->AddLessonBullet("offset-y (how far to push the shadow vertically from the element),");
+	   $pdf->AddLessonBullet("blur-radius,");
+	   $pdf->AddLessonBullet("spread-radius and");
+	   $pdf->AddLessonBullet("color, in that order.");
+	   $pdf->AddLessonText("The blur-radius and spread-radius values are optional.");
+	   $pdf->AddLessonText("Multiple box-shadows can be created by using commas to separate properties of each box-shadow element.");
+	   $pdf->AddLessonText("Here's an example of the CSS to create multiple shadows with some blur, at mostly-transparent black colors:");
+
+	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("The element now has an id of thumbnail. With this selector, use the example CSS values above to place a box-shadow on the card.");
+
+	   $pdf->DrawCodeArea("31");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  h4 {");
+	   $pdf->AddLessonCode("    text-align: center; ");
+	   $pdf->AddLessonCode("    background-color: rgba(45, 45, 45, 0.1);");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("    font-size: 27px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  p {");
+	   $pdf->AddLessonCode("    text-align: justify;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .links {");
+	   $pdf->AddLessonCode("    text-align: left; ");
+	   $pdf->AddLessonCode("    color: black;");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .fullCard {");
+	   $pdf->AddLessonCode("    width: 245px;");
+	   $pdf->AddLessonCode("    border: 1px solid #ccc;");
+	   $pdf->AddLessonCode("    border-radius: 5px;");
+	   $pdf->AddLessonCode("    margin: 10px 5px;");
+	   $pdf->AddLessonCode("    padding: 4px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .cardContent {");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .cardText {");
+	   $pdf->AddLessonCode("    margin-bottom: 30px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #thumbnail {");
+	   $pdf->AddLessonCode("    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);");
+	   $pdf->AddLessonCode("  }");
+	   
+       $pdf->AddLessonTitle("Add a box-shadow to a Card-like Element (Cont'd)");
+	   $pdf->DrawCodeArea("19");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div class='fullCard' id='thumbnail'>");
+	   $pdf->AddLessonCode("  <div class='cardContent'>");
+	   $pdf->AddLessonCode("    <div class='cardText'>");
+	   $pdf->AddLessonCode("      <h4><Alphabet</h4>");
+	   $pdf->AddLessonCode("      <hr>");
+	   $pdf->AddLessonCode("      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("    <div class='cardLinks'>");
+	   $pdf->AddLessonCode("      <a href='https://en.wikipedia.org/wiki/Larry_Page' target='_blank' class='links'>Larry Page</a>");
+	   $pdf->AddLessonCode("      <a href='https://en.wikipedia.org/wiki/Sergey_Brin' target='_blank' class='links'>Sergey Brin</a>");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateAVDLesson12($pdf) {
+       $pdf->AddLessonTitle("Decrease the Opacity of an Element");
+	   $pdf->AddLessonText("The opacity property in CSS is used to adjust the opacity, or conversely, the transparency for an item.");
+
+	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("A value of 1 is opaque, which isn't transparent at all.");
+	   $pdf->AddLessonCode("A value of 0.5 is half see-through.");
+	   $pdf->AddLessonCode("A value of 0 is completely transparent.");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("The value given will apply to the entire element, whether that's an image with some transparency, or the foreground and background colors for a block of text.");
+	   $pdf->AddLessonText("Set the opacity of the anchor tags to 0.7 using links class to select them.");
+
+	   $pdf->DrawCodeArea("31");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  h4 {");
+	   $pdf->AddLessonCode("    text-align: center; ");
+	   $pdf->AddLessonCode("    background-color: rgba(45, 45, 45, 0.1);");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("    font-size: 27px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  p {");
+	   $pdf->AddLessonCode("    text-align: justify;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .links {");
+	   $pdf->AddLessonCode("    text-align: left; ");
+	   $pdf->AddLessonCode("    color: black;");
+	   $pdf->AddLessonCode("    opacity: 0.7;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #thumbnail {");
+	   $pdf->AddLessonCode("    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .fullCard {");
+	   $pdf->AddLessonCode("    width: 245px;");
+	   $pdf->AddLessonCode("    border: 1px solid #ccc;");
+	   $pdf->AddLessonCode("    border-radius: 5px;");
+	   $pdf->AddLessonCode("    margin: 10px 5px;");
+	   $pdf->AddLessonCode("    padding: 4px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .cardContent {");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .cardText {");
+	   $pdf->AddLessonCode("    margin-bottom: 30px;");
+	   $pdf->AddLessonCode("  }");
+	   
+       $pdf->AddLessonTitle("Decrease the Opacity of an Element (Cont'd)");
+	   $pdf->DrawCodeArea("19");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div class='fullCard' id='thumbnail'>");
+	   $pdf->AddLessonCode("  <div class='cardContent'>");
+	   $pdf->AddLessonCode("    <div class='cardText'>");
+	   $pdf->AddLessonCode("      <h4><Alphabet</h4>");
+	   $pdf->AddLessonCode("      <hr>");
+	   $pdf->AddLessonCode("      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("    <div class='cardLinks'>");
+	   $pdf->AddLessonCode("      <a href='https://en.wikipedia.org/wiki/Larry_Page' target='_blank' class='links'>Larry Page</a>");
+	   $pdf->AddLessonCode("      <a href='https://en.wikipedia.org/wiki/Sergey_Brin' target='_blank' class='links'>Sergey Brin</a>");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateAVDLesson13($pdf) {
+       $pdf->AddLessonTitle("Use the text-transform Property to Make Text Uppercase");
+	   $pdf->AddLessonText("The text-transform property in CSS is used to change the appearance of text. It's a convenient way to make sure text on a webpage appears consistently, without having to change the text content of the actual HTML elements.");
+	   $pdf->AddLessonText("The following table shows how the different text-transformvalues change the example text 'Transform me'.");
+
+	   $pdf->DrawCodeArea("7");
+	   $pdf->AddLessonCode("Value       Result");
+	   $pdf->AddLessonCode("lowercase   'transform me'");
+	   $pdf->AddLessonCode("uppercase   'TRANSFORM ME'");
+	   $pdf->AddLessonCode("capitalize  'Transform Me'");
+	   $pdf->AddLessonCode("initial     Use the default value");
+	   $pdf->AddLessonCode("inherit     Use the text-transform value from the parent element");
+	   $pdf->AddLessonCode("none        Default: Use the original text");
+
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Transform the text of the h4 to be uppercase using the text-transform property.");
+
+	   $pdf->DrawCodeArea("32");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  h4 {");
+	   $pdf->AddLessonCode("    text-align: center; ");
+	   $pdf->AddLessonCode("    background-color: rgba(45, 45, 45, 0.1);");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("    font-size: 27px;");
+	   $pdf->AddLessonCode("    text-transform: uppercase;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  p {");
+	   $pdf->AddLessonCode("    text-align: justify;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .links {");
+	   $pdf->AddLessonCode("    text-align: left; ");
+	   $pdf->AddLessonCode("    color: black;");
+	   $pdf->AddLessonCode("    opacity: 0.7;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #thumbnail {");
+	   $pdf->AddLessonCode("    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .fullCard {");
+	   $pdf->AddLessonCode("    width: 245px;");
+	   $pdf->AddLessonCode("    border: 1px solid #ccc;");
+	   $pdf->AddLessonCode("    border-radius: 5px;");
+	   $pdf->AddLessonCode("    margin: 10px 5px;");
+	   $pdf->AddLessonCode("    padding: 4px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .cardContent {");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .cardText {");
+	   $pdf->AddLessonCode("    margin-bottom: 30px;");
+	   $pdf->AddLessonCode("  }");
+	   
+       $pdf->AddLessonTitle("Use the text-transform Property to Make Text Uppercase (Cont'd)");
+	   $pdf->DrawCodeArea("19");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div class='fullCard' id='thumbnail'>");
+	   $pdf->AddLessonCode("  <div class='cardContent'>");
+	   $pdf->AddLessonCode("    <div class='cardText'>");
+	   $pdf->AddLessonCode("      <h4><Alphabet</h4>");
+	   $pdf->AddLessonCode("      <hr>");
+	   $pdf->AddLessonCode("      <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("    <div class='cardLinks'>");
+	   $pdf->AddLessonCode("      <a href='https://en.wikipedia.org/wiki/Larry_Page' target='_blank' class='links'>Larry Page</a>");
+	   $pdf->AddLessonCode("      <a href='https://en.wikipedia.org/wiki/Sergey_Brin' target='_blank' class='links'>Sergey Brin</a>");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateAVDLesson14($pdf) {
+       $pdf->AddLessonTitle("Set the font-size for Multiple Heading Elements");
+	   $pdf->AddLessonText("The font-size property is used to specify how large the text is in a given element. This rule can be used for multiple elements to create visual consistency of text on a page. In this challenge, you'll set the values for all h1 through h6 tags to balance the heading sizes.");
+
+	   $pdf->AddLessonBullet("Set the font-size of the h1 tag to 68px.");
+	   $pdf->AddLessonBullet("Set the font-size of the h2 tag to 52px.");
+	   $pdf->AddLessonBullet("Set the font-size of the h3 tag to 40px.");
+	   $pdf->AddLessonBullet("Set the font-size of the h4 tag to 32px.");
+	   $pdf->AddLessonBullet("Set the font-size of the h5 tag to 21px.");
+	   $pdf->AddLessonBullet("Set the font-size of the h6 tag to 14px.");
+	   $pdf->AddLessonText("");
+
+	   $pdf->DrawCodeArea("14");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  h1 { font-size: 68px;}");
+	   $pdf->AddLessonCode("  h2 { font-size: 52px;}");
+	   $pdf->AddLessonCode("  h3 { font-size: 40px;}");
+	   $pdf->AddLessonCode("  h4 { font-size: 32px;}");
+	   $pdf->AddLessonCode("  h5 { font-size: 21px;}");
+	   $pdf->AddLessonCode("  h6 { font-size: 14px;}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<h1>This is h1 text</h1>");
+	   $pdf->AddLessonCode("<h2>This is h2 text</h2>");
+	   $pdf->AddLessonCode("<h3>This is h3 text</h3>");
+	   $pdf->AddLessonCode("<h4>This is h4 text</h4>");
+	   $pdf->AddLessonCode("<h5>This is h5 text</h5>");
+	   $pdf->AddLessonCode("<h6>This is h6 text</h6>");
+   }
+
+   function GenerateAVDLesson15($pdf) {
+       $pdf->AddLessonTitle("Set the font-weight for Multiple Heading Elements");
+	   $pdf->AddLessonText("You set the font-size of each heading tag in the last challenge, here you'll adjust the font-weight.");
+	   $pdf->AddLessonText("The font-weight property sets how thick or thin characters are in a section of text.");
+
+	   $pdf->AddLessonBullet("Set the font-weight of the h1 tag to 800.");
+	   $pdf->AddLessonBullet("Set the font-weight of the h2 tag to 600.");
+	   $pdf->AddLessonBullet("Set the font-weight of the h3 tag to 500.");
+	   $pdf->AddLessonBullet("Set the font-weight of the h4 tag to 400.");
+	   $pdf->AddLessonBullet("Set the font-weight of the h5 tag to 300.");
+	   $pdf->AddLessonBullet("Set the font-weight of the h6 tag to 200.");
+	   $pdf->AddLessonText("");
+
+	   $pdf->DrawCodeArea("32");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  h1 {");
+	   $pdf->AddLessonCode("     font-size:   68px;}");
+	   $pdf->AddLessonCode("     font-weight: 800;}");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  h2 {");
+	   $pdf->AddLessonCode("     font-size:   52px;}");
+	   $pdf->AddLessonCode("     font-weight: 600;}");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  h3 {");
+	   $pdf->AddLessonCode("     font-size:   40px;}");
+	   $pdf->AddLessonCode("     font-weight: 500;}");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  h4 {");
+	   $pdf->AddLessonCode("     font-size:   32px;}");
+	   $pdf->AddLessonCode("     font-weight: 400;}");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  h5 {");
+	   $pdf->AddLessonCode("     font-size:   21px;}");
+	   $pdf->AddLessonCode("     font-weight: 300;}");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  h6 {");
+	   $pdf->AddLessonCode("     font-size:   14px;}");
+	   $pdf->AddLessonCode("     font-weight: 200;}");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<h1>This is h1 text</h1>");
+	   $pdf->AddLessonCode("<h2>This is h2 text</h2>");
+	   $pdf->AddLessonCode("<h3>This is h3 text</h3>");
+	   $pdf->AddLessonCode("<h4>This is h4 text</h4>");
+	   $pdf->AddLessonCode("<h5>This is h5 text</h5>");
+	   $pdf->AddLessonCode("<h6>This is h6 text</h6>");
+   }
+
+   function GenerateAVDLesson16($pdf) {
+       $pdf->AddLessonTitle("Set the font-size of Paragraph Text");
+	   $pdf->AddLessonText("The font-size property in CSS is not limited to headings, it can be applied to any element containing text.");
+	   $pdf->AddLessonText("Change the value of the font-size property for the paragraph to 16px to make it more visible.");
+
+	   $pdf->DrawCodeArea("12");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  p {");
+	   $pdf->AddLessonCode("    font-size: 16px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<p>");
+	   $pdf->AddLessonCode("  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.");
+	   $pdf->AddLessonCode("</p>");
+   }
+
+   function GenerateAVDLesson17($pdf) {
+       $pdf->AddLessonTitle("Set the line-height of Paragraphs");
+	   $pdf->AddLessonText("CSS offers the line-height property to change the height of each line in a block of text. As the name suggests, it changes the amount of vertical space that each line of text gets.");
+	   $pdf->AddLessonText("Add a line-height property to the p tag and set it to 25px.");
+
+	   $pdf->DrawCodeArea("13");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  p {");
+	   $pdf->AddLessonCode("    font-size: 16px;");
+	   $pdf->AddLessonCode("    line-height: 25px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<p>");
+	   $pdf->AddLessonCode("  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.");
+	   $pdf->AddLessonCode("</p>");
+   }
+
+   function GenerateAVDLesson18($pdf) {
+       $pdf->AddLessonTitle("Adjust the Hover State of an Anchor Tag");
+	   $pdf->AddLessonText("This challenge will touch on the usage of pseudo-classes. A pseudo-class is a keyword that can be added to selectors, in order to select a specific state of the element.");
+	   $pdf->AddLessonText("For example, the styling of an anchor tag can be changed for its hover state using the :hover pseudo-class selector. Here's the CSS to change the color of the anchor tag to red during its hover state:");
+
+	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("a:hover {");
+	   $pdf->AddLessonCode("  color: red;");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("The code editor has a CSS rule to style all a tags black. Add a rule so that when the user hovers over the a tag, the color is blue.");
+
+	   $pdf->DrawCodeArea("10");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  a {");
+	   $pdf->AddLessonCode("    color: #000;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("a:hover {");
+	   $pdf->AddLessonCode("  color: blue;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<a href='http://freecatphotoapp.com/' target='_blank'>CatPhotoApp</a>");
+   }
+
 
    function GenerateVisualDesignManual($pdf) {
 	   $pdf->AddSubject("Introduction to the Applied Visual Design Challenges");
@@ -462,6 +855,15 @@
 	   GenerateAVDLesson7($pdf);
 	   GenerateAVDLesson8($pdf);
 	   GenerateAVDLesson9($pdf);
+	   GenerateAVDLesson10($pdf);
+	   GenerateAVDLesson11($pdf);
+	   GenerateAVDLesson12($pdf);
+	   GenerateAVDLesson13($pdf);
+	   GenerateAVDLesson14($pdf);
+	   GenerateAVDLesson15($pdf);
+	   GenerateAVDLesson16($pdf);
+	   GenerateAVDLesson17($pdf);
+	   GenerateAVDLesson18($pdf);
    }
 
 ?>
