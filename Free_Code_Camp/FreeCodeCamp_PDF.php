@@ -33,6 +33,14 @@ Class FREECODECAMP_PDF extends FPDF {
       $this->Ln();
    }
 
+   public function AddLessonBullet($Text)
+   {
+      $this->SetFont('courier','',12);
+      $this->SetTextColor(0, 0, 0);
+	  $this->Write(4, " " . chr(149) . "  $Text");
+      $this->Ln();
+   }
+
    public function AddLessonCode($Code)
    {
       $this->SetFont('Courier','',12);
