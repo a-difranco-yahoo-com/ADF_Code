@@ -1176,7 +1176,163 @@
 	   $pdf->AddLessonCode("<footer>&copy; 2018 FCC Kitchen</footer>");
 }
 
-   function GenerateVisualDesignManual($pdf) {
+    function GenerateAVDLesson29($pdf) {
+       $pdf->AddLessonTitle("Adjust the Hue of a Color");
+	   $pdf->AddLessonText("Colors have several characteristics including hue, saturation, and lightness. CSS3 introduced the hsl() property as an alternative way to pick a color by directly stating these characteristics.");
+	   $pdf->AddLessonText("Hue is what people generally think of as 'color'. If you picture a spectrum of colors starting with red on the left, moving through green in the middle, and blue on right, the hue is where a color fits along this line. In hsl(), hue uses a color wheel concept instead of the spectrum, where the angle of the color on the circle is given as a value between 0 and 360.");
+	   $pdf->AddLessonText("Saturation is the amount of gray in a color. A fully saturated color has no gray in it, and a minimally saturated color is almost completely gray. This is given as a percentage with 100% being fully saturated.");
+	   $pdf->AddLessonText("Lightness is the amount of white or black in a color. A percentage is given ranging from 0% (black) to 100% (white), where 50% is the normal color.");
+	   $pdf->AddLessonText("Here are a few examples of using hsl() with fully-saturated, normal lightness colors:");
+
+ 	   $pdf->DrawCodeArea("7");
+	   $pdf->AddLessonCode("Color   HSL");
+	   $pdf->AddLessonCode("red     hsl(0,   100%, 50%)");
+	   $pdf->AddLessonCode("yellow  hsl(60,  100%, 50%)");
+	   $pdf->AddLessonCode("green   hsl(120, 100%, 50%)");
+	   $pdf->AddLessonCode("cyan    hsl(180, 100%, 50%)");
+	   $pdf->AddLessonCode("blue    hsl(240, 100%, 50%)");
+	   $pdf->AddLessonCode("magenta hsl(300, 100%, 50%)");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Change the background-color of each div element based on the class names (green, cyan, or blue) using hsl(). All three should have full saturation and normal lightness.");
+
+ 	   $pdf->DrawCodeArea("23");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("    background-color: #FFFFFF;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .green {");
+	   $pdf->AddLessonCode("    background-color: hsl(120, 100%, 50%);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .cyan {");
+	   $pdf->AddLessonCode("    background-color: hsl(180, 100%, 50%);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .blue {");
+	   $pdf->AddLessonCode("    background-color: hsl(240, 100%, 50%);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  div {");
+	   $pdf->AddLessonCode("    display: inline-block;");
+	   $pdf->AddLessonCode("    height: 100px;");
+	   $pdf->AddLessonCode("    width: 100px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div class='green'></div>");
+	   $pdf->AddLessonCode("<div class='cyan'></div>");
+	   $pdf->AddLessonCode("<div class='blue'></div>");
+}
+
+    function GenerateAVDLesson30($pdf) {
+       $pdf->AddLessonTitle("Adjust the Tone of a Color");
+	   $pdf->AddLessonText("The hsl() option in CSS also makes it easy to adjust the tone of a color. Mixing white with a pure hue creates a tint of that color, and adding black will make a shade. Alternatively, a tone is produced by adding gray or by both tinting and shading. Recall that the 's' and 'l' of hsl() stand for saturation and lightness, respectively. The saturation percent changes the amount of gray and the lightness percent determines how much white or black is in the color. This is useful when you have a base hue you like, but need different variations of it.");
+	   $pdf->AddLessonText("All elements have a default background-color of transparent. Our nav element currently appears to have a cyan background, because the element behind it has a background-color set to cyan. Add a background-color to the nav element so it uses the same cyan hue, but has 80% saturation and 25% lightness values to change its tone and shade.");
+
+ 	   $pdf->DrawCodeArea("36");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  header {");
+	   $pdf->AddLessonCode("    background-color: hsl(180, 90%, 35%);");
+	   $pdf->AddLessonCode("    color: #FFFFFF;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  nav {");
+	   $pdf->AddLessonCode("    background-color: hsl(180, 80%, 25%);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  h1 {");
+	   $pdf->AddLessonCode("    text-indent: 10px;");
+	   $pdf->AddLessonCode("    padding-top: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  nav ul {");
+	   $pdf->AddLessonCode("    margin: 0px;");
+	   $pdf->AddLessonCode("    padding: 5px 0px 5px 30px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  nav li {");
+	   $pdf->AddLessonCode("    display: inline;");
+	   $pdf->AddLessonCode("    margin-right: 20px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  a {");
+	   $pdf->AddLessonCode("    text-decoration: none;");
+	   $pdf->AddLessonCode("    color: inherit;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<header>");
+	   $pdf->AddLessonCode("  <h1>Cooking with FCC!</h1>");
+	   $pdf->AddLessonCode("  <nav>");
+	   $pdf->AddLessonCode("    <ul>");
+	   $pdf->AddLessonCode("      <li><a href='#'>Home</a></li>");
+	   $pdf->AddLessonCode("      <li><a href='#'>Classes</a></li>");
+	   $pdf->AddLessonCode("      <li><a href='#'>Contact</a></li>");
+	   $pdf->AddLessonCode("    </ul>");
+	   $pdf->AddLessonCode("  </nav>");
+	   $pdf->AddLessonCode("</header>");	   
+}
+
+    function GenerateAVDLesson31($pdf) {
+       $pdf->AddLessonTitle("Create a Gradual CSS Linear Gradient");
+	   $pdf->AddLessonText("Applying a color on HTML elements is not limited to one flat hue. CSS provides the ability to use color transitions, otherwise known as gradients, on elements. This is accessed through the background property's linear-gradient() function. Here is the general syntax:");
+
+ 	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("background: linear-gradient(gradient_direction, color 1, color 2, color 3, ...);");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("The first argument specifies the direction from which color transition starts - it can be stated as a degree, where 90deg makes a vertical gradient and 45deg is angled like a backslash. The following arguments specify the order of colors used in the gradient.");
+	   $pdf->AddLessonText("Example:");
+
+ 	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("background: linear-gradient(90deg, red, yellow, rgb(204, 204, 255));");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Use a linear-gradient() for the div element's background, and set it from a direction of 35 degrees to change the color from #CCFFFF to #FFCCCC.");
+
+ 	   $pdf->DrawCodeArea("11");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  div {");
+	   $pdf->AddLessonCode("    border-radius: 20px;");
+	   $pdf->AddLessonCode("    width: 70%;");
+	   $pdf->AddLessonCode("    height: 400px;");
+	   $pdf->AddLessonCode("    margin: 50px auto;");
+	   $pdf->AddLessonCode("    background: linear-gradient(35deg, #CCFFFF,#FFCCCC);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div></div>");
+}
+ 
+    function GenerateAVDLesson32($pdf) {
+       $pdf->AddLessonTitle("Use a CSS Linear Gradient to Create a Striped Element");
+	   $pdf->AddLessonText("The repeating-linear-gradient() function is very similar to linear-gradient() with the major difference that it repeats the specified gradient pattern. repeating-linear-gradient() accepts a variety of values, but for simplicity, you'll work with an angle value and color stop values in this challenge.");
+	   $pdf->AddLessonText("The angle value is the direction of the gradient. Color stops are like width values that mark where a transition takes place, and are given with a percentage or a number of pixels.");
+	   $pdf->AddLessonText("In the example demonstrated in the code editor, the gradient starts with the color yellow at 0 pixels which blends into the second color blue at 40 pixels away from the start. Since the next color stop is also at 40 pixels, the gradient immediately changes to the third color green, which itself blends into the fourth color value red as that is 80 pixels away from the beginning of the gradient.");
+	   $pdf->AddLessonText("For this example, it helps to think about the color stops as pairs where every two colors blend together.");
+
+ 	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("0px [yellow -- blend -- blue] 40px [green -- blend -- red] 80px");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("If every two color stop values are the same color, the blending isn't noticeable because it's between the same color, followed by a hard transition to the next color, so you end up with stripes.");
+	   $pdf->AddLessonText("Make stripes by changing the repeating-linear-gradient() to use a gradient angle of 45deg, then set the first two color stops to yellow, and finally the second two color stops to black.");
+
+ 	   $pdf->DrawCodeArea("17");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  div{");
+	   $pdf->AddLessonCode("    border-radius: 20px;");
+	   $pdf->AddLessonCode("    width: 70%;");
+	   $pdf->AddLessonCode("    height: 400px;");
+	   $pdf->AddLessonCode("    margin:  50 auto;");
+	   $pdf->AddLessonCode("    background: repeating-linear-gradient(");
+	   $pdf->AddLessonCode("      45deg,");
+	   $pdf->AddLessonCode("      yellow 0px,");
+	   $pdf->AddLessonCode("      yellow 40px,");
+	   $pdf->AddLessonCode("      black 40px,");
+	   $pdf->AddLessonCode("      black 80px");
+	   $pdf->AddLessonCode("    );");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div></div>");
+
+}
+ 
+ function GenerateVisualDesignManual($pdf) {
 	   $pdf->AddSubject("Introduction to the Applied Visual Design Challenges");
 	   GenerateAVDLesson1($pdf);
 	   GenerateAVDLesson2($pdf);
@@ -1206,6 +1362,10 @@
 	   GenerateAVDLesson26($pdf);
 	   GenerateAVDLesson27($pdf);
 	   GenerateAVDLesson28($pdf);
+	   GenerateAVDLesson29($pdf);
+	   GenerateAVDLesson30($pdf);
+	   GenerateAVDLesson31($pdf);
+	   GenerateAVDLesson32($pdf);
    }
 
 ?>
