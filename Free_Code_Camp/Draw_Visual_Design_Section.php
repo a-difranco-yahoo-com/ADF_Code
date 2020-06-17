@@ -922,6 +922,260 @@
 	   $pdf->AddLessonCode("</body>");
 }
 
+    function GenerateAVDLesson22($pdf) {
+       $pdf->AddLessonTitle("Lock an Element to the Browser Window with Fixed Positioning");
+	   $pdf->AddLessonText("The next layout scheme that CSS offers is the fixed position, which is a type of absolute positioning that locks an element relative to the browser window. Similar to absolute positioning, it's used with the CSS offset properties and also removes the element from the normal flow of the document. Other items no longer 'realize' where it is positioned, which may require some layout adjustments elsewhere.");
+	   $pdf->AddLessonText("One key difference between the fixed and absolute positions is that an element with a fixed position won't move when the user scrolls.");
+	   $pdf->AddLessonText("The navigation bar in the code is labeled with an id of navbar. Change its position to fixed, and offset it 0 pixels from the top and 0 pixels from the left. After you have added the code, scroll the preview window to see how the navigation stays in place.");
+
+ 	   $pdf->DrawCodeArea("35");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("    min-height: 150vh;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #navbar {");
+	   $pdf->AddLessonCode("    position: fixed;");
+	   $pdf->AddLessonCode("    top: 0px;");
+	   $pdf->AddLessonCode("     left: 0px;");
+	   $pdf->AddLessonCode("    width: 100%;");
+	   $pdf->AddLessonCode("    background-color: #767676;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  nav ul {");
+	   $pdf->AddLessonCode("    margin: 0px;");
+	   $pdf->AddLessonCode("    padding: 5px 0px 5px 30px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  nav li {");
+	   $pdf->AddLessonCode("    display: inline;");
+	   $pdf->AddLessonCode("    margin-right: 20px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  a {");
+	   $pdf->AddLessonCode("    text-decoration: none;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Welcome!</h1>");
+	   $pdf->AddLessonCode("    <nav id='navbar'>");
+	   $pdf->AddLessonCode("      <ul>");
+	   $pdf->AddLessonCode("        <li><a href=''>Home</a></li>");
+	   $pdf->AddLessonCode("        <li><a href=''>Contact</a></li>");
+	   $pdf->AddLessonCode("      </ul>");
+	   $pdf->AddLessonCode("    </nav>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <p>I shift up when the #navbar is fixed to the browser window.</p>");
+	   $pdf->AddLessonCode("</body>");
+}
+
+    function GenerateAVDLesson23($pdf) {
+       $pdf->AddLessonTitle("Push Elements Left or Right with the float Property");
+	   $pdf->AddLessonText("The next positioning tool does not actually use position, but sets the float property of an element. Floating elements are removed from the normal flow of a document and pushed to either the left or right of their containing parent element. It's commonly used with the width property to specify how much horizontal space the floated element requires.");
+	   $pdf->AddLessonText("The given markup would work well as a two-column layout, with the section and aside elements next to each other. Give the #left item a float of left and the #right item a float of right.");
+
+ 	   $pdf->DrawCodeArea("29");
+	   $pdf->AddLessonCode("<head>");
+	   $pdf->AddLessonCode("  <style>");
+	   $pdf->AddLessonCode("    #left {");
+	   $pdf->AddLessonCode("      float: left;");
+	   $pdf->AddLessonCode("      width: 50%;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("    #right {");
+	   $pdf->AddLessonCode("      float: right;");
+	   $pdf->AddLessonCode("      width: 40%;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("    aside, section {");
+	   $pdf->AddLessonCode("      padding: 2px;");
+	   $pdf->AddLessonCode("      background-color: #ccc;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  </style>");
+	   $pdf->AddLessonCode("</head>");
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Welcome!</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <section id='left'>");
+	   $pdf->AddLessonCode("    <h2>Content</h2>");
+	   $pdf->AddLessonCode("    <p>Good stuff</p>");
+	   $pdf->AddLessonCode("  </section>");
+	   $pdf->AddLessonCode("  <aside id='right'>");
+	   $pdf->AddLessonCode("    <h2>Sidebar</h2>");
+	   $pdf->AddLessonCode("    <p>Links</p>");
+	   $pdf->AddLessonCode("  </aside>");
+	   $pdf->AddLessonCode("</body>");
+}
+
+    function GenerateAVDLesson24($pdf) {
+       $pdf->AddLessonTitle("Change the Position of Overlapping Elements with the z-index Property");
+	   $pdf->AddLessonText("When elements are positioned to overlap (i.e. using position: absolute | relative | fixed | sticky), the element coming later in the HTML markup will, by default, appear on the top of the other elements. However, the z-index property can specify the order of how elements are stacked on top of one another. It must be an integer (i.e. a whole number and not a decimal), and higher values for the z-index property of an element move it higher in the stack than those with lower values.");
+	   $pdf->AddLessonText("Add a z-index property to the element with the class name of first (the red rectangle) and set it to a value of 2 so it covers the other element (blue rectangle).");
+
+ 	   $pdf->DrawCodeArea("21");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  div {");
+	   $pdf->AddLessonCode("    width: 60%;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("    margin-top: 20px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .first {");
+	   $pdf->AddLessonCode("    background-color: red;");
+	   $pdf->AddLessonCode("    position: absolute;");
+	   $pdf->AddLessonCode("    z-index: 2;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .second {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    position: absolute;");
+	   $pdf->AddLessonCode("    left: 40px;");
+	   $pdf->AddLessonCode("    top: 50px;");
+	   $pdf->AddLessonCode("    z-index: 1;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div class='first'></div>");
+	   $pdf->AddLessonCode("<div class='second'></div>");
+}
+
+    function GenerateAVDLesson25($pdf) {
+       $pdf->AddLessonTitle("Center an Element Horizontally Using the margin Property");
+	   $pdf->AddLessonText("Another positioning technique is to center a block element horizontally. One way to do this is to set its margin to a value of auto.");
+	   $pdf->AddLessonText("This method works for images, too. Images are inline elements by default, but can be changed to block elements when you set the display property to block.");
+	   $pdf->AddLessonText("Center the div on the page by adding a margin property with a value of auto.");
+
+ 	   $pdf->DrawCodeArea("9");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  div {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    height: 100px;");
+	   $pdf->AddLessonCode("    width: 100px;");
+	   $pdf->AddLessonCode("    margin: auto;");    
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div></div>");
+}
+
+    function GenerateAVDLesson26($pdf) {
+       $pdf->AddLessonTitle("Learn about Complementary Colors");
+	   $pdf->AddLessonText("Color theory and its impact on design is a deep topic and only the basics are covered in the following challenges. On a website, color can draw attention to content, evoke emotions, or create visual harmony. Using different combinations of colors can really change the look of a website, and a lot of thought can go into picking a color palette that works with your content.");
+	   $pdf->AddLessonText("The color wheel is a useful tool to visualize how colors relate to each other - it's a circle where similar hues are neighbors and different hues are farther apart. When two colors are opposite each other on the wheel, they are called complementary colors. They have the characteristic that if they are combined, they 'cancel' each other out and create a gray color. However, when placed side-by-side, these colors appear more vibrant and produce a strong visual contrast.");
+	   $pdf->AddLessonText("Some examples of complementary colors with their hex codes are:");
+
+ 	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("red (#FF0000) and cyan (#00FFFF)");
+	   $pdf->AddLessonCode("green (#00FF00) and magenta (#FF00FF)");
+	   $pdf->AddLessonCode("blue (#0000FF) and yellow (#FFFF00)");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("This is different than the outdated RYB color model that many of us were taught in school, which has different primary and complementary colors. Modern color theory uses the additive RGB model (like on a computer screen) and the subtractive CMY(K) model (like in printing). Read here for more information on this complex subject.");
+	   $pdf->AddLessonText("There are many color picking tools available online that have an option to find the complement of a color.");
+	   $pdf->AddLessonText("Note: For all color challenges: Using color can be a powerful way to add visual interest to a page. However, color alone should not be used as the only way to convey important information because users with visual impairments may not understand that content. This issue will be covered in more detail in the Applied Accessibility challenges.");
+	   $pdf->AddLessonText("Change the background-color property of the blue and yellow classes to their respective colors. Notice how the colors look different next to each other than they do compared against the white background.");
+
+ 	   $pdf->DrawCodeArea("18");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("    background-color: #FFFFFF;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .blue {");
+	   $pdf->AddLessonCode("    background-color: #0000FF;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .yellow {");
+	   $pdf->AddLessonCode("    background-color: #FFFF00;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  div {");
+	   $pdf->AddLessonCode("    display: inline-block;");
+	   $pdf->AddLessonCode("    height: 100px;");
+	   $pdf->AddLessonCode("    width: 100px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div class='blue'></div>");
+	   $pdf->AddLessonCode("<div class='yellow'></div>");
+}
+
+    function GenerateAVDLesson27($pdf) {
+       $pdf->AddLessonTitle("Learn about Tertiary Colors");
+	   $pdf->AddLessonText("Computer monitors and device screens create different colors by combining amounts of red, green, and blue light. This is known as the RGB additive color model in modern color theory. Red (R), green (G), and blue (B) are called primary colors. Mixing two primary colors creates the secondary colors cyan (G + B), magenta (R + B) and yellow (R + G). You saw these colors in the Complementary Colors challenge. These secondary colors happen to be the complement to the primary color not used in their creation, and are opposite to that primary color on the color wheel. For example, magenta is made with red and blue, and is the complement to green.");
+	   $pdf->AddLessonText("Tertiary colors are the result of combining a primary color with one of its secondary color neighbors. For example, within the RGB color model, red (primary) and yellow (secondary) make orange (tertiary). This adds six more colors to a simple color wheel for a total of twelve.");
+	   $pdf->AddLessonText("There are various methods of selecting different colors that result in a harmonious combination in design. One example that can use tertiary colors is called the split-complementary color scheme. This scheme starts with a base color, then pairs it with the two colors that are adjacent to its complement. The three colors provide strong visual contrast in a design, but are more subtle than using two complementary colors.");
+	   $pdf->AddLessonText("Here are three colors created using the split-complement scheme:");
+
+ 	   $pdf->DrawCodeArea("4");
+	   $pdf->AddLessonCode("Color     Hex Code");
+	   $pdf->AddLessonCode("orange    #FF7F00");
+	   $pdf->AddLessonCode("cyan      #00FFFF");
+	   $pdf->AddLessonCode("raspberry #FF007F");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Change the background-color property of the orange, cyan, and raspberry classes to their respective colors. Make sure to use the hex codes and not the color names.");
+
+ 	   $pdf->DrawCodeArea("23");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("    background-color: #FFFFFF;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .orange {");
+	   $pdf->AddLessonCode("    background-color: #FF7F00;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .cyan {");
+	   $pdf->AddLessonCode("    background-color: #00FFFF;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .raspberry {");
+	   $pdf->AddLessonCode("    background-color: #FF007F;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  div {");
+	   $pdf->AddLessonCode("    height: 100px;");
+	   $pdf->AddLessonCode("    width: 100px;");
+	   $pdf->AddLessonCode("    margin-bottom: 5px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div class='orange'></div>");
+	   $pdf->AddLessonCode("<div class='cyan'></div>");
+	   $pdf->AddLessonCode("<div class='raspberry'></div>");
+}
+
+    function GenerateAVDLesson28($pdf) {
+       $pdf->AddLessonTitle("Adjust the Color of Various Elements to Complementary Colors");
+	   $pdf->AddLessonText("The Complementary Colors challenge showed that opposite colors on the color wheel can make each other appear more vibrant when placed side-by-side. However, the strong visual contrast can be jarring if it's overused on a website, and can sometimes make text harder to read if it's placed on a complementary-colored background. In practice, one of the colors is usually dominant and the complement is used to bring visual attention to certain content on the page.");
+	   $pdf->AddLessonText("This page will use a shade of teal (#09A7A1) as the dominant color, and its orange (#FF790E) complement to visually highlight the sign-up buttons. Change the background-color of both the header and footer from black to the teal color. Then change the h2 text color to teal as well. Finally, change the background-color of the button to the orange color.");
+
+ 	   $pdf->DrawCodeArea("46");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("    background-color: white;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header {");
+	   $pdf->AddLessonCode("    background-color: #09A7A1;");
+	   $pdf->AddLessonCode("    color: white;");
+	   $pdf->AddLessonCode("    padding: 0.25em;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  h2 {");
+	   $pdf->AddLessonCode("    color: #09A7A1;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  button {");
+	   $pdf->AddLessonCode("    background-color: #FF790E;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer {");
+	   $pdf->AddLessonCode("    background-color: #09A7A1;");
+	   $pdf->AddLessonCode("    color: white;");
+	   $pdf->AddLessonCode("    padding: 0.5em;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<header>");
+	   $pdf->AddLessonCode("  <h1>Cooking with FCC!</h1>");
+	   $pdf->AddLessonCode("</header>");
+	   $pdf->AddLessonCode("<main>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>Machine Learning in the Kitchen</h2>");
+	   $pdf->AddLessonCode("    <p>Join this two day workshop that walks through how to implement cutting-edge snack-getting algorithms with a command line interface. Coding usually involves writing exact instructions, but sometimes you need your computer to execute flexible commands, like <code>fetch Pringles</code>.</p>");
+	   $pdf->AddLessonCode("    <button>Sign Up</button>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>Bisection Vegetable Chopping</h2>");
+	   $pdf->AddLessonCode("    <p>This week-long retreat will level-up your coding ninja skills to actual ninja skills. No longer is the humble bisection search limited to sorted arrays or coding interview questions, applying its concepts in the kitchen will have you chopping carrots in O(log n) time before you know it.</p>");
+	   $pdf->AddLessonCode("    <button>Sign Up</button>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("</main>");
+	   $pdf->AddLessonCode("<br>");
+	   $pdf->AddLessonCode("<footer>&copy; 2018 FCC Kitchen</footer>");
+}
+
    function GenerateVisualDesignManual($pdf) {
 	   $pdf->AddSubject("Introduction to the Applied Visual Design Challenges");
 	   GenerateAVDLesson1($pdf);
@@ -945,6 +1199,13 @@
 	   GenerateAVDLesson19($pdf);
 	   GenerateAVDLesson20($pdf);
 	   GenerateAVDLesson21($pdf);
+	   GenerateAVDLesson22($pdf);
+	   GenerateAVDLesson23($pdf);
+	   GenerateAVDLesson24($pdf);
+	   GenerateAVDLesson25($pdf);
+	   GenerateAVDLesson26($pdf);
+	   GenerateAVDLesson27($pdf);
+	   GenerateAVDLesson28($pdf);
    }
 
 ?>
