@@ -1332,6 +1332,241 @@
 
 }
  
+    function GenerateAVDLesson33($pdf) {
+       $pdf->AddLessonTitle("Create Texture by Adding a Subtle Pattern as a Background Image");
+	   $pdf->AddLessonText("One way to add texture and interest to a background and have it stand out more is to add a subtle pattern. The key is balance, as you don't want the background to stand out too much, and take away from the foreground. The background property supports the url() function in order to link to an image of the chosen texture or pattern. The link address is wrapped in quotes inside the parentheses.");
+	   $pdf->AddLessonText("Using the url of https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png, set the background of the whole page with the body selector.");
+
+ 	   $pdf->DrawCodeArea("5");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("background: url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+}
+ 
+    function GenerateAVDLesson34($pdf) {
+       $pdf->AddLessonTitle("Use the CSS Transform scale Property to Change the Size of an Element");
+	   $pdf->AddLessonText("To change the scale of an element, CSS has the transform property, along with its scale() function. The following code example doubles the size of all the paragraph elements on the page:");
+
+ 	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("p {");
+	   $pdf->AddLessonCode("  transform: scale(2);");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Increase the size of the element with the id of ball2 to 1.5 times its original size.");
+
+ 	   $pdf->DrawCodeArea("25");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .ball {");
+	   $pdf->AddLessonCode("    width: 40px;");
+	   $pdf->AddLessonCode("    height: 40px;");
+	   $pdf->AddLessonCode("    margin: 50 auto;");
+	   $pdf->AddLessonCode("    position: fixed;");
+	   $pdf->AddLessonCode("    background: linear-gradient(");
+	   $pdf->AddLessonCode("      35deg,");
+	   $pdf->AddLessonCode("      #ccffff,");
+	   $pdf->AddLessonCode("      #ffcccc");
+	   $pdf->AddLessonCode("    );");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #ball1 {");
+	   $pdf->AddLessonCode("    left: 20%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #ball2 {");
+	   $pdf->AddLessonCode("    left: 65%;");
+	   $pdf->AddLessonCode("    transform: scale(1.5);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div class='ball' id= 'ball1'></div>");
+	   $pdf->AddLessonCode("<div class='ball' id= 'ball2'></div>");
+	   $pdf->AddLessonCode("");
+}
+ 
+    function GenerateAVDLesson35($pdf) {
+       $pdf->AddLessonTitle("Use the CSS Transform scale Property to Scale an Element on Hover");
+	   $pdf->AddLessonText("The transform property has a variety of functions that let you scale, move, rotate, skew, etc., your elements. When used with pseudo-classes such as :hover that specify a certain state of an element, the transform property can easily add interactivity to your elements.");
+	   $pdf->AddLessonText("Here's an example to scale the paragraph elements to 2.1 times their original size when a user hovers over them:");
+
+ 	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("p:hover {");
+	   $pdf->AddLessonCode("  transform: scale(2.1);");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Note: Applying a transform to a div element will also affect any child elements contained in the div.");
+
+	   $pdf->AddLessonText("Add a CSS rule for the hover state of the div and use the transform property to scale the div element to 1.1 times its original size when a user hovers over it.");
+
+ 	   $pdf->DrawCodeArea("17");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  div {");
+	   $pdf->AddLessonCode("    width: 70%;");
+	   $pdf->AddLessonCode("    height: 100px;");
+	   $pdf->AddLessonCode("    margin:  50px auto;");
+	   $pdf->AddLessonCode("    background: linear-gradient(");
+	   $pdf->AddLessonCode("      53deg,");
+	   $pdf->AddLessonCode("      #ccfffc,");
+	   $pdf->AddLessonCode("      #ffcccf");
+	   $pdf->AddLessonCode("    );");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("div:hover {");
+	   $pdf->AddLessonCode("  transform: scale(1.1);");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div></div>");
+}
+ 
+    function GenerateAVDLesson36($pdf) {
+       $pdf->AddLessonTitle("Use the CSS Transform Property skewX to Skew an Element Along the X-Axis");
+	   $pdf->AddLessonText("The next function of the transform property is skewX(), which skews the selected element along its X (horizontal) axis by a given degree.");
+	   $pdf->AddLessonText("The following code skews the paragraph element by -32 degrees along the X-axis.");
+
+ 	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("p:hover {");
+	   $pdf->AddLessonCode("  transform: skewX(-32deg);");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Skew the element with the id of bottom by 24 degrees along the X-axis by using the transform property.");
+
+ 	   $pdf->DrawCodeArea("17");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  div {");
+	   $pdf->AddLessonCode("    width: 70%;");
+	   $pdf->AddLessonCode("    height: 100px;");
+	   $pdf->AddLessonCode("    margin:  50px auto;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #top {");
+	   $pdf->AddLessonCode("    background-color: red;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #bottom {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    transform: skewX(24deg);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='top'></div>");
+	   $pdf->AddLessonCode("<div id='bottom'></div>");
+}
+ 
+    function GenerateAVDLesson37($pdf) {
+       $pdf->AddLessonTitle("Use the CSS Transform Property skewY to Skew an Element Along the Y-Axis");
+	   $pdf->AddLessonText("Given that the skewX() function skews the selected element along the X-axis by a given degree, it is no surprise that the skewY() property skews an element along the Y (vertical) axis.");
+	   $pdf->AddLessonText("Skew the element with the id of top -10 degrees along the Y-axis by using the transform property.");
+
+ 	   $pdf->DrawCodeArea("18");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  div {");
+	   $pdf->AddLessonCode("    width: 70%;");
+	   $pdf->AddLessonCode("    height: 100px;");
+	   $pdf->AddLessonCode("    margin:  50px auto;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #top {");
+	   $pdf->AddLessonCode("    background-color: red;");
+	   $pdf->AddLessonCode("    transform: skewY(-10deg);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #bottom {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    transform: skewX(24deg);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='top'></div>");
+	   $pdf->AddLessonCode("<div id='bottom'></div>");
+}
+ 
+    function GenerateAVDLesson38($pdf) {
+       $pdf->AddLessonTitle("Create a Graphic Using CSS");
+	   $pdf->AddLessonText("By manipulating different selectors and properties, you can make interesting shapes. One of the easier ones to try is a crescent moon shape. For this challenge you need to work with the box-shadow property that sets the shadow of an element, along with the border-radius property that controls the roundness of the element's corners.");
+	   $pdf->AddLessonText("You will create a round, transparent object with a crisp shadow that is slightly offset to the side - the shadow is actually going to be the moon shape you see.");
+	   $pdf->AddLessonText("In order to create a round object, the border-radius property should be set to a value of 50%.");
+	   $pdf->AddLessonText("You may recall from an earlier challenge that the box-shadow property takes values for offset-x, offset-y, blur-radius, spread-radius and a color value in that order. The blur-radius and spread-radius values are optional.");
+	   $pdf->AddLessonText("Manipulate the square element in the editor to create the moon shape. First, change the background-color to transparent, then set the border-radius property to 50% to make the circular shape. Finally, change the box-shadow property to set the offset-x to 25px, the offset-y to 10px, blur-radius to 0, spread-radius to 0, and color to blue.");
+
+ 	   $pdf->DrawCodeArea("16");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .center {");
+	   $pdf->AddLessonCode("    position: absolute;");
+	   $pdf->AddLessonCode("    margin: auto;");
+	   $pdf->AddLessonCode("    top: 0;");
+	   $pdf->AddLessonCode("    right: 0;");
+	   $pdf->AddLessonCode("    bottom: 0;");
+	   $pdf->AddLessonCode("    left: 0;");
+	   $pdf->AddLessonCode("    width: 100px;");
+	   $pdf->AddLessonCode("    height: 100px;");
+	   $pdf->AddLessonCode("    background-color: transparent;");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    box-shadow: 25px 10px 0px 0px blue;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div class='center'></div>");
+}
+ 
+    function GenerateAVDLesson39($pdf) {
+       $pdf->AddLessonTitle("Create a More Complex Shape Using CSS and HTML");
+	   $pdf->AddLessonText("One of the most popular shapes in the world is the heart shape, and in this challenge you'll create one using pure CSS. But first, you need to understand the ::before and ::after pseudo-elements. These pseudo-elements are used to add something before or after a selected element. In the following example, a ::before pseudo-element is used to add a rectangle to an element with the class heart:");
+
+ 	   $pdf->DrawCodeArea("10");
+	   $pdf->AddLessonCode(".heart::before {");
+	   $pdf->AddLessonCode("  content: '';");
+	   $pdf->AddLessonCode("  background-color: yellow;");
+	   $pdf->AddLessonCode("  border-radius: 25%;");
+	   $pdf->AddLessonCode("  position: absolute;");
+	   $pdf->AddLessonCode("  height: 50px;");
+	   $pdf->AddLessonCode("  width: 70px;");
+	   $pdf->AddLessonCode("  top: -50px;");
+	   $pdf->AddLessonCode("  left: 5px;");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("For the ::before and ::after pseudo-elements to function properly, they must have a defined content property. This property is usually used to add things like a photo or text to the selected element. When the ::before and ::after pseudo-elements are used to make shapes, the content property is still required, but it's set to an empty string. In the above example, the element with the class of heart has a ::before pseudo-element that produces a yellow rectangle with height and width of 50px and 70px, respectively. This rectangle has round corners due to its 25% border radius and is positioned absolutely at 5px from the left and 50px above the top of the element.");
+	   $pdf->AddLessonText("Transform the element on the screen to a heart. In the heart::after selector, change the background-color to pink and the border-radius to 50%.");
+	   $pdf->AddLessonText("Next, target the element with the class heart (just heart) and fill in the transform property. Use the rotate() function with -45 degrees.");
+	   $pdf->AddLessonText("Finally, in the heart::before selector, set its content property to an empty string.");
+
+       $pdf->AddLessonTitle("Create a More Complex Shape Using CSS and HTML (Cont'd)");
+ 	   $pdf->DrawCodeArea("36");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .heart {");
+	   $pdf->AddLessonCode("    position: absolute;");
+	   $pdf->AddLessonCode("    margin: auto;");
+	   $pdf->AddLessonCode("    top: 0;");
+	   $pdf->AddLessonCode("    right: 0;");
+	   $pdf->AddLessonCode("    bottom: 0;");
+	   $pdf->AddLessonCode("    left: 0;");
+	   $pdf->AddLessonCode("    background-color: pink;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    transform: rotate(-45deg);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .heart::after {");
+	   $pdf->AddLessonCode("    background-color: pink;");
+	   $pdf->AddLessonCode("    content: '';");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    position: absolute;");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    top: 0px;");
+	   $pdf->AddLessonCode("    left: 25px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .heart::before {");
+	   $pdf->AddLessonCode("    content: '';");
+	   $pdf->AddLessonCode("    background-color: pink;");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    position: absolute;");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    top: -25px;");
+	   $pdf->AddLessonCode("    left: 0px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div class='heart'></div>");
+}
+ 
  function GenerateVisualDesignManual($pdf) {
 	   $pdf->AddSubject("Introduction to the Applied Visual Design Challenges");
 	   GenerateAVDLesson1($pdf);
@@ -1366,6 +1601,13 @@
 	   GenerateAVDLesson30($pdf);
 	   GenerateAVDLesson31($pdf);
 	   GenerateAVDLesson32($pdf);
+	   GenerateAVDLesson33($pdf);
+	   GenerateAVDLesson34($pdf);
+	   GenerateAVDLesson35($pdf);
+	   GenerateAVDLesson36($pdf);
+	   GenerateAVDLesson37($pdf);
+	   GenerateAVDLesson38($pdf);
+	   GenerateAVDLesson39($pdf);
    }
 
 ?>
