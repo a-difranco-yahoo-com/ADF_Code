@@ -1567,6 +1567,359 @@
 	   $pdf->AddLessonCode("<div class='heart'></div>");
 }
  
+    function GenerateAVDLesson40($pdf) {
+       $pdf->AddLessonTitle("Learn How the CSS @keyframes and animation Properties Work");
+	   $pdf->AddLessonText("To animate an element, you need to know about the animation properties and the @keyframes rule. The animation properties control how the animation should behave and the @keyframes rule controls what happens during that animation. There are eight animation properties in total. This challenge will keep it simple and cover the two most important ones first:");
+	   $pdf->AddLessonText("animation-name sets the name of the animation, which is later used by @keyframes to tell CSS which rules go with which animations.");
+	   $pdf->AddLessonText("animation-duration sets the length of time for the animation.");
+	   $pdf->AddLessonText("@keyframes is how to specify exactly what happens within the animation over the duration. This is done by giving CSS properties for specific 'frames' during the animation, with percentages ranging from 0% to 100%. If you compare this to a movie, the CSS properties for 0% is how the element displays in the opening scene. The CSS properties for 100% is how the element appears at the end, right before the credits roll. Then CSS applies the magic to transition the element over the given duration to act out the scene. Here's an example to illustrate the usage of @keyframes and the animation properties:");
+
+ 	   $pdf->DrawCodeArea("12");
+	   $pdf->AddLessonCode("#anim {");
+	   $pdf->AddLessonCode("  animation-name: colorful;");
+	   $pdf->AddLessonCode("  animation-duration: 3s;");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("@keyframes colorful {");
+	   $pdf->AddLessonCode("  0% {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  100% {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("For the element with the anim id, the code snippet above sets the animation-name to colorful and sets the animation-duration to 3 seconds. Then the @keyframes rule links to the animation properties with the name colorful. It sets the color to blue at the beginning of the animation (0%) which will transition to yellow by the end of the animation (100%). You aren't limited to only beginning-end transitions, you can set properties for the element for any percentage between 0% and 100%.");
+	   $pdf->AddLessonText("Create an animation for the element with the id rect, by setting the animation-name to rainbow and the animation-duration to 4 seconds. Next, declare a @keyframes rule, and set the background-color at the beginning of the animation (0%) to blue, the middle of the animation (50%) to green, and the end of the animation (100%) to yellow.");
+
+       $pdf->AddLessonTitle("Learn How the CSS @keyframes and animation Properties Work (Cont'd)");
+ 	   $pdf->DrawCodeArea("26");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  div {");
+	   $pdf->AddLessonCode("    height: 40px;");
+	   $pdf->AddLessonCode("    width: 70%;");
+	   $pdf->AddLessonCode("    background: black;");
+	   $pdf->AddLessonCode("    margin: 50px auto;");
+	   $pdf->AddLessonCode("    border-radius: 5px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #rect {");
+	   $pdf->AddLessonCode("  animation-name: rainbow;");
+	   $pdf->AddLessonCode("  animation-duration: 4s;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("@keyframes rainbow {");
+	   $pdf->AddLessonCode("  0% {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  50% {");
+	   $pdf->AddLessonCode("    background-color: green;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  100% {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("}");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div id='rect'></div>");   
+}
+ 
+    function GenerateAVDLesson41($pdf) {
+       $pdf->AddLessonTitle("Use CSS Animation to Change the Hover State of a Button");
+	   $pdf->AddLessonText("You can use CSS @keyframes to change the color of a button in its hover state.");
+	   $pdf->AddLessonText("Here's an example of changing the width of an image on hover:");
+
+ 	   $pdf->DrawCodeArea("12");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  img:hover {");
+	   $pdf->AddLessonCode("    animation-name: width;");
+	   $pdf->AddLessonCode("    animation-duration: 500ms;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  @keyframes width {");
+	   $pdf->AddLessonCode("    100% {");
+	   $pdf->AddLessonCode("      width: 40px;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<img src='https://bit.ly/smallgooglelogo' alt='Google''s Logo' />");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Note that ms stands for milliseconds, where 1000ms is equal to 1s.");
+	   $pdf->AddLessonText("Use CSS @keyframes to change the background-color of the button element so it becomes #4791d0 when a user hovers over it. The @keyframes rule should only have an entry for 100%.");
+
+ 	   $pdf->DrawCodeArea("18");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  button {");
+	   $pdf->AddLessonCode("    border-radius: 5px;");
+	   $pdf->AddLessonCode("    color: white;");
+	   $pdf->AddLessonCode("    background-color: #0F5897;");
+	   $pdf->AddLessonCode("    padding: 5px 10px 8px 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  button:hover {");
+	   $pdf->AddLessonCode("    animation-name: background-color;");
+	   $pdf->AddLessonCode("    animation-duration: 500ms;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  @keyframes background-color {");
+	   $pdf->AddLessonCode("    100% {");
+	   $pdf->AddLessonCode("    background-color: #4791d0;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<button>Register</button>");
+}
+ 
+    function GenerateAVDLesson42($pdf) {
+       $pdf->AddLessonTitle("Modify Fill Mode of an Animation");
+	   $pdf->AddLessonText("That's great, but it doesn't work right yet. Notice how the animation resets after 500ms has passed, causing the button to revert back to the original color. You want the button to stay highlighted.");
+	   $pdf->AddLessonText("This can be done by setting the animation-fill-mode property to forwards. The animation-fill-mode specifies the style applied to an element when the animation has finished. You can set it like so:");
+
+ 	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("animation-fill-mode: forwards;");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Set the animation-fill-mode property of button:hover to forwards so the button stays highlighted when a user hovers over it.");
+
+ 	   $pdf->DrawCodeArea("19");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  button {");
+	   $pdf->AddLessonCode("    border-radius: 5px;");
+	   $pdf->AddLessonCode("    color: white;");
+	   $pdf->AddLessonCode("    background-color: #0F5897;");
+	   $pdf->AddLessonCode("    padding: 5px 10px 8px 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  button:hover {");
+	   $pdf->AddLessonCode("    animation-name: background-color;");
+	   $pdf->AddLessonCode("    animation-duration: 500ms;");
+	   $pdf->AddLessonCode("    animation-fill-mode: forwards;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  @keyframes background-color {");
+	   $pdf->AddLessonCode("    100% {");
+	   $pdf->AddLessonCode("    background-color: #4791d0;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<button>Register</button>");
+}
+ 
+    function GenerateAVDLesson43($pdf) {
+       $pdf->AddLessonTitle("Create Movement Using CSS Animation");
+	   $pdf->AddLessonText("When elements have a specified position, such as fixed or relative, the CSS offset properties right, left, top, and bottom can be used in animation rules to create movement.");
+	   $pdf->AddLessonText("As shown in the example below, you can push the item downwards then upwards by setting the top property of the 50% keyframe to 50px, but having it set to 0px for the first (0%) and the last (100%) keyframe.");
+
+ 	   $pdf->DrawCodeArea("14");
+	   $pdf->AddLessonCode("@keyframes rainbow {");
+	   $pdf->AddLessonCode("  0% {");
+	   $pdf->AddLessonCode("    background-color: blue;");
+	   $pdf->AddLessonCode("    top: 0px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  50% {");
+	   $pdf->AddLessonCode("    background-color: green;");
+	   $pdf->AddLessonCode("    top: 50px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  100% {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("    top: 0px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Add a horizontal motion to the div animation. Using the left offset property, add to the @keyframes rule so rainbow starts at 0 pixels at 0%, moves to 25 pixels at 50%, and ends at -25 pixels at 100%. Don't replace the top property in the editor - the animation should have both vertical and horizontal motion.");
+
+       $pdf->AddLessonTitle("Create Movement Using CSS Animation (Cont'd)");
+ 	   $pdf->DrawCodeArea("35");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  div {");
+	   $pdf->AddLessonCode("    height: 40px;");
+	   $pdf->AddLessonCode("    width: 70%;");
+	   $pdf->AddLessonCode("    background: black;");
+	   $pdf->AddLessonCode("    margin: 50px auto;");
+	   $pdf->AddLessonCode("    border-radius: 5px;");
+	   $pdf->AddLessonCode("    position: relative;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  #rect {");
+	   $pdf->AddLessonCode("    animation-name: rainbow;");
+	   $pdf->AddLessonCode("    animation-duration: 4s;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  @keyframes rainbow {");
+	   $pdf->AddLessonCode("    0% {");
+	   $pdf->AddLessonCode("      background-color: blue;");
+	   $pdf->AddLessonCode("      top: 0px;");
+	   $pdf->AddLessonCode("      left: 0px;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("    50% {");
+	   $pdf->AddLessonCode("      background-color: green;");
+	   $pdf->AddLessonCode("      top: 50px;");
+	   $pdf->AddLessonCode("      left: 25px;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("    100% {");
+	   $pdf->AddLessonCode("      background-color: yellow;");
+	   $pdf->AddLessonCode("      top: 0px;");
+	   $pdf->AddLessonCode("      left: -25px;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div id='rect'></div>");
+	}
+ 
+    function GenerateAVDLesson44($pdf) {
+       $pdf->AddLessonTitle("Create Visual Direction by Fading an Element from Left to Right");
+	   $pdf->AddLessonText("For this challenge, you'll change the opacity of an animated element so it gradually fades as it reaches the right side of the screen.");
+	   $pdf->AddLessonText("In the displayed animation, the round element with the gradient background moves to the right by the 50% mark of the animation per the @keyframes rule.");
+	   $pdf->AddLessonText("Target the element with the id of ball and add the opacity property set to 0.1 at 50%, so the element fades as it moves to the right.");
+
+ 	   $pdf->DrawCodeArea("25");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #ball {");
+	   $pdf->AddLessonCode("    width: 70px;");
+	   $pdf->AddLessonCode("    height: 70px;");
+	   $pdf->AddLessonCode("    margin: 50px auto;");
+	   $pdf->AddLessonCode("    position: fixed;");
+	   $pdf->AddLessonCode("    left: 20%;");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    background: linear-gradient(");
+	   $pdf->AddLessonCode("      35deg,");
+	   $pdf->AddLessonCode("      #ccffff,");
+	   $pdf->AddLessonCode("      #ffcccc");
+	   $pdf->AddLessonCode("    );");
+	   $pdf->AddLessonCode("    animation-name: fade;");
+	   $pdf->AddLessonCode("    animation-duration: 3s;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  @keyframes fade {");
+	   $pdf->AddLessonCode("    50% {");
+	   $pdf->AddLessonCode("      left: 60%;");
+	   $pdf->AddLessonCode("      opacity: 0.1;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='ball'></div>");
+	}
+ 
+    function GenerateAVDLesson45($pdf) {
+       $pdf->AddLessonTitle("Animate Elements Continually Using an Infinite Animation Count");
+	   $pdf->AddLessonText("The previous challenges covered how to use some of the animation properties and the @keyframes rule. Another animation property is the animation-iteration-count, which allows you to control how many times you would like to loop through the animation. Here's an example:");
+
+ 	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("animation-iteration-count: 3;");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("In this case the animation will stop after running 3 times, but it's possible to make the animation run continuously by setting that value to infinite.");
+	   $pdf->AddLessonText("To keep the ball bouncing on the right on a continuous loop, change the animation-iteration-count property to infinite.");
+
+ 	   $pdf->DrawCodeArea("31");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #ball {");
+	   $pdf->AddLessonCode("    width: 100px;");
+	   $pdf->AddLessonCode("    height: 100px;");
+	   $pdf->AddLessonCode("    margin: 50px auto;");
+	   $pdf->AddLessonCode("    position: relative;");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    background: linear-gradient(");
+	   $pdf->AddLessonCode("      35deg,");
+	   $pdf->AddLessonCode("      #ccffff,");
+	   $pdf->AddLessonCode("      #ffcccc");
+	   $pdf->AddLessonCode("    );");
+	   $pdf->AddLessonCode("    animation-name: bounce;");
+	   $pdf->AddLessonCode("    animation-duration: 1s;");
+	   $pdf->AddLessonCode("    animation-iteration-count: infinite;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  @keyframes bounce{");
+	   $pdf->AddLessonCode("    0% {");
+	   $pdf->AddLessonCode("      top: 0px;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("    50% {");
+	   $pdf->AddLessonCode("      top: 249px;");
+	   $pdf->AddLessonCode("      width: 130px;");
+	   $pdf->AddLessonCode("      height: 70px;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("    100% {");
+	   $pdf->AddLessonCode("      top: 0px;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div id='ball'></div>");
+	}
+ 
+    function GenerateAVDLesson46($pdf) {
+       $pdf->AddLessonTitle("Make a CSS Heartbeat using an Infinite Animation Count");
+	   $pdf->AddLessonText("Here's one more continuous animation example with the animation-iteration-count property that uses the heart you designed in a previous challenge.");
+	   $pdf->AddLessonText("The one-second long heartbeat animation consists of two animated pieces. The heart elements (including the :before and :after pieces) are animated to change size using the transform property, and the background div is animated to change its color using the background property.");
+	   $pdf->AddLessonText("Keep the heart beating by adding the animation-iteration-count property for both the back class and the heart class and setting the value to infinite. The heart:before and heart:after selectors do not need any animation properties.");
+
+ 	   $pdf->DrawCodeArea("40");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .back {");
+	   $pdf->AddLessonCode("    position: fixed;");
+	   $pdf->AddLessonCode("    padding: 0;");
+	   $pdf->AddLessonCode("    margin: 0;");
+	   $pdf->AddLessonCode("    top: 0;");
+	   $pdf->AddLessonCode("    left: 0;");
+	   $pdf->AddLessonCode("    width: 100%;");
+	   $pdf->AddLessonCode("    height: 100%;");
+	   $pdf->AddLessonCode("    background: white;");
+	   $pdf->AddLessonCode("    animation-name: backdiv;");
+	   $pdf->AddLessonCode("    animation-duration: 1s;");
+	   $pdf->AddLessonCode("    animation-iteration-count: infinite;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  .heart {");
+	   $pdf->AddLessonCode("    position: absolute;");
+	   $pdf->AddLessonCode("    margin: auto;");
+	   $pdf->AddLessonCode("    top: 0;");
+	   $pdf->AddLessonCode("    right: 0;");
+	   $pdf->AddLessonCode("    bottom: 0;");
+	   $pdf->AddLessonCode("    left: 0;");
+	   $pdf->AddLessonCode("    background-color: pink;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    transform: rotate(-45deg);");
+	   $pdf->AddLessonCode("    animation-name: beat;");
+	   $pdf->AddLessonCode("    animation-duration: 1s;");
+	   $pdf->AddLessonCode("    animation-iteration-count: infinite;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .heart:after {");
+	   $pdf->AddLessonCode("    background-color: pink;");
+	   $pdf->AddLessonCode("    content: '';");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    position: absolute;");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    top: 0px;");
+	   $pdf->AddLessonCode("    left: 25px;");
+	   $pdf->AddLessonCode("  }");
+
+       $pdf->AddLessonTitle("Make a CSS Heartbeat using an Infinite Animation Count (Cont'd)");
+ 	   $pdf->DrawCodeArea("30");
+	   $pdf->AddLessonCode("  .heart:before {");
+	   $pdf->AddLessonCode("    background-color: pink;");
+	   $pdf->AddLessonCode("    content: '';");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    position: absolute;");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    top: -25px;");
+	   $pdf->AddLessonCode("    left: 0px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  @keyframes backdiv {");
+	   $pdf->AddLessonCode("    50% {");
+	   $pdf->AddLessonCode("      background: #ffe6f2;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  @keyframes beat {");
+	   $pdf->AddLessonCode("    0% {");
+	   $pdf->AddLessonCode("      transform: scale(1) rotate(-45deg);");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("    50% {");
+	   $pdf->AddLessonCode("      transform: scale(0.6) rotate(-45deg);");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div class='back'></div>");
+	   $pdf->AddLessonCode("<div class='heart'></div>");
+	}
+ 
  function GenerateVisualDesignManual($pdf) {
 	   $pdf->AddSubject("Introduction to the Applied Visual Design Challenges");
 	   GenerateAVDLesson1($pdf);
@@ -1608,6 +1961,13 @@
 	   GenerateAVDLesson37($pdf);
 	   GenerateAVDLesson38($pdf);
 	   GenerateAVDLesson39($pdf);
+	   GenerateAVDLesson40($pdf);
+	   GenerateAVDLesson41($pdf);
+	   GenerateAVDLesson42($pdf);
+	   GenerateAVDLesson43($pdf);
+	   GenerateAVDLesson44($pdf);
+	   GenerateAVDLesson45($pdf);
+	   GenerateAVDLesson46($pdf);
    }
 
 ?>
