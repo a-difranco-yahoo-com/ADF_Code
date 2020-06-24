@@ -1920,6 +1920,311 @@
 	   $pdf->AddLessonCode("<div class='heart'></div>");
 	}
  
+    function GenerateAVDLesson47($pdf) {
+       $pdf->AddLessonTitle("Animate Elements at Variable Rates");
+	   $pdf->AddLessonText("There are a variety of ways to alter the animation rates of similarly animated elements. So far, this has been achieved by applying an animation-iteration-count property and setting @keyframes rules.");
+	   $pdf->AddLessonText("To illustrate, the animation on the right consists of two 'stars' that each decrease in size and opacity at the 20% mark in the @keyframes rule, which creates the twinkle animation. You can change the @keyframes rule for one of the elements so the stars twinkle at different rates.");
+	   $pdf->AddLessonText("Alter the animation rate for the element with the class name of star-1 by changing its @keyframes rule to 50%.");
+
+ 	   $pdf->DrawCodeArea("48");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .stars {");
+	   $pdf->AddLessonCode("    background-color: white;");
+	   $pdf->AddLessonCode("    height: 30px;");
+	   $pdf->AddLessonCode("    width: 30px;");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    animation-iteration-count: infinite;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .star-1 {");
+	   $pdf->AddLessonCode("    margin-top: 15%;");
+	   $pdf->AddLessonCode("    margin-left: 60%;");
+	   $pdf->AddLessonCode("    animation-name: twinkle-1;");
+	   $pdf->AddLessonCode("    animation-duration: 1s;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .star-2 {");
+	   $pdf->AddLessonCode("    margin-top: 25%;");
+	   $pdf->AddLessonCode("    margin-left: 25%;");
+	   $pdf->AddLessonCode("    animation-name: twinkle-2;");
+	   $pdf->AddLessonCode("    animation-duration: 1s;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  @keyframes twinkle-1 {");
+	   $pdf->AddLessonCode("    50% {");
+	   $pdf->AddLessonCode("      transform: scale(0.5);");
+	   $pdf->AddLessonCode("      opacity: 0.5;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  @keyframes twinkle-2 {");
+	   $pdf->AddLessonCode("    20% {");
+	   $pdf->AddLessonCode("      transform: scale(0.5);");
+	   $pdf->AddLessonCode("      opacity: 0.5;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #back {");
+	   $pdf->AddLessonCode("    position: fixed;");
+	   $pdf->AddLessonCode("    padding: 0;");
+	   $pdf->AddLessonCode("    margin: 0;");
+	   $pdf->AddLessonCode("    top: 0;");
+	   $pdf->AddLessonCode("    left: 0;");
+	   $pdf->AddLessonCode("    width: 100%;");
+	   $pdf->AddLessonCode("    height: 100%;");
+	   $pdf->AddLessonCode("    background: linear-gradient(black, #000099, #66c2ff, #ffcccc, #ffeee6);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='back'></div>");
+	   $pdf->AddLessonCode("<div class='star-1 stars'></div>");
+	   $pdf->AddLessonCode("<div class='star-2 stars'></div>");
+	}
+ 
+    function GenerateAVDLesson48($pdf) {
+       $pdf->AddLessonTitle("Animate Multiple Elements at Variable Rates");
+	   $pdf->AddLessonText("In the previous challenge, you changed the animation rates for two similarly animated elements by altering their @keyframes rules. You can achieve the same goal by manipulating the animation-duration of multiple elements.");
+	   $pdf->AddLessonText("In the animation running in the code editor, there are three 'stars' in the sky that twinkle at the same rate on a continuous loop. To make them twinkle at different rates, you can set the animation-duration property to different values for each element.");
+	   $pdf->AddLessonText("Set the animation-duration of the elements with the classes star-1, star-2, and star-3 to 1s, 0.9s, and 1.1s, respectively.");
+
+
+ 	   $pdf->DrawCodeArea("48");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .stars {");
+	   $pdf->AddLessonCode("    background-color: white;");
+	   $pdf->AddLessonCode("    height: 30px;");
+	   $pdf->AddLessonCode("    width: 30px;");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    animation-iteration-count: infinite;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .star-1 {");
+	   $pdf->AddLessonCode("    margin-top: 15%;");
+	   $pdf->AddLessonCode("    margin-left: 60%;");
+	   $pdf->AddLessonCode("    animation-name: twinkle;");
+	   $pdf->AddLessonCode("    animation-duration: 1s;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .star-2 {");
+	   $pdf->AddLessonCode("    margin-top: 25%;");
+	   $pdf->AddLessonCode("    margin-left: 25%;");
+	   $pdf->AddLessonCode("    animation-name: twinkle;");
+	   $pdf->AddLessonCode("    animation-duration: 0.9s;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  .star-3 {");
+	   $pdf->AddLessonCode("    margin-top: 10%;");
+	   $pdf->AddLessonCode("    margin-left: 50%;");
+	   $pdf->AddLessonCode("    animation-name: twinkle;");
+	   $pdf->AddLessonCode("    animation-duration: 1.1s;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  @keyframes twinkle {");
+	   $pdf->AddLessonCode("    20% {");
+	   $pdf->AddLessonCode("      transform: scale(0.5);");
+	   $pdf->AddLessonCode("      opacity: 0.5;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #back {");
+	   $pdf->AddLessonCode("    position: fixed;");
+	   $pdf->AddLessonCode("    padding: 0;");
+	   $pdf->AddLessonCode("    margin: 0;");
+	   $pdf->AddLessonCode("    top: 0;");
+	   $pdf->AddLessonCode("    left: 0;");
+	   $pdf->AddLessonCode("    width: 100%;");
+	   $pdf->AddLessonCode("    height: 100%;");
+	   $pdf->AddLessonCode("    background: linear-gradient(black, #000099, #66c2ff, #ffcccc, #ffeee6);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div id='back'></div>");
+	   $pdf->AddLessonCode("<div class='star-1 stars'></div>");
+	   $pdf->AddLessonCode("<div class='star-2 stars'></div>");
+	   $pdf->AddLessonCode("<div class='star-3 stars'></div>");
+	}
+ 
+    function GenerateAVDLesson49($pdf) {
+       $pdf->AddLessonTitle("Change Animation Timing with Keywords");
+	   $pdf->AddLessonText("In CSS animations, the animation-timing-function property controls how quickly an animated element changes over the duration of the animation. If the animation is a car moving from point A to point B in a given time (your animation-duration), the animation-timing-function says how the car accelerates and decelerates over the course of the drive.");
+	   $pdf->AddLessonText("There are a number of predefined keywords available for popular options. For example, the default value is ease, which starts slow, speeds up in the middle, and then slows down again in the end. Other options include ease-out, which is quick in the beginning then slows down, ease-in, which is slow in the beginning, then speeds up at the end, or linear, which applies a constant animation speed throughout.");
+	   $pdf->AddLessonText("For the elements with id of ball1 and ball2, add an animation-timing-function property to each, and set #ball1 to linear, and #ball2 to ease-out. Notice the difference between how the elements move during the animation but end together, since they share the same animation-duration of 2 seconds.");
+
+ 	   $pdf->DrawCodeArea("36");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .balls {");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    background: linear-gradient(");
+	   $pdf->AddLessonCode("      35deg,");
+	   $pdf->AddLessonCode("      #ccffff,");
+	   $pdf->AddLessonCode("      #ffcccc");
+	   $pdf->AddLessonCode("    );");
+	   $pdf->AddLessonCode("    position: fixed;");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    margin-top: 50px;");
+	   $pdf->AddLessonCode("    animation-name: bounce;");
+	   $pdf->AddLessonCode("    animation-duration: 2s;");
+	   $pdf->AddLessonCode("    animation-iteration-count: infinite;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #ball1 {");
+	   $pdf->AddLessonCode("    left:27%;");
+	   $pdf->AddLessonCode("    animation-timing-function: linear;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #ball2 {");
+	   $pdf->AddLessonCode("    left:56%;");
+	   $pdf->AddLessonCode("    animation-timing-function: ease-out;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  @keyframes bounce {");
+	   $pdf->AddLessonCode("    0% {");
+	   $pdf->AddLessonCode("      top: 0px;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("    100% {");
+	   $pdf->AddLessonCode("      top: 249px;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div class='balls' id='ball1'></div>");
+	   $pdf->AddLessonCode("<div class='balls' id='ball2'></div>");
+	}
+ 
+    function GenerateAVDLesson50($pdf) {
+       $pdf->AddLessonTitle("Learn How Bezier Curves Work");
+	   $pdf->AddLessonText("The last challenge introduced the animation-timing-function property and a few keywords that change the speed of an animation over its duration. CSS offers an option other than keywords that provides even finer control over how the animation plays out, through the use of Bezier curves.");
+	   $pdf->AddLessonText("In CSS animations, Bezier curves are used with the cubic-bezier function. The shape of the curve represents how the animation plays out. The curve lives on a 1 by 1 coordinate system. The X-axis of this coordinate system is the duration of the animation (think of it as a time scale), and the Y-axis is the change in the animation.");
+	   $pdf->AddLessonText("The cubic-bezier function consists of four main points that sit on this 1 by 1 grid: p0, p1, p2, and p3. p0 and p3 are set for you - they are the beginning and end points which are always located respectively at the origin (0, 0) and (1, 1). You set the x and y values for the other two points, and where you place them in the grid dictates the shape of the curve for the animation to follow. This is done in CSS by declaring the x and y values of the p1 and p2 'anchor' points in the form: (x1, y1, x2, y2). Pulling it all together, here's an example of a Bezier curve in CSS code:");
+
+ 	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("animation-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("In the example above, the x and y values are equivalent for each point (x1 = 0.25 = y1 and x2 = 0.75 = y2), which if you remember from geometry class, results in a line that extends from the origin to point (1, 1). This animation is a linear change of an element during the length of an animation, and is the same as using the linear keyword. In other words, it changes at a constant speed.");
+	   $pdf->AddLessonText("For the element with the id of ball1, change the value of the animation-timing-function property from linear to its equivalent cubic-bezier function value. Use the point values given in the example above.");
+
+ 	   $pdf->DrawCodeArea("24");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .balls {");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    background: linear-gradient(");
+	   $pdf->AddLessonCode("      35deg,");
+	   $pdf->AddLessonCode("      #ccffff,");
+	   $pdf->AddLessonCode("      #ffcccc");
+	   $pdf->AddLessonCode("    );");
+	   $pdf->AddLessonCode("    position: fixed;");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    margin-top: 50px;");
+	   $pdf->AddLessonCode("    animation-name: bounce;");
+	   $pdf->AddLessonCode("    animation-duration: 2s;");
+	   $pdf->AddLessonCode("    animation-iteration-count: infinite;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #ball1 {");
+	   $pdf->AddLessonCode("    left:27%;");
+	   $pdf->AddLessonCode("    animation-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #ball2 {");
+	   $pdf->AddLessonCode("    left:56%;");
+	   $pdf->AddLessonCode("    animation-timing-function: ease-out;");
+	   $pdf->AddLessonCode("  }");
+
+       $pdf->AddLessonTitle("Learn How Bezier Curves Work");
+ 	   $pdf->DrawCodeArea("13");
+	   $pdf->AddLessonCode("  @keyframes bounce {");
+	   $pdf->AddLessonCode("    0% {");
+	   $pdf->AddLessonCode("      top: 0px;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("    100% {");
+	   $pdf->AddLessonCode("      top: 249px;");
+	   $pdf->AddLessonCode("    }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div class='balls' id='ball1'></div>");
+	   $pdf->AddLessonCode("<div class='balls' id='ball2'></div>");
+	}
+ 
+    function GenerateAVDLesson51($pdf) {
+       $pdf->AddLessonTitle("Use a Bezier Curve to Move a Graphic");
+	   $pdf->AddLessonText("A previous challenge discussed the ease-out keyword that describes an animation change that speeds up first and then slows down at the end of the animation. On the right, the difference between the ease-out keyword (for the blue element) and linear keyword (for the red element) is demonstrated. Similar animation progressions to the ease-out keyword can be achieved by using a custom cubic Bezier curve function.");
+	   $pdf->AddLessonText("In general, changing the p1 and p2 anchor points drives the creation of different Bezier curves, which controls how the animation progresses through time. Here's an example of a Bezier curve using values to mimic the ease-out style:");
+
+ 	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("animation-timing-function: cubic-bezier(0, 0, 0.58, 1);");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Remember that all cubic-bezier functions start with p0 at (0, 0) and end with p3 at (1, 1). In this example, the curve moves faster through the Y-axis (starts at 0, goes to p1 y value of 0, then goes to p2 y value of 1) than it moves through the X-axis (0 to start, then 0 for p1, up to 0.58 for p2). As a result, the change in the animated element progresses faster than the time of the animation for that segment. Towards the end of the curve, the relationship between the change in x and y values reverses - the y value moves from 1 to 1 (no change), and the x values move from 0.58 to 1, making the animation changes progress slower compared to the animation duration.");
+	   $pdf->AddLessonText("To see the effect of this Bezier curve in action, change the animation-timing-function of the element with id of red to a cubic-bezier function with x1, y1, x2, y2 values set respectively to 0, 0, 0.58, 1. This will make both elements progress through the animation similarly.");
+
+ 	   $pdf->DrawCodeArea("28");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .balls{");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    position: fixed;");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    margin-top: 50px;");
+	   $pdf->AddLessonCode("    animation-name: bounce;");
+	   $pdf->AddLessonCode("    animation-duration: 2s;");
+	   $pdf->AddLessonCode("    animation-iteration-count: infinite;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #red {");
+	   $pdf->AddLessonCode("    background: red;");
+	   $pdf->AddLessonCode("    left: 27%;");
+	   $pdf->AddLessonCode("    animation-timing-function: cubic-bezier(0, 0, 0.58, 1);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #blue {");
+	   $pdf->AddLessonCode("    background: blue;");
+	   $pdf->AddLessonCode("    left: 56%;");
+	   $pdf->AddLessonCode("    animation-timing-function: ease-out;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  @keyframes bounce {");
+	   $pdf->AddLessonCode("    0%   { top:   0px; }");
+	   $pdf->AddLessonCode("    100% { top: 249px; }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div class='balls' id= 'red'></div>");
+	   $pdf->AddLessonCode("<div class='balls' id= 'blue'></div>");
+	}
+ 
+    function GenerateAVDLesson52($pdf) {
+       $pdf->AddLessonTitle("Make Motion More Natural Using a Bezier Curve");
+	   $pdf->AddLessonText("This challenge animates an element to replicate the movement of a ball being juggled. Prior challenges covered the linear and ease-out cubic Bezier curves, however neither depicts the juggling movement accurately. You need to customize a Bezier curve for this.");
+	   $pdf->AddLessonText("The animation-timing-function automatically loops at every keyframe when the animation-iteration-count is set to infinite. Since there is a keyframe rule set in the middle of the animation duration (at 50%), it results in two identical animation progressions at the upward and downward movement of the ball.");
+	   $pdf->AddLessonText("The following cubic Bezier curve simulates a juggling movement:");
+
+ 	   $pdf->DrawCodeArea("1");
+	   $pdf->AddLessonCode("cubic-bezier(0.3, 0.4, 0.5, 1.6); ");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Notice that the value of y2 is larger than 1. Although the cubic Bezier curve is mapped on a 1 by 1 coordinate system, and it can only accept x values from 0 to 1, the y value can be set to numbers larger than one. This results in a bouncing movement that is ideal for simulating the juggling ball.");
+	   $pdf->AddLessonText("Change value of the animation-timing-function of the element with the id of green to a cubic-bezier function with x1, y1, x2, y2 values set respectively to 0.311, 0.441, 0.444, 1.649.");
+
+ 	   $pdf->DrawCodeArea("33");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  .balls{");
+	   $pdf->AddLessonCode("    border-radius: 50%;");
+	   $pdf->AddLessonCode("    position: fixed;");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    margin-top: 50px;");
+	   $pdf->AddLessonCode("    animation-name: jump;");
+	   $pdf->AddLessonCode("    animation-duration: 2s;");
+	   $pdf->AddLessonCode("    animation-iteration-count: infinite;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #red {");
+	   $pdf->AddLessonCode("    background: red;");
+	   $pdf->AddLessonCode("    left: 25%;");
+	   $pdf->AddLessonCode("    animation-timing-function: linear;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #blue {");
+	   $pdf->AddLessonCode("    background: blue;");
+	   $pdf->AddLessonCode("    left: 50%;");
+	   $pdf->AddLessonCode("    animation-timing-function: ease-out;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #green {");
+	   $pdf->AddLessonCode("    background: green;");
+	   $pdf->AddLessonCode("    left: 75%;");
+	   $pdf->AddLessonCode("    animation-timing-function: cubic-bezier(0.311, 0.441, 0.444, 1.649);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  @keyframes jump {");
+	   $pdf->AddLessonCode("    50%   { top: 10%; }");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<div class='balls' id= 'red'></div>");
+	   $pdf->AddLessonCode("<div class='balls' id= 'blue'></div>");
+	   $pdf->AddLessonCode("<div class='balls' id= 'green'></div>");
+	}
+ 
  function GenerateVisualDesignManual($pdf) {
 	   $pdf->AddSubject("Introduction to the Applied Visual Design Challenges");
 	   GenerateAVDLesson1($pdf);
@@ -1968,6 +2273,12 @@
 	   GenerateAVDLesson44($pdf);
 	   GenerateAVDLesson45($pdf);
 	   GenerateAVDLesson46($pdf);
+	   GenerateAVDLesson47($pdf);
+	   GenerateAVDLesson48($pdf);
+	   GenerateAVDLesson49($pdf);
+	   GenerateAVDLesson50($pdf);
+	   GenerateAVDLesson51($pdf);
+	   GenerateAVDLesson52($pdf);
    }
 
 ?>
