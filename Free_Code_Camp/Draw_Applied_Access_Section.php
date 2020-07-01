@@ -71,11 +71,109 @@
 	   $pdf->AddLessonCode("</main>");
    }
  
+   function GenerateAALesson4($pdf) {
+       $pdf->AddLessonTitle("Jump Straight to the Content Using the main Element");
+	   $pdf->AddLessonText("HTML5 introduced a number of new elements that give developers more options while also incorporating accessibility features. These tags include main, header, footer, nav, article, and section, among others.");
+	   $pdf->AddLessonText("By default, a browser renders these elements similarly to the humble div. However, using them where appropriate gives additional meaning in your markup. The tag name alone can indicate the type of information it contains, which adds semantic meaning to that content. Assistive technologies can access this information to provide better page summary or navigation options to their users.");
+	   $pdf->AddLessonText("The main element is used to wrap (you guessed it) the main content, and there should be only one per page. It's meant to surround the information that's related to the central topic of your page. It's not meant to include items that repeat across pages, like navigation links or banners.");
+	   $pdf->AddLessonText("The main tag also has an embedded landmark feature that assistive technology can use to quickly navigate to the main content. If you've ever seen a 'Jump to Main Content' link at the top of a page, using a main tag automatically gives assistive devices that functionality.");
+	   $pdf->AddLessonText("Camper Cat has some big ideas for his ninja weapons page. Help him set up his markup by adding opening and closing main tags between the header and footer (covered in other challenges). Keep the main tags empty for now.");
+
+	   $pdf->DrawCodeArea("6");
+	   $pdf->AddLessonCode("<header>");
+	   $pdf->AddLessonCode("  <h1>Weapons of the Ninja</h1>");
+	   $pdf->AddLessonCode("</header>");
+	   $pdf->AddLessonCode("<main>");
+	   $pdf->AddLessonCode("</main>");
+	   $pdf->AddLessonCode("<footer></footer>");
+   }
+ 
+   function GenerateAALesson5($pdf) {
+       $pdf->AddLessonTitle("Wrap Content in the article Element");
+	   $pdf->AddLessonText("article is another one of the new HTML5 elements that adds semantic meaning to your markup. article is a sectioning element, and is used to wrap independent, self-contained content. The tag works well with blog entries, forum posts, or news articles.");
+	   $pdf->AddLessonText("Determining whether content can stand alone is usually a judgement call, but there are a couple simple tests you can use. Ask yourself if you removed all surrounding context, would that content still make sense? Similarly for text, would the content hold up if it were in an RSS feed?");
+	   $pdf->AddLessonText("Remember that folks using assistive technologies rely on organized, semantically meaningful markup to better understand your work.");
+	   $pdf->AddLessonText("Note about section and div");
+	   $pdf->AddLessonText("The section element is also new with HTML5, and has a slightly different semantic meaning than article. An article is for standalone content, and a section is for grouping thematically related content. They can be used within each other, as needed. For example, if a book is the article, then each chapter is a section. When there's no relationship between groups of content, then use a div.");
+
+	   $pdf->DrawCodeArea("3");
+	   $pdf->AddLessonCode("<div> - groups content");
+	   $pdf->AddLessonCode("<section> - groups related content");
+	   $pdf->AddLessonCode("<article> - groups independent, self-contained content");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Camper Cat used article tags to wrap the posts on his blog page, but he forgot to use them around the top one. Change the div tag to use an article tag instead.");
+
+	   $pdf->DrawCodeArea(21);
+	   $pdf->AddLessonCode("<h1>Deep Thoughts with Master Camper Cat</h1>");
+	   $pdf->AddLessonCode("<main>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>The Garfield Files: Lasagna as Training Fuel?</h2>");
+	   $pdf->AddLessonCode("    <p>The internet is littered with varying opinions on nutritional paradigms, from catnip paleo to hairball cleanses. But let's turn our attention to an often overlooked fitness fuel, and examine the protein-carb-NOM trifecta that is lasagna...</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <img src='samuraiSwords.jpeg' alt=''>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>Defeating your Foe: the Red Dot is Ours!</h2>");
+	   $pdf->AddLessonCode("    <p>Felines the world over have been waging war on the most persistent of foes. This red nemesis combines both cunning stealth and lightening speed. But chin up, fellow fighters, our time for victory may soon be near...</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <img src='samuraiSwords.jpeg' alt=''>");
+
+       $pdf->AddLessonTitle("Wrap Content in the article Element (Cont'd)");
+	   $pdf->DrawCodeArea(9);
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>Is Chuck Norris a Cat Person?</h2>");
+	   $pdf->AddLessonCode("    <p>Chuck Norris is widely regarded as the premier martial artist on the planet, and it's a complete coincidence anyone who disagrees with this fact mysteriously disappears soon after. But the real question is, is he a cat person?...</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("</main>");
+   }
+ 
+   function GenerateAALesson6($pdf) {
+       $pdf->AddLessonTitle("Make Screen Reader Navigation Easier with the header Landmark");
+	   $pdf->AddLessonText("The next HTML5 element that adds semantic meaning and improves accessibility is the header tag. It's used to wrap introductory information or navigation links for its parent tag and works well around content that's repeated at the top on multiple pages.");
+	   $pdf->AddLessonText("header shares the embedded landmark feature you saw with main, allowing assistive technologies to quickly navigate to that content.");
+	   $pdf->AddLessonText("Note: The header is meant for use in the body tag of your HTML document. This is different than the head element, which contains the page's title, meta information, etc.");
+	   $pdf->AddLessonText("Camper Cat is writing some great articles about ninja training, and wants to add a page for them to his site. Change the top div that currently contains the h1 to a header tag instead.");
+
+	   $pdf->DrawCodeArea(31);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Training with Camper Cat</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <main>");
+	   $pdf->AddLessonCode("    <section id='stealth'>");
+	   $pdf->AddLessonCode("      <h2>Stealth &amp; Agility Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Climb foliage quickly using a minimum spanning tree approach</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>No training is NP-complete without parkour</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("    <section id='combat'>");
+	   $pdf->AddLessonCode("      <h2>Combat Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Dispatch multiple enemies with multithreaded tactics</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>Goodbye world: 5 proven ways to knock out an opponent</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("    <section id='weapons'>");
+	   $pdf->AddLessonCode("      <h2>Weapons Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Swords: the best tool to literally divide and conquer</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>Breadth-first or depth-first in multi-weapon training?</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("  </main>");
+	   $pdf->AddLessonCode("</body>");
+	   $pdf->AddLessonCode("");
+   }
+ 
  function GenerateAppliedAccessManual($pdf) {
 	   $pdf->AddSubject("Introduction to the Applied Accessibility Challenges");
 	   GenerateAALesson1($pdf);
 	   GenerateAALesson2($pdf);
 	   GenerateAALesson3($pdf);
+	   GenerateAALesson4($pdf);
+	   GenerateAALesson5($pdf);
+	   GenerateAALesson6($pdf);
    }
 
 ?>
