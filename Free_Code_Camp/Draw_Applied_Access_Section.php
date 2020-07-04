@@ -166,6 +166,180 @@
 	   $pdf->AddLessonCode("");
    }
  
+   function GenerateAALesson7($pdf) {
+       $pdf->AddLessonTitle("Make Screen Reader Navigation Easier with the nav Landmark");
+	   $pdf->AddLessonText("The nav element is another HTML5 item with the embedded landmark feature for easy screen reader navigation. This tag is meant to wrap around the main navigation links in your page.");
+	   $pdf->AddLessonText("If there are repeated site links at the bottom of the page, it isn't necessary to markup those with a nav tag as well. Using a footer (covered in the next challenge) is sufficient.");
+	   $pdf->AddLessonText("Camper Cat included navigation links at the top of his training page, but wrapped them in a div. Change the div to a nav tag to improve the accessibility on his page.");
+
+	   $pdf->DrawCodeArea(37);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Training with Camper Cat</h1>");
+	   $pdf->AddLessonCode("    <nav>");
+	   $pdf->AddLessonCode("      <ul>");
+	   $pdf->AddLessonCode("        <li><a href='#stealth'>Stealth &amp; Agility</a></li>");
+	   $pdf->AddLessonCode("        <li><a href='#combat'>Combat</a></li>");
+	   $pdf->AddLessonCode("        <li><a href='#weapons'>Weapons</a></li>");
+	   $pdf->AddLessonCode("      </ul>");
+	   $pdf->AddLessonCode("    </nav>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <main>");
+	   $pdf->AddLessonCode("    <section id='stealth'>");
+	   $pdf->AddLessonCode("      <h2>Stealth &amp; Agility Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Climb foliage quickly using a minimum spanning tree approach</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>No training is NP-complete without parkour</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("    <section id='combat'>");
+	   $pdf->AddLessonCode("      <h2>Combat Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Dispatch multiple enemies with multithreaded tactics</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>Goodbye world: 5 proven ways to knock out an opponent</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("    <section id='weapons'>");
+	   $pdf->AddLessonCode("      <h2>Weapons Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Swords: the best tool to literally divide and conquer</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>Breadth-first or depth-first in multi-weapon training?</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("  </main>");
+       $pdf->AddLessonCode("</body>");
+   }
+ 
+   function GenerateAALesson8($pdf) {
+       $pdf->AddLessonTitle("Make Screen Reader Navigation Easier with the footer Landmark");
+	   $pdf->AddLessonText("Similar to header and nav, the footer element has a built-in landmark feature that allows assistive devices to quickly navigate to it. It's primarily used to contain copyright information or links to related documents that usually sit at the bottom of a page.");
+	   $pdf->AddLessonText("Camper Cat's training page is making good progress. Change the div he used to wrap his copyright information at the bottom of the page to a footer element.");
+
+	   $pdf->DrawCodeArea(38);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Training with Camper Cat</h1>");
+	   $pdf->AddLessonCode("    <nav>");
+	   $pdf->AddLessonCode("      <ul>");
+	   $pdf->AddLessonCode("        <li><a href='#stealth'>Stealth &amp; Agility</a></li>");
+	   $pdf->AddLessonCode("        <li><a href='#combat'>Combat</a></li>");
+	   $pdf->AddLessonCode("        <li><a href='#weapons'>Weapons</a></li>");
+	   $pdf->AddLessonCode("      </ul>");
+	   $pdf->AddLessonCode("    </nav>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <main>");
+	   $pdf->AddLessonCode("    <section id='stealth'>");
+	   $pdf->AddLessonCode("      <h2>Stealth &amp; Agility Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Climb foliage quickly using a minimum spanning tree approach</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>No training is NP-complete without parkour</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("    <section id='combat'>");
+	   $pdf->AddLessonCode("      <h2>Combat Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Dispatch multiple enemies with multithreaded tactics</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>Goodbye world: 5 proven ways to knock out an opponent</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("    <section id='weapons'>");
+	   $pdf->AddLessonCode("      <h2>Weapons Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Swords: the best tool to literally divide and conquer</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>Breadth-first or depth-first in multi-weapon training?</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("  </main>");
+	   $pdf->AddLessonCode("  <footer>&copy; 2018 Camper Cat</footer>");
+       $pdf->AddLessonCode("</body>");
+   }
+ 
+   function GenerateAALesson9($pdf) {
+       $pdf->AddLessonTitle("Improve Accessibility of Audio Content with the audio Element");
+	   $pdf->AddLessonText("HTML5's audio element gives semantic meaning when it wraps sound or audio stream content in your markup. Audio content also needs a text alternative to be accessible to people who are deaf or hard of hearing. This can be done with nearby text on the page or a link to a transcript.");
+	   $pdf->AddLessonText("The audio tag supports the controls attribute. This shows the browser default play, pause, and other controls, and supports keyboard functionality. This is a boolean attribute, meaning it doesn't need a value, its presence on the tag turns the setting on.");
+	   $pdf->AddLessonText("Here's an example:");
+
+	   $pdf->DrawCodeArea(4);
+	   $pdf->AddLessonCode("<audio id='meowClip' controls>");
+	   $pdf->AddLessonCode("  <source src='audio/meow.mp3' type='audio/mpeg' />");
+	   $pdf->AddLessonCode("  <source src='audio/meow.ogg' type='audio/ogg' />");
+	   $pdf->AddLessonCode("</audio>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Note: Multimedia content usually has both visual and auditory components. It needs synchronized captions and a transcript so users with visual and/or auditory impairments can access it. Generally, a web developer is not responsible for creating the captions or transcript, but needs to know to include them.");
+	   $pdf->AddLessonText("Time to take a break from Camper Cat and meet fellow camper Zersiax (@zersiax), a champion of accessibility and a screen reader user. To hear a clip of his screen reader in action, add an audio element after the p. Include the controls attribute. Then place a source tag inside the audio tags with the src attribute set to 'https://s3.amazonaws.com/freecodecamp/screen-reader.mp3' and type attribute set to 'audio/mpeg'.");
+	   $pdf->AddLessonText("Note: The audio clip may sound fast and be difficult to understand, but that is a normal speed for screen reader users.");
+
+	   $pdf->DrawCodeArea(12);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Real Coding Ninjas</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <main>");
+	   $pdf->AddLessonCode("    <p>A sound clip of Zersiax's screen reader in action.</p>");
+	   $pdf->AddLessonCode("<audio id='meowClip' controls>");
+	   $pdf->AddLessonCode("  <source src='https://s3.amazonaws.com/freecodecamp/screen-reader.mp3' type='audio/mpeg' />");
+	   $pdf->AddLessonCode("</audio>");
+	   $pdf->AddLessonCode("  </main>");
+	   $pdf->AddLessonCode("</body>");
+   }
+ 
+   function GenerateAALesson10($pdf) {
+       $pdf->AddLessonTitle("Improve Chart Accessibility with the figure Element");
+	   $pdf->AddLessonText("HTML5 introduced the figure element, along with the related figcaption. Used together, these items wrap a visual representation (like an image, diagram, or chart) along with its caption. This gives a two-fold accessibility boost by both semantically grouping related content, and providing a text alternative that explains the figure.");
+	   $pdf->AddLessonText("For data visualizations like charts, the caption can be used to briefly note the trends or conclusions for users with visual impairments. Another challenge covers how to move a table version of the chart's data off-screen (using CSS) for screen reader users.");
+	   $pdf->AddLessonText("Here's an example - note that the figcaption goes inside the figure tags and can be combined with other elements:");
+
+	   $pdf->DrawCodeArea(8);
+	   $pdf->AddLessonCode("<figure>");
+	   $pdf->AddLessonCode("  <img src='roundhouseDestruction.jpeg' alt='Photo of Camper Cat executing a roundhouse kick'>");
+	   $pdf->AddLessonCode("  <br>");
+	   $pdf->AddLessonCode("  <figcaption>");
+	   $pdf->AddLessonCode("    Master Camper Cat demonstrates proper form of a roundhouse kick.");
+	   $pdf->AddLessonCode("  </figcaption>");
+	   $pdf->AddLessonCode("</figure>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Camper Cat is hard at work creating a stacked bar chart showing the amount of time per week to spend training in stealth, combat, and weapons. Help him structure his page better by changing the div tag he used to a figure tag, and the p tag that surrounds the caption to a figcaption tag.");
+
+	   $pdf->DrawCodeArea(28);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Training with Camper Cat</h1>");
+	   $pdf->AddLessonCode("    <nav>");
+	   $pdf->AddLessonCode("      <ul>");
+	   $pdf->AddLessonCode("        <li><a href='#stealth'>Stealth &amp; Agility</a></li>");
+	   $pdf->AddLessonCode("        <li><a href='#combat'>Combat</a></li>");
+	   $pdf->AddLessonCode("        <li><a href='#weapons'>Weapons</a></li>");
+	   $pdf->AddLessonCode("      </ul>");
+	   $pdf->AddLessonCode("    </nav>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <main>");
+	   $pdf->AddLessonCode("    <section>");
+	   $pdf->AddLessonCode("      <figure>");
+	   $pdf->AddLessonCode("        <br>");
+	   $pdf->AddLessonCode("        <figcaption>Breakdown per week of time to spend training in stealth, combat, and weapons.</figcaption>");
+	   $pdf->AddLessonCode("      </figure>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("    <section id='stealth'>");
+	   $pdf->AddLessonCode("      <h2>Stealth &amp; Agility Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Climb foliage quickly using a minimum spanning tree approach</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>No training is NP-complete without parkour</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+
+       $pdf->AddLessonTitle("Improve Chart Accessibility with the figure Element");
+	   $pdf->DrawCodeArea(18);
+	   $pdf->AddLessonCode("    <section id='combat'>");
+	   $pdf->AddLessonCode("      <h2>Combat Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Dispatch multiple enemies with multithreaded tactics</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>Goodbye world: 5 proven ways to knock out an opponent</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("    <section id='weapons'>");
+	   $pdf->AddLessonCode("      <h2>Weapons Training</h2>");
+	   $pdf->AddLessonCode("      <article><h3>Swords: the best tool to literally divide and conquer</h3></article>");
+	   $pdf->AddLessonCode("      <article><h3>Breadth-first or depth-first in multi-weapon training?</h3></article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("  </main>");
+	   $pdf->AddLessonCode("  <footer>&copy; 2018 Camper Cat</footer>");
+       $pdf->AddLessonCode("</body>");
+
+   }
+ 
  function GenerateAppliedAccessManual($pdf) {
 	   $pdf->AddSubject("Introduction to the Applied Accessibility Challenges");
 	   GenerateAALesson1($pdf);
@@ -174,6 +348,10 @@
 	   GenerateAALesson4($pdf);
 	   GenerateAALesson5($pdf);
 	   GenerateAALesson6($pdf);
+	   GenerateAALesson7($pdf);
+	   GenerateAALesson8($pdf);
+	   GenerateAALesson9($pdf);
+	   GenerateAALesson10($pdf);
    }
 
 ?>
