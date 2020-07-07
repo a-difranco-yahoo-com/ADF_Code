@@ -337,7 +337,200 @@
 	   $pdf->AddLessonCode("  </main>");
 	   $pdf->AddLessonCode("  <footer>&copy; 2018 Camper Cat</footer>");
        $pdf->AddLessonCode("</body>");
+   }
+ 
+   function GenerateAALesson11($pdf) {
+       $pdf->AddLessonTitle("Improve Form Field Accessibility with the label Element");
+	   $pdf->AddLessonText("Improving accessibility with semantic HTML markup applies to using both appropriate tag names as well as attributes. The next several challenges cover some important scenarios using attributes in forms.");
+	   $pdf->AddLessonText("The label tag wraps the text for a specific form control item, usually the name or label for a choice. This ties meaning to the item and makes the form more readable. The for attribute on a label tag explicitly associates that label with the form control and is used by screen readers.");
+	   $pdf->AddLessonText("You learned about radio buttons and their labels in a lesson in the Basic HTML section. In that lesson, we wrapped the radio button input element inside a label element along with the label text in order to make the text clickable. Another way to achieve this is by using the for attribute as explained in this lesson.");
+	   $pdf->AddLessonText("The value of the for attribute must be the same as the value of the id attribute of the form control. Here's an example:");
 
+	   $pdf->DrawCodeArea(4);
+	   $pdf->AddLessonCode("<form>");
+	   $pdf->AddLessonCode("  <label for='name'>Name:</label>");
+	   $pdf->AddLessonCode("  <input type='text' id='name' name='name'>");
+	   $pdf->AddLessonCode("</form>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Camper Cat expects a lot of interest in his thoughtful blog posts and wants to include an email sign up form. Add a for attribute on the email label that matches the id on its input field.");
+
+	   $pdf->DrawCodeArea(32);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Deep Thoughts with Master Camper Cat</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <section>");
+	   $pdf->AddLessonCode("    <form>");
+	   $pdf->AddLessonCode("      <p>Sign up to receive Camper Cat's blog posts by email here!</p>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("      <label for='email'>Email:</label>");
+	   $pdf->AddLessonCode("      <input type='text' id='email' name='email'>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("      <input type='submit' name='submit' value='Submit'>");
+	   $pdf->AddLessonCode("    </form>");
+	   $pdf->AddLessonCode("  </section>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>The Garfield Files: Lasagna as Training Fuel?</h2>");
+	   $pdf->AddLessonCode("    <p>The internet is littered with varying opinions on nutritional paradigms, from catnip paleo to hairball cleanses. But let's turn our attention to an often overlooked fitness fuel, and examine the protein-carb-NOM trifecta that is lasagna...</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("  <img src='samuraiSwords.jpeg' alt=''>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>Defeating your Foe: the Red Dot is Ours!</h2>");
+	   $pdf->AddLessonCode("    <p>Felines the world over have been waging war on the most persistent of foes. This red nemesis combines both cunning stealth and lightning speed. But chin up, fellow fighters, our time for victory may soon be near...</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("  <img src='samuraiSwords.jpeg' alt=''>");
+
+       $pdf->AddLessonTitle("Improve Form Field Accessibility with the label Element");
+	   $pdf->DrawCodeArea(10);
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>Is Chuck Norris a Cat Person?</h2>");
+	   $pdf->AddLessonCode("    <p>Chuck Norris is widely regarded as the premier martial artist on the planet, and it's a complete coincidence anyone who disagrees with this fact mysteriously disappears soon after. But the real question is, is he a cat person?...</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("  <footer>&copy; 2018 Camper Cat</footer>");
+	   $pdf->AddLessonCode("</body>");
+   }
+ 
+   function GenerateAALesson12($pdf) {
+       $pdf->AddLessonTitle("Wrap Radio Buttons in a fieldset Element for Better Accessibility");
+	   $pdf->AddLessonText("The next form topic covers accessibility of radio buttons. Each choice is given a label with a for attribute tying to the id of the corresponding item as covered in the last challenge. Since radio buttons often come in a group where the user must choose one, there's a way to semantically show the choices are part of a set.");
+	   $pdf->AddLessonText("The fieldset tag surrounds the entire grouping of radio buttons to achieve this. It often uses a legend tag to provide a description for the grouping, which is read by screen readers for each choice in the fieldset element.");
+	   $pdf->AddLessonText("The fieldset wrapper and legend tag are not necessary when the choices are self-explanatory, like a gender selection. Using a label with the for attribute for each radio button is sufficient.");
+	   $pdf->AddLessonText("Here's an example:");
+
+	   $pdf->DrawCodeArea(11);
+	   $pdf->AddLessonCode("<form>");
+	   $pdf->AddLessonCode("  <fieldset>");
+	   $pdf->AddLessonCode("    <legend>Choose one of these three items:</legend>");
+	   $pdf->AddLessonCode("    <input id='one' type='radio' name='items' value='one'>");
+	   $pdf->AddLessonCode("    <label for='one'>Choice One</label><br>");
+	   $pdf->AddLessonCode("    <input id='two' type='radio' name='items' value='two'>");
+	   $pdf->AddLessonCode("    <label for='two'>Choice Two</label><br>");
+	   $pdf->AddLessonCode("    <input id='three' type='radio' name='items' value='three'>");
+	   $pdf->AddLessonCode("    <label for='three'>Choice Three</label>");
+	   $pdf->AddLessonCode("  </fieldset>");
+	   $pdf->AddLessonCode("</form>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Camper Cat wants information about the ninja level of his users when they sign up for his email list. He's added a set of radio buttons and learned from our last lesson to use label tags with for attributes for each choice. Go Camper Cat! However, his code still needs some help. Change the div tag surrounding the radio buttons to a fieldset tag, and change the p tag inside it to a legend.");
+
+	   $pdf->DrawCodeArea(23);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Deep Thoughts with Master Camper Cat</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <section>");
+	   $pdf->AddLessonCode("    <form>");
+	   $pdf->AddLessonCode("      <p>Sign up to receive Camper Cat's blog posts by email here!</p>");
+	   $pdf->AddLessonCode("      <label for='email'>Email:</label>");
+	   $pdf->AddLessonCode("      <input type='text' id='email' name='email'>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("      <fieldset>");
+	   $pdf->AddLessonCode("        <legend>What level ninja are you?</legend>");
+	   $pdf->AddLessonCode("        <input id='newbie' type='radio' name='levels' value='newbie'>");
+	   $pdf->AddLessonCode("        <label for='newbie'>Newbie Kitten</label><br>");
+	   $pdf->AddLessonCode("        <input id='intermediate' type='radio' name='levels' value='intermediate'>");
+	   $pdf->AddLessonCode("        <label for='intermediate'>Developing Student</label><br>");
+	   $pdf->AddLessonCode("        <input id='master' type='radio' name='levels' value='master'>");
+	   $pdf->AddLessonCode("        <label for='master'>Master</label>");
+	   $pdf->AddLessonCode("      </fieldset>");
+	   $pdf->AddLessonCode("      <input type='submit' name='submit' value='Submit'>");
+	   $pdf->AddLessonCode("    </form>");
+	   $pdf->AddLessonCode("  </section>");
+
+       $pdf->AddLessonTitle("Wrap Radio Buttons in a fieldset Element for Better Accessibility (cont'd)");
+	   $pdf->DrawCodeArea(26);
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>The Garfield Files: Lasagna as Training Fuel?</h2>");
+	   $pdf->AddLessonCode("    <p>The internet is littered with varying opinions on nutritional paradigms, from catnip paleo to hairball cleanses. But let's turn our attention to an often overlooked fitness fuel, and examine the protein-carb-NOM trifecta that is lasagna...</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("  <img src='samuraiSwords.jpeg' alt=''>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>Defeating your Foe: the Red Dot is Ours!</h2>");
+	   $pdf->AddLessonCode("    <p>Felines the world over have been waging war on the most persistent of foes. This red nemesis combines both cunning stealth and lightning speed. But chin up, fellow fighters, our time for victory may soon be near...</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("  <img src='samuraiSwords.jpeg' alt=''>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>Is Chuck Norris a Cat Person?</h2>");
+	   $pdf->AddLessonCode("    <p>Chuck Norris is widely regarded as the premier martial artist on the planet, and it's a complete coincidence anyone who disagrees with this fact mysteriously disappears soon after. But the real question is, is he a cat person?...</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("  <footer>&copy; 2018 Camper Cat</footer>");
+	   $pdf->AddLessonCode("</body>");
+   }
+ 
+   function GenerateAALesson13($pdf) {
+       $pdf->AddLessonTitle("Add an Accessible Date Picker");
+	   $pdf->AddLessonText("Forms often include the input field, which can be used to create several different form controls. The type attribute on this element indicates what kind of input will be created.");
+	   $pdf->AddLessonText("You may have noticed the text and submit input types in prior challenges, and HTML5 introduced an option to specify a date field. Depending on browser support, a date picker shows up in the input field when it's in focus, which makes filling in a form easier for all users.");
+	   $pdf->AddLessonText("For older browsers, the type will default to text, so it helps to show users the expected date format in the label or as placeholder text just in case.");
+	   $pdf->AddLessonText("Here's an example:");
+
+	   $pdf->DrawCodeArea(2);
+	   $pdf->AddLessonCode("<label for='input1'>Enter a date:</label>");
+	   $pdf->AddLessonCode("<input type='date' id='input1' name='input1'>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Camper Cat is setting up a Mortal Kombat tournament and wants to ask his competitors to see what date works best. Add an input tag with a type attribute of 'date', an id attribute of 'pickdate', and a name attribute of 'date'.");
+
+	   $pdf->DrawCodeArea(17);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Tournaments</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <main>");
+	   $pdf->AddLessonCode("    <section>");
+	   $pdf->AddLessonCode("      <h2>Mortal Kombat Tournament Survey</h2>");
+	   $pdf->AddLessonCode("      <form>");
+	   $pdf->AddLessonCode("        <p>Tell us the best date for the competition</p>");
+	   $pdf->AddLessonCode("        <label for='pickdate'>Preferred Date:</label>");
+	   $pdf->AddLessonCode("        <input type='date' id='pickdate' name='date'>");
+	   $pdf->AddLessonCode("        <input type='submit' name='submit' value='Submit'>");
+	   $pdf->AddLessonCode("      </form>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("  </main>");
+	   $pdf->AddLessonCode("  <footer>&copy; 2018 Camper Cat</footer>");
+	   $pdf->AddLessonCode("</body>:%s/'");
+   }
+ 
+   function GenerateAALesson14($pdf) {
+       $pdf->AddLessonTitle("Standardize Times with the HTML5 datetime Attribute");
+	   $pdf->AddLessonText("Continuing with the date theme, HTML5 also introduced the time element along with a datetime attribute to standardize times. This is an inline element that can wrap a date or time on a page. A valid format of that date is held by the datetime attribute. This is the value accessed by assistive devices. It helps avoid confusion by stating a standardized version of a time, even if it's written in an informal or colloquial manner in the text.");
+	   $pdf->AddLessonText("Here's an example:");
+
+	   $pdf->DrawCodeArea(3);
+	   $pdf->AddLessonCode("<p>Master Camper Cat officiated the cage match between Goro and Scorpion <time datetime='2013-02-13'>last Wednesday</time>, which ended in a draw.</p>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Camper Cat's Mortal Kombat survey results are in! Wrap a time tag around the text 'Thursday, September 15<sup>th</sup>' and add a datetime attribute to it set to '2016-09-15'.");
+
+	   $pdf->DrawCodeArea(31);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Tournaments</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>Mortal Kombat Tournament Survey Results</h2>");
+	   $pdf->AddLessonCode("    <p>Thank you to everyone for responding to Master Camper Cat's survey. The best day to host the vaunted Mortal Kombat tournament is <time datetime='2016-09-15'>Thursday, September 15<sup>th</sup></time>. May the best ninja win!</p>");
+	   $pdf->AddLessonCode("    <section>");
+	   $pdf->AddLessonCode("      <h3>Comments:</h3>");
+	   $pdf->AddLessonCode("      <article>");
+	   $pdf->AddLessonCode("        <p>Posted by: Sub-Zero on <time datetime='2016-08-13T20:01Z'>August 13<sup>th</sup></time></p>");
+	   $pdf->AddLessonCode("        <p>Johnny Cage better be there, I'll finish him!</p>");
+	   $pdf->AddLessonCode("      </article>");
+	   $pdf->AddLessonCode("      <article>");
+	   $pdf->AddLessonCode("        <p>Posted by: Doge on <time datetime='2016-08-15T08:12Z'>August 15<sup>th</sup></time></p>");
+	   $pdf->AddLessonCode("        <p>Wow, much combat, so mortal.</p>");
+	   $pdf->AddLessonCode("      </article>");
+	   $pdf->AddLessonCode("      <article>");
+	   $pdf->AddLessonCode("        <p>Posted by: The Grim Reaper on <time datetime='2016-08-16T00:00Z'>August 16<sup>th</sup></time></p>");
+	   $pdf->AddLessonCode("        <p>Looks like I'll be busy that day.</p>");
+	   $pdf->AddLessonCode("      </article>");
+	   $pdf->AddLessonCode("    </section>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("  <footer>&copy; 2018 Camper Cat</footer>");
+	   $pdf->AddLessonCode("</body>");
    }
  
  function GenerateAppliedAccessManual($pdf) {
@@ -352,6 +545,10 @@
 	   GenerateAALesson8($pdf);
 	   GenerateAALesson9($pdf);
 	   GenerateAALesson10($pdf);
+	   GenerateAALesson11($pdf);
+	   GenerateAALesson12($pdf);
+	   GenerateAALesson13($pdf);
+	   GenerateAALesson14($pdf);
    }
 
 ?>
