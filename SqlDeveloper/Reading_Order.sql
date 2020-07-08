@@ -1,6 +1,6 @@
 
 DELETE FROM   merged_reading_order
-WHERE  List = 'Gothtopia'
+WHERE  List = 'Civil_War_II'
 /
 
 DROP   TABLE LIST_HIERARCHY PURGE;
@@ -43,14 +43,14 @@ WHERE  List NOT IN (SELECT Second_List FROM List_Hierarchy)
 SELECT L.*, Level
 FROM   LIST_HIERARCHY L
 CONNECT BY PRIOR Second_List = First_List AND Second_List != First_List
-START WITH First_List = Second_List
---START WITH First_List IN ('Wolverine_Goes_to_Hell', 'Minimum_Carnage', 'X_Termination', 'Spider_Man_Team_Up', 'Revolutionary_War')
+--START WITH First_List = Second_List
+START WITH First_List IN ('Batman_Endgame', 'Robin_War', 'Justice_League_vs._Suicide_Squad', 'Final_Days_of_Superman')
 ORDER BY Level
 /
 
 SELECT List, count(*)  Comics, count(distinct Title) Titles
 FROM   MERGED_READING_ORDER
-WHERE  List IN ('Apocalypse_Wars')
+--WHERE  List  IN ('Batman_Endgame', '', '', 'Final_Days_of_Superman')
 GROUP BY List
 ORDER BY 2
 /
@@ -58,13 +58,13 @@ ORDER BY 2
 
 SELECT *
 FROM   MERGED_READING_ORDER
-WHERE  List IN ('', '', '', '', '', '', 'Civil_War_II')
+WHERE  List  IN ('Batman_Endgame', '', '', 'Final_Days_of_Superman')
 Order By  List, Title, Issue
 /
 
 SELECT List, Title, min(Issue) Min_Issue, max(Issue) Max_Issue
 FROM   MERGED_READING_ORDER
-WHERE  List IN ('', '', '', '', '', '', 'Civil_War_II')
+WHERE  List  IN ('Batman_Endgame', '', '', 'Final_Days_of_Superman')
 Group By  List, Title
 ORDER BY  List, Title
 /
