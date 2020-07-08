@@ -533,6 +533,363 @@
 	   $pdf->AddLessonCode("</body>");
    }
  
+   function GenerateAALesson15($pdf) {
+       $pdf->AddLessonTitle("Make Elements Only Visible to a Screen Reader by Using Custom CSS");
+	   $pdf->AddLessonText("Have you noticed that all of the applied accessibility challenges so far haven't used any CSS? This is to show the importance of a logical document outline, and using semantically meaningful tags around your content before introducing the visual design aspect.");
+	   $pdf->AddLessonText("However, CSS's magic can also improve accessibility on your page when you want to visually hide content meant only for screen readers. This happens when information is in a visual format (like a chart), but screen reader users need an alternative presentation (like a table) to access the data. CSS is used to position the screen reader-only elements off the visual area of the browser window.");
+	   $pdf->AddLessonText("Here's an example of the CSS rules that accomplish this:");
+
+	   $pdf->DrawCodeArea(8);
+	   $pdf->AddLessonCode(".sr-only {");
+	   $pdf->AddLessonCode("  position: absolute;");
+	   $pdf->AddLessonCode("  left: -10000px;");
+	   $pdf->AddLessonCode("  width: 1px;");
+	   $pdf->AddLessonCode("  height: 1px;");
+	   $pdf->AddLessonCode("  top: auto;");
+	   $pdf->AddLessonCode("  overflow: hidden;");
+	   $pdf->AddLessonCode("}");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Note: The following CSS approaches will NOT do the same thing:");
+	   $pdf->AddLessonBullet("display: none; or visibility: hidden; hides content for everyone, including screen reader users");
+	   $pdf->AddLessonBullet("Zero values for pixel sizes, such as width: 0px; height: 0px; removes that element from the flow of your document, meaning screen readers will ignore it");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Camper Cat created a really cool stacked bar chart for his training page, and put the data into a table for his visually impaired users. The table already has an sr-only class, but the CSS rules aren't filled in yet. Give the position an absolute value, the left a -10000px value, and the width and height both 1px values.");
+
+	   $pdf->DrawCodeArea(12);
+	   $pdf->AddLessonCode("<head>");
+	   $pdf->AddLessonCode("  <style>");
+	   $pdf->AddLessonCode("  .sr-only {");
+	   $pdf->AddLessonCode("    position: absolute;");
+	   $pdf->AddLessonCode("    left: -10000px ;");
+	   $pdf->AddLessonCode("    width: 1px;");
+	   $pdf->AddLessonCode("    height: 1px;");
+	   $pdf->AddLessonCode("    top: auto;");
+	   $pdf->AddLessonCode("    overflow: hidden;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  </style>");
+	   $pdf->AddLessonCode("</head>");
+	   
+       $pdf->AddLessonTitle("Make Elements Only Visible to a Screen Reader by Using Custom CSS");
+	   $pdf->DrawCodeArea(58);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Training</h1>");
+	   $pdf->AddLessonCode("    <nav>");
+	   $pdf->AddLessonCode("      <ul>");
+	   $pdf->AddLessonCode("        <li><a href='#stealth'>Stealth &amp; Agility</a></li>");
+	   $pdf->AddLessonCode("        <li><a href='#combat'>Combat</a></li>");
+	   $pdf->AddLessonCode("        <li><a href='#weapons'>Weapons</a></li>");
+	   $pdf->AddLessonCode("      </ul>");
+	   $pdf->AddLessonCode("    </nav>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <section>");
+	   $pdf->AddLessonCode("    <h2>Master Camper Cat's Beginner Three Week Training Program</h2>");
+	   $pdf->AddLessonCode("    <figure>");
+	   $pdf->AddLessonCode("      <!-- Stacked bar chart of weekly training -->");
+	   $pdf->AddLessonCode("      <p>[Stacked bar chart]</p>");
+	   $pdf->AddLessonCode("      <br />");
+	   $pdf->AddLessonCode("      <figcaption>Breakdown per week of time to spend training in stealth, combat, and weapons.</figcaption>");
+	   $pdf->AddLessonCode("    </figure>");
+	   $pdf->AddLessonCode("    <table class='sr-only'>");
+	   $pdf->AddLessonCode("      <caption>Hours of Weekly Training in Stealth, Combat, and Weapons</caption>");
+	   $pdf->AddLessonCode("      <thead>");
+	   $pdf->AddLessonCode("        <tr>");
+	   $pdf->AddLessonCode("          <th></th>");
+	   $pdf->AddLessonCode("          <th scope='col'>Stealth &amp; Agility</th>");
+	   $pdf->AddLessonCode("          <th scope='col'>Combat</th>");
+	   $pdf->AddLessonCode("          <th scope='col'>Weapons</th>");
+	   $pdf->AddLessonCode("          <th scope='col'>Total</th>");
+	   $pdf->AddLessonCode("        </tr>");
+	   $pdf->AddLessonCode("      </thead>");
+	   $pdf->AddLessonCode("      <tbody>");
+	   $pdf->AddLessonCode("        <tr>");
+	   $pdf->AddLessonCode("          <th scope='row'>Week One</th>");
+	   $pdf->AddLessonCode("          <td>3</td>");
+	   $pdf->AddLessonCode("          <td>5</td>");
+	   $pdf->AddLessonCode("          <td>2</td>");
+	   $pdf->AddLessonCode("          <td>10</td>");
+	   $pdf->AddLessonCode("        </tr>");
+	   $pdf->AddLessonCode("        <tr>");
+	   $pdf->AddLessonCode("          <th scope='row'>Week Two</th>");
+	   $pdf->AddLessonCode("          <td>4</td>");
+	   $pdf->AddLessonCode("          <td>5</td>");
+	   $pdf->AddLessonCode("          <td>3</td>");
+	   $pdf->AddLessonCode("          <td>12</td>");
+	   $pdf->AddLessonCode("        </tr>");
+	   $pdf->AddLessonCode("        <tr>");
+	   $pdf->AddLessonCode("          <th scope='row'>Week Three</th>");
+	   $pdf->AddLessonCode("          <td>4</td>");
+	   $pdf->AddLessonCode("          <td>6</td>");
+	   $pdf->AddLessonCode("          <td>3</td>");
+	   $pdf->AddLessonCode("          <td>13</td>");
+	   $pdf->AddLessonCode("        </tr>");
+	   $pdf->AddLessonCode("      </tbody>");
+	   $pdf->AddLessonCode("    </table>");
+	   $pdf->AddLessonCode("  </section>");
+
+       $pdf->AddLessonTitle("Make Elements Only Visible to a Screen Reader by Using Custom CSS");
+	   $pdf->DrawCodeArea(23);
+	   $pdf->AddLessonCode("  <section id='stealth'>");
+	   $pdf->AddLessonCode("    <h2>Stealth &amp; Agility Training</h2>");
+	   $pdf->AddLessonCode("    <article><h3>Climb foliage quickly using a minimum spanning tree approach</h3></article>");
+	   $pdf->AddLessonCode("    <article><h3>No training is NP-complete without parkour</h3></article>");
+	   $pdf->AddLessonCode("  </section>");
+	   $pdf->AddLessonCode("  <section id='combat'>");
+	   $pdf->AddLessonCode("    <h2>Combat Training</h2>");
+	   $pdf->AddLessonCode("    <article><h3>Dispatch multiple enemies with multithreaded tactics</h3></article>");
+	   $pdf->AddLessonCode("    <article><h3>Goodbye, world: 5 proven ways to knock out an opponent</h3></article>");
+	   $pdf->AddLessonCode("  </section>");
+	   $pdf->AddLessonCode("  <section id='weapons'>");
+	   $pdf->AddLessonCode("    <h2>Weapons Training</h2>");
+	   $pdf->AddLessonCode("    <article><h3>Swords: the best tool to literally divide and conquer</h3></article>");
+	   $pdf->AddLessonCode("    <article><h3>Breadth-first or depth-first in multi-weapon training?</h3></article>");
+	   $pdf->AddLessonCode("  </section>");
+	   $pdf->AddLessonCode("  <footer>&copy; 2018 Camper Cat</footer>");
+	   $pdf->AddLessonCode("</body>");
+   }
+ 
+    function GenerateAALesson16($pdf) {
+       $pdf->AddLessonTitle("Improve Readability with High Contrast Text");
+	   $pdf->AddLessonText("Low contrast between the foreground and background colors can make text difficult to read. Sufficient contrast improves the readability of your content, but what exactly does 'sufficient' mean?");
+	   $pdf->AddLessonText("The Web Content Accessibility Guidelines (WCAG) recommend at least a 4.5 to 1 contrast ratio for normal text. The ratio is calculated by comparing the relative luminance values of two colors. This ranges from 1:1 for the same color, or no contrast, to 21:1 for white against black, the strongest contrast. There are many contrast checking tools available online that calculate this ratio for you.");
+	   $pdf->AddLessonText("Camper Cat's choice of light gray text on a white background for his recent blog post has a 1.5:1 contrast ratio, making it hard to read. Change the color of the text from the current gray (#D3D3D3) to a darker gray (#636363) to improve the contrast ratio to 6:1.");
+
+	   $pdf->DrawCodeArea(25);
+	   $pdf->AddLessonCode("<head>");
+	   $pdf->AddLessonCode("  <style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("    color: #636363;");
+	   $pdf->AddLessonCode("    background-color: #FFF;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  </style>");
+	   $pdf->AddLessonCode("</head>");
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Deep Thoughts with Master Camper Cat</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>A Word on the Recent Catnip Doping Scandal</h2>");
+	   $pdf->AddLessonCode("    <p>The influence that catnip has on feline behavior is well-documented, and its use as an herbal supplement in competitive ninja circles remains controversial. Once again, the debate to ban the substance is brought to the public's attention after the high-profile win of Kittytron, a long-time proponent and user of the green stuff, at the Claw of Fury tournament.</p>");
+	   $pdf->AddLessonCode("    <p>As I've stated in the past, I firmly believe a true ninja's skills must come from within, with no external influences. My own catnip use shall continue as purely recreational.</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("</body>");
+   }
+ 
+    function GenerateAALesson17($pdf) {
+       $pdf->AddLessonTitle("Avoid Colorblindness Issues by Using Sufficient Contrast");
+	   $pdf->AddLessonText("Color is a large part of visual design, but its use introduces two accessibility issues. First, color alone should not be used as the only way to convey important information because screen reader users won't see it. Second, foreground and background colors need sufficient contrast so colorblind users can distinguish them.");
+	   $pdf->AddLessonText("Previous challenges covered having text alternatives to address the first issue. The last challenge introduced contrast checking tools to help with the second. The WCAG-recommended contrast ratio of 4.5:1 applies for color use as well as gray-scale combinations.");
+	   $pdf->AddLessonText("Colorblind users have trouble distinguishing some colors from others - usually in hue but sometimes lightness as well. You may recall the contrast ratio is calculated using the relative luminance (or lightness) values of the foreground and background colors.");
+	   $pdf->AddLessonText("In practice, the 4.5:1 contrast ratio can be reached by shading (adding black to) the darker color and tinting (adding white to) the lighter color. Darker shades on the color wheel are considered to be shades of blues, violets, magentas, and reds, whereas lighter tinted colors are oranges, yellows, greens, and blue-greens.");
+	   $pdf->AddLessonText("Camper Cat is experimenting with using color for his blog text and background, but his current combination of a greenish background-color with maroon text color has a 2.5:1 contrast ratio. You can easily adjust the lightness of the colors since he declared them using the CSS hsl() property (which stands for hue, saturation, lightness) by changing the third argument. Increase the background-color lightness value from 35% to 55%, and decrease the color lightness value from 20% to 15%. This improves the contrast to 5.9:1.");
+
+	   $pdf->DrawCodeArea(25);
+	   $pdf->AddLessonCode("<head>");
+	   $pdf->AddLessonCode("  <style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("    color: hsl(0, 55%, 15%);");
+	   $pdf->AddLessonCode("    background-color: hsl(120, 25%, 55%);");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  </style>");
+	   $pdf->AddLessonCode("</head>");
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Deep Thoughts with Master Camper Cat</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>A Word on the Recent Catnip Doping Scandal</h2>");
+	   $pdf->AddLessonCode("    <p>The influence that catnip has on feline behavior is well-documented, and its use as an herbal supplement in competitive ninja circles remains controversial. Once again, the debate to ban the substance is brought to the public's attention after the high-profile win of Kittytron, a long-time proponent and user of the green stuff, at the Claw of Fury tournament.</p>");
+	   $pdf->AddLessonCode("    <p>As I've stated in the past, I firmly believe a true ninja's skills must come from within, with no external influences. My own catnip use shall continue as purely recreational.</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("</body>");
+   }
+ 
+    function GenerateAALesson18($pdf) {
+       $pdf->AddLessonTitle("Avoid Colorblindness Issues by Carefully Choosing Colors that Convey Information");
+	   $pdf->AddLessonText("There are various forms of colorblindness. These can range from a reduced sensitivity to a certain wavelength of light to the inability to see color at all. The most common form is a reduced sensitivity to detect greens.");
+	   $pdf->AddLessonText("For example, if two similar green colors are the foreground and background color of your content, a colorblind user may not be able to distinguish them. Close colors can be thought of as neighbors on the color wheel, and those combinations should be avoided when conveying important information.");
+	   $pdf->AddLessonText("Note: Some online color picking tools include visual simulations of how colors appear for different types of colorblindness. These are great resources in addition to online contrast checking calculators.");
+	   $pdf->AddLessonText("Camper Cat is testing different styles for an important button, but the yellow (#FFFF33) background-color and the green (#33FF33) text color are neighboring hues on the color wheel and virtually indistinguishable for some colorblind users. (Their similar lightness also fails the contrast ratio check). Change the text color to a dark blue (#003366) to solve both problems.");
+
+	   $pdf->DrawCodeArea(16);
+	   $pdf->AddLessonCode("<head>");
+	   $pdf->AddLessonCode("  <style>");
+	   $pdf->AddLessonCode("  button {");
+	   $pdf->AddLessonCode("    color: #003366;");
+	   $pdf->AddLessonCode("    background-color: #FFFF33;");
+	   $pdf->AddLessonCode("    font-size: 14px;");
+	   $pdf->AddLessonCode("    padding: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  </style>");
+	   $pdf->AddLessonCode("</head>");
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Danger!</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <button>Delete Internet</button>");
+	   $pdf->AddLessonCode("</body>");
+   }
+ 
+    function GenerateAALesson19($pdf) {
+       $pdf->AddLessonTitle("Give Links Meaning by Using Descriptive Link Text");
+	   $pdf->AddLessonText("Screen reader users have different options for what type of content their device reads. This includes skipping to (or over) landmark elements, jumping to the main content, or getting a page summary from the headings. Another option is to only hear the links available on a page.");
+	   $pdf->AddLessonText("Screen readers do this by reading the link text, or what's between the anchor (a) tags. Having a list of 'click here' or 'read more' links isn't helpful. Instead, you should use brief but descriptive text within the a tags to provide more meaning for these users.");
+	   $pdf->AddLessonText("The link text that Camper Cat is using is not very descriptive without the surrounding context. Move the anchor (a) tags so they wrap around the text 'information about batteries' instead of 'Click here'.");
+
+	   $pdf->DrawCodeArea(12);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Deep Thoughts with Master Camper Cat</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2>Defeating your Foe: the Red Dot is Ours!</h2>");
+	   $pdf->AddLessonCode("    <p>Felines the world over have been waging war on the most persistent of foes. This red nemesis combines both cunning stealth and lightning speed. But chin up, fellow fighters, our time for victory may soon be near. Click here for <a href=''>information about batteries</a></p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("</body>");
+	   $pdf->AddLessonCode("");
+   }
+ 
+    function GenerateAALesson20($pdf) {
+       $pdf->AddLessonTitle("Make Links Navigable with HTML Access Keys");
+	   $pdf->AddLessonText("HTML offers the accesskey attribute to specify a shortcut key to activate or bring focus to an element. This can make navigation more efficient for keyboard-only users.");
+	   $pdf->AddLessonText("HTML5 allows this attribute to be used on any element, but it's particularly useful when it's used with interactive ones. This includes links, buttons, and form controls.");
+	   $pdf->AddLessonText("Here's an example:");
+
+	   $pdf->DrawCodeArea(1);
+	   $pdf->AddLessonCode("<button accesskey='b'>Important Button</button>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Camper Cat wants the links around the two blog article titles to have keyboard shortcuts so his site's users can quickly navigate to the full story. Add an accesskey attribute to both links and set the first one to 'g' (for Garfield) and the second one to 'c' (for Chuck Norris).");
+
+	   $pdf->DrawCodeArea(23);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Deep Thoughts with Master Camper Cat</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2><a id='first' href='#' accesskey='g'>The Garfield Files: Lasagna as Training Fuel?</a></h2>");
+	   $pdf->AddLessonCode("    <p>The internet is littered with varying opinions on nutritional paradigms, from catnip paleo to hairball cleanses. But let's turn our attention to an often overlooked fitness fuel, and examine the protein-carb-NOM trifecta that is lasagna...</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  <article>");
+	   $pdf->AddLessonCode("    <h2><a id='second' href='#'  accesskey='c'>Is Chuck Norris a Cat Person?</a></h2>");
+	   $pdf->AddLessonCode("    <p>Chuck Norris is widely regarded as the premier martial artist on the planet, and it's a complete coincidence anyone who disagrees with this fact mysteriously disappears soon after. But the real question is, is he a cat person?...</p>");
+	   $pdf->AddLessonCode("  </article>");
+	   $pdf->AddLessonCode("  <footer>&copy; 2018 Camper Cat</footer>");
+	   $pdf->AddLessonCode("</body>");
+   }
+ 
+    function GenerateAALesson21($pdf) {
+       $pdf->AddLessonTitle("Use tabindex to Add Keyboard Focus to an Element");
+	   $pdf->AddLessonText("The HTML tabindex attribute has three distinct functions relating to an element's keyboard focus. When it's on a tag, it indicates that element can be focused on. The value (an integer that's positive, negative, or zero) determines the behavior.");
+	   $pdf->AddLessonText("Certain elements, such as links and form controls, automatically receive keyboard focus when a user tabs through a page. It's in the same order as the elements come in the HTML source markup. This same functionality can be given to other elements, such as div, span, and p, by placing a tabindex='0' attribute on them. Here's an example:");
+
+	   $pdf->DrawCodeArea(1);
+	   $pdf->AddLessonCode("<div tabindex='0'>I need keyboard focus!</div>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Note: A negative tabindex value (typically -1) indicates that an element is focusable, but is not reachable by the keyboard. This method is generally used to bring focus to content programmatically (like when a div used for a pop-up window is activated), and is beyond the scope of these challenges.");
+	   $pdf->AddLessonText("Camper Cat created a new survey to collect information about his users. He knows input fields automatically get keyboard focus, but he wants to make sure his keyboard users pause at the instructions while tabbing through the items. Add a tabindex attribute to the p tag and set its value to '0'. Bonus - using tabindex also enables the CSS pseudo-class :focus to work on the p tag.");
+
+	   $pdf->DrawCodeArea(30);
+	   $pdf->AddLessonCode("<head>");
+	   $pdf->AddLessonCode("  <style>");
+	   $pdf->AddLessonCode("  p:focus {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  </style>");
+	   $pdf->AddLessonCode("</head>");
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Ninja Survey</h1>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <section>");
+	   $pdf->AddLessonCode("    <form>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("      <p tabindex='0'>Instructions: Fill in ALL your information then click <b>Submit</b></p>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("      <label for='username'>Username:</label>");
+	   $pdf->AddLessonCode("      <input type='text' id='username' name='username'><br>");
+	   $pdf->AddLessonCode("      <fieldset>");
+	   $pdf->AddLessonCode("        <legend>What level ninja are you?</legend>");
+	   $pdf->AddLessonCode("        <input id='newbie' type='radio' name='levels' value='newbie'>");
+	   $pdf->AddLessonCode("        <label for='newbie'>Newbie Kitten</label><br>");
+	   $pdf->AddLessonCode("        <input id='intermediate' type='radio' name='levels' value='intermediate'>");
+	   $pdf->AddLessonCode("        <label for='intermediate'>Developing Student</label><br>");
+	   $pdf->AddLessonCode("        <input id='master' type='radio' name='levels' value='master'>");
+	   $pdf->AddLessonCode("        <label for='master'>9th Life Master</label>");
+	   $pdf->AddLessonCode("      </fieldset>");
+	   $pdf->AddLessonCode("      <br>");
+
+       $pdf->AddLessonTitle("Use tabindex to Add Keyboard Focus to an Element");
+	   $pdf->DrawCodeArea(19);
+	   $pdf->AddLessonCode("      <fieldset>");
+	   $pdf->AddLessonCode("      <legend>Select your favorite weapons:</legend>");
+	   $pdf->AddLessonCode("      <input id='stars' type='checkbox' name='weapons' value='stars'>");
+	   $pdf->AddLessonCode("      <label for='stars'>Throwing Stars</label><br>");
+	   $pdf->AddLessonCode("      <input id='nunchucks' type='checkbox' name='weapons' value='nunchucks'>");
+	   $pdf->AddLessonCode("      <label for='nunchucks'>Nunchucks</label><br>");
+	   $pdf->AddLessonCode("      <input id='sai' type='checkbox' name='weapons' value='sai'>");
+	   $pdf->AddLessonCode("      <label for='sai'>Sai Set</label><br>");
+	   $pdf->AddLessonCode("      <input id='sword' type='checkbox' name='weapons' value='sword'>");
+	   $pdf->AddLessonCode("      <label for='sword'>Sword</label>");
+	   $pdf->AddLessonCode("      </fieldset>");
+	   $pdf->AddLessonCode("      <br>");
+	   $pdf->AddLessonCode("      <input type='submit' name='submit' value='Submit'>");
+	   $pdf->AddLessonCode("    </form><br>");
+	   $pdf->AddLessonCode("  </section>");
+	   $pdf->AddLessonCode("  <footer>&copy; 2018 Camper Cat</footer>");
+	   $pdf->AddLessonCode("</body>");
+   }
+ 
+    function GenerateAALesson22($pdf) {
+       $pdf->AddLessonTitle("Use tabindex to Specify the Order of Keyboard Focus for Several Elements");
+	   $pdf->AddLessonText("The tabindex attribute also specifies the exact tab order of elements. This is achieved when the value of the attribute is set to a positive number of 1 or higher.");
+	   $pdf->AddLessonText("Setting a tabindex='1' will bring keyboard focus to that element first. Then it cycles through the sequence of specified tabindex values (2, 3, etc.), before moving to default and tabindex='0' items.");
+	   $pdf->AddLessonText("It's important to note that when the tab order is set this way, it overrides the default order (which uses the HTML source). This may confuse users who are expecting to start navigation from the top of the page. This technique may be necessary in some circumstances, but in terms of accessibility, take care before applying it.");
+	   $pdf->AddLessonText("Here's an example:");
+
+	   $pdf->DrawCodeArea(2);
+	   $pdf->AddLessonCode("<div tabindex='1'>I get keyboard focus, and I get it first!</div>");
+	   $pdf->AddLessonCode("<div tabindex='2'>I get keyboard focus, and I get it second!</div>");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("Camper Cat has a search field on his Inspirational Quotes page that he plans to position in the upper right corner with CSS. He wants the search input and submit input form controls to be the first two items in the tab order. Add a tabindex attribute set to '1' to the search input, and a tabindex attribute set to '2' to the submit input.");
+
+	   $pdf->DrawCodeArea(32);
+	   $pdf->AddLessonCode("<body>");
+	   $pdf->AddLessonCode("  <header>");
+	   $pdf->AddLessonCode("    <h1>Even Deeper Thoughts with Master Camper Cat</h1>");
+	   $pdf->AddLessonCode("    <nav>");
+	   $pdf->AddLessonCode("      <ul>");
+	   $pdf->AddLessonCode("        <li><a href=''>Home</a></li>");
+	   $pdf->AddLessonCode("        <li><a href=''>Blog</a></li>");
+	   $pdf->AddLessonCode("        <li><a href=''>Training</a></li>");
+	   $pdf->AddLessonCode("      </ul>");
+	   $pdf->AddLessonCode("    </nav>");
+	   $pdf->AddLessonCode("  </header>");
+	   $pdf->AddLessonCode("  <form>");
+	   $pdf->AddLessonCode("    <label for='search'>Search:</label>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("    <input type='search' name='search' id='search'  tabindex='1'>");
+	   $pdf->AddLessonCode("    <input type='submit' name='submit' value='Submit' id='submit'  tabindex='2'>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  </form>");
+	   $pdf->AddLessonCode("  <h2>Inspirational Quotes</h2>");
+	   $pdf->AddLessonCode("  <blockquote>");
+	   $pdf->AddLessonCode("    <p>&ldquo;There's no Theory of Evolution, just a list of creatures I've allowed to live.&rdquo;<br>");
+	   $pdf->AddLessonCode("    - Chuck Norris</p>");
+	   $pdf->AddLessonCode("  </blockquote>");
+	   $pdf->AddLessonCode("  <blockquote>");
+	   $pdf->AddLessonCode("    <p>&ldquo;Wise men say forgiveness is divine, but never pay full price for late pizza.&rdquo;<br>");
+	   $pdf->AddLessonCode("    - TMNT</p>");
+	   $pdf->AddLessonCode("  </blockquote>");
+	   $pdf->AddLessonCode("  <footer>&copy; 2018 Camper Cat</footer>");
+	   $pdf->AddLessonCode("</body>");   
+   }
+ 
  function GenerateAppliedAccessManual($pdf) {
 	   $pdf->AddSubject("Introduction to the Applied Accessibility Challenges");
 	   GenerateAALesson1($pdf);
@@ -549,6 +906,14 @@
 	   GenerateAALesson12($pdf);
 	   GenerateAALesson13($pdf);
 	   GenerateAALesson14($pdf);
+	   GenerateAALesson15($pdf);
+	   GenerateAALesson16($pdf);
+	   GenerateAALesson17($pdf);
+	   GenerateAALesson18($pdf);
+	   GenerateAALesson19($pdf);
+	   GenerateAALesson20($pdf);
+	   GenerateAALesson21($pdf);
+	   GenerateAALesson22($pdf);
    }
 
 ?>
