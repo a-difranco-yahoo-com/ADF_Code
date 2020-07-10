@@ -128,16 +128,282 @@
 	   $pdf->AddLessonCode("    <button class='like-btn'>Like</button>");
 	   $pdf->AddLessonCode("  </div>");
 	   $pdf->AddLessonCode("</footer>");
-
-
    }
  
+   function GenerateFLLesson3($pdf) {
+       $pdf->AddLessonTitle("Use the flex-direction Property to Make a Row");
+	   $pdf->AddLessonText("Adding display: flex to an element turns it into a flex container. This makes it possible to align any children of that element into rows or columns. You do this by adding the flex-direction property to the parent item and setting it to row or column. Creating a row will align the children horizontally, and creating a column will align the children vertically.");
+	   $pdf->AddLessonText("Other options for flex-direction are row-reverse and column-reverse.");
+	   $pdf->AddLessonText("Note: The default value for the flex-direction property is row.");
+	   $pdf->AddLessonText("Add the CSS property flex-direction to the #box-container element, and give it a value of row-reverse.");
 
+	   $pdf->DrawCodeArea("22");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #box-container {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    height: 500px;");
+	   $pdf->AddLessonCode("    flex-direction: row-reverse;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-1 {");
+	   $pdf->AddLessonCode("    background-color: dodgerblue;");
+	   $pdf->AddLessonCode("    width: 50%;");
+	   $pdf->AddLessonCode("    height: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-2 {");
+	   $pdf->AddLessonCode("    background-color: orangered;");
+	   $pdf->AddLessonCode("    width: 50%;");
+	   $pdf->AddLessonCode("    height: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='box-container'>");
+	   $pdf->AddLessonCode("  <div id='box-1'></div>");
+	   $pdf->AddLessonCode("  <div id='box-2'></div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+ 
+   function GenerateFLLesson4($pdf) {
+       $pdf->AddLessonTitle("Apply the flex-direction Property to Create Rows in the Tweet Embed");
+	   $pdf->AddLessonText("The header and footer in the tweet embed example have child items that could be arranged as rows using the flex-direction property. This tells CSS to align the children horizontally.");
+	   $pdf->AddLessonText("Add the CSS property flex-direction to both the header and footer and set the value to row.");
+
+	   $pdf->DrawCodeArea("50");
+ 	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("    font-family: Arial, sans-serif;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    flex-direction: row;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .profile-thumbnail {");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    border-radius: 4px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .profile-name {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    margin-left: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .follow-btn {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    margin: 0 0 0 auto;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .follow-btn button {");
+	   $pdf->AddLessonCode("    border: 0;");
+	   $pdf->AddLessonCode("    border-radius: 3px;");
+	   $pdf->AddLessonCode("    padding: 5px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header h3, header h4 {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    margin: 0;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #inner p {");
+	   $pdf->AddLessonCode("    margin-bottom: 10px;");
+	   $pdf->AddLessonCode("    font-size: 20px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #inner hr {");
+	   $pdf->AddLessonCode("    margin: 20px 0;");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    opacity: 0.1;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    flex-direction: row;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .stats {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    font-size: 15px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .stats strong {");
+	   $pdf->AddLessonCode("    font-size: 18px;");
+	   $pdf->AddLessonCode("  }");
+
+       $pdf->AddLessonTitle("Apply the flex-direction Property to Create Rows in the Tweet Embed (Cont'd)");
+	   $pdf->DrawCodeArea("48");
+	   $pdf->AddLessonCode("  footer .stats .likes {");
+	   $pdf->AddLessonCode("    margin-left: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .cta {");
+	   $pdf->AddLessonCode("    margin-left: auto;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .cta button {");
+	   $pdf->AddLessonCode("    border: 0;");
+	   $pdf->AddLessonCode("    background: transparent;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");	   
+	   $pdf->AddLessonCode("<header>");
+	   $pdf->AddLessonCode("  <img src='https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg' alt='Quincy Larson's profile picture' class='profile-thumbnail'>");
+	   $pdf->AddLessonCode("  <div class='profile-name'>");
+	   $pdf->AddLessonCode("    <h3>Quincy Larson</h3>");
+	   $pdf->AddLessonCode("    <h4>@ossia</h4>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("  <div class='follow-btn'>");
+	   $pdf->AddLessonCode("    <button>Follow</button>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</header>");
+	   $pdf->AddLessonCode("<div id='inner'>");
+	   $pdf->AddLessonCode("  <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>");
+	   $pdf->AddLessonCode("  <span class='date'>1:32 PM - 12 Jan 2018</span>");
+	   $pdf->AddLessonCode("  <hr>");
+	   $pdf->AddLessonCode("</div>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<footer>");
+	   $pdf->AddLessonCode("  <div class='stats'>");
+	   $pdf->AddLessonCode("    <div class='Retweets'>");
+	   $pdf->AddLessonCode("      <strong>107</strong> Retweets");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("    <div class='likes'>");
+	   $pdf->AddLessonCode("      <strong>431</strong> Likes");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("  <div class='cta'>");
+	   $pdf->AddLessonCode("    <button class='share-btn'>Share</button>");
+	   $pdf->AddLessonCode("    <button class='retweet-btn'>Retweet</button>");
+	   $pdf->AddLessonCode("    <button class='like-btn'>Like</button>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</footer>");
+   }
+	   
+   function GenerateFLLesson5($pdf) {
+       $pdf->AddLessonTitle("Use the flex-direction Property to Make a Column");
+	   $pdf->AddLessonText("The last two challenges used the flex-direction property set to row. This property can also create a column by vertically stacking the children of a flex container.");
+	   $pdf->AddLessonText("Add the CSS property flex-direction to the #box-container element, and give it a value of column.");
+
+	   $pdf->DrawCodeArea("22");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #box-container {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    height: 500px;");
+	   $pdf->AddLessonCode("    flex-direction: column;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-1 {");
+	   $pdf->AddLessonCode("    background-color: dodgerblue;");
+	   $pdf->AddLessonCode("    width: 50%;");
+	   $pdf->AddLessonCode("    height: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-2 {");
+	   $pdf->AddLessonCode("    background-color: orangered;");
+	   $pdf->AddLessonCode("    width: 50%;");
+	   $pdf->AddLessonCode("    height: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='box-container'>");
+	   $pdf->AddLessonCode("  <div id='box-1'></div>");
+	   $pdf->AddLessonCode("  <div id='box-2'></div>");
+	   $pdf->AddLessonCode("</div>");	   
+   }
+	   
+   function GenerateFLLesson6($pdf) {
+       $pdf->AddLessonTitle("Apply the flex-direction Property to Create a Column in the Tweet Embed");
+	   $pdf->AddLessonText("The tweet embed header and footer used the flex-direction property earlier with a row value. Similarly, the items inside the .profile-name element would work well stacked as a column.");
+	   $pdf->AddLessonText("Add the CSS property flex-direction to the header's .profile-name element and set the value to column.");
+
+	   $pdf->DrawCodeArea("40");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("    font-family: Arial, sans-serif;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header, footer {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    flex-direction: row;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .profile-thumbnail {");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    border-radius: 4px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .profile-name {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    flex-direction: column;");
+	   $pdf->AddLessonCode("    margin-left: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .follow-btn {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    margin: 0 0 0 auto;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .follow-btn button {");
+	   $pdf->AddLessonCode("    border: 0;");
+	   $pdf->AddLessonCode("    border-radius: 3px;");
+	   $pdf->AddLessonCode("    padding: 5px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header h3, header h4 {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    margin: 0;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #inner p {");
+	   $pdf->AddLessonCode("    margin-bottom: 10px;");
+	   $pdf->AddLessonCode("    font-size: 20px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #inner hr {");
+	   $pdf->AddLessonCode("    margin: 20px 0;");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    opacity: 0.1;");
+	   $pdf->AddLessonCode("  }");
+	   
+       $pdf->AddLessonTitle("Apply the flex-direction Property to Create a Column in the Tweet Embed (Cont'd)");
+	   $pdf->DrawCodeArea("53");
+	   $pdf->AddLessonCode("  footer .stats {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    font-size: 15px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .stats strong {");
+	   $pdf->AddLessonCode("    font-size: 18px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .stats .likes {");
+	   $pdf->AddLessonCode("    margin-left: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .cta {");
+	   $pdf->AddLessonCode("    margin-left: auto;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .cta button {");
+	   $pdf->AddLessonCode("    border: 0;");
+	   $pdf->AddLessonCode("    background: transparent;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<header>");
+	   $pdf->AddLessonCode("  <img src='https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg' alt='Quincy Larson's profile picture' class='profile-thumbnail'>");
+	   $pdf->AddLessonCode("  <div class='profile-name'>");
+	   $pdf->AddLessonCode("    <h3>Quincy Larson</h3>");
+	   $pdf->AddLessonCode("    <h4>@ossia</h4>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("  <div class='follow-btn'>");
+	   $pdf->AddLessonCode("    <button>Follow</button>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</header>");
+	   $pdf->AddLessonCode("<div id='inner'>");
+	   $pdf->AddLessonCode("  <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>");
+	   $pdf->AddLessonCode("  <span class='date'>1:32 PM - 12 Jan 2018</span>");
+	   $pdf->AddLessonCode("  <hr>");
+	   $pdf->AddLessonCode("</div>");
+	   $pdf->AddLessonCode("<footer>");
+	   $pdf->AddLessonCode("  <div class='stats'>");
+	   $pdf->AddLessonCode("    <div class='Retweets'>");
+	   $pdf->AddLessonCode("      <strong>107</strong> Retweets");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("    <div class='likes'>");
+	   $pdf->AddLessonCode("      <strong>431</strong> Likes");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("  <div class='cta'>");
+	   $pdf->AddLessonCode("    <button class='share-btn'>Share</button>");
+	   $pdf->AddLessonCode("    <button class='retweet-btn'>Retweet</button>");
+	   $pdf->AddLessonCode("    <button class='like-btn'>Like</button>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</footer>");
+   }
+	   
 
  function GenerateCSSFlexboxManual($pdf) {
 	   $pdf->AddSubject("Introduction to the CSS Flexbox Challenges");
 	   GenerateFlLesson1($pdf);
 	   GenerateFlLesson2($pdf);
+	   GenerateFlLesson3($pdf);
+	   GenerateFlLesson4($pdf);
+	   GenerateFlLesson5($pdf);
+	   GenerateFlLesson6($pdf);
    }
 
 ?>
