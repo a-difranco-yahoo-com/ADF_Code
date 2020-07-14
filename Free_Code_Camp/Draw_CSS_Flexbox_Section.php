@@ -394,7 +394,298 @@
 	   $pdf->AddLessonCode("  </div>");
 	   $pdf->AddLessonCode("</footer>");
    }
+
+   function GenerateFLLesson7($pdf) {
+       $pdf->AddLessonTitle("Align Elements Using the justify-content Property");
+	   $pdf->AddLessonText("Sometimes the flex items within a flex container do not fill all the space in the container. It is common to want to tell CSS how to align and space out the flex items a certain way. Fortunately, the justify-content property has several options to do this. But first, there is some important terminology to understand before reviewing those options.");
+	   $pdf->AddLessonText("Here is a useful image showing a row to illustrate the concepts below.");
+	   $pdf->AddLessonText("Recall that setting a flex container as a row places the flex items side-by-side from left-to-right. A flex container set as a column places the flex items in a vertical stack from top-to-bottom. For each, the direction the flex items are arranged is called the main axis. For a row, this is a horizontal line that cuts through each item. And for a column, the main axis is a vertical line through the items.");
+	   $pdf->AddLessonText("There are several options for how to space the flex items along the line that is the main axis. One of the most commonly used is justify-content: center;, which aligns all the flex items to the center inside the flex container. Others options include:");
+
+	   $pdf->AddLessonBullet("flex-start: aligns items to the start of the flex container. For a row, this pushes the items to the left of the container. For a column, this pushes the items to the top of the container. This is the default alignment if no justify-content is specified.");
+	   $pdf->AddLessonBullet("flex-end: aligns items to the end of the flex container. For a row, this pushes the items to the right of the container. For a column, this pushes the items to the bottom of the container.");
+	   $pdf->AddLessonBullet("space-between: aligns items to the center of the main axis, with extra space placed between the items. The first and last items are pushed to the very edge of the flex container. For example, in a row the first item is against the left side of the container, the last item is against the right side of the container, then the remaining space is distributed evenly among the other items.");
+	   $pdf->AddLessonBullet("space-around: similar to space-between but the first and last items are not locked to the edges of the container, the space is distributed around all the items with a half space on either end of the flex container.");
+	   $pdf->AddLessonBullet("space-evenly: Distributes space evenly between the flex items with a full space at either end of the flex container");
+
+	   $pdf->AddLessonText("An example helps show this property in action. Add the CSS property justify-content to the #box-container element, and give it a value of center.");
+	   $pdf->AddLessonText("Bonus");
+	   $pdf->AddLessonText("Try the other options for the justify-content property in the code editor to see their differences. But note that a value of center is the only one that will pass this challenge.");
+
+       $pdf->AddLessonTitle("Align Elements Using the justify-content Property (Cont'd)");
+	   $pdf->DrawCodeArea("25");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #box-container {");
+	   $pdf->AddLessonCode("    background: gray;");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    height: 500px;");
+	   $pdf->AddLessonCode("   justify-content: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-1 {");
+	   $pdf->AddLessonCode("    background-color: dodgerblue;");
+	   $pdf->AddLessonCode("    width: 25%;");
+	   $pdf->AddLessonCode("    height: 100%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  #box-2 {");
+	   $pdf->AddLessonCode("    background-color: orangered;");
+	   $pdf->AddLessonCode("    width: 25%;");
+	   $pdf->AddLessonCode("    height: 100%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='box-container'>");
+	   $pdf->AddLessonCode("  <div id='box-1'></div>");
+	   $pdf->AddLessonCode("  <div id='box-2'></div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateFLLesson8($pdf) {
+       $pdf->AddLessonTitle("Use the justify-content Property in the Tweet Embed");
+	   $pdf->AddLessonText("The last challenge showed an example of the justify-content property. For the tweet embed, this property can be applied to align the items in the .profile-name element.");
+	   $pdf->AddLessonText("Add the CSS property justify-content to the header's .profile-name element and set the value to any of the options from the last challenge.");
+
+	   $pdf->DrawCodeArea("41");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("    font-family: Arial, sans-serif;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header, footer {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    flex-direction: row;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .profile-thumbnail {");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    border-radius: 4px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .profile-name {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    flex-direction: column;");
+	   $pdf->AddLessonCode("    justify-content: flex-start;");
+	   $pdf->AddLessonCode("    margin-left: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .follow-btn {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    margin: 0 0 0 auto;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .follow-btn button {");
+	   $pdf->AddLessonCode("    border: 0;");
+	   $pdf->AddLessonCode("    border-radius: 3px;");
+	   $pdf->AddLessonCode("    padding: 5px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header h3, header h4 {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    margin: 0;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #inner p {");
+	   $pdf->AddLessonCode("    margin-bottom: 10px;");
+	   $pdf->AddLessonCode("    font-size: 20px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #inner hr {");
+	   $pdf->AddLessonCode("    margin: 20px 0;");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    opacity: 0.1;");
+	   $pdf->AddLessonCode("  }");
 	   
+       $pdf->AddLessonTitle("Use the justify-content Property in the Tweet Embed (Cont'd)");
+	   $pdf->DrawCodeArea("53");   
+	   $pdf->AddLessonCode("  footer .stats {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    font-size: 15px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .stats strong {");
+	   $pdf->AddLessonCode("    font-size: 18px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .stats .likes {");
+	   $pdf->AddLessonCode("    margin-left: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .cta {");
+	   $pdf->AddLessonCode("    margin-left: auto;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .cta button {");
+	   $pdf->AddLessonCode("    border: 0;");
+	   $pdf->AddLessonCode("    background: transparent;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<header>");
+	   $pdf->AddLessonCode("  <img src='https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg' alt='Quincy Larson's profile picture' class='profile-thumbnail'>");
+	   $pdf->AddLessonCode("  <div class='profile-name'>");
+	   $pdf->AddLessonCode("    <h3>Quincy Larson</h3>");
+	   $pdf->AddLessonCode("    <h4>@ossia</h4>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("  <div class='follow-btn'>");
+	   $pdf->AddLessonCode("    <button>Follow</button>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</header>");
+	   $pdf->AddLessonCode("<div id='inner'>");
+	   $pdf->AddLessonCode("  <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>");
+	   $pdf->AddLessonCode("  <span class='date'>1:32 PM - 12 Jan 2018</span>");
+	   $pdf->AddLessonCode("  <hr>");
+	   $pdf->AddLessonCode("</div>");
+	   $pdf->AddLessonCode("<footer>");
+	   $pdf->AddLessonCode("  <div class='stats'>");
+	   $pdf->AddLessonCode("    <div class='Retweets'>");
+	   $pdf->AddLessonCode("      <strong>107</strong> Retweets");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("    <div class='likes'>");
+	   $pdf->AddLessonCode("      <strong>431</strong> Likes");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("  <div class='cta'>");
+	   $pdf->AddLessonCode("    <button class='share-btn'>Share</button>");
+	   $pdf->AddLessonCode("    <button class='retweet-btn'>Retweet</button>");
+	   $pdf->AddLessonCode("    <button class='like-btn'>Like</button>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</footer>");
+   }
+
+   function GenerateFLLesson9($pdf) {
+       $pdf->AddLessonTitle("Align Elements Using the align-items Property");
+	   $pdf->AddLessonText("The align-items property is similar to justify-content. Recall that the justify-content property aligned flex items along the main axis. For rows, the main axis is a horizontal line and for columns it is a vertical line.");
+	   $pdf->AddLessonText("Flex containers also have a cross axis which is the opposite of the main axis. For rows, the cross axis is vertical and for columns, the cross axis is horizontal.");
+	   $pdf->AddLessonText("CSS offers the align-items property to align flex items along the cross axis. For a row, it tells CSS how to push the items in the entire row up or down within the container. And for a column, how to push all the items left or right within the container.");
+	   $pdf->AddLessonText("The different values available for align-items include:");
+
+	   $pdf->AddLessonBullet("flex-start: aligns items to the start of the flex container. For rows, this aligns items to the top of the container. For columns, this aligns items to the left of the container.");
+	   $pdf->AddLessonBullet("flex-end: aligns items to the end of the flex container. For rows, this aligns items to the bottom of the container. For columns, this aligns items to the right of the container.");
+	   $pdf->AddLessonBullet("center: align items to the center. For rows, this vertically aligns items (equal space above and below the items). For columns, this horizontally aligns them (equal space to the left and right of the items).");
+	   $pdf->AddLessonBullet("stretch: stretch the items to fill the flex container. For example, rows items are stretched to fill the flex container top-to-bottom. This is the default value if no align-items value is specified.");
+	   $pdf->AddLessonBullet("baseline: align items to their baselines. Baseline is a text concept, think of it as the line that the letters sit on.");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("An example helps show this property in action. Add the CSS property align-items to the #box-container element, and give it a value of center.");
+	   $pdf->AddLessonText("Bonus");
+	   $pdf->AddLessonText("Try the other options for the align-items property in the code editor to see their differences. But note that a value of center is the only one that will pass this challenge.");
+
+       $pdf->AddLessonTitle("Align Elements Using the align-items Property (Cont'd)");
+	   $pdf->DrawCodeArea("24");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #box-container {");
+	   $pdf->AddLessonCode("    background: gray;");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    height: 500px;");
+	   $pdf->AddLessonCode("   align-items: center;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-1 {");
+	   $pdf->AddLessonCode("    background-color: dodgerblue;");
+	   $pdf->AddLessonCode("    width: 200px;");
+	   $pdf->AddLessonCode("    font-size: 24px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-2 {");
+	   $pdf->AddLessonCode("    background-color: orangered;");
+	   $pdf->AddLessonCode("    width: 200px;");
+	   $pdf->AddLessonCode("    font-size: 18px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='box-container'>");
+	   $pdf->AddLessonCode("  <div id='box-1'><p>Hello</p></div>");
+	   $pdf->AddLessonCode("  <div id='box-2'><p>Goodbye</p></div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateFLLesson10($pdf) {
+       $pdf->AddLessonTitle("Use the align-items Property in the Tweet Embed");
+	   $pdf->AddLessonText("The last challenge introduced the align-items property and gave an example. This property can be applied to a few tweet embed elements to align the flex items inside them.");
+	   $pdf->AddLessonText("Add the CSS property align-items to the header's .follow-btn element. Set the value to center.");
+
+	   $pdf->DrawCodeArea("46");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  body {");
+	   $pdf->AddLessonCode("    font-family: Arial, sans-serif;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header, footer {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    flex-direction: row;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .profile-thumbnail {");
+	   $pdf->AddLessonCode("    width: 50px;");
+	   $pdf->AddLessonCode("    height: 50px;");
+	   $pdf->AddLessonCode("    border-radius: 4px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .profile-name {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    flex-direction: column;");
+	   $pdf->AddLessonCode("    justify-content: center;");
+	   $pdf->AddLessonCode("    margin-left: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .follow-btn {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    align-items: center;");
+	   $pdf->AddLessonCode("    margin: 0 0 0 auto;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header .follow-btn button {");
+	   $pdf->AddLessonCode("    border: 0;");
+	   $pdf->AddLessonCode("    border-radius: 3px;");
+	   $pdf->AddLessonCode("    padding: 5px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  header h3, header h4 {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    margin: 0;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #inner p {");
+	   $pdf->AddLessonCode("    margin-bottom: 10px;");
+	   $pdf->AddLessonCode("    font-size: 20px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #inner hr {");
+	   $pdf->AddLessonCode("    margin: 20px 0;");
+	   $pdf->AddLessonCode("    border-style: solid;");
+	   $pdf->AddLessonCode("    opacity: 0.1;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .stats {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    font-size: 15px;");
+	   $pdf->AddLessonCode("  }");
+
+       $pdf->AddLessonTitle("Use the align-items Property in the Tweet Embed (Cont'd)");
+	   $pdf->DrawCodeArea("49");
+	   $pdf->AddLessonCode("  footer .stats strong {");
+	   $pdf->AddLessonCode("    font-size: 18px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .stats .likes {");
+	   $pdf->AddLessonCode("    margin-left: 10px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .cta {");
+	   $pdf->AddLessonCode("    margin-left: auto;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  footer .cta button {");
+	   $pdf->AddLessonCode("    border: 0;");
+	   $pdf->AddLessonCode("    background: transparent;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("<header>");
+	   $pdf->AddLessonCode("  <img src='https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg' alt='Quincy Larson's profile picture' class='profile-thumbnail'>");
+	   $pdf->AddLessonCode("  <div class='profile-name'>");
+	   $pdf->AddLessonCode("    <h3>Quincy Larson</h3>");
+	   $pdf->AddLessonCode("    <h4>@ossia</h4>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("  <div class='follow-btn'>");
+	   $pdf->AddLessonCode("    <button>Follow</button>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</header>");
+	   $pdf->AddLessonCode("<div id='inner'>");
+	   $pdf->AddLessonCode("  <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>");
+	   $pdf->AddLessonCode("  <span class='date'>1:32 PM - 12 Jan 2018</span>");
+	   $pdf->AddLessonCode("  <hr>");
+	   $pdf->AddLessonCode("</div>");
+	   $pdf->AddLessonCode("<footer>");
+	   $pdf->AddLessonCode("  <div class='stats'>");
+	   $pdf->AddLessonCode("    <div class='Retweets'>");
+	   $pdf->AddLessonCode("      <strong>107</strong> Retweets");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("    <div class='likes'>");
+	   $pdf->AddLessonCode("      <strong>431</strong> Likes");
+	   $pdf->AddLessonCode("    </div>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("  <div class='cta'>");
+	   $pdf->AddLessonCode("    <button class='share-btn'>Share</button>");
+	   $pdf->AddLessonCode("    <button class='retweet-btn'>Retweet</button>");
+	   $pdf->AddLessonCode("    <button class='like-btn'>Like</button>");
+	   $pdf->AddLessonCode("  </div>");
+	   $pdf->AddLessonCode("</footer>");
+   }
+
 
  function GenerateCSSFlexboxManual($pdf) {
 	   $pdf->AddSubject("Introduction to the CSS Flexbox Challenges");
@@ -404,6 +695,10 @@
 	   GenerateFlLesson4($pdf);
 	   GenerateFlLesson5($pdf);
 	   GenerateFlLesson6($pdf);
+	   GenerateFlLesson7($pdf);
+	   GenerateFlLesson8($pdf);
+	   GenerateFlLesson9($pdf);
+	   GenerateFlLesson10($pdf);
    }
 
 ?>
