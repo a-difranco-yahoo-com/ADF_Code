@@ -2,6 +2,7 @@
 CREATE OR REPLACE PACKAGE MAGNETISM_CONTROL
 AS
     Procedure Reset;
+    Procedure Run_Steps(p_NoOfSteps NUMBER);
     Procedure Load_EG(p_StopTime DATE);
     Procedure Load_EGJ(p_StopTime DATE);
     Procedure Load_DEGJ(p_StopTime DATE);
@@ -586,6 +587,33 @@ AS
        WHEN OTHERS THEN
         RAISE_APPLICATION_ERROR(-20345, 'ERROR: MAGNETISM_CONTROL.Load_ABCDEFGHJK : ' || sqlerrm);
     END;
+
+    Procedure Run_Steps(p_NoOfSteps NUMBER)
+    AS
+         Loc_StopTime  DATE;
+
+    BEGIN 
+      UPDATE MAGNETISM_STOP SET Stop_Date = Sysdate + 365;
+      COMMIT;
+      for i in 1..p_NoOfSteps   Loop
+         for i in 1..100 Loop
+            SELECT Stop_Date INTO Loc_StopTime FROM MAGNETISM_STOP;
+            MAGNETISM_CONTROL.Load_ABCDEFGHJK(Loc_StopTime);
+            MAGNETISM_CONTROL.Load_ABCDEFGHJ(Loc_StopTime);
+       end loop;
+       MAGNETISM_CONTROL.Load_ABCDEFGJ(Loc_StopTime);
+       MAGNETISM_CONTROL.Load_BCDEFGJ(Loc_StopTime);
+       MAGNETISM_CONTROL.Load_BCDEGJ(Loc_StopTime);
+       MAGNETISM_CONTROL.Load_BDEGJ(Loc_StopTime);
+       MAGNETISM_CONTROL.Load_DEGJ(Loc_StopTime);
+       MAGNETISM_CONTROL.Load_EGJ(Loc_StopTime);
+       MAGNETISM_CONTROL.Load_EG(Loc_StopTime);
+    end loop;
+    EXCEPTION
+       WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20345, 'ERROR: MAGNETISM_CONTROL.Run_Steps : ' || sqlerrm);
+    END;
+
 
     Procedure Reset
     AS
