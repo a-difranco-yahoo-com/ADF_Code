@@ -686,6 +686,253 @@
 	   $pdf->AddLessonCode("</footer>");
    }
 
+   function GenerateFLLesson11($pdf) {
+       $pdf->AddLessonTitle("Use the flex-wrap Property to Wrap a Row or Column");
+	   $pdf->AddLessonText("CSS flexbox has a feature to split a flex item into multiple rows (or columns). By default, a flex container will fit all flex items together. For example, a row will all be on one line.");
+	   $pdf->AddLessonText("However, using the flex-wrap property tells CSS to wrap items. This means extra items move into a new row or column. The break point of where the wrapping happens depends on the size of the items and the size of the container.");
+	   $pdf->AddLessonText("CSS also has options for the direction of the wrap:");
+
+	   $pdf->AddLessonBullet("nowrap: this is the default setting, and does not wrap items.");
+	   $pdf->AddLessonBullet("wrap: wraps items from left-to-right if they are in a row, or top-to-bottom if they are in a column.");
+	   $pdf->AddLessonBullet("wrap-reverse: wraps items from right-to-left if they are in a row, or bottom-to-top if they are in a column.");
+
+	   $pdf->AddLessonText("");
+	   $pdf->AddLessonText("The current layout has too many boxes for one row. Add the CSS property flex-wrap to the #box-container element, and give it a value of wrap.");
+
+	   $pdf->DrawCodeArea("38");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #box-container {");
+	   $pdf->AddLessonCode("    background: gray;");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    height: 100%;");
+	   $pdf->AddLessonCode("    flex-wrap: wrap;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-1 {");
+	   $pdf->AddLessonCode("    background-color: dodgerblue;");
+	   $pdf->AddLessonCode("    width: 25%;");
+	   $pdf->AddLessonCode("    height: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-2 {");
+	   $pdf->AddLessonCode("    background-color: orangered;");
+	   $pdf->AddLessonCode("    width: 25%;");
+	   $pdf->AddLessonCode("    height: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-3 {");
+	   $pdf->AddLessonCode("    background-color: violet;");
+	   $pdf->AddLessonCode("    width: 25%;");
+	   $pdf->AddLessonCode("    height: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-4 {");
+	   $pdf->AddLessonCode("    background-color: yellow;");
+	   $pdf->AddLessonCode("    width: 25%;");
+	   $pdf->AddLessonCode("    height: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-5 {");
+	   $pdf->AddLessonCode("    background-color: green;");
+	   $pdf->AddLessonCode("    width: 25%;");
+	   $pdf->AddLessonCode("    height: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-6 {");
+	   $pdf->AddLessonCode("    background-color: black;");
+	   $pdf->AddLessonCode("    width: 25%;");
+	   $pdf->AddLessonCode("    height: 50%;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+   }
+
+   function GenerateFLLesson12($pdf) {
+       $pdf->AddLessonTitle("Use the flex-shrink Property to Shrink Items");
+	   $pdf->AddLessonText("So far, all the properties in the challenges apply to the flex container (the parent of the flex items). However, there are several useful properties for the flex items.");
+	   $pdf->AddLessonText("The first is the flex-shrink property. When it's used, it allows an item to shrink if the flex container is too small. Items shrink when the width of the parent container is smaller than the combined widths of all the flex items within it.");
+	   $pdf->AddLessonText("The flex-shrink property takes numbers as values. The higher the number, the more it will shrink compared to the other items in the container. For example, if one item has a flex-shrink value of 1 and the other has a flex-shrink value of 3, the one with the value of 3 will shrink three times as much as the other.");
+	   $pdf->AddLessonText("Add the CSS property flex-shrink to both #box-1 and #box-2. Give #box-1 a value of 1 and #box-2 a value of 2.");
+
+	   $pdf->DrawCodeArea("23");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #box-container {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    height: 500px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-1 {");
+	   $pdf->AddLessonCode("    background-color: dodgerblue;");
+	   $pdf->AddLessonCode("    width: 100%;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("    flex-shrink: 1;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-2 {");
+	   $pdf->AddLessonCode("    background-color: orangered;");
+	   $pdf->AddLessonCode("    width: 100%;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("    flex-shrink: 2;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='box-container'>");
+	   $pdf->AddLessonCode("  <div id='box-1'></div>");
+	   $pdf->AddLessonCode("  <div id='box-2'></div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateFLLesson13($pdf) {
+       $pdf->AddLessonTitle("Use the flex-grow Property to Expand Items");
+	   $pdf->AddLessonText("The opposite of flex-shrink is the flex-grow property. Recall that flex-shrink controls the size of the items when the container shrinks. The flex-grow property controls the size of items when the parent container expands.");
+	   $pdf->AddLessonText("Using a similar example from the last challenge, if one item has a flex-grow value of 1 and the other has a flex-grow value of 3, the one with the value of 3 will grow three times as much as the other.");
+	   $pdf->AddLessonText("Add the CSS property flex-grow to both #box-1 and #box-2. Give #box-1 a value of 1 and #box-2 a value of 2.");
+
+	   $pdf->DrawCodeArea("24");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #box-container {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    height: 500px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  #box-1 {");
+	   $pdf->AddLessonCode("    background-color: dodgerblue;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("    flex-grow: 1;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  #box-2 {");
+	   $pdf->AddLessonCode("    background-color: orangered;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("    flex-grow: 2;");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='box-container'>");
+	   $pdf->AddLessonCode("  <div id='box-1'></div>");
+	   $pdf->AddLessonCode("  <div id='box-2'></div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateFLLesson14($pdf) {
+       $pdf->AddLessonTitle("Use the flex-basis Property to Set the Initial Size of an Item");
+	   $pdf->AddLessonText("The flex-basis property specifies the initial size of the item before CSS makes adjustments with flex-shrink or flex-grow.");
+	   $pdf->AddLessonText("The units used by the flex-basis property are the same as other size properties (px, em, %, etc.). The value auto sizes items based on the content.");
+	   $pdf->AddLessonText("Set the initial size of the boxes using flex-basis. Add the CSS property flex-basis to both #box-1 and #box-2. Give #box-1 a value of 10em and #box-2 a value of 20em.");
+
+	   $pdf->DrawCodeArea("23");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #box-container {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    height: 500px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  #box-1 {");
+	   $pdf->AddLessonCode("    background-color: dodgerblue;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("    flex-basis: 10em;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("  #box-2 {");
+	   $pdf->AddLessonCode("    background-color: orangered;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("    flex-basis: 20em;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='box-container'>");
+	   $pdf->AddLessonCode("  <div id='box-1'></div>");
+	   $pdf->AddLessonCode("  <div id='box-2'></div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateFLLesson15($pdf) {
+       $pdf->AddLessonTitle("Use the flex Shorthand Property");
+	   $pdf->AddLessonText("There is a shortcut available to set several flex properties at once. The flex-grow, flex-shrink, and flex-basis properties can all be set together by using the flex property.");
+	   $pdf->AddLessonText("For example, flex: 1 0 10px; will set the item to flex-grow: 1;, flex-shrink: 0;, and flex-basis: 10px;.");
+	   $pdf->AddLessonText("The default property settings are flex: 0 1 auto;.");
+	   $pdf->AddLessonText("Add the CSS property flex to both #box-1 and #box-2. Give #box-1 the values so its flex-grow is 2, its flex-shrink is 2, and its flex-basis is 150px. Give #box-2 the values so its flex-grow is 1, its flex-shrink is 1, and its flex-basis is 150px.");
+	   $pdf->AddLessonText("These values will cause #box-1 to grow to fill the extra space at twice the rate of #box-2 when the container is greater than 300px and shrink at twice the rate of #box-2 when the container is less than 300px. 300px is the combined size of the flex-basis values of the two boxes.");
+
+	   $pdf->DrawCodeArea("21");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #box-container {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    height: 500px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-1 {");
+	   $pdf->AddLessonCode("    background-color: dodgerblue;");
+	   $pdf->AddLessonCode("    flex: 2 2 150px;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-2 {");
+	   $pdf->AddLessonCode("    background-color: orangered;");
+	   $pdf->AddLessonCode("    flex: 1 1 150px;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='box-container'>");
+	   $pdf->AddLessonCode("  <div id='box-1'></div>");
+	   $pdf->AddLessonCode("  <div id='box-2'></div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateFLLesson16($pdf) {
+       $pdf->AddLessonTitle("Use the order Property to Rearrange Items");
+	   $pdf->AddLessonText("The order property is used to tell CSS the order of how flex items appear in the flex container. By default, items will appear in the same order they come in the source HTML. The property takes numbers as values, and negative numbers can be used.");
+	   $pdf->AddLessonText("Add the CSS property order to both #box-1 and #box-2. Give #box-1 a value of 2 and give #box-2 a value of 1.");
+
+	   $pdf->DrawCodeArea("23");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #box-container {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    height: 500px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-1 {");
+	   $pdf->AddLessonCode("    background-color: dodgerblue;");
+	   $pdf->AddLessonCode("    order: 2;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("    width: 200px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-2 {");
+	   $pdf->AddLessonCode("    background-color: orangered;");
+	   $pdf->AddLessonCode("    order: 1;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("    width: 200px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='box-container'>");
+	   $pdf->AddLessonCode("  <div id='box-1'></div>");
+	   $pdf->AddLessonCode("  <div id='box-2'></div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
+   function GenerateFLLesson17($pdf) {
+       $pdf->AddLessonTitle("Use the align-self Property");
+	   $pdf->AddLessonText("The final property for flex items is align-self. This property allows you to adjust each item's alignment individually, instead of setting them all at once. This is useful since other common adjustment techniques using the CSS properties float, clear, and vertical-align do not work on flex items.");
+	   $pdf->AddLessonText("align-self accepts the same values as align-items and will override any value set by the align-items property.");
+	   $pdf->AddLessonText("Add the CSS property align-self to both #box-1 and #box-2. Give #box-1 a value of center and give #box-2 a value of flex-end.");
+
+	   $pdf->DrawCodeArea("23");
+	   $pdf->AddLessonCode("<style>");
+	   $pdf->AddLessonCode("  #box-container {");
+	   $pdf->AddLessonCode("    display: flex;");
+	   $pdf->AddLessonCode("    height: 500px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-1 {");
+	   $pdf->AddLessonCode("    background-color: dodgerblue;");
+	   $pdf->AddLessonCode("    align-self: center;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("    width: 200px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("  #box-2 {");
+	   $pdf->AddLessonCode("    background-color: orangered;");
+	   $pdf->AddLessonCode("    align-self: flex-end;");
+	   $pdf->AddLessonCode("    height: 200px;");
+	   $pdf->AddLessonCode("    width: 200px;");
+	   $pdf->AddLessonCode("  }");
+	   $pdf->AddLessonCode("</style>");
+	   $pdf->AddLessonCode("");
+	   $pdf->AddLessonCode("<div id='box-container'>");
+	   $pdf->AddLessonCode("  <div id='box-1'></div>");
+	   $pdf->AddLessonCode("  <div id='box-2'></div>");
+	   $pdf->AddLessonCode("</div>");
+   }
+
 
  function GenerateCSSFlexboxManual($pdf) {
 	   $pdf->AddSubject("Introduction to the CSS Flexbox Challenges");
@@ -699,6 +946,13 @@
 	   GenerateFlLesson8($pdf);
 	   GenerateFlLesson9($pdf);
 	   GenerateFlLesson10($pdf);
+	   GenerateFlLesson11($pdf);
+	   GenerateFlLesson12($pdf);
+	   GenerateFlLesson13($pdf);
+	   GenerateFlLesson14($pdf);
+	   GenerateFlLesson15($pdf);
+	   GenerateFlLesson16($pdf);
+	   GenerateFlLesson17($pdf);
    }
 
 ?>
