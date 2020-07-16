@@ -7,6 +7,7 @@ include 'D:\Php_Code\GitHub_Local\ADF_Code\Free_Code_Camp\Draw_Visual_Design_Sec
 include 'D:\Php_Code\GitHub_Local\ADF_Code\Free_Code_Camp\Draw_Applied_Access_Section.php';
 include 'D:\Php_Code\GitHub_Local\ADF_Code\Free_Code_Camp\Draw_Responsive_Web_Design_Section.php';
 include 'D:\Php_Code\GitHub_Local\ADF_Code\Free_Code_Camp\Draw_CSS_Flexbox_Section.php';
+include 'D:\Php_Code\GitHub_Local\ADF_Code\Free_Code_Camp\Draw_CSS_Grid_Section.php';
 
 
    $pdf = new FREECODECAMP_PDF();
@@ -16,6 +17,7 @@ include 'D:\Php_Code\GitHub_Local\ADF_Code\Free_Code_Camp\Draw_CSS_Flexbox_Secti
    GenerateAppliedAccessManual($pdf);
    GenerateResponsiveDesignManual($pdf);
    GenerateCSSFlexboxManual($pdf);
+   GenerateCSSGridManual($pdf);
    $pdf->Output("Free_Code_Camp.pdf", "F");
 
 ?>
