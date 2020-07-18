@@ -22,6 +22,20 @@ class Comic_Oracle
       }
    }
 
+   public function Get_Investors($data) {
+   	$SQL = " SELECT C.Title, C.First_Name, C.Last_Name, C.Address_1, C.Country, C.Postcode, C.Item_Code "
+	    	  . " FROM   CONTACT      C "
+           . " WHERE  C.Site_Source  = '" . $data->Get_Investor_Type() . "' "
+	        . " AND    trunc(C.Date_Requested) BETWEEN "
+	        . "        trunc( to_date('" . $data->Get_From_Date() . "', 'DD-MM-YY') ) "
+	        . "    AND trunc( to_date('" . $data->Get_To_Date()   . "', 'DD-MM-YY') ) ";
+
+      $stmt = ociparse($this->Connection, $SQL);
+	   oci_execute($stmt);
+	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_NUM);
+	   return $rows;
+   }
+
  
    public function Get_Contacts($search)
    {
@@ -60,6 +74,41 @@ class Comic_Oracle
    
       return $results;
    }
+
+   public function Update_Contact($post)
+   {
+      $SQL = "UPDATE CONTACT "
+           . "SET   TITLE                   = '" . $post['TITLE']             . "', "
+           . "      FIRST_NAME              = '" . $post['FIRST_NAME']        . "', "
+           . "      LAST_NAME               = '" . $post['LAST_NAME']         . "', "
+           . "      ADDRESS_1               = '" . $post['ADDRESS_1']         . "', "
+           . "      ADDRESS_2               = '" . $post['ADDRESS_2']         . "', "
+           . "      ADDRESS_3               = '" . $post['ADDRESS_3']         . "', "
+           . "      ADDRESS_4               = '" . $post['ADDRESS_4']         . "', "
+           . "      ADDRESS_5               = '" . $post['ADDRESS_5']         . "', "
+           . "      ADDRESS_6               = '" . $post['ADDRESS_6']         . "', "
+           . "      COUNTRY                 = '" . $post['COUNTRY']           . "', "
+           . "      POSTCODE                = '" . $post['POSTCODE']          . "', "
+           . "      E_MAIL                  = '" . $post['E_MAIL']            . "', "
+           . "      TELEPHONE_DAYTIME       = '" . $post['TELEPHONE_DAYTIME'] . "', "
+           . "      TELEPHONE_EVENING       = '" . $post['TELEPHONE_EVENING'] . "', "
+           . "      TELEPHONE_MOBILE        = '" . $post['TELEPHONE_MOBILE']  . "', "
+           . "      STATUS                  = '" . $post['STATUS']            . "', "
+           . "      PREF_COMEDY             = '" . $post['PREF_COMEDY']       . "', "
+           . "      PREF_DRAMA              = '" . $post['PREF_DRAMA']        . "', "
+           . "      PREF_HORROR             = '" . $post['PREF_HORROR']       . "', "
+           . "      PREF_ROMANCE            = '" . $post['PREF_ROMANCE']      . "', "
+           . "      PREF_SCIFI              = '" . $post['PREF_SCIFI']        . "', "
+           . "      PREF_THRILLER           = '" . $post['PREF_THRILLER']     . "' "
+           . "WHERE PERSON_ID               = " . $post['id'];
+
+      $stmt = oci_parse($this->Connection, "$SQL");
+      oci_execute($stmt, OCI_NO_AUTO_COMMIT);
+
+      oci_commit($this->Connection);
+      oci_free_statement($stmt);
+   }
+
 
    public function RecordSearch($title, $rows)
    {
