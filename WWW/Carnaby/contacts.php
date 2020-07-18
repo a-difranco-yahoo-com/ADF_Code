@@ -19,14 +19,9 @@ var $curPage;
 var $errormsg;
 }
 
-$login = array('Carnaby', 'Carnaby', '');
-if(!($conn = ocilogon($login[0], $login[1], $login[2]))) {
-  $err = OCIError();
-  print("Error connecting to oracle: ".$err["text"]);
-  exit();
-}
 
-//or die("Problem with connection to database".OCIError().);
+include 'Comic_Oracle.php';
+$Connection = new Comic_Oracle("CARNABY");
 
 $data = new Data;
 $data->curContact = ($_GET['contact']) ? $_GET['contact'] : 0;
@@ -72,35 +67,30 @@ foreach ($data->search as $i => $rec) {
 }
 
 if ($go) {
-  $stmt = ociparse($conn,
-    "begin WebForm.ContactSearch(:t,:f,:l,:a1,:a2,:a3,:a4,:a5,:a6,:c,:pc,:e,:ret); end;");
-  $IFAs = ocinewcursor($conn);
-  ocibindbyname($stmt, ":t",   $_SESSION['carnaby_contacts_search']['TITLE'],      40);
-  ocibindbyname($stmt, ":f",   $_SESSION['carnaby_contacts_search']['FIRST_NAME'], 40);
-  ocibindbyname($stmt, ":l",   $_SESSION['carnaby_contacts_search']['LAST_NAME'],  40);
-  ocibindbyname($stmt, ":a1",  $_SESSION['carnaby_contacts_search']['ADDRESS_1'],  40);
-  ocibindbyname($stmt, ":a2",  $_SESSION['carnaby_contacts_search']['ADDRESS_2'],  40);
-  ocibindbyname($stmt, ":a3",  $_SESSION['carnaby_contacts_search']['ADDRESS_3'],  40);
-  ocibindbyname($stmt, ":a4",  $_SESSION['carnaby_contacts_search']['ADDRESS_4'],  40);
-  ocibindbyname($stmt, ":a5",  $_SESSION['carnaby_contacts_search']['ADDRESS_5'],  40);
-  ocibindbyname($stmt, ":a6",  $_SESSION['carnaby_contacts_search']['ADDRESS_6'],  40);
-  ocibindbyname($stmt, ":c",   $_SESSION['carnaby_contacts_search']['COUNTRY'],    8);
-  ocibindbyname($stmt, ":pc",  $_SESSION['carnaby_contacts_search']['POSTCODE'],   40);
-  ocibindbyname($stmt, ":e",   $_SESSION['carnaby_contacts_search']['E_MAIL'],     80);
-  ocibindbyname($stmt, ":ret", $IFAs, -1, OCI_B_CURSOR);
-  ociexecute($stmt);
-  ociexecute($IFAs);
+  $rows = $Connection->Get_Contacts(
+     $_SESSION['carnaby_contacts_search']['TITLE'],
+     $_SESSION['carnaby_contacts_search']['FIRST_NAME'],
+     $_SESSION['carnaby_contacts_search']['LAST_NAME'],
+     $_SESSION['carnaby_contacts_search']['ADDRESS_1'],
+     $_SESSION['carnaby_contacts_search']['ADDRESS_2'],
+     $_SESSION['carnaby_contacts_search']['ADDRESS_3'],
+     $_SESSION['carnaby_contacts_search']['ADDRESS_4'],
+     $_SESSION['carnaby_contacts_search']['ADDRESS_5'],
+     $_SESSION['carnaby_contacts_search']['ADDRESS_6'],
+     $_SESSION['carnaby_contacts_search']['COUNTRY'],
+     $_SESSION['carnaby_contacts_search']['POSTCODE'],
+     $_SESSION['carnaby_contacts_search']['E_MAIL'] );
 
-  $Rows=0;
-  while (ocifetchinto($IFAs, $row, OCI_ASSOC)) {
-    $rec = array(array("PERSON_ID",$row["PERSON_ID"]));
-    foreach ($form1 as $f)  $rec[] = array($f[1], $row[$f[1]]);
-    foreach ($form2 as $f)  $rec[] = array($f[1], $row[$f[1]]);
-    foreach ($form3 as $f)  $rec[] = array($f[1], $row[$f[1]]);
-    $data->contacts[]=$rec;
-	$Rows++;
-  }
-  
+     $Rows=0;
+foreach($rows as $row) {
+  $rec = array(array("PERSON_ID",$row["PERSON_ID"]));
+  foreach ($form1 as $f)  $rec[] = array($f[1], $row[$f[1]]);
+  foreach ($form2 as $f)  $rec[] = array($f[1], $row[$f[1]]);
+  foreach ($form3 as $f)  $rec[] = array($f[1], $row[$f[1]]);
+  $data->contacts[]=$rec;
+$Rows++;
+}
+
   if ( $Rows > 0)
     foreach ($data->contacts as $c) 
       $data->names[]=$c[4][1]." (".$c[1][1]." ".$c[2][1]." ".$c[3][1].")";
@@ -114,6 +104,6 @@ if ($go) {
 $smarty = new Smarty;
 $smarty->assignByRef('data',$data);
 
-ocilogoff($conn);
+//ocilogoff($conn);
 $smarty->display('contacts.tpl');
 ?>
