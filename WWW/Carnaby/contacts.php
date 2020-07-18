@@ -39,24 +39,7 @@ if ($_POST['query'] == 'search') {
   $data->curPage = 'f1';
 }
 if ($_POST['query'] == 'save') {
-  $parnum=0;
-  $prms[":par$parnum"] = $_POST["id"];
-  foreach (array("form1","form2","form3") as $frm) {
-    foreach ($$frm as $rec) {
-      $prms [":par".++$parnum]= $_POST[$rec[1]];
-    }
-  }
-  $sql = "begin WebForm.ContactUpdate(".join(',',array_keys($prms))."); end;";
-  $stmt = ociparse($conn,$sql);
-  foreach ($prms as $p => $v) {
-    ocibindbyname($stmt, $p, $prms[$p]);
-  }
-  if (! ociexecute($stmt)) {
-    $msg="Something went wrong, It should never happen. Contact IT support";
-  } else {
-    $msg="Record updated successfully";
-  };
-  header("Location: contacts.php?page=${_POST['curPage']}&contact=${_POST['curContact']}&msg=$msg");
+    $Connection->Update_Contact($_POST);
 }
 
 foreach ($data->search as $i => $rec) {
