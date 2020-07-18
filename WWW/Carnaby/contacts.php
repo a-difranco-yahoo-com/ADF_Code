@@ -67,29 +67,17 @@ foreach ($data->search as $i => $rec) {
 }
 
 if ($go) {
-  $rows = $Connection->Get_Contacts(
-     $_SESSION['carnaby_contacts_search']['TITLE'],
-     $_SESSION['carnaby_contacts_search']['FIRST_NAME'],
-     $_SESSION['carnaby_contacts_search']['LAST_NAME'],
-     $_SESSION['carnaby_contacts_search']['ADDRESS_1'],
-     $_SESSION['carnaby_contacts_search']['ADDRESS_2'],
-     $_SESSION['carnaby_contacts_search']['ADDRESS_3'],
-     $_SESSION['carnaby_contacts_search']['ADDRESS_4'],
-     $_SESSION['carnaby_contacts_search']['ADDRESS_5'],
-     $_SESSION['carnaby_contacts_search']['ADDRESS_6'],
-     $_SESSION['carnaby_contacts_search']['COUNTRY'],
-     $_SESSION['carnaby_contacts_search']['POSTCODE'],
-     $_SESSION['carnaby_contacts_search']['E_MAIL'] );
-
+    $rows = $Connection->Get_Contacts($_SESSION['carnaby_contacts_search']);
+ 
      $Rows=0;
-foreach($rows as $row) {
-  $rec = array(array("PERSON_ID",$row["PERSON_ID"]));
-  foreach ($form1 as $f)  $rec[] = array($f[1], $row[$f[1]]);
-  foreach ($form2 as $f)  $rec[] = array($f[1], $row[$f[1]]);
-  foreach ($form3 as $f)  $rec[] = array($f[1], $row[$f[1]]);
-  $data->contacts[]=$rec;
-$Rows++;
-}
+     foreach($rows as $row) {
+        $rec = array(array("PERSON_ID",$row["PERSON_ID"]));
+        foreach ($form1 as $f)  $rec[] = array($f[1], $row[$f[1]]);
+        foreach ($form2 as $f)  $rec[] = array($f[1], $row[$f[1]]);
+        foreach ($form3 as $f)  $rec[] = array($f[1], $row[$f[1]]);
+        $data->contacts[]=$rec;
+        $Rows++;
+    }
 
   if ( $Rows > 0)
     foreach ($data->contacts as $c) 
