@@ -1,8 +1,0 @@
-
-
-CREATE GLOBAL TEMPORARY TABLE GS_GT_PATTERN_SEQUENCE (
-  Pattern_Id        NUMBER,
-  Sequence_No       NUMBER,
-  Sequence_Length   NUMBER)
-ON COMMIT DELETE ROWS
-/

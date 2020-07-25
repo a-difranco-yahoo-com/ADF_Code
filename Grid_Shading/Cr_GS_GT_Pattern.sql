@@ -1,9 +1,0 @@
-
-
-CREATE GLOBAL TEMPORARY TABLE GS_GT_PATTERN (
-  Row_Or_Col    VARCHAR2(1),
-  Line_No       NUMBER,
-  Pattern_Id    NUMBER,
-  Pattern_Code  VARCHAR2(30) ) 
-ON COMMIT DELETE ROWS
-/
