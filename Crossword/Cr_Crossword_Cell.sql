@@ -1,7 +1,0 @@
-
-
-CREATE TABLE CROSSWORD_CLUE (
-Row_No     NUMBER      NOT NULL,
-Column_No  NUMBER      NOT NULL,
-Entry      VARCHAR2(1) NOT NULL)
-/
