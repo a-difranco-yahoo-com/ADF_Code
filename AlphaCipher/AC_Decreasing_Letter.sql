@@ -1,6 +1,0 @@
-
-CREATE TABLE AC_DECREASING_LETTER (
-Letter   VARCHAR2(1),
-Ordinal  NUMBER
-)
-/
