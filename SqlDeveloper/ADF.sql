@@ -5,33 +5,10 @@ Create Or Replace Directory EXPDP_DIR as 'E:\My Dropbox\Dropbox\MyBackup';
 
 SELECT Time_Remaining, Message FROM V$Session_Longops WHERE Time_Remaining > 0;
 SELECT * FROM V$SEssion WHERE Username IS NOT NULL;
-ALTER SYSTEM KILL SESSION '388,	48841'; 
+ALTER SYSTEM KILL SESSION '143,	24110'; 
 SELECT * FROM V$SQLAREA;
 
-SELECT * FROM GEOCACHE_BY_DAY;
 
-SELECT sum(Caches)     FROM GEOCACHE_BY_DAY   ;
-SELECT sum(Days_Found) FROM V_GEOCACHE_TO_FIND_BY_MONTH   ;
-
-SELECT * FROM    V_GEOCACHE_BY_MONTH;
-SELECT * FROM    V_GEOCACHE_BY_DAY_OF_MONTH Order By  2 Desc;
-SELECT * FROM    V_GEOCACHE_TO_FIND_BY_MONTH;
-SELECT Month, Day_Of_Month FROM    GEO_CACHES_ORDERED WHERE Got_Cache = 'N' Order By Day_No;
-
-
-SELECT
-+ (1000 - 958) -- Tower Bridge TB HOTEL
-+ (1000 - 768) -- Reflections of Neal's Yard
-+ (1000 - 727) -- The Palace of Westminster (Houses of Parliament)
--- + (1000 - 679) -- Gibbon's Rent
--- + (1000 - 609) -- The Winchester Geese
--- + (1000 - 559) -- Platform 9 3/4
--- + (1000 - 516) -- Last Delivery (London)
--- + (1000 - 445) -- Space Invader (NOT 24/7. TB Hotel)
-       Required
-FROM DUAL
-/
-SELECT to_char(Sysdate + 547, 'DD-MON-YYYY') FROM DUAL;
 
 Create Or Replace Function Checksum(p_Number NUMBER)
     RETURN NUMBER
@@ -50,12 +27,39 @@ END;
 /
 
 
-SELECT Owner, Segment_Name, Bytes / (1024 * 1024) Mb
+SELECT Owner, Segment_Name, Bytes / (1024 * 1024) Mb, Extents
 FROM   DBA_SEGMENTS
 WHERE  Owner != 'SYS'
 AND    Segment_Name Like '%MAGNETISM%'
 ORDER BY Bytes Desc
 /
+SELECT * FROM DBA_SEGMENTS;
+
+-- MAGNETISM_BCDEFGJ	537.375
+-- MAGNETISM_DEGJ	    184
+-- MAGNETISM_ABCDEFGJ	112.1875
+-- MAGNETISM_BCDEGJ	    97.625
+-- MAGNETISM_BDEGJ	    89.1875
+-- MAGNETISM_TIMING	    77.5
+
+alter table "GEOCACHE_SOLVER"."MAGNETISM_BDEGJ" enable row movement;
+alter table "GEOCACHE_SOLVER"."MAGNETISM_ABCDEFGHJ" shrink space cascade;
+alter table "GEOCACHE_SOLVER"."MAGNETISM_ABCDEFGJ"  shrink space cascade;
+alter table "GEOCACHE_SOLVER"."MAGNETISM_BCDEFGJ"   shrink space cascade;
+alter table "GEOCACHE_SOLVER"."MAGNETISM_BCDEGJ"    shrink space cascade;
+alter table "GEOCACHE_SOLVER"."MAGNETISM_BDEGJ"     shrink space cascade;
+alter table "GEOCACHE_SOLVER"."MAGNETISM_TIMING"    shrink space cascade;
+
+
+SELECT to_char(Start_Time, 'YYYYMM'), count(*), sum(rows_inserted), Sum(rows_deleted)
+FROM   GEOCACHE_SOLVER.MAGNETISM_TIMING
+GROUP BY to_char(Start_Time, 'YYYYMM')
+ORDER BY count(*)
+/
+DELETE FROM   GEOCACHE_SOLVER.MAGNETISM_TIMING
+WHERE  to_char(Start_Time, 'YYYYMM') = '202003'
+/
+
 
 SELECT   Tablespace_Name, sum(Bytes) / (1024 * 1024 * 1024) Gb
 FROM     DBA_FREE_SPACE
@@ -76,7 +80,7 @@ Alter user ADF identified by 'Sam5Par2'  account unlock;
 
 */
 
--SELECT * FROM V$SESSION WHERE Username Is Not NULL;
+SELECT * FROM V$SESSION WHERE Username Is Not NULL;
 ALTER SYSTEM KILL SESSION '13,	27735';
 
 SELECT Sysdate + (Time_Remaining/ (60 * 60 * 24) ) ETA, Time_Remaining, username, Message 
@@ -104,8 +108,7 @@ GROUP By  Procedure_Name;
    UPDATE GEOCACHE_SOLVER.MAGNETISM_STOP SET Stop_Date = sysdate;
    COMMIT;
 
--- 0	0	141412	3486775	1020053	1448554	4427584	3252899	1369270	0
--- 0	0	141412	1702168	1094354	1316594	3509742	1777772	0	0
+-- 0	0	104524	2713774	1021638	2313530	3905002	209723	1228352	0
 
 /
 
@@ -132,3 +135,4 @@ BEGIN
    DBMS_AUTO_TASK_ADMIN.ENABLE(client_name => 'auto space advisor',              operation => NULL, window_name => NULL);
    DBMS_AUTO_TASK_ADMIN.ENABLE(client_name => 'sql tuning advisor',              operation => NULL, window_name => NULL);
 END;
+/
