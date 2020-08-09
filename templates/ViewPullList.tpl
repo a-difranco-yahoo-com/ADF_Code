@@ -27,7 +27,7 @@
     <td>{$pull[rows]["ISSUE"]}</td>
     <td>{$pull[rows]["FULL_NAME"]}</td>
     <td>
-    <input type="date" id='{$pull[rows]["RDID"]} name='{$pull[rows]["RDID"]}' value='{$pull[rows]["RELEASE_DATE"]}'
+    <input type="date" id='{$pull[rows]["RDID"]}' name='{$pull[rows]["RDID"]}' value='{$pull[rows]["RELEASE_DATE"]}'>
     </td>
     <td>
     <select id='{$pull[rows]["ID"]}' name='{$pull[rows]["ID"]}'>
