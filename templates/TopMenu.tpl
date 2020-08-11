@@ -4,7 +4,7 @@
      <tr>
       <td align="center">
        <a href="/Comics_Website/MatchNewComics.php">::Match New Comics ::</a>
-       <a href="/Comics_Website/MatchComicDB.php">::Match Comics DB::</a>
+       <a href="/Comics_Website/ViewComicDatabase.php">::View Comics DB::</a>
        </td>
      </tr>
      </table>
