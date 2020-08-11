@@ -209,5 +209,18 @@ class Comic_Oracle
 	   return $rows;
    }
 
+   public function Get_Run_Gaps() {
+      $SQL = " SELECT   'Gap_' || Title_Id Id, "
+           . "          Title,  Volume,  Start_Issue, "
+   	     . "          End_Issue, SubIssue, Series_Run"
+	    	  . " FROM     V_DIGITAL_ALL_MULTI_RUN_DETAIL"
+   	     . " ORDER BY Title,  Volume, Start_Issue";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+	   oci_execute($stmt);
+	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+	   return $rows;
+   }
+
 }
 ?>
