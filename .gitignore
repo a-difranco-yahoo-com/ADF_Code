@@ -1,4 +1,4 @@
 
 Crossword/Crossword.pdf
 *.pdf
-templates_c.*.php
+templates_c/*.php
