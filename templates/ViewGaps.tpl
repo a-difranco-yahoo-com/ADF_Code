@@ -18,6 +18,7 @@
       <th>END_ISSUE</th>
       <th>SUBISSUE</th>
       <th>SERIES_RUN</th>
+      <th>Add Wish List Entries</th>
     </tr>
 	
     {section name=rows loop=$gaps}
@@ -28,8 +29,11 @@
     <td>{$gaps[rows]["END_ISSUE"]}</td>
     <td>{$gaps[rows]["SUBISSUE"]}</td>
     <td>{$gaps[rows]["SERIES_RUN"]}</td>
+    <td><input name='{$gaps[rows]["ID"]}'  value='Y'  type="checkbox"></td>
     {/section}
    </table>
+   <p>
+    <input name="Commit" value="AddWishList"    type="submit">
    </form>
   </div>
  </body>
