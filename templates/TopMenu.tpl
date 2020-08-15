@@ -5,6 +5,7 @@
       <td align="center">
        <a href="/Comics_Website/MatchNewComics.php">::Match New Comics ::</a>
        <a href="/Comics_Website/ViewComicDatabase.php">::View Comics DB::</a>
+       <a href="/Comics_Website/CheckArchive.php">::Check Archive ::</a>
        </td>
      </tr>
      </table>

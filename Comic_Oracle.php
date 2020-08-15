@@ -263,5 +263,35 @@ class Comic_Oracle
 	   return $rows;
    }
 
+   public function Get_Archive_Difference_Summary() {
+      $SQL = " SELECT   Title, count(*) Issues "
+	    	  . " FROM     V_DIFFERING_DIGITAL_COMIC_SUMMARY"
+   	     . " GROUP BY Title"
+   	     . " ORDER BY Count(*) Desc, Title";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+	   oci_execute($stmt);
+	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+	   return $rows;
+   }
+
+   public function Get_Archive_Detail($Title, $Min_Volume) {
+      $SQL = " SELECT   Source, Title,  Volume,  SubIssue, Series_Run,"
+	    	  . "          min(Issue) Min_Issue, max(Issue) Max_Issue,"
+	    	  . "          min(Year)  Min_Year,  max(Year)  Max_Year, count(*) Issues"
+	    	  . " FROM     V_DIGITAL_AND_ARCHIVE_COMIC_DETAILS"
+	    	  . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
+	    	  . " AND      Volume >= nvl(:Volume, 0)"
+   	     . " GROUP BY Source, Title, Volume, SubIssue, Series_Run"
+   	     . " ORDER BY Title, Volume, SubIssue";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+      oci_bind_by_name($stmt, ":Title",      $Title);
+      oci_bind_by_name($stmt, ":Volume",     $Min_Volume);
+	   oci_execute($stmt);
+	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+	   return $rows;
+   }
+
 }
 ?>
