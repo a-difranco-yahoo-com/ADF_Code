@@ -18,6 +18,8 @@ $Connection->Log_Post_Details('GET',  $_GET);
     $Option = 'ViewGaps';
   }
 
+  if ($Option == '')  $Option = 'ViewGaps';
+
   if ($Option == 'ViewGaps')  {
 	  $gaps = $Connection->Get_Run_Gaps();
     $smarty->assign('gaps', $gaps);
