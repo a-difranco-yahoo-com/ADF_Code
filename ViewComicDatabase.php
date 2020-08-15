@@ -28,7 +28,7 @@ $Connection->Log_Post_Details('GET',  $_GET);
 	  $runs = $Connection->Get_Run_Details($Search);
 	  $wish = $Connection->Get_Wish_Details($Search);
     $smarty->assign('runs', $runs);
-    $smarty->assign('wish', $runs);
+    $smarty->assign('wish', $wish);
     $smarty->display('ViewRuns.tpl');
   }
 
