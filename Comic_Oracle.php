@@ -293,5 +293,30 @@ class Comic_Oracle
 	   return $rows;
    }
 
+   public function Get_ComicDB_Summary() {
+      $SQL = " SELECT   Title, Volume, count(*) Issues "
+	    	  . " FROM     V_MISSING_COMICDB_COMIC"
+   	     . " GROUP BY Title, Volume"
+   	     . " ORDER BY Count(*) Desc, Title, Volume";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+	   oci_execute($stmt);
+	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+	   return $rows;
+   }
+
+   public function Get_ComicDB_Missing($Title) {
+      $SQL = " SELECT   Title,  Volume,  Issue, SubIssue"
+	    	  . " FROM     V_MISSING_COMICDB_COMIC"
+	    	  . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
+   	     . " ORDER BY Title, Volume, Issue";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+      oci_bind_by_name($stmt, ":Title",      $Title);
+	   oci_execute($stmt);
+	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+	   return $rows;
+   }
+
 }
 ?>
