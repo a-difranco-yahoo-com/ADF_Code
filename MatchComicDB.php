@@ -20,9 +20,17 @@ $Connection->Log_Post_Details('GET',  $_GET);
     $smarty->assign('summary', $summary);
     $smarty->display('ViewComicDBSummary.tpl');
   } elseif ($Option == 'ViewMissing')  {
-	$missing = $Connection->Get_ComicDB_Missing($SearchTitle);
+	  $missing = $Connection->Get_ComicDB_Missing($SearchTitle);
     $smarty->assign('missing', $missing);
     $smarty->display('ViewComicDBMissing.tpl');
+  } elseif ($Option == 'CompareSummary')  {
+	  $summary = $Connection->Get_ComicDB_Compare_Summary($SearchTitle);
+    $smarty->assign('summary', $summary);
+    $smarty->display('CompareComicDBSummary.tpl');
+  } elseif ($Option == 'CompareDetail')  {
+	  $detail = $Connection->Get_ComicDB_Compare_Detail($SearchTitle);
+    $smarty->assign('detail', $detail);
+    $smarty->display('CompareComicDBDetail.tpl');
   }
 
 ?>
