@@ -15,7 +15,7 @@
    </tr>
    </table>
    <label for="Search">Search Text:</label>
-   <input type="text" id="Search" name="Search"><br>
+   <input type="text" id="Search" name="Search" value="{$title}"><br>
 
    <table class="form" border-width="1" border="1" cellspacing="0" cellpadding="1">
    <tr bgcolor="#e6eef1">

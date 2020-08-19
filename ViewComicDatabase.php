@@ -27,6 +27,7 @@ $Connection->Log_Post_Details('GET',  $_GET);
   } elseif ($Option == 'ViewRuns')  {
 	  $runs = $Connection->Get_Run_Details($Search);
 	  $wish = $Connection->Get_Wish_Details($Search);
+    $smarty->assign('title', $Search);
     $smarty->assign('runs', $runs);
     $smarty->assign('wish', $wish);
     $smarty->display('ViewRuns.tpl');
