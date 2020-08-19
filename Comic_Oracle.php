@@ -344,5 +344,31 @@ class Comic_Oracle
 	   return $rows;
    }
 
+   public function Match_ComicDB($SearchTitle, $Cutoff_Year, $Sim, $IncludeMatches) {
+      $PLSQL = " BEGIN"
+             . "   LINK_COMICDB.Find_ComicDB_Matches(:TitleId, :Year, :Sim, :Include);"
+             . "   COMMIT;"
+             . " END;";
+
+      $stmt = oci_parse($this->Connection, $PLSQL);
+      oci_bind_by_name($stmt, ":TitleId",  $SearchTitle);
+      oci_bind_by_name($stmt, ":Year",     $Cutoff_Year);
+      oci_bind_by_name($stmt, ":Sim",      $Sim);
+      oci_bind_by_name($stmt, ":Include",  $IncludeMatches);
+      oci_execute($stmt);
+   }
+
+   public function Get_Match_ComicDB() {
+      $SQL = " SELECT   ComicDB_Title,  ComicDB_Volume,  Digital_Title, Digital_Volume, "
+   	     . "          Sim, ComicDB_Comics, Digital_Comics, Matches, SubMatches, "
+   	     . "          Matched, Status "
+	    	  . " FROM     MATCH_COMICDB"
+   	     . " ORDER BY ComicDB_Title,  ComicDB_Volume,  Digital_Title, Digital_Volume";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+	   oci_execute($stmt);
+	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+	   return $rows;
+   }
 }
 ?>
