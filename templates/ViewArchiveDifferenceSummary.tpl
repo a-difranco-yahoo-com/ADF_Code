@@ -15,12 +15,14 @@
    <tr bgcolor="#e6eef1">
       <th>TITLE</th>
       <th>ISSUES</th>
+      <th>View Details</th>
     </tr>
 	
     {section name=rows loop=$summary}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
     <td>{$summary[rows]["TITLE"]}</td>
     <td>{$summary[rows]["ISSUES"]}</td>
+    <td><button value='{$summary[rows]["TITLE"]}'  name='ViewArchiveDetail'  type="submit">View Details</button></td>
     </tr>
     {/section}
    </table>
