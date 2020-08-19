@@ -22,6 +22,8 @@ $Connection->Log_Post_Details('GET',  $_GET);
       $smarty->display('ViewArchiveDifferenceSummary.tpl');
   } elseif ($Option == 'ViewDetails')  {
 	  $detail = $Connection->Get_Archive_Detail($SearchTitle, $SearchYear);
+      $smarty->assign('title',  $SearchTitle);
+      $smarty->assign('year',   $SearchYear);
       $smarty->assign('detail', $detail);
       $smarty->display('ViewArchiveDetail.tpl');
   }
