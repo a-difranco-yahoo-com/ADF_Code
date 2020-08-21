@@ -29,8 +29,6 @@
     </tr>
     {/section}
    </table>
-   <p>
-    <input name="Commit" value="CommitMatchPull"    type="submit">
    </form>
   </div>
  </body>
