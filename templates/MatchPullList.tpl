@@ -25,7 +25,7 @@
     <td>{$pulls[rows]["NEW_ISSUE"]}</td>
     <td>{$pulls[rows]["PULL_TITLE"]}</td>
     <td>{$pulls[rows]["PULL_ISSUE"]}</td>
-    <td><input name='{$pulls[rows]["ID"]}'  value='M'  type="checkbox"></td>
+    <td><button value='{$pulls[rows]["ID"]}'  name='MatchToPull'  type="submit">Match Comic</button></td>
     </tr>
     {/section}
    </table>

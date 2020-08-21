@@ -7,26 +7,32 @@ $err=error_reporting(E_ALL & ~E_NOTICE);
 $Connection = new Comic_Oracle();
 $Option     =$_POST['Option'];
 $Commit     =$_POST['Commit'];
+$PullMatch  =$_POST['MatchToPull'];
 $smarty     = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
   if ($Commit == 'CommitMatchPull')  {
-	$Connection->Commit_Match_Pull_List($_POST);
+	  $Connection->Commit_Match_Pull_List($_POST);
     $Option = 'MatchPull';
   } elseif ($Commit == 'CommitMatchWish')  {
-	$Connection->Commit_Match_Wish_List($_POST);
+	  $Connection->Commit_Match_Wish_List($_POST);
 	$Option = 'MatchWish';
   } elseif ($Commit == 'CommitNew')  {
-	$Connection->Commit_New_Comics($_POST);
-	$Option = 'ViewNew';
+	  $Connection->Commit_New_Comics($_POST);
+	  $Option = 'ViewNew';
   } elseif ($Commit == 'CommitPull')  {
-	$Connection->Commit_Pull_List($_POST);
-	$Option = 'ViewPull';
+	  $Connection->Commit_Pull_List($_POST);
+	  $Option = 'ViewPull';
   }
 
-  if ($Option == '')  $Option = 'MatchPull';
+  if ($PullMatch != "") {
+	  $Connection->Commit_Match_To_Pull_List($PullMatch);
+    $Option      = "MatchPull";
+  } elseif ($Option == '') {
+    $Option = 'MatchPull';
+  }
 
   if ($Option == 'MatchPull')  {
 	$Connection->Run_Match(80);

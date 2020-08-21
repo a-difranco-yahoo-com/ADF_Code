@@ -69,6 +69,15 @@ class Comic_Oracle
 	   return $rows;
    }
  
+   public function Commit_Match_To_Pull_List($Id) {
+      $SQL = " UPDATE MATCH_PULL_LIST"
+           . " SET    Status = 'M'"
+           . " WHERE  '$Id'  = 'Status_' || New_ComicId || '_' || Pull_ComicId";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+      oci_execute($stmt);
+      $this->Update_Matches();
+   }
    public function Commit_Match_Pull_List($updates) {
       $SQL = " UPDATE MATCH_PULL_LIST"
            . " SET    Status = :Status"
