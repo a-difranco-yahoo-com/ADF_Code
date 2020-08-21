@@ -40,7 +40,7 @@
     {/section}
    </table>
    <p>
-    <input name="Commit" value="CommitPull"    type="submit">
+   <button name="Commit" value="CommitPull" type="submit">Commit Changes</button>
    </form>
   </div>
  </body>
