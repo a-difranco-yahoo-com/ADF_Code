@@ -222,7 +222,7 @@ class Comic_Oracle
       $SQL = " SELECT   'Gap_' || Title_Id Id, "
            . "          Title,  Volume,  Start_Issue, "
    	     . "          End_Issue, SubIssue, Series_Run"
-	    	  . " FROM     V_DIGITAL_ALL_MULTI_RUN_DETAIL"
+	    	  . " FROM     V_ALL_COMIC_MULTI_RUN"
    	     . " ORDER BY Title,  Volume, Start_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
@@ -248,8 +248,9 @@ class Comic_Oracle
       $SQL = " SELECT   'Run_' || Title_Id Id, "
            . "          Title,  Volume,  Start_Issue, "
    	     . "          End_Issue, SubIssue, Series_Run"
-	    	  . " FROM     V_DIGITAL_RUN_DETAIL"
+	    	  . " FROM     V_ALL_COMIC_RUN"
 	    	  . " WHERE    upper(Title) Like upper('%$Search%')"
+	    	  . " AND      Comic_Type = 'DIGITAL'"
    	     . " ORDER BY Title,  Volume, Start_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
@@ -262,8 +263,9 @@ class Comic_Oracle
       $SQL = " SELECT   'Run_' || Title_Id Id, "
            . "          Title,  Volume,  Start_Issue, "
    	     . "          End_Issue, SubIssue, Series_Run"
-	    	  . " FROM     V_DIGITAL_WISH_RUN_DETAIL"
+	    	  . " FROM     V_ALL_COMIC_RUN"
 	    	  . " WHERE    upper(Title) Like upper('%$Search%')"
+	    	  . " AND      Comic_Type = 'WISHLIST'"
    	     . " ORDER BY Title,  Volume, Start_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
@@ -274,7 +276,7 @@ class Comic_Oracle
 
    public function Get_Archive_Difference_Summary() {
       $SQL = " SELECT   Title, count(*) Issues "
-	    	  . " FROM     V_DIFFERING_DIGITAL_COMIC_SUMMARY"
+	    	  . " FROM     V_DIFFERING_ARCHIVE_COMIC_SUMMARY"
    	     . " GROUP BY Title"
    	     . " ORDER BY Count(*) Desc, Title";
 
@@ -304,7 +306,7 @@ class Comic_Oracle
 
    public function Get_ComicDB_Summary() {
       $SQL = " SELECT   Title, Volume, count(*) Issues "
-	    	  . " FROM     V_MISSING_COMICDB_COMIC"
+	    	  . " FROM     V_MISSING_FROM_COMICDB"
    	     . " GROUP BY Title, Volume"
    	     . " ORDER BY Count(*) Desc, Title, Volume";
 
@@ -316,7 +318,7 @@ class Comic_Oracle
 
    public function Get_ComicDB_Missing($Title) {
       $SQL = " SELECT   Title,  Volume,  Issue, SubIssue"
-	    	  . " FROM     V_MISSING_COMICDB_COMIC"
+	    	  . " FROM     V_MISSING_FROM_COMICDB"
 	    	  . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
    	     . " ORDER BY Title, Volume, Issue";
 
