@@ -44,11 +44,11 @@ class Comic_Oracle
 
    public function Update_Comics() {
       $PLSQL = " BEGIN"
-             . "   COMICS.Update_New_Comics;"
-             . "   COMICS.Update_Got_Comics;"
-             . "   COMICS.Update_OneShots_Comics;"
-             . "   COMICS.Update_BackIssue_Comics;"
-             . "   COMICS.Update_Digital_Comics;"
+             . "   COMICS.Process_New_Comic_Status('N');"
+             . "   COMICS.Process_New_Comic_Status('D');"
+             . "   COMICS.Process_New_Comic_Status('G');"
+             . "   COMICS.Process_New_Comic_Status('B');"
+             . "   COMICS.Process_New_Comic_Status('O');"
              . "   COMICS.Update_Digital_Pull;"
              . "   COMICS.Update_WishList_Pull;"
              . " END;";
