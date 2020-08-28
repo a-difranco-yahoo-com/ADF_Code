@@ -33,7 +33,6 @@
     <select id='{$pull[rows]["ID"]}' name='{$pull[rows]["ID"]}'>
     <option value=""></option>
     <option value="D">Digital</option>
-    <option value="W">Wish List</option>
     </select>
     <td>
     </tr>

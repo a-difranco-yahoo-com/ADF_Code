@@ -50,7 +50,6 @@ class Comic_Oracle
              . "   COMICS.Process_New_Comic_Status('B');"
              . "   COMICS.Process_New_Comic_Status('O');"
              . "   COMICS.Update_Digital_Pull;"
-             . "   COMICS.Update_WishList_Pull;"
              . " END;";
 
       $stmt = oci_parse($this->Connection, $PLSQL);
