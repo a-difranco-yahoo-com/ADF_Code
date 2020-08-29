@@ -18,7 +18,7 @@
       <th>ISSUE</th>
       <th>SUBISSUE</th>
       <th>SERIES_RUN</th>
-      <th>STATUS</th>
+      <th>ACTION</th>
     </tr>
 	
     {section name=rows loop=$new}
@@ -30,19 +30,16 @@
     <td>{$new[rows]["SUBISSUE"]}</td>
     <td>{$new[rows]["SERIES_RUN"]}</td>
     <td>
-    <select id='{$new[rows]["ID"]}' name='{$new[rows]["ID"]}'>
-    <option value=""></option>
-    <option value="D">Digital</option>
-    <option value="O">Oneshot</option>
-    <option value="N">New</option>
-    <option value="B">Back issue</option>
-    </select>
+    <button value='{$new[rows]["COMICID"]}'  name='DigitalSeries' type="submit">Digital Series</button>
+    <button value='{$new[rows]["COMICID"]}'  name='OneShot'       type="submit">One-shot      </button>
+    <button value='{$new[rows]["COMICID"]}'  name='NewSeries'     type="submit">New Series    </button>
+    <button value='{$new[rows]["COMICID"]}'  name='BackIssue'     type="submit">Back Issue    </button>
+    </td>
     <td>
     </tr>
     {/section}
    </table>
    <p>
-   <button name="Commit" value="CommitNew" type="submit">Commit Changes</button>
    </form>
   </div>
  </body>
