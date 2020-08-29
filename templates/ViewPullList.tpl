@@ -17,7 +17,7 @@
       <th>ISSUE</th>
       <th>FULL_NAME</th>
       <th>RELEASE_DATE</th>
-      <th>STATUS</th>
+      <th>ACTION</th>
     </tr>
 	
     {section name=rows loop=$pull}
@@ -30,10 +30,7 @@
     <input type="date" id='{$pull[rows]["RDID"]}' name='{$pull[rows]["RDID"]}' value='{$pull[rows]["RELEASE_DATE"]}'>
     </td>
     <td>
-    <select id='{$pull[rows]["ID"]}' name='{$pull[rows]["ID"]}'>
-    <option value=""></option>
-    <option value="D">Digital</option>
-    </select>
+    <button value='{$pull[rows]["COMICID"]}'  name='DigitalPull' type="submit">Digital Series</button>
     <td>
     </tr>
     {/section}

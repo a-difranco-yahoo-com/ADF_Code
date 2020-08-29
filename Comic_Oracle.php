@@ -122,9 +122,18 @@ class Comic_Oracle
 	   return $rows;
    }
 
-   public function Clear_New_Digital_Comic($Id) {
+   public function Clear_New_Digital_Comic($ComicId) {
       $PLSQL = " BEGIN"
-             . "    COMICS.Process_New_Digital_Comic($Id);"
+             . "    COMICS.Process_New_Digital_Comic($ComicId);"
+             . " END;";
+
+      $stmt = oci_parse($this->Connection, $PLSQL);
+      oci_execute($stmt);
+   }
+
+   public function Clear_Pull_List($ComicId) {
+      $PLSQL = " BEGIN"
+             . "    COMICS.Process_Pull_List($ComicId);"
              . " END;";
 
       $stmt = oci_parse($this->Connection, $PLSQL);
@@ -132,9 +141,9 @@ class Comic_Oracle
    }
 
    public function Get_Pull_List() {
-      $SQL = " SELECT   'Pull_' || ComicId Id, 'RD_' || ComicId RDId, "
+      $SQL = " SELECT   ComicId, 'RD_' || ComicId RDId, "
            . "          Title,  Volume,  Issue, Full_Name, "
-   	     . "          to_char(Release_Date, 'YYYY-MM-DD') Release_Date, Status "
+   	     . "          to_char(Release_Date, 'YYYY-MM-DD') Release_Date"
 	    	  . " FROM     PULL_LIST"
    	     . " ORDER BY Title,  Volume, Issue";
 

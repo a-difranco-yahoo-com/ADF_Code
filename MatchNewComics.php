@@ -12,6 +12,7 @@ $DigitalSeries =$_POST['DigitalSeries'];
 $OneShot       =$_POST['OneShot'];
 $NewSeries     =$_POST['NewSeries'];
 $BackIssue     =$_POST['BackIssue'];
+$DigitalPull   =$_POST['DigitalPull'];
 $smarty        = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
@@ -40,6 +41,9 @@ $Connection->Log_Post_Details('GET',  $_GET);
   } elseif ($BackIssue != '') {
 	  $Connection->Clear_New_Digital_Comic($BackIssue);
     $Option = 'ViewNew';
+  } elseif ($DigitalPull != '') {
+	  $Connection->Clear_Pull_List($DigitalPull);
+    $Option = 'ViewPull';
   } elseif ($Option == '') {
     $Option = 'MatchPull';
   }
