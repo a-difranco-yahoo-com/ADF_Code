@@ -44,11 +44,6 @@ class Comic_Oracle
 
    public function Update_Comics() {
       $PLSQL = " BEGIN"
-             . "   COMICS.Process_New_Comic_Status('N');"
-             . "   COMICS.Process_New_Comic_Status('D');"
-             . "   COMICS.Process_New_Comic_Status('G');"
-             . "   COMICS.Process_New_Comic_Status('B');"
-             . "   COMICS.Process_New_Comic_Status('O');"
              . "   COMICS.Update_Digital_Pull;"
              . " END;";
 
@@ -117,9 +112,7 @@ class Comic_Oracle
    }
 
    public function Get_New_Comics() {
-      $SQL = " SELECT   'New_' || ComicId Id,"
-           . "          Title,  Volume,  Year, Issue, "
-   	     . "          SubIssue, Series_Run, Status "
+      $SQL = " SELECT   ComicId, Title,  Volume,  Year, Issue, SubIssue, Series_Run"
 	    	  . " FROM     NEW_DIGITAL_COMIC"
    	     . " ORDER BY Title,  Volume, Issue";
 
@@ -129,18 +122,13 @@ class Comic_Oracle
 	   return $rows;
    }
 
-   public function Commit_New_Comics($updates) {
-      $SQL = " UPDATE NEW_DIGITAL_COMIC"
-           . " SET    Status = :Status"
-           . " WHERE  :Id    = 'New_' || ComicId";
+   public function Clear_New_Digital_Comic($Id) {
+      $PLSQL = " BEGIN"
+             . "    COMICS.Process_New_Digital_Comic($Id);"
+             . " END;";
 
-      $stmt = oci_parse($this->Connection, $SQL);
-      foreach($updates as $key => $value) {
-         oci_bind_by_name($stmt, ":Id",      $key);
-         oci_bind_by_name($stmt, ":Status",  $value);
-         oci_execute($stmt);
-      }
-      $this->Update_Comics();
+      $stmt = oci_parse($this->Connection, $PLSQL);
+      oci_execute($stmt);
    }
 
    public function Get_Pull_List() {
