@@ -57,9 +57,8 @@ class Comic_Oracle
    }
 
    public function Get_Match_Pull_List() {
-      $SQL = " SELECT   'Status_' || New_ComicId || '_' || Pull_ComicId Id, New_Title, New_Issue, "
-           . "          Pull_Title, Pull_Issue, Status "
-	    	  . " FROM     MATCH_PULL_LIST"
+      $SQL = " SELECT   Match_Id, New_Title, New_Issue, Pull_Title, Pull_Issue"
+	    	  . " FROM     V_MATCH_PULL_LIST"
 	    	  . " ORDER BY New_Title";
 
       $stmt = oci_parse($this->Connection, $SQL);
@@ -69,26 +68,12 @@ class Comic_Oracle
    }
  
    public function Commit_Match_To_Pull_List($Id) {
-      $SQL = " UPDATE MATCH_PULL_LIST"
-           . " SET    Status = 'M'"
-           . " WHERE  '$Id'  = 'Status_' || New_ComicId || '_' || Pull_ComicId";
+      $PLSQL = " BEGIN"
+             . "    COMICS.Update_Matched_Pull_List($Id);"
+             . " END;";
 
-      $stmt = oci_parse($this->Connection, $SQL);
+      $stmt = oci_parse($this->Connection, $PLSQL);
       oci_execute($stmt);
-      $this->Update_Matches();
-   }
-   public function Commit_Match_Pull_List($updates) {
-      $SQL = " UPDATE MATCH_PULL_LIST"
-           . " SET    Status = :Status"
-           . " WHERE  :Id    = 'Status_' || New_ComicId || '_' || Pull_ComicId";
-
-      $stmt = oci_parse($this->Connection, $SQL);
-      foreach($updates as $key => $value) {
-         oci_bind_by_name($stmt, ":Id",      $key);
-         oci_bind_by_name($stmt, ":Status",  $value);
-         oci_execute($stmt);
-      }
-      $this->Update_Matches();
    }
 
    public function Log_Post_Details($type, $array) {
