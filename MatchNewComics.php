@@ -13,10 +13,7 @@ $smarty     = new Smarty;
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-  if ($Commit == 'CommitMatchPull')  {
-	  $Connection->Commit_Match_Pull_List($_POST);
-    $Option = 'MatchPull';
-  } elseif ($Commit == 'CommitMatchWish')  {
+  if ($Commit == 'CommitMatchWish')  {
 	  $Connection->Commit_Match_Wish_List($_POST);
 	$Option = 'MatchWish';
   } elseif ($Commit == 'CommitNew')  {
@@ -35,27 +32,27 @@ $Connection->Log_Post_Details('GET',  $_GET);
   }
 
   if ($Option == 'MatchPull')  {
-	$Connection->Run_Match(80);
-	$pulls = $Connection->Get_Match_Pull_List();
+   	$Connection->Run_Match(80);
+	  $pulls = $Connection->Get_Match_Pull_List();
     $smarty->assign('pulls', $pulls);
     $smarty->display('MatchPullList.tpl');
   } elseif ($Option == 'MatchWish')  {
-	$Connection->Run_Match(80);
-	$wishs = $Connection->Get_Match_Wish_List();
+	  $Connection->Run_Match(80);
+	  $wishs = $Connection->Get_Match_Wish_List();
     $smarty->assign('wishs', $wishs);
-	$smarty->display('MatchWishList.tpl');
+	  $smarty->display('MatchWishList.tpl');
   } elseif ($Option == 'ViewNew')  {
-	$new = $Connection->Get_New_Comics();
+	  $new = $Connection->Get_New_Comics();
     $smarty->assign('new', $new);
-	$smarty->display('ViewNewComics.tpl');
+	  $smarty->display('ViewNewComics.tpl');
   } elseif ($Option == 'ViewPull')  {
-	$pull = $Connection->Get_Pull_List();
+	  $pull = $Connection->Get_Pull_List();
     $smarty->assign('pull', $pull);
-	$smarty->display('ViewPullList.tpl');
+	  $smarty->display('ViewPullList.tpl');
   } elseif ($Option == 'ViewWish')  {
-	$wish = $Connection->Get_Wish_List();
+	  $wish = $Connection->Get_Wish_List();
     $smarty->assign('wish', $wish);
-	$smarty->display('ViewWishList.tpl');
+	  $smarty->display('ViewWishList.tpl');
   }
 
 ?>
