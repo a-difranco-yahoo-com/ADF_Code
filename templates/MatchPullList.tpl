@@ -16,7 +16,7 @@
       <th>NEW_ISSUE</th>
       <th>PULL_TITLE</th>
       <th>PULL_ISSUE</th>
-      <th>STATUS</th>
+      <th>ACTION</th>
     </tr>
 	
     {section name=rows loop=$pulls}
@@ -25,7 +25,7 @@
     <td>{$pulls[rows]["NEW_ISSUE"]}</td>
     <td>{$pulls[rows]["PULL_TITLE"]}</td>
     <td>{$pulls[rows]["PULL_ISSUE"]}</td>
-    <td><button value='{$pulls[rows]["ID"]}'  name='MatchToPull'  type="submit">Match Comic</button></td>
+    <td><button value='{$pulls[rows]["MATCH_ID"]}'  name='MatchToPull'  type="submit">Match Comics</button></td>
     </tr>
     {/section}
    </table>
