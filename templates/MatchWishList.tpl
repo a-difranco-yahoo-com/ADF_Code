@@ -18,23 +18,22 @@
       <th>WISH_TITLE</th>
       <th>WISH_VOLUME</th>
       <th>WISH_ISSUE</th>
-      <th>STATUS</th>
+      <th>ACTION</th>
     </tr>
 	
-    {section name=rows loop=$pulls}
+    {section name=rows loop=$wishs}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$pulls[rows]["NEW_TITLE"]}</td>
-    <td>{$pulls[rows]["NEW_VOLUME"]}</td>
-    <td>{$pulls[rows]["NEW_ISSUE"]}</td>
-    <td>{$pulls[rows]["WISH_TITLE"]}</td>
-    <td>{$pulls[rows]["WISH_VOLUME"]}</td>
-    <td>{$pulls[rows]["WISH_ISSUE"]}</td>
-    <td><input name='{$pulls[rows]["ID"]}'  value='M'  type="checkbox"></td>
+    <td>{$wishs[rows]["NEW_TITLE"]}</td>
+    <td>{$wishs[rows]["NEW_VOLUME"]}</td>
+    <td>{$wishs[rows]["NEW_ISSUE"]}</td>
+    <td>{$wishs[rows]["WISH_TITLE"]}</td>
+    <td>{$wishs[rows]["WISH_VOLUME"]}</td>
+    <td>{$wishs[rows]["WISH_ISSUE"]}</td>
+    <td><button value='{$wishs[rows]["MATCH_ID"]}'  name='MatchToWish'  type="submit">Match Comics</button></td>
     </tr>
     {/section}
    </table>
    <p>
-    <input name="Commit" value="CommitMatchWish"    type="submit">
    </form>
   </div>
  </body>
