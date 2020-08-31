@@ -31,17 +31,6 @@ class Comic_Oracle
       oci_execute($stmt);
    }
 
-   public function Update_Matches() {
-      $PLSQL = " BEGIN"
-             . "    COMICS.Update_Matched_Pull_List;"
-             . "    COMICS.Update_Matched_Wish_List;"
-             . "    COMICS.Find_Got_New_Issues;"
-             . " END;";
-
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_execute($stmt);
-   }
-
    public function Update_Comics() {
       $PLSQL = " BEGIN"
              . "   COMICS.Update_Digital_Pull;"
@@ -85,10 +74,10 @@ class Comic_Oracle
    }
  
    public function Get_Match_Wish_List() {
-      $SQL = " SELECT   'Status_' || New_ComicId || '_' || Wish_ComicId Id, "
+      $SQL = " SELECT   Match_Id, "
    	     . "          New_Title,  New_Volume,  New_Issue, "
-   	     . "          Wish_Title, Wish_Volume, Wish_Issue, Status "
-	    	  . " FROM     MATCH_WISH_LIST"
+   	     . "          Wish_Title, Wish_Volume, Wish_Issue "
+	    	  . " FROM     V_MATCH_WISH_LIST"
    	     . " ORDER BY New_Title,  New_Volume,  New_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
@@ -97,18 +86,13 @@ class Comic_Oracle
 	   return $rows;
    }
 
-   public function Commit_Match_Wish_List($updates) {
-      $SQL = " UPDATE MATCH_WISH_LIST"
-           . " SET    Status = :Status"
-           . " WHERE  :Id    = 'Status_' || New_ComicId || '_' || Wish_ComicId";
+   public function Commit_Match_To_Wish_List($MatchId) {
+      $PLSQL = " BEGIN"
+             . "    COMICS.Update_Matched_Wish_List($MatchId);"
+             . " END;";
 
-      $stmt = oci_parse($this->Connection, $SQL);
-      foreach($updates as $key => $value) {
-         oci_bind_by_name($stmt, ":Id",      $key);
-         oci_bind_by_name($stmt, ":Status",  $value);
-         oci_execute($stmt);
-      }
-      $this->Update_Matches();
+      $stmt = oci_parse($this->Connection, $PLSQL);
+      oci_execute($stmt);
    }
 
    public function Get_New_Comics() {
