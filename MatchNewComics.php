@@ -8,6 +8,7 @@ $Connection    = new Comic_Oracle();
 $Option        =$_POST['Option'];
 $Commit        =$_POST['Commit'];
 $PullMatch     =$_POST['MatchToPull'];
+$WishMatch     =$_POST['MatchToWish'];
 $DigitalSeries =$_POST['DigitalSeries'];
 $OneShot       =$_POST['OneShot'];
 $NewSeries     =$_POST['NewSeries'];
@@ -18,10 +19,7 @@ $smarty        = new Smarty;
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-  if ($Commit == 'CommitMatchWish')  {
-	  $Connection->Commit_Match_Wish_List($_POST);
-	$Option = 'MatchWish';
-  } elseif ($Commit == 'CommitPull')  {
+  if ($Commit == 'CommitPull')  {
 	  $Connection->Commit_Pull_List($_POST);
 	  $Option = 'ViewPull';
   }
@@ -29,6 +27,9 @@ $Connection->Log_Post_Details('GET',  $_GET);
   if ($PullMatch != "") {
 	  $Connection->Commit_Match_To_Pull_List($PullMatch);
     $Option      = "MatchPull";
+  } elseif ($WishMatch != '') {
+	  $Connection->Commit_Match_To_Wish_List($WishMatch);
+    $Option      = "MatchWish";
   } elseif ($DigitalSeries != '') {
 	  $Connection->Clear_New_Digital_Comic($DigitalSeries);
     $Option = 'ViewNew';
