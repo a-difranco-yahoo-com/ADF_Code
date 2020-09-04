@@ -184,9 +184,7 @@ class Comic_Oracle
    }
 
    public function Get_Run_Gaps() {
-      $SQL = " SELECT   'Gap_' || Title_Id Id, "
-           . "          Title,  Volume,  Start_Issue, "
-   	     . "          End_Issue, SubIssue, Series_Run"
+      $SQL = " SELECT   Title_Id, Title,  Volume,  Start_Issue, End_Issue, SubIssue, Series_Run"
 	    	  . " FROM     V_ALL_COMIC_MULTI_RUN"
    	     . " ORDER BY Title,  Volume, Start_Issue";
 
@@ -196,19 +194,16 @@ class Comic_Oracle
 	   return $rows;
    }
 
-   public function Add_Wish_List($titles) {
+   public function Add_Wish_List($TitleId) {
       $PLSQL = " BEGIN"
              . "  COMICS.Add_Wish_List(:TitleId);"
              . " END;";
 
       $stmt = oci_parse($this->Connection, $PLSQL);
-      foreach($titles as $key => $value) {
-         if ( substr($key, 0, 4) == "Gap_" && $value = "Y") {
-            oci_bind_by_name($stmt, ":TitleId",  substr($key, 4) );
-            oci_execute($stmt);
-         }
-      }
+      oci_bind_by_name($stmt, ":TitleId",  $TitleId);
+      oci_execute($stmt);
    }
+
    public function Get_Run_Details($Search) {
       $SQL = " SELECT   'Run_' || Title_Id Id, "
            . "          Title,  Volume,  Start_Issue, "

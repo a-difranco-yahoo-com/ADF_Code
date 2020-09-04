@@ -7,14 +7,14 @@ $err=error_reporting(E_ALL & ~E_NOTICE);
 $Connection = new Comic_Oracle();
 $Option     =$_POST['Option'];
 $Search     =$_POST['Search'];
-$Commit     =$_POST['Commit'];
+$WishList   =$_POST['AddWishList'];
 $smarty     = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-  if ($Commit == 'AddWishList')  {
-	  $Connection->Add_Wish_List($_POST);
+  if ($WishList != '')  {
+	  $Connection->Add_Wish_List($WishList);
     $Option = 'ViewGaps';
   }
 
