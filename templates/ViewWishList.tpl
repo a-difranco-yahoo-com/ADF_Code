@@ -32,9 +32,6 @@
     {/section}
    </table>
    <p>
-   {*
-    <input name="Commit" value="CommitWish"    type="submit">
-    *}
    </form>
   </div>
  </body>
