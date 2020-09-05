@@ -46,7 +46,7 @@
     <td>{$match[rows]["MATCHES"]}</td>
     <td>{$match[rows]["SUBMATCHES"]}</td>
     <td>{$match[rows]["MATCHED"]}</td>
-    <td><input name='{$match[rows]["STATUS"]}'  value='M'  type="checkbox"></td>
+    <td><button value='{$match[rows]["MATCH_ID"]}'  name='MatchComicDB'  type="submit">Match Comics</button></td>
     </tr>
     {/section}
    </table>
