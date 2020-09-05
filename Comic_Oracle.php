@@ -313,10 +313,9 @@ class Comic_Oracle
    }
 
    public function Get_Match_ComicDB() {
-      $SQL = " SELECT   ComicDB_Title,  ComicDB_Volume,  Digital_Title, Digital_Volume, "
-           . "          Sim, ComicDB_Comics, Digital_Comics, Matches, SubMatches, "
-           . "          Matched, Status "
-           . " FROM     MATCH_COMICDB"
+      $SQL = " SELECT   Match_Id, ComicDB_Title,  ComicDB_Volume,  Digital_Title, Digital_Volume, "
+           . "          Sim, ComicDB_Comics, Digital_Comics, Matches, SubMatches, Matched"
+           . " FROM     V_MATCH_COMICDB"
            . " ORDER BY ComicDB_Title,  ComicDB_Volume,  Digital_Title, Digital_Volume";
 
       $stmt = oci_parse($this->Connection, $SQL);
