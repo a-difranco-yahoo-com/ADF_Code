@@ -31,24 +31,15 @@ class Comic_Oracle
       oci_execute($stmt);
    }
 
-   public function Update_Comics() {
-      $PLSQL = " BEGIN"
-             . "   COMICS.Update_Digital_Pull;"
-             . " END;";
-
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_execute($stmt);
-   }
-
    public function Get_Match_Pull_List() {
       $SQL = " SELECT   Match_Id, New_Title, New_Issue, Pull_Title, Pull_Issue"
-	    	  . " FROM     V_MATCH_PULL_LIST"
-	    	  . " ORDER BY New_Title";
+             . " FROM     V_MATCH_PULL_LIST"
+             . " ORDER BY New_Title";
 
       $stmt = oci_parse($this->Connection, $SQL);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
  
    public function Commit_Match_To_Pull_List($Id) {
@@ -75,15 +66,15 @@ class Comic_Oracle
  
    public function Get_Match_Wish_List() {
       $SQL = " SELECT   Match_Id, "
-   	     . "          New_Title,  New_Volume,  New_Issue, "
-   	     . "          Wish_Title, Wish_Volume, Wish_Issue "
-	    	  . " FROM     V_MATCH_WISH_LIST"
-   	     . " ORDER BY New_Title,  New_Volume,  New_Issue";
+           . "          New_Title,  New_Volume,  New_Issue, "
+           . "          Wish_Title, Wish_Volume, Wish_Issue "
+           . " FROM     V_MATCH_WISH_LIST"
+           . " ORDER BY New_Title,  New_Volume,  New_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+       oci_execute($stmt);
+       oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+       return $rows;
    }
 
    public function Commit_Match_To_Wish_List($MatchId) {
@@ -97,13 +88,13 @@ class Comic_Oracle
 
    public function Get_New_Comics() {
       $SQL = " SELECT   ComicId, Title,  Volume,  Year, Issue, SubIssue, Series_Run"
-	    	  . " FROM     NEW_DIGITAL_COMIC"
-   	     . " ORDER BY Title,  Volume, Issue";
+           . " FROM     NEW_DIGITAL_COMIC"
+           . " ORDER BY Title,  Volume, Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Clear_New_Digital_Comic($ComicId) {
@@ -127,14 +118,14 @@ class Comic_Oracle
    public function Get_Pull_List() {
       $SQL = " SELECT   ComicId, 'RD_' || ComicId RDId, "
            . "          Title,  Volume,  Issue, Full_Name, "
-   	     . "          to_char(Release_Date, 'YYYY-MM-DD') Release_Date"
-	    	  . " FROM     PULL_LIST"
-   	     . " ORDER BY Title,  Volume, Issue";
+           . "          to_char(Release_Date, 'YYYY-MM-DD') Release_Date"
+           . " FROM     PULL_LIST"
+           . " ORDER BY Title,  Volume, Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Commit_Pull_List_Status($updates) {
@@ -166,32 +157,28 @@ class Comic_Oracle
    public function Commit_Pull_List($updates) {
       $this->Commit_Pull_List_Status($updates);
       $this->Commit_Pull_List_Release_Date($updates);
-      $this->Update_Comics();
-
    }
 
    public function Get_Wish_List() {
-      $SQL = " SELECT   'Wish_' || ComicId Id, "
-           . "          Title,  Volume,  Issue, "
-   	     . "          SubIssue, Series_Run"
-	    	  . " FROM     WISH_LIST"
-   	     . " ORDER BY Title,  Volume, Issue";
+      $SQL = " SELECT   Title,  Volume,  Issue, SubIssue, Series_Run"
+           . " FROM     WISH_LIST"
+           . " ORDER BY Title,  Volume, Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Get_Run_Gaps() {
       $SQL = " SELECT   Title_Id, Title,  Volume,  Start_Issue, End_Issue, SubIssue, Series_Run"
-	    	  . " FROM     V_ALL_COMIC_MULTI_RUN"
-   	     . " ORDER BY Title,  Volume, Start_Issue";
+           . " FROM     V_ALL_COMIC_MULTI_RUN"
+           . " ORDER BY Title,  Volume, Start_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Add_Wish_List($TitleId) {
@@ -205,114 +192,110 @@ class Comic_Oracle
    }
 
    public function Get_Run_Details($Search) {
-      $SQL = " SELECT   'Run_' || Title_Id Id, "
-           . "          Title,  Volume,  Start_Issue, "
-   	     . "          End_Issue, SubIssue, Series_Run"
-	    	  . " FROM     V_ALL_COMIC_RUN"
-	    	  . " WHERE    upper(Title) Like upper('%$Search%')"
-	    	  . " AND      Comic_Type = 'DIGITAL'"
-   	     . " ORDER BY Title,  Volume, Start_Issue";
+      $SQL = " SELECT   Title,  Volume,  Start_Issue, End_Issue, SubIssue, Series_Run"
+           . " FROM     V_ALL_COMIC_RUN"
+           . " WHERE    upper(Title) Like upper('%$Search%')"
+           . " AND      Comic_Type = 'DIGITAL'"
+           . " ORDER BY Title,  Volume, Start_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Get_Wish_Details($Search) {
-      $SQL = " SELECT   'Run_' || Title_Id Id, "
-           . "          Title,  Volume,  Start_Issue, "
-   	     . "          End_Issue, SubIssue, Series_Run"
-	    	  . " FROM     V_ALL_COMIC_RUN"
-	    	  . " WHERE    upper(Title) Like upper('%$Search%')"
-	    	  . " AND      Comic_Type = 'WISHLIST'"
-   	     . " ORDER BY Title,  Volume, Start_Issue";
+      $SQL = " SELECT   Title,  Volume,  Start_Issue, End_Issue, SubIssue, Series_Run"
+           . " FROM     V_ALL_COMIC_RUN"
+           . " WHERE    upper(Title) Like upper('%$Search%')"
+           . " AND      Comic_Type = 'WISHLIST'"
+           . " ORDER BY Title,  Volume, Start_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Get_Archive_Difference_Summary() {
       $SQL = " SELECT   Title, count(*) Issues "
-	    	  . " FROM     V_DIFFERING_ARCHIVE_COMIC_SUMMARY"
-   	     . " GROUP BY Title"
-   	     . " ORDER BY Count(*) Desc, Title";
+           . " FROM     V_DIFFERING_ARCHIVE_COMIC_SUMMARY"
+           . " GROUP BY Title"
+           . " ORDER BY Count(*) Desc, Title";
 
       $stmt = oci_parse($this->Connection, $SQL);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Get_Archive_Detail($Title, $Min_Volume) {
       $SQL = " SELECT   Source, Title,  Volume,  SubIssue, Series_Run,"
-	    	  . "          min(Issue) Min_Issue, max(Issue) Max_Issue,"
-	    	  . "          min(Year)  Min_Year,  max(Year)  Max_Year, count(*) Issues"
-	    	  . " FROM     V_DIGITAL_AND_ARCHIVE_COMIC_DETAILS"
-	    	  . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
-	    	  . " AND      Volume >= nvl(:Volume, 0)"
-   	     . " GROUP BY Source, Title, Volume, SubIssue, Series_Run"
-   	     . " ORDER BY Title, Volume, SubIssue";
+           . "          min(Issue) Min_Issue, max(Issue) Max_Issue,"
+           . "          min(Year)  Min_Year,  max(Year)  Max_Year, count(*) Issues"
+           . " FROM     V_DIGITAL_AND_ARCHIVE_COMIC_DETAILS"
+           . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
+           . " AND      Volume >= nvl(:Volume, 0)"
+           . " GROUP BY Source, Title, Volume, SubIssue, Series_Run"
+           . " ORDER BY Title, Volume, SubIssue";
 
       $stmt = oci_parse($this->Connection, $SQL);
       oci_bind_by_name($stmt, ":Title",      $Title);
       oci_bind_by_name($stmt, ":Volume",     $Min_Volume);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Get_ComicDB_Summary() {
       $SQL = " SELECT   Title, Volume, count(*) Issues "
-	    	  . " FROM     V_MISSING_FROM_COMICDB"
-   	     . " GROUP BY Title, Volume"
-   	     . " ORDER BY Count(*) Desc, Title, Volume";
+           . " FROM     V_MISSING_FROM_COMICDB"
+           . " GROUP BY Title, Volume"
+           . " ORDER BY Count(*) Desc, Title, Volume";
 
       $stmt = oci_parse($this->Connection, $SQL);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Get_ComicDB_Missing($Title) {
       $SQL = " SELECT   Title,  Volume,  Issue, SubIssue"
-	    	  . " FROM     V_MISSING_FROM_COMICDB"
-	    	  . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
-   	     . " ORDER BY Title, Volume, Issue";
+           . " FROM     V_MISSING_FROM_COMICDB"
+           . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
+           . " ORDER BY Title, Volume, Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
       oci_bind_by_name($stmt, ":Title",      $Title);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Get_ComicDB_Compare_Summary($Title) {
       $SQL = " SELECT   Src Source,  Title, Volume, Min_Issue, Max_Issue, Comics"
-	    	  . " FROM     V_DIGITAL_AND_COMICDB_COMIC_SUMMARY_DETAILS "
-	    	  . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
-   	     . " ORDER BY Title, Volume, Min_Issue";
+           . " FROM     V_DIGITAL_AND_COMICDB_COMIC_SUMMARY_DETAILS "
+           . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
+           . " ORDER BY Title, Volume, Min_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
       oci_bind_by_name($stmt, ":Title",      $Title);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Get_ComicDB_Compare_Detail($Title) {
       $SQL = " SELECT   Source,  Title, Volume, Issue, SubIssue"
-	    	  . " FROM     V_DIGITAL_AND_COMICDB_COMIC_DETAILS "
-	    	  . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
-   	     . " ORDER BY Title, Volume, Issue";
+           . " FROM     V_DIGITAL_AND_COMICDB_COMIC_DETAILS "
+           . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
+           . " ORDER BY Title, Volume, Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
       oci_bind_by_name($stmt, ":Title",      $Title);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 
    public function Match_ComicDB($SearchTitle, $Cutoff_Year, $Sim, $IncludeMatches) {
@@ -331,15 +314,15 @@ class Comic_Oracle
 
    public function Get_Match_ComicDB() {
       $SQL = " SELECT   ComicDB_Title,  ComicDB_Volume,  Digital_Title, Digital_Volume, "
-   	     . "          Sim, ComicDB_Comics, Digital_Comics, Matches, SubMatches, "
-   	     . "          Matched, Status "
-	    	  . " FROM     MATCH_COMICDB"
-   	     . " ORDER BY ComicDB_Title,  ComicDB_Volume,  Digital_Title, Digital_Volume";
+           . "          Sim, ComicDB_Comics, Digital_Comics, Matches, SubMatches, "
+           . "          Matched, Status "
+           . " FROM     MATCH_COMICDB"
+           . " ORDER BY ComicDB_Title,  ComicDB_Volume,  Digital_Title, Digital_Volume";
 
       $stmt = oci_parse($this->Connection, $SQL);
-	   oci_execute($stmt);
-	   oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-	   return $rows;
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
    }
 }
 ?>
