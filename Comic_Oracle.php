@@ -259,27 +259,18 @@ class Comic_Oracle
       return $rows;
    }
 
-   public function Get_ComicDB_Compare_Summary($Title) {
-      $SQL = " SELECT   Src Source,  Title, Volume, Min_Issue, Max_Issue, Comics"
-           . " FROM     V_DIGITAL_AND_COMICDB_COMIC_SUMMARY_DETAILS "
-           . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
-           . " ORDER BY Title, Volume, Min_Issue";
+   public function Get_ComicDB_Compare($Title, $StartYear, $EndYear) {
+      $SQL = " SELECT   Comic_Type, Title, Volume, Start_Issue, End_Issue"
+           . " FROM     V_ALL_COMIC_RUN "
+           . " WHERE    Comic_Type IN ('COMICDB', 'DIGITAL')"
+           . " AND      upper(Title) Like '%' || upper(:Title) || '%'"
+           . " AND      Volume BETWEEN :StartYear AND :EndYear"
+           . " ORDER BY Title, Volume, Start_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
       oci_bind_by_name($stmt, ":Title",      $Title);
-      oci_execute($stmt);
-      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-      return $rows;
-   }
-
-   public function Get_ComicDB_Compare_Detail($Title) {
-      $SQL = " SELECT   Source,  Title, Volume, Issue, SubIssue"
-           . " FROM     V_DIGITAL_AND_COMICDB_COMIC_DETAILS "
-           . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
-           . " ORDER BY Title, Volume, Issue";
-
-      $stmt = oci_parse($this->Connection, $SQL);
-      oci_bind_by_name($stmt, ":Title",      $Title);
+      oci_bind_by_name($stmt, ":StartYear",  $StartYear);
+      oci_bind_by_name($stmt, ":EndYear",    $EndYear);
       oci_execute($stmt);
       oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
       return $rows;

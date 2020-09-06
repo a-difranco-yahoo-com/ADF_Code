@@ -8,6 +8,9 @@ $Connection     = new Comic_Oracle();
 $Option         =$_POST['Option'];
 $Commit         =$_POST['Commit'];
 $SearchTitle    =$_POST['SearchTitle'];
+$SearchStartYear=$_POST['SearchStartYear'];
+$SearchEndYear  =$_POST['SearchEndYear'];
+$SearchTitle    =$_POST['SearchTitle'];
 $Cutoff_Year    =$_POST['CutOffYear'];
 $Sim            =$_POST['Sim'];
 $IncludeMatches =$_POST['IncludeMatches'];
@@ -18,8 +21,10 @@ $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
   if ($Compare != "") {
-    $SearchTitle = $Compare;
-    $Option      = "CompareComicDB";
+    $SearchTitle    = $Compare;
+    $SearchStartYear= 1960;
+    $SearchEndYear  = 2012;
+    $Option         = "CompareComicDB";
   } elseif ($Option == '') {
     $Option = 'ViewSummary';
   }
@@ -29,11 +34,11 @@ $Connection->Log_Post_Details('GET',  $_GET);
     $smarty->assign('summary', $summary);
     $smarty->display('ViewComicDBSummary.tpl');
   } elseif ($Option == 'CompareComicDB')  {
-	  $summary = $Connection->Get_ComicDB_Compare_Summary($SearchTitle);
-	  $detail  = $Connection->Get_ComicDB_Compare_Detail($SearchTitle);
-    $smarty->assign('title',   $SearchTitle);
-    $smarty->assign('summary', $summary);
-    $smarty->assign('detail',  $detail);
+	  $runs    = $Connection->Get_ComicDB_Compare($SearchTitle, $SearchStartYear, $SearchEndYear);
+    $smarty->assign('title',     $SearchTitle);
+    $smarty->assign('startYear', $SearchStartYear);
+    $smarty->assign('endYear',   $SearchEndYear);
+    $smarty->assign('runs',      $runs);
     $smarty->display('CompareComicDB.tpl');
   } elseif ($Option == 'MatchComicDB')  {
     $Connection->Match_ComicDB($SearchTitle, $Cutoff_Year, $Sim, $IncludeMatches);

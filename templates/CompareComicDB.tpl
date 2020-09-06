@@ -11,47 +11,32 @@
    {include file="ComicDBMenu.tpl"}
 
    <label for="SearchTitle">Search Title Text:</label>
-   <input type="text" id="SearchTitle" name="SearchTitle" value={$title}>
+   <input type="text" id="SearchTitle" name="SearchTitle"     value={$title}>
+   <label for="SearchTitle">Start Year</label>
+   <input type="number" id="SearchTitle" name="SearchStartYear" value={$startYear}>
+   <label for="SearchTitle">End Year</label>
+   <input type="number" id="SearchTitle" name="SearchEndYear"   value={$endYear}>
+   <p>
 
    <table class="form" border-width="1" border="1" cellspacing="0" cellpadding="1">
    <tr bgcolor="#e6eef1">
       <th>SOURCE</th>
       <th>TITLE</th>
       <th>VOLUME</th>
-      <th>MIN_ISSUE</th>
-      <th>MAX_ISSUE</th>
-      <th>COMICS</th>
+      <th>START_ISSUE</th>
+      <th>END_ISSUE</th>
     </tr>
 	
-    {section name=rows loop=$summary}
+    {section name=rows loop=$runs}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$summary[rows]["SOURCE"]}</td>
-    <td>{$summary[rows]["TITLE"]}</td>
-    <td>{$summary[rows]["VOLUME"]}</td>
-    <td>{$summary[rows]["MIN_ISSUE"]}</td>
-    <td>{$summary[rows]["MAX_ISSUE"]}</td>
-    <td>{$summary[rows]["COMICS"]}</td>
+    <td>{$runs[rows]["COMIC_TYPE"]}</td>
+    <td>{$runs[rows]["TITLE"]}</td>
+    <td>{$runs[rows]["VOLUME"]}</td>
+    <td>{$runs[rows]["START_ISSUE"]}</td>
+    <td>{$runs[rows]["END_ISSUE"]}</td>
     {/section}
    </table>
    <p>
-   <table class="form" border-width="1" border="1" cellspacing="0" cellpadding="1">
-   <tr bgcolor="#e6eef1">
-      <th>SOURCE</th>
-      <th>TITLE</th>
-      <th>VOLUME</th>
-      <th>ISSUE</th>
-      <th>SUBISSUE</th>
-    </tr>
-	
-    {section name=rows loop=$detail}
-    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$detail[rows]["SOURCE"]}</td>
-    <td>{$detail[rows]["TITLE"]}</td>
-    <td>{$detail[rows]["VOLUME"]}</td>
-    <td>{$detail[rows]["ISSUE"]}</td>
-    <td>{$detail[rows]["SUBISSUE"]}</td>
-    {/section}
-   </table>
    </form>
   </div>
  </body>
