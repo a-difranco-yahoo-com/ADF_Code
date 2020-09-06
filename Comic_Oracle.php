@@ -120,7 +120,7 @@ class Comic_Oracle
            . "          Title,  Volume,  Issue, Full_Name, "
            . "          to_char(Release_Date, 'YYYY-MM-DD') Release_Date"
            . " FROM     PULL_LIST"
-           . " ORDER BY Title,  Volume, Issue";
+           . " ORDER BY Release_Date Desc, Title,  Volume, Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
       oci_execute($stmt);
