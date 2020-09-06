@@ -51,7 +51,6 @@
     {/section}
    </table>
    <p>
-    <input name="Commit" value="CommitMatchComicDB"    type="submit">
    </form>
   </div>
  </body>
