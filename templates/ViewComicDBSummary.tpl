@@ -15,6 +15,7 @@
       <th>TITLE</th>
       <th>VOLUME</th>
       <th>ISSUES</th>
+      <th>ACTION</th>
     </tr>
 	
     {section name=rows loop=$summary}
@@ -22,6 +23,7 @@
     <td>{$summary[rows]["TITLE"]}</td>
     <td>{$summary[rows]["VOLUME"]}</td>
     <td>{$summary[rows]["ISSUES"]}</td>
+    <td><button value='{$summary[rows]["TITLE"]}'  name='ViewComicDBCompare'  type="submit">View Comparison</button></td>
     </tr>
     {/section}
    </table>
