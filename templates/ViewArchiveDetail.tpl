@@ -17,8 +17,10 @@
    </table>
    <label for="SearchTitle">Search Title Text:</label>
    <input type="text" id="SearchTitle" name="SearchTitle" value='{$title}'>
-   <label for="SearchYear">Search Year Text:</label>
-   <input type="text" id="SearchYear"  name="SearchYear"  value="{$year}"><br>
+   <label for="SearchTitle">Start Year</label>
+   <input type="number" id="SearchTitle" name="SearchStartYear" value={$startYear}>
+   <label for="SearchTitle">End Year</label>
+   <input type="number" id="SearchTitle" name="SearchEndYear"   value={$endYear}>
 
    <table class="form" border-width="1" border="1" cellspacing="0" cellpadding="1">
    <tr bgcolor="#e6eef1">
