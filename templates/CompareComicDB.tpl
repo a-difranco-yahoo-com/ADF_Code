@@ -11,7 +11,7 @@
    {include file="ComicDBMenu.tpl"}
 
    <label for="SearchTitle">Search Title Text:</label>
-   <input type="text" id="SearchTitle" name="SearchTitle"     value={$title}>
+   <input type="text" id="SearchTitle" name="SearchTitle"     value="{$title}">
    <label for="SearchTitle">Start Year</label>
    <input type="number" id="SearchTitle" name="SearchStartYear" value={$startYear}>
    <label for="SearchTitle">End Year</label>
