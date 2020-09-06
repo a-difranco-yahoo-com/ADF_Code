@@ -259,19 +259,6 @@ class Comic_Oracle
       return $rows;
    }
 
-   public function Get_ComicDB_Missing($Title) {
-      $SQL = " SELECT   Title,  Volume,  Issue, SubIssue"
-           . " FROM     V_MISSING_FROM_COMICDB"
-           . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
-           . " ORDER BY Title, Volume, Issue";
-
-      $stmt = oci_parse($this->Connection, $SQL);
-      oci_bind_by_name($stmt, ":Title",      $Title);
-      oci_execute($stmt);
-      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
-      return $rows;
-   }
-
    public function Get_ComicDB_Compare_Summary($Title) {
       $SQL = " SELECT   Src Source,  Title, Volume, Min_Issue, Max_Issue, Comics"
            . " FROM     V_DIGITAL_AND_COMICDB_COMIC_SUMMARY_DETAILS "
