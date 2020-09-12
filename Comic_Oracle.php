@@ -279,7 +279,7 @@ class Comic_Oracle
 
    public function Match_ComicDB($SearchTitle, $StartYear, $EndYear) {
       $PLSQL = " BEGIN"
-             . "   LINK_COMICDB.Find_ComicDB_Matches(:TitleId, :StartYear, :EndYear);"
+             . "   COMICS.Find_ComicDB_Matches(:TitleId, :StartYear, :EndYear);"
              . "   COMMIT;"
              . " END;";
 
@@ -292,7 +292,7 @@ class Comic_Oracle
 
    public function Match_To_ComicDB($MatchId) {
       $PLSQL = " BEGIN"
-             . "   LINK_COMICDB.Add_Links(:MatchId);"
+             . "   COMICS.Add_ComicDB_Links(:MatchId);"
              . "   COMMIT;"
              . " END;";
 
