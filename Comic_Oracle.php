@@ -277,17 +277,27 @@ class Comic_Oracle
       return $rows;
    }
 
-   public function Match_ComicDB($SearchTitle, $Cutoff_Year, $Sim, $IncludeMatches) {
+   public function Match_ComicDB($SearchTitle, $StartYear, $EndYear) {
       $PLSQL = " BEGIN"
-             . "   LINK_COMICDB.Find_ComicDB_Matches(:TitleId, :Year, :Sim, :Include);"
+             . "   LINK_COMICDB.Find_ComicDB_Matches(:TitleId, :StartYear, :EndYear);"
              . "   COMMIT;"
              . " END;";
 
       $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_bind_by_name($stmt, ":TitleId",  $SearchTitle);
-      oci_bind_by_name($stmt, ":Year",     $Cutoff_Year);
-      oci_bind_by_name($stmt, ":Sim",      $Sim);
-      oci_bind_by_name($stmt, ":Include",  $IncludeMatches);
+      oci_bind_by_name($stmt, ":TitleId",   $SearchTitle);
+      oci_bind_by_name($stmt, ":StartYear", $StartYear);
+      oci_bind_by_name($stmt, ":EndYear",   $EndYear);
+      oci_execute($stmt);
+   }
+
+   public function Match_To_ComicDB($MatchId) {
+      $PLSQL = " BEGIN"
+             . "   LINK_COMICDB.Add_Links(:MatchId);"
+             . "   COMMIT;"
+             . " END;";
+
+      $stmt = oci_parse($this->Connection, $PLSQL);
+      oci_bind_by_name($stmt, ":MatchId",   $MatchId);
       oci_execute($stmt);
    }
 
@@ -301,6 +311,6 @@ class Comic_Oracle
       oci_execute($stmt);
       oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
       return $rows;
-   }
+    }
 }
 ?>
