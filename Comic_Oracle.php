@@ -128,20 +128,7 @@ class Comic_Oracle
       return $rows;
    }
 
-   public function Commit_Pull_List_Status($updates) {
-      $SQL = " UPDATE PULL_LIST"
-           . " SET    Status = :Status"
-           . " WHERE  :Id    = 'Pull_' || ComicId";
-
-      $stmt = oci_parse($this->Connection, $SQL);
-      foreach($updates as $key => $value) {
-         oci_bind_by_name($stmt, ":Id",      $key);
-         oci_bind_by_name($stmt, ":Status",  $value);
-         oci_execute($stmt);
-      }
-   }
-
-   public function Commit_Pull_List_Release_Date($updates) {
+   public function Commit_Pull_List($updates) {
       $SQL = " UPDATE PULL_LIST"
            . " SET    Release_Date = to_date(:ReleaseDate, 'YYYY-MM-DD')"
            . " WHERE  :Id    = 'RD_' || ComicId";
@@ -152,11 +139,6 @@ class Comic_Oracle
          oci_bind_by_name($stmt, ":ReleaseDate",  $value);
          oci_execute($stmt);
       }
-   }
-
-   public function Commit_Pull_List($updates) {
-      $this->Commit_Pull_List_Status($updates);
-      $this->Commit_Pull_List_Release_Date($updates);
    }
 
    public function Get_Wish_List() {
