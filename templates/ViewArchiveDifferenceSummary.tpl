@@ -11,7 +11,7 @@
    <form name="data" action="CheckArchive.php" method="post">
    {include file="ArchiveMenu.tpl"}
 
-   <table class="form" border-width="1" border="1" cellspacing="0" cellpadding="1">
+   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
    <tr bgcolor="#e6eef1">
       <th>TITLE</th>
       <th>ISSUES</th>

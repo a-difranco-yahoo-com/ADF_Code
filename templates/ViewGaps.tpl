@@ -10,7 +10,7 @@
    <form name="data" action="ViewComicDatabase.php" method="post">
    {include file="ViewMenu.tpl"}
 
-   <table class="form" border-width="1" border="1" cellspacing="0" cellpadding="1">
+   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
    <tr bgcolor="#e6eef1">
       <th>TITLE</th>
       <th>VOLUME</th>

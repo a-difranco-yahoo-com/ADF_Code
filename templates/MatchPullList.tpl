@@ -10,7 +10,7 @@
    <form name="data" action="MatchNewComics.php" method="post">
    {include file="MatchMenu.tpl"}
 
-   <table class="form" border-width="1" border="1" cellspacing="0" cellpadding="1">
+    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
    <tr bgcolor="#e6eef1">
       <th>NEW_TITLE</th>
       <th>NEW_ISSUE</th>
