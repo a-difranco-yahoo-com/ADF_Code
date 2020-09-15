@@ -115,6 +115,15 @@ class Comic_Oracle
       oci_execute($stmt);
    }
 
+   public function Delete_Title($TitleId) {
+      $PLSQL = " BEGIN"
+             . "    COMICS.Delete_Title($TitleId);"
+             . " END;";
+
+      $stmt = oci_parse($this->Connection, $PLSQL);
+      oci_execute($stmt);
+   }
+
    public function Get_Pull_List() {
       $SQL = " SELECT   ComicId, 'RD_' || ComicId RDId, "
            . "          Title,  Volume,  Issue, Full_Name, "
@@ -212,14 +221,12 @@ class Comic_Oracle
    }
 
    public function Get_Archive_Detail($Title, $StartYear, $EndYear) {
-      $SQL = " SELECT   Source, Title,  Volume,  SubIssue, Series_Run,"
-           . "          min(Issue) Min_Issue, max(Issue) Max_Issue,"
-           . "          min(Year)  Min_Year,  max(Year)  Max_Year, count(*) Issues"
-           . " FROM     V_DIGITAL_AND_ARCHIVE_COMIC_DETAILS"
+      $SQL = " SELECT   Title_Id, Comic_Type, Title,  Volume,  Start_Issue, End_Issue, Series_Run"
+           . " FROM     V_ALL_COMIC_RUN"
            . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
            . " AND      Volume BETWEEN :StartYear AND :EndYear"
-           . " GROUP BY Source, Title, Volume, SubIssue, Series_Run"
-           . " ORDER BY Title, Volume, SubIssue";
+           . " AND      Comic_Type IN ('ARCHIVE', 'DIGITAL')"
+           . " ORDER BY Title, Volume, Start_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
       oci_bind_by_name($stmt, ":Title",      $Title);
