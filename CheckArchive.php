@@ -9,14 +9,17 @@ $Option         =$_POST['Option'];
 $SearchTitle    =$_POST['SearchTitle'];
 $SearchStartYear=$_POST['SearchStartYear'];
 $SearchEndYear  =$_POST['SearchEndYear'];
-$Commit         =$_POST['Commit'];
 $Detail         =$_POST['ViewArchiveDetail'];
+$DeleteTitle    =$_POST['TitleToDelete'];
 $smarty         = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-  if ($Detail != "") {
+  if ($DeleteTitle != "" ) {
+    $Connection->Delete_Title($DeleteTitle);
+    $Option = "ViewDetails";
+  } elseif ($Detail != "" ) {
     $SearchTitle    = $Detail;
     $SearchStartYear= 1960;
     $SearchEndYear  = 2100;
