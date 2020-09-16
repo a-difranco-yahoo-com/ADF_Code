@@ -35,7 +35,6 @@
     <button value='{$new[rows]["COMICID"]}'  name='NewSeries'     type="submit">New Series    </button>
     <button value='{$new[rows]["COMICID"]}'  name='BackIssue'     type="submit">Back Issue    </button>
     </td>
-    <td>
     </tr>
     {/section}
    </table>
