@@ -11,7 +11,8 @@ class Comic_Oracle
 
    public function Connect()
    {
-     $this->Connection = oci_connect('Comics', 'Comics', '');
+     $this->Connection = oci_pconnect('Comics', 'piCK6mFTyW2iviB0ZI50', 'ADF1');
+
      if (! $this->Connection) {
            echo("ERROR : Connecting to oracle \n");
           exit(1);
