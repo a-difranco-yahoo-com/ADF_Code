@@ -24,6 +24,10 @@ $Connection->Log_Post_Details('GET',  $_GET);
 	  $gaps = $Connection->Get_Run_Gaps();
     $smarty->assign('gaps', $gaps);
     $smarty->display('ViewGaps.tpl');
+  } elseif ($Option == 'ViewSplits')  {
+	  $split  = $Connection->Get_Run_Splits();
+    $smarty->assign('split', $split);
+    $smarty->display('ViewSplits.tpl');
   } elseif ($Option == 'ViewRuns')  {
 	  $runs = $Connection->Get_Run_Details($Search);
 	  $wish = $Connection->Get_Wish_Details($Search);
