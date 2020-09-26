@@ -31,7 +31,7 @@
     </td>
     <td>
     <button value='{$pull[rows]["COMICID"]}'  name='DigitalPull' type="submit">Digital Series</button>
-    <td>
+    </td>
     </tr>
     {/section}
    </table>
