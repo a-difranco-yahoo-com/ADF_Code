@@ -6,7 +6,6 @@ include 'Comic_Oracle.php';
 $err=error_reporting(E_ALL & ~E_NOTICE);
 $Connection    = new Comic_Oracle();
 $Option        =$_POST['Option'];
-$Commit        =$_POST['Commit'];
 $PullMatch     =$_POST['MatchToPull'];
 $WishMatch     =$_POST['MatchToWish'];
 $DigitalSeries =$_POST['DigitalSeries'];
@@ -18,11 +17,6 @@ $smarty        = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
-
-  if ($Commit == 'CommitPull')  {
-	  $Connection->Commit_Pull_List($_POST);
-	  $Option = 'ViewPull';
-  }
 
   if ($PullMatch != "") {
 	  $Connection->Commit_Match_To_Pull_List($PullMatch);

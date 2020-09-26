@@ -26,9 +26,7 @@
     <td>{$pull[rows]["VOLUME"]}</td>
     <td>{$pull[rows]["ISSUE"]}</td>
     <td>{$pull[rows]["FULL_NAME"]}</td>
-    <td>
-    <input type="date" id='{$pull[rows]["RDID"]}' name='{$pull[rows]["RDID"]}' value='{$pull[rows]["RELEASE_DATE"]}'>
-    </td>
+    <td>{$pull[rows]["RELEASE_DATE"]}</td>
     <td>
     <button value='{$pull[rows]["COMICID"]}'  name='DigitalPull' type="submit">Digital Series</button>
     </td>
@@ -36,7 +34,6 @@
     {/section}
    </table>
    <p>
-   <button name="Commit" value="CommitPull" type="submit">Commit Changes</button>
    </form>
   </div>
  </body>

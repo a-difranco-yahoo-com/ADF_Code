@@ -22,10 +22,7 @@ class Comic_Oracle
 
    public function Run_Match($Level) {
       $PLSQL = " BEGIN"
-             . "    COMICS.Parse_Pull_List;"
-             . "    COMICS.Set_ComicId;"
-             . "    COMICS.Find_Pull_Matches($Level);"
-             . "    COMICS.Find_Wish_Matches;"
+             . "    COMICS.Find_Matches($Level);"
              . " END;";
 
       $stmt = oci_parse($this->Connection, $PLSQL);
@@ -126,8 +123,7 @@ class Comic_Oracle
    }
 
    public function Get_Pull_List() {
-      $SQL = " SELECT   ComicId, 'RD_' || ComicId RDId, "
-           . "          Title,  Volume,  Issue, Full_Name, "
+      $SQL = " SELECT   ComicId, Title,  Volume,  Issue, Full_Name, "
            . "          to_char(Release_Date, 'YYYY-MM-DD') Release_Date"
            . " FROM     PULL_LIST"
            . " ORDER BY Release_Date Desc, Title,  Volume, Issue";
@@ -136,19 +132,6 @@ class Comic_Oracle
       oci_execute($stmt);
       oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
       return $rows;
-   }
-
-   public function Commit_Pull_List($updates) {
-      $SQL = " UPDATE PULL_LIST"
-           . " SET    Release_Date = to_date(:ReleaseDate, 'YYYY-MM-DD')"
-           . " WHERE  :Id    = 'RD_' || ComicId";
-
-      $stmt = oci_parse($this->Connection, $SQL);
-      foreach($updates as $key => $value) {
-         oci_bind_by_name($stmt, ":Id",           $key);
-         oci_bind_by_name($stmt, ":ReleaseDate",  $value);
-         oci_execute($stmt);
-      }
    }
 
    public function Get_Wish_List() {
