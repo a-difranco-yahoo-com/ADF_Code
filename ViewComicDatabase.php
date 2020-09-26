@@ -28,6 +28,10 @@ $Connection->Log_Post_Details('GET',  $_GET);
 	  $split  = $Connection->Get_Run_Splits();
     $smarty->assign('split', $split);
     $smarty->display('ViewSplits.tpl');
+  } elseif ($Option == 'ViewDiffs')  {
+	  $diff  = $Connection->Get_Run_Diffs();
+    $smarty->assign('diff', $diff);
+    $smarty->display('ViewDiffs.tpl');
   } elseif ($Option == 'ViewRuns')  {
 	  $runs = $Connection->Get_Run_Details($Search);
 	  $wish = $Connection->Get_Wish_Details($Search);

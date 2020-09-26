@@ -184,6 +184,17 @@ class Comic_Oracle
       return $rows;
    }
 
+   public function Get_Run_Diffs() {
+      $SQL = " SELECT   Title_Id, Title,  Volume, Comic_Type, Start_Issue, End_Issue, Series_Run"
+           . " FROM     V_DUPLICATE_TITLE"
+           . " ORDER BY Title,  Volume, Start_Issue";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
+   }
+
    public function Add_Wish_List($TitleId) {
       $PLSQL = " BEGIN"
              . "  COMICS.Add_Wish_List(:TitleId);"
