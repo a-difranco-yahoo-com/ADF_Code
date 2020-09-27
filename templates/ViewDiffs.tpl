@@ -14,10 +14,10 @@
    <tr bgcolor="#e6eef1">
       <th>TITLE</th>
       <th>VOLUME</th>
-      <th>COMIC_TYPE</th>
-      <th>START_ISSUE</th>
-      <th>END_ISSUE</th>
-      <th>SERIES_RUN</th>
+      <th>COMICDB RUN</th>
+      <th>COMICDB SERIES_RUN</th>
+      <th>DIGITAL RUN</th>
+      <th>DIGITAL SERIES_RUN</th>
       <th>ACTION</th>
     </tr>
 	
@@ -25,11 +25,13 @@
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
     <td>{$diff[rows]["TITLE"]}</td>
     <td>{$diff[rows]["VOLUME"]}</td>
-    <td>{$diff[rows]["COMIC_TYPE"]}</td>
-    <td>{$diff[rows]["START_ISSUE"]}</td>
-    <td>{$diff[rows]["END_ISSUE"]}</td>
-    <td>{$diff[rows]["SERIES_RUN"]}</td>
-    <td><button value='{$diff[rows]["TITLE_ID"]}'  name='AddSeriesRun'  type="submit">Add Series Run</button></td>
+    <td>{$diff[rows]["COMICDB_RUN"]}</td>
+    <td>{$diff[rows]["COMICDB_SERIES_RUN"]}</td>
+    <td>{$diff[rows]["DIGITAL_RUN"]}</td>
+    <td>{$diff[rows]["DIGITAL_SERIES_RUN"]}</td>
+    <td>
+    <button value='{$diff[rows]["COMICDB_TITLE_ID"]},{$diff[rows]["DIGITAL_TITLE_ID"]}'  name='AddSeriesRun'  type="submit">Add Series Run</button>
+    </td>
     {/section}
    </table>
    <p>

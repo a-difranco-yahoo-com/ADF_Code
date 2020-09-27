@@ -158,7 +158,7 @@ class Comic_Oracle
 
    public function Get_Run_Splits() {
       $SQL = " SELECT   Title_Id, Title,  Volume,  Start_Issue, End_Issue, Series_Run"
-           . " FROM     V_SPLIT_SERIES_RUNS"
+           . " FROM     V_SPLIT_SERIES_RUN"
            . " ORDER BY Title,  Volume, Start_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
@@ -168,9 +168,10 @@ class Comic_Oracle
    }
 
    public function Get_Run_Diffs() {
-      $SQL = " SELECT   Title_Id, Title,  Volume, Comic_Type, Start_Issue, End_Issue, Series_Run"
-           . " FROM     V_DUPLICATE_TITLE"
-           . " ORDER BY Title,  Volume, Start_Issue";
+      $SQL = " SELECT   ComicDB_Title_Id, Digital_Title_Id, Title,  Volume, "
+           . " ComicDB_Run, ComicDB_Series_Run, Digital_Run, Digital_Series_Run"
+           . " FROM     V_DIFF_SERIES_RUN"
+           . " ORDER BY Title,  Volume, ComicDB_Run, Digital_Run";
 
       $stmt = oci_parse($this->Connection, $SQL);
       oci_execute($stmt);
@@ -185,6 +186,17 @@ class Comic_Oracle
 
       $stmt = oci_parse($this->Connection, $PLSQL);
       oci_bind_by_name($stmt, ":TitleId",  $TitleId);
+      oci_execute($stmt);
+   }
+
+   public function Add_Series_Run($ComicDBTitleId, $DigitalTitleId) {
+      $PLSQL = " BEGIN"
+             . "  COMICS.Add_ComicDB_Series_Run(:ComicDBTitleId, :DigitalTitleId);"
+             . " END;";
+
+      $stmt = oci_parse($this->Connection, $PLSQL);
+      oci_bind_by_name($stmt, ":ComicDBTitleId",  $ComicDBTitleId);
+      oci_bind_by_name($stmt, ":DigitalTitleId",  $DigitalTitleId);
       oci_execute($stmt);
    }
 

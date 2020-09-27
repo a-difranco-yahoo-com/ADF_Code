@@ -8,6 +8,7 @@ $Connection = new Comic_Oracle();
 $Option     =$_POST['Option'];
 $Search     =$_POST['Search'];
 $WishList   =$_POST['AddWishList'];
+$AddSeries  =$_POST['AddSeriesRun'];
 $smarty     = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
@@ -16,6 +17,12 @@ $Connection->Log_Post_Details('GET',  $_GET);
   if ($WishList != '')  {
 	  $Connection->Add_Wish_List($WishList);
     $Option = 'ViewGaps';
+  } elseif ($AddSeries != '')  {
+    $Titles = explode(",", $AddSeries);
+    $ComicDBTitleId = $Titles[0];
+    $DigitalTitleId = $Titles[1];
+	  $Connection->Add_Series_Run($ComicDBTitleId, $DigitalTitleId);
+    $Option = 'ViewDiffs';
   }
 
   if ($Option == '')  $Option = 'ViewGaps';
