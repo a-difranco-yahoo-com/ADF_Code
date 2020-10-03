@@ -2,8 +2,8 @@
 <hr>
 <table class="form">
 <tr>
- <td><input id="ViewSummary"    name="Option" value="ViewSummary"    type="submit"></td>
- <td><input id="CompareComicDB" name="Option" value="CompareComicDB" type="submit"></td>
+   <td><button id="ViewSummary"    value='ViewSummary'    name='Option' type="submit">View Summary</button></td>
+   <td><button id="CompareComicDB" value='CompareComicDB' name='Option' type="submit">Compare ComicDB</button></td>
 </tr>
 </table>
 <hr>
