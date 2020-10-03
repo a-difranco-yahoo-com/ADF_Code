@@ -12,11 +12,11 @@
    {include file="ArchiveMenu.tpl"}
 
    <label for="SearchTitle">Search Title Text:</label>
-   <input type="text" id="SearchTitle" name="SearchTitle" value='{$title}'>
+   <input class="Search" type="text" id="SearchTitle"       name="SearchTitle" value='{$title}'>
    <label for="SearchTitle">Start Year</label>
-   <input type="number" id="SearchTitle" name="SearchStartYear" value={$startYear}>
+   <input class="Search" type="number" id="SearchStartYear" name="SearchStartYear" value={$startYear}>
    <label for="SearchTitle">End Year</label>
-   <input type="number" id="SearchTitle" name="SearchEndYear"   value={$endYear}>
+   <input class="Search" type="number" id="SearchEndYear"   name="SearchEndYear"   value={$endYear}>
 
    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
    <tr bgcolor="#e6eef1">
@@ -43,5 +43,6 @@
    <p>
    </form>
   </div>
+  <script src='js/ViewArchiveDetail.js'></script>
  </body>
 </html>
