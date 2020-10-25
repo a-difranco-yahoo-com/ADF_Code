@@ -25,6 +25,7 @@
       <th>VOLUME</th>
       <th>START_ISSUE</th>
       <th>END_ISSUE</th>
+      <th>ACTION</th>
     </tr>
 	
     {section name=rows loop=$runs}
@@ -34,6 +35,8 @@
     <td>{$runs[rows]["VOLUME"]}</td>
     <td>{$runs[rows]["START_ISSUE"]}</td>
     <td>{$runs[rows]["END_ISSUE"]}</td>
+    <td><button value='{$runs[rows]["TITLE_ID"]}'  name='SplitTrade'
+       {if {$runs[rows]["COMIC_TYPE"] == "DIGITAL"}} DISABLED {/if}  type="submit">Split Trade</button></td>
     {/section}
    </table>
    <p>
@@ -49,7 +52,7 @@
       <th>MATCHES</th>
       <th>SUBMATCHES</th>
       <th>MATCHED</th>
-      <th>STATUS</th>
+      <th>ACTION</th>
     </tr>
 	
     {section name=rows loop=$match}
