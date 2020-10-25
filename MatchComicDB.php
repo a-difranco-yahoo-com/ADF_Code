@@ -10,8 +10,9 @@ $Commit         =$_POST['Commit'];
 $SearchTitle    =$_POST['SearchTitle'];
 $SearchStartYear=$_POST['SearchStartYear'];
 $SearchEndYear  =$_POST['SearchEndYear'];
-$DBMatch        =$_POST['MatchComicDB'];
 $Compare        =$_POST['ViewComicDBCompare'];
+$DBMatch        =$_POST['MatchComicDB'];
+$TradeId        =$_POST['SplitTrade'];
 $smarty         = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
@@ -25,6 +26,8 @@ $Connection->Log_Post_Details('GET',  $_GET);
   } elseif ($DBMatch != '') {
     $Connection->Match_To_ComicDB($DBMatch);
     $Option = 'CompareComicDB';
+  } elseif ($TradeId != '') {
+    $Option = 'SplitTrade';
   } elseif ($Option == '') {
     $Option = 'ViewSummary';
   }
@@ -33,6 +36,10 @@ $Connection->Log_Post_Details('GET',  $_GET);
 	  $summary = $Connection->Get_ComicDB_Summary();
     $smarty->assign('summary', $summary);
     $smarty->display('ViewComicDBSummary.tpl');
+  } elseif ($Option == 'SplitTrade')  {
+	  $trades  = $Connection->Get_ComicDB_Trades($TradeId);
+    $smarty->assign('trades',     $trades);
+    $smarty->display('SplitTrade.tpl');
   } elseif ($Option == 'CompareComicDB')  {
     $Connection->Match_ComicDB($SearchTitle, $SearchStartYear, $SearchEndYear);
 	  $runs  = $Connection->Get_ComicDB_Compare($SearchTitle, $SearchStartYear, $SearchEndYear);
