@@ -50,6 +50,10 @@ class Comic_Oracle
    }
 
    public function Log_Post_Details($type, $array) {
+      $SQL = " DELETE FROM POST_DETAILS WHERE Post_Date < SysDate - 1";
+      $stmt = oci_parse($this->Connection, $SQL);
+      oci_execute($stmt);
+
       $SQL = " INSERT INTO POST_DETAILS (Post_Type, Post_Date, Post_Key, Post_Value) "
            . " VALUES (:type, sysdate, :key, :value)";
       $stmt = oci_parse($this->Connection, $SQL);
@@ -279,6 +283,22 @@ class Comic_Oracle
       oci_bind_by_name($stmt, ":Title",      $Title);
       oci_bind_by_name($stmt, ":StartYear",  $StartYear);
       oci_bind_by_name($stmt, ":EndYear",    $EndYear);
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
+   }
+
+   public function Get_ComicDB_Trades($TitleId) {
+      $SQL = " SELECT   RowIdToChar(CC.RowId) RowId_CB, CT.Title_Id, CC.Title, CC.Volume, CC.Issue"
+           . " FROM     COMIC_TITLE   CT "
+           . "   JOIN   COMICDB_COMIC CC ON CC.Title               = CT.Title"
+           . "                          AND CC.Volume              = CT.Volume"
+           . "                          AND nvl(CC.Series_Run, -1) = nvl(CT.Series_Run, -1)"
+           . " WHERE    CT.Title_Id = :TitleId"
+           . " ORDER BY Title, Volume, Issue";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+      oci_bind_by_name($stmt, ":TitleId",      $TitleId);
       oci_execute($stmt);
       oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
       return $rows;
