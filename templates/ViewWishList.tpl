@@ -20,16 +20,16 @@
       <th>SERIES_RUN</th>
     </tr>
 	
-    {section name=rows loop=$wish}
+    {foreach $wish as $w}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$wish[rows]["TITLE"]}</td>
-    <td>{$wish[rows]["VOLUME"]}</td>
-    <td>{$wish[rows]["YEAR"]}</td>
-    <td>{$wish[rows]["ISSUE"]}</td>
-    <td>{$wish[rows]["SUBISSUE"]}</td>
-    <td>{$wish[rows]["SERIES_RUN"]}</td>
+    <td>{$w.TITLE}</td>
+    <td>{$w.VOLUME}</td>
+    <td>{$w.YEAR}</td>
+    <td>{$w.ISSUE}</td>
+    <td>{$w.SUBISSUE}</td>
+    <td>{$w.SERIES_RUN}</td>
     </tr>
-    {/section}
+    {/foreach}
    </table>
    <p>
    </form>
