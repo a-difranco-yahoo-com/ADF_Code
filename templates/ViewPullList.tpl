@@ -20,18 +20,18 @@
       <th>ACTION</th>
     </tr>
 	
-    {section name=rows loop=$pull}
+    {foreach $pull as $p}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$pull[rows]["TITLE"]}</td>
-    <td>{$pull[rows]["VOLUME"]}</td>
-    <td>{$pull[rows]["ISSUE"]}</td>
-    <td>{$pull[rows]["FULL_NAME"]}</td>
-    <td>{$pull[rows]["RELEASE_DATE"]}</td>
+    <td>{$p.TITLE}</td>
+    <td>{$p.VOLUME}</td>
+    <td>{$p.ISSUE}</td>
+    <td>{$p.FULL_NAME}</td>
+    <td>{$p.RELEASE_DATE}</td>
     <td>
-    <button value='{$pull[rows]["COMICID"]}'  name='DigitalPull' type="submit">Digital Series</button>
+    <button value='{$p.COMICID}'  name='DigitalPull' type="submit">Digital Series</button>
     </td>
     </tr>
-    {/section}
+    {/foreach}
    </table>
    <p>
    </form>
