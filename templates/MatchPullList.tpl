@@ -19,15 +19,15 @@
       <th>ACTION</th>
     </tr>
 	
-    {section name=rows loop=$pulls}
+    {foreach $pulls as $p }
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$pulls[rows]["NEW_TITLE"]}</td>
-    <td>{$pulls[rows]["NEW_ISSUE"]}</td>
-    <td>{$pulls[rows]["PULL_TITLE"]}</td>
-    <td>{$pulls[rows]["PULL_ISSUE"]}</td>
-    <td><button value='{$pulls[rows]["MATCH_ID"]}'  name='MatchToPull'  type="submit">Match Comics</button></td>
+    <td>{$p.NEW_TITLE}</td>
+    <td>{$p.NEW_ISSUE}</td>
+    <td>{$p.PULL_TITLE}</td>
+    <td>{$p.PULL_ISSUE}</td>
+    <td><button value='{$p.MATCH_ID}'  name='MatchToPull'  type="submit">Match Comics</button></td>
     </tr>
-    {/section}
+    {/foreach}
    </table>
    </form>
   </div>
