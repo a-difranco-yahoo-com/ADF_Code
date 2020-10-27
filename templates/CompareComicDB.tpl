@@ -28,16 +28,16 @@
       <th>ACTION</th>
     </tr>
 	
-    {section name=rows loop=$runs}
+    {foreach $runs as $r}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$runs[rows]["COMIC_TYPE"]}</td>
-    <td>{$runs[rows]["TITLE"]}</td>
-    <td>{$runs[rows]["VOLUME"]}</td>
-    <td>{$runs[rows]["START_ISSUE"]}</td>
-    <td>{$runs[rows]["END_ISSUE"]}</td>
-    <td><button value='{$runs[rows]["TITLE_ID"]}'  name='SplitTrade'
-       {if {$runs[rows]["COMIC_TYPE"] == "DIGITAL"}} DISABLED {/if}  type="submit">Split Trade</button></td>
-    {/section}
+    <td>{$r.COMIC_TYPE}</td>
+    <td>{$r.TITLE}</td>
+    <td>{$r.VOLUME}</td>
+    <td>{$r.START_ISSUE}</td>
+    <td>{$r.END_ISSUE}</td>
+    <td><button value='{$r.TITLE_ID}'  name='SplitTrade'
+       {if {$r.COMIC_TYPE == "DIGITAL"}} DISABLED {/if}  type="submit">Split Trade</button></td>
+       {/foreach}
    </table>
    <p>
    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
@@ -55,22 +55,24 @@
       <th>ACTION</th>
     </tr>
 	
-    {section name=rows loop=$match}
+    {foreach $match as $m}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$match[rows]["COMICDB_TITLE"]}</td>
-    <td>{$match[rows]["COMICDB_VOLUME"]}</td>
-    <td>{$match[rows]["DIGITAL_TITLE"]}</td>
-    <td>{$match[rows]["DIGITAL_VOLUME"]}</td>
-    <td>{$match[rows]["SIM"]}</td>
-    <td>{$match[rows]["COMICDB_COMICS"]}</td>
-    <td>{$match[rows]["DIGITAL_COMICS"]}</td>
-    <td>{$match[rows]["MATCHES"]}</td>
-    <td>{$match[rows]["SUBMATCHES"]}</td>
-    <td>{$match[rows]["MATCHED"]}</td>
-    <td><button value='{$match[rows]["MATCH_ID"]}'  name='MatchComicDB'
-       {if {$match[rows]["MATCHED"] == "Y"}} DISABLED {/if}  type="submit">Match Comics</button></td>
+    <td>{$m.COMICDB_TITLE}</td>
+    <td>{$m.COMICDB_VOLUME}</td>
+    <td>{$m.DIGITAL_TITLE}</td>
+    <td>{$m.DIGITAL_VOLUME}</td>
+    <td>{$m.SIM}</td>
+    <td>{$m.COMICDB_COMICS}</td>
+    <td>{$m.DIGITAL_COMICS}</td>
+    <td>{$m.MATCHES}</td>
+    <td>{$m.SUBMATCHES}</td>
+    <td>{$m.MATCHED}</td>
+    <td><button value='{$m.MATCH_ID}'  name='MatchComicDB'
+       {if {$m.MATCHED == "Y"}} DISABLED {/if}  type="submit">Match Comics</button></td>
     </tr>
-    {/section}
+    {foreachelse}
+      <tr><td COLSPAN=6>No Rows</td></tr>
+    {/foreach}
    </table>
    </form>
   </div>

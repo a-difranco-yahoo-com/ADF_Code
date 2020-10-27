@@ -29,16 +29,18 @@
       <th>ACTION</th>
     </tr>
 	
-    {section name=rows loop=$detail}
+    {foreach $detail as $d}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$detail[rows]["COMIC_TYPE"]}</td>
-    <td>{$detail[rows]["TITLE"]}</td>
-    <td>{$detail[rows]["VOLUME"]}</td>
-    <td>{$detail[rows]["SERIES_RUN"]}</td>
-    <td>{$detail[rows]["START_ISSUE"]}</td>
-    <td>{$detail[rows]["END_ISSUE"]}</td>
-    <td><button value='{$detail[rows]["TITLE_ID"]}'  name='TitleToDelete'  type="submit">Delete Series</button></td>
-    {/section}
+    <td>{$d.COMIC_TYPE}</td>
+    <td>{$d.TITLE}</td>
+    <td>{$d.VOLUME}</td>
+    <td>{$d.SERIES_RUN}</td>
+    <td>{$d.START_ISSUE}</td>
+    <td>{$d.END_ISSUE}</td>
+    <td><button value='{$d.TITLE_ID}'  name='TitleToDelete'  type="submit">Delete Series</button></td>
+    {foreachelse}
+    <tr><td COLSPAN=7 Style="TEXT-ALIGN:CENTER;">No Rows</td></tr>
+    {/foreach}
    </table>
    <p>
    </form>

@@ -20,15 +20,15 @@
       <th>ACTION</th>
     </tr>
 	
-    {section name=rows loop=$split}
+    {foreach $split as $s}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$split[rows]["TITLE"]}</td>
-    <td>{$split[rows]["VOLUME"]}</td>
-    <td>{$split[rows]["START_ISSUE"]}</td>
-    <td>{$split[rows]["END_ISSUE"]}</td>
-    <td>{$split[rows]["SERIES_RUN"]}</td>
-    <td><button value='{$split[rows]["TITLE_ID"]}'  name='AddCompleteRun'  type="submit">Add Complete Run</button></td>
-    {/section}
+    <td>{$s.TITLE}</td>
+    <td>{$s.VOLUME}</td>
+    <td>{$s.START_ISSUE}</td>
+    <td>{$s.END_ISSUE}</td>
+    <td>{$s.SERIES_RUN}</td>
+    <td><button value='{$s.TITLE_ID}'  name='AddCompleteRun'  type="submit">Add Complete Run</button></td>
+    {/foreach}
    </table>
    <p>
    </form>

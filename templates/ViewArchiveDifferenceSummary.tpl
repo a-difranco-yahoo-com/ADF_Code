@@ -18,13 +18,15 @@
       <th>View Details</th>
     </tr>
 	
-    {section name=rows loop=$summary}
+    {foreach $summary as $s}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$summary[rows]["TITLE"]}</td>
-    <td>{$summary[rows]["ISSUES"]}</td>
-    <td><button value='{$summary[rows]["TITLE"]}'  name='ViewArchiveDetail'  type="submit">View Details</button></td>
+    <td>{$s.TITLE}</td>
+    <td>{$s.ISSUES}</td>
+    <td><button value='{$s.TITLE}'  name='ViewArchiveDetail'  type="submit">View Details</button></td>
     </tr>
-    {/section}
+    {foreachelse}
+    <tr><td COLSPAN=3 Style="TEXT-ALIGN:CENTER;">No Rows</td></tr>
+    {/foreach}
    </table>
    <p>
    </form>

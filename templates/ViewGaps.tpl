@@ -21,16 +21,16 @@
       <th>ACTION</th>
     </tr>
 	
-    {section name=rows loop=$gaps}
+    {foreach $gaps as $g }
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$gaps[rows]["TITLE"]}</td>
-    <td>{$gaps[rows]["VOLUME"]}</td>
-    <td>{$gaps[rows]["START_ISSUE"]}</td>
-    <td>{$gaps[rows]["END_ISSUE"]}</td>
-    <td>{$gaps[rows]["SUBISSUE"]}</td>
-    <td>{$gaps[rows]["SERIES_RUN"]}</td>
-    <td><button value='{$gaps[rows]["TITLE_ID"]}'  name='AddWishList'  type="submit">Add Wish List</button></td>
-    {/section}
+    <td>{$g.TITLE}</td>
+    <td>{$g.VOLUME}</td>
+    <td>{$g.START_ISSUE}</td>
+    <td>{$g.END_ISSUE}</td>
+    <td>{$g.SUBISSUE}</td>
+    <td>{$g.SERIES_RUN}</td>
+    <td><button value='{$g.TITLE_ID}'  name='AddWishList'  type="submit">Add Wish List</button></td>
+    {/foreach}
    </table>
    <p>
    </form>

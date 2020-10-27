@@ -18,14 +18,14 @@
       <th>ACTION</th>
     </tr>
 	
-    {section name=rows loop=$summary}
+    {foreach $summary as $s}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$summary[rows]["TITLE"]}</td>
-    <td>{$summary[rows]["VOLUME"]}</td>
-    <td>{$summary[rows]["ISSUES"]}</td>
-    <td><button value='{$summary[rows]["TITLE"]}'  name='ViewComicDBCompare'  type="submit">View Comparison</button></td>
+    <td>{$s.TITLE}</td>
+    <td>{$s.VOLUME}</td>
+    <td>{$s.ISSUES}</td>
+    <td><button value='{$s.TITLE}'  name='ViewComicDBCompare'  type="submit">View Comparison</button></td>
     </tr>
-    {/section}
+    {/foreach}
    </table>
    <p>
    </form>

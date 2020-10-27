@@ -17,7 +17,7 @@
    <label for="Search">Search Text:</label>
    <input class="Search" type="text" id="Search" name="Search" value="{$title}"><br>
 
-   <table class="form" border-width="1" border="1" cellspacing="0" cellpadding="1">
+   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
    <tr bgcolor="#e6eef1">
       <th>TITLE</th>
       <th>VOLUME</th>
@@ -27,15 +27,17 @@
       <th>SERIES_RUN</th>
     </tr>
 	
-    {section name=rows loop=$runs}
+    {foreach $runs as $r }
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$runs[rows]["TITLE"]}</td>
-    <td>{$runs[rows]["VOLUME"]}</td>
-    <td>{$runs[rows]["START_ISSUE"]}</td>
-    <td>{$runs[rows]["END_ISSUE"]}</td>
-    <td>{$runs[rows]["SUBISSUE"]}</td>
-    <td>{$runs[rows]["SERIES_RUN"]}</td>
-    {/section}
+    <td>{$r.TITLE}</td>
+    <td>{$r.VOLUME}</td>
+    <td>{$r.START_ISSUE}</td>
+    <td>{$r.END_ISSUE}</td>
+    <td>{$r.SUBISSUE}</td>
+    <td>{$r.SERIES_RUN}</td>
+    {foreachelse}
+    <tr><td COLSPAN=6 Style="TEXT-ALIGN:CENTER;">No Rows</td></tr>
+    {/foreach}
    </table>
    <p>
    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
@@ -48,15 +50,17 @@
       <th>SERIES_RUN</th>
     </tr>
 	
-    {section name=rows loop=$wish}
+    {foreach $wish as $w }
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$wish[rows]["TITLE"]}</td>
-    <td>{$wish[rows]["VOLUME"]}</td>
-    <td>{$wish[rows]["START_ISSUE"]}</td>
-    <td>{$wish[rows]["END_ISSUE"]}</td>
-    <td>{$wish[rows]["SUBISSUE"]}</td>
-    <td>{$wish[rows]["SERIES_RUN"]}</td>
-    {/section}
+    <td>{$w.TITLE}</td>
+    <td>{$w.VOLUME}</td>
+    <td>{$w.START_ISSUE}</td>
+    <td>{$w.END_ISSUE}</td>
+    <td>{$w.SUBISSUE}</td>
+    <td>{$w.SERIES_RUN}</td>
+    {foreachelse}
+    <tr><td COLSPAN=6 Style="TEXT-ALIGN:CENTER;">No Rows</td></tr>
+    {/foreach}
    </table>
 
    </form>

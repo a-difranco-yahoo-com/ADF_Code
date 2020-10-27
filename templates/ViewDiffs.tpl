@@ -21,18 +21,20 @@
       <th>ACTION</th>
     </tr>
 	
-    {section name=rows loop=$diff}
+    {foreach $diff as $d}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$diff[rows]["TITLE"]}</td>
-    <td>{$diff[rows]["VOLUME"]}</td>
-    <td>{$diff[rows]["COMICDB_RUN"]}</td>
-    <td>{$diff[rows]["COMICDB_SERIES_RUN"]}</td>
-    <td>{$diff[rows]["DIGITAL_RUN"]}</td>
-    <td>{$diff[rows]["DIGITAL_SERIES_RUN"]}</td>
+    <td>{$d.TITLE}</td>
+    <td>{$d.VOLUME}</td>
+    <td>{$d.COMICDB_RUN}</td>
+    <td>{$d.COMICDB_SERIES_RUN}</td>
+    <td>{$d.DIGITAL_RUN}</td>
+    <td>{$d.DIGITAL_SERIES_RUN}</td>
     <td>
-    <button value='{$diff[rows]["COMICDB_TITLE_ID"]},{$diff[rows]["DIGITAL_TITLE_ID"]}'  name='AddSeriesRun'  type="submit">Add Series Run</button>
+    <button value='{$d.COMICDB_TITLE_ID},{$d.DIGITAL_TITLE_ID}'  name='AddSeriesRun'  type="submit">Add Series Run</button>
     </td>
-    {/section}
+    {foreachelse}
+    <tr><td ALIGN=Centre COLSPAN=7>No Rows</td></tr>
+    {/foreach}
    </table>
    <p>
    </form>
