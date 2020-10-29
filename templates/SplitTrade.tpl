@@ -35,7 +35,8 @@
     <td>{$t.ISSUE}</td>
     <td><input class="Input" type="number" name="StartIssue{$t@iteration}" value="{$t@iteration}"></TD>
     <td><input class="Input" type="number" name="EndIssue{$t@iteration}"   value="{$t@iteration}"></TD>
-    <td><button              type="submit" name='SplitIssue{$t@iteration}' value='{$t.ROWID_CB}'>Split Issue</button></td>
+        <input               type="hidden" name="RowId{$t@iteration}"      value="{$t.ROWID_CB}">
+    <td><button              type="submit" name='SplitIssue'               value='Y'>Split Issue</button></td>
     {/foreach}
 
    </table>
