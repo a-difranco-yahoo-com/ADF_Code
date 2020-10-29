@@ -272,7 +272,7 @@ class Comic_Oracle
    }
 
    public function Get_ComicDB_Compare($Title, $StartYear, $EndYear) {
-      $SQL = " SELECT   Comic_Type, Title, Volume, Start_Issue, End_Issue"
+      $SQL = " SELECT   Title_Id, Comic_Type, Title, Volume, Start_Issue, End_Issue"
            . " FROM     V_ALL_COMIC_RUN "
            . " WHERE    Comic_Type IN ('COMICDB', 'DIGITAL')"
            . " AND      upper(Title) Like '%' || upper(:Title) || '%'"
