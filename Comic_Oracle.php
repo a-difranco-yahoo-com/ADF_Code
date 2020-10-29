@@ -271,7 +271,7 @@ class Comic_Oracle
       return $rows;
    }
 
-   public function Get_ComicDB_Compare($Title, $StartYear, $EndYear) {
+   public function Get_ComicDB_Compare($Search) {
       $SQL = " SELECT   Title_Id, Comic_Type, Title, Volume, Start_Issue, End_Issue"
            . " FROM     V_ALL_COMIC_RUN "
            . " WHERE    Comic_Type IN ('COMICDB', 'DIGITAL')"
@@ -280,9 +280,9 @@ class Comic_Oracle
            . " ORDER BY Title, Volume, Start_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
-      oci_bind_by_name($stmt, ":Title",      $Title);
-      oci_bind_by_name($stmt, ":StartYear",  $StartYear);
-      oci_bind_by_name($stmt, ":EndYear",    $EndYear);
+      oci_bind_by_name($stmt, ":Title",      $Search["Title"]);
+      oci_bind_by_name($stmt, ":StartYear",  $Search["StartYear"]);
+      oci_bind_by_name($stmt, ":EndYear",    $Search["EndYear"]);
       oci_execute($stmt);
       oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
       return $rows;
@@ -304,16 +304,16 @@ class Comic_Oracle
       return $rows;
    }
 
-   public function Match_ComicDB($SearchTitle, $StartYear, $EndYear) {
+   public function Match_ComicDB($Search) {
       $PLSQL = " BEGIN"
              . "   COMICS.Find_ComicDB_Matches(:TitleId, :StartYear, :EndYear);"
              . "   COMMIT;"
              . " END;";
 
       $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_bind_by_name($stmt, ":TitleId",   $SearchTitle);
-      oci_bind_by_name($stmt, ":StartYear", $StartYear);
-      oci_bind_by_name($stmt, ":EndYear",   $EndYear);
+      oci_bind_by_name($stmt, ":TitleId",   $Search["Title"]);
+      oci_bind_by_name($stmt, ":StartYear", $Search["StartYear"]);
+      oci_bind_by_name($stmt, ":EndYear",   $Search["EndYear"]);
       oci_execute($stmt);
    }
 

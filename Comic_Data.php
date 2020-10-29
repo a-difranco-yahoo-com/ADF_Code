@@ -19,14 +19,14 @@ class Comic_Data
 
    public function Set_MatchComicDB($post)
    {
-      $this->Option         =$_POST['Option'];
-      $this->SearchTitle    =$_POST['SearchTitle'];
-      $this->SearchStartYear=$_POST['SearchStartYear'];
-      $this->SearchEndYear  =$_POST['SearchEndYear'];
-      $this->Compare        =$_POST['ViewComicDBCompare'];
-      $this->DBMatch        =$_POST['MatchComicDB'];
-      $this->TradeId        =$_POST['SplitTrade'];
-      $this->SplitIssue     =$_POST['SplitIssue'];
+      $this->Option             =$_POST['Option'];
+      $this->Search["Title"]    =$_POST['SearchTitle'];
+      $this->Search["StartYear"]=$_POST['SearchStartYear'];
+      $this->Search["EndYear"]  =$_POST['SearchEndYear'];
+      $this->Compare            =$_POST['ViewComicDBCompare'];
+      $this->DBMatch            =$_POST['MatchComicDB'];
+      $this->TradeId            =$_POST['SplitTrade'];
+      $this->SplitIssue         =$_POST['SplitIssue'];
 
       foreach($post as $key => $value)
       {
@@ -39,16 +39,10 @@ class Comic_Data
       }
    }
 
-   public function Get_Issues()
-   {
-      return $this->Issues;
-   }
-
    public function Get_StartIssue()
    {
       return $this->StartIssue;
    }
-
    public function Get_EndIssue()
    {
       return $this->EndIssue;

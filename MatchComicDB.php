@@ -14,9 +14,9 @@ $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
   if ($Data->Compare != "") {
-    $Data->SearchTitle    = $Data->Compare;
-    $Data->SearchStartYear= 1960;
-    $Data->SearchEndYear  = 2012;
+    $Data->Search["Title"]    = $Data->Compare;
+    $Data->Search["StartYear"] = 1960;
+    $Data->Search["EndYear"]  = 2012;
     $Data->Option         = "CompareComicDB";
   } elseif ($Data->DBMatch != '') {
     $Connection->Match_To_ComicDB($Data->DBMatch);
@@ -43,12 +43,10 @@ $Connection->Log_Post_Details('GET',  $_GET);
     $smarty->assign('rowid',      $Data->Get_RowId() );
     $smarty->display('SplitIssue.tpl');
   } elseif ($Data->Option == 'CompareComicDB')  {
-    $Connection->Match_ComicDB($Data->SearchTitle, $Data->SearchStartYear, $Data->SearchEndYear);
-	  $runs  = $Connection->Get_ComicDB_Compare($Data->SearchTitle, $Data->SearchStartYear, $Data->SearchEndYear);
-	  $match = $Connection->Get_Match_ComicDB();
-    $smarty->assign('title',     $Data->SearchTitle);
-    $smarty->assign('startYear', $Data->SearchStartYear);
-    $smarty->assign('endYear',   $Data->SearchEndYear);
+    $Connection->Match_ComicDB($Data->Search);
+	  $runs  = $Connection->Get_ComicDB_Compare($Data->Search);
+    $match = $Connection->Get_Match_ComicDB();
+    $smarty->assign('search',    $Data->Search);
     $smarty->assign('runs',      $runs);
     $smarty->assign('match',     $match);
     $smarty->display('CompareComicDB.tpl');

@@ -11,11 +11,11 @@
    {include file="ComicDBMenu.tpl"}
 
    <label for="SearchTitle">Search Title Text:</label>
-   <input class="Search" type="text" id="SearchTitle" name="SearchTitle"     value="{$title}">
+   <input class="Search" type="text" id="SearchTitle" name="SearchTitle"     value="{$search["Title"]}">
    <label for="SearchTitle">Start Year</label>
-   <input class="Search" type="number" id="SearchTitle" name="SearchStartYear" value={$startYear}>
+   <input class="Search" type="number" id="SearchTitle" name="SearchStartYear" value={$search["StartYear"]}>
    <label for="SearchTitle">End Year</label>
-   <input class="Search" type="number" id="SearchTitle" name="SearchEndYear"   value={$endYear}>
+   <input class="Search" type="number" id="SearchTitle" name="SearchEndYear"   value={$search["EndYear"]}>
    <p>
 
    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
