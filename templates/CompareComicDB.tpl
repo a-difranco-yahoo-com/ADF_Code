@@ -71,7 +71,7 @@
        {if {$m.MATCHED == "Y"}} DISABLED {/if}  type="submit">Match Comics</button></td>
     </tr>
     {foreachelse}
-      <tr><td COLSPAN=6>No Rows</td></tr>
+      <tr><td COLSPAN=11 STYLE='TEXT-ALIGN:CENTER;'>No Rows</td></tr>
     {/foreach}
    </table>
    </form>
