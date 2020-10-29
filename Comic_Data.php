@@ -2,37 +2,61 @@
 
 class Comic_Data
 {
-    private $from_date;
-    private $to_date;
-    private $investor_type;
-
-   public function __construct($from_date, $to_date, $investor_type)
+   public function __construct()
    {
-      $this->from_date = $from_date;
-      $this->to_date    = $to_date;
-      $this->investor_type = $investor_type ? $investor_type : 'Not Set';
-    }
-
-   public function Get_From_Date()
-   {
-	   return $this->from_date;
+      $this->Option         ="";
+      $this->Commit         ="";
+      $this->SearchTitle    ="";
+      $this->SearchStartYear="";
+      $this->SearchEndYear  ="";
+      $this->Compare        ="";
+      $this->DBMatch        ="";
+      $this->TradeId        ="";
+      $this->StartIssue     = array();
+      $this->EndIssue       = array();
+      $this->RowId          = array();
    }
 
-   public function Get_To_Date()
+   public function Set_MatchComicDB($post)
    {
-	   return $this->to_date;
+      $this->Option         =$_POST['Option'];
+      $this->SearchTitle    =$_POST['SearchTitle'];
+      $this->SearchStartYear=$_POST['SearchStartYear'];
+      $this->SearchEndYear  =$_POST['SearchEndYear'];
+      $this->Compare        =$_POST['ViewComicDBCompare'];
+      $this->DBMatch        =$_POST['MatchComicDB'];
+      $this->TradeId        =$_POST['SplitTrade'];
+      $this->SplitIssue     =$_POST['SplitIssue'];
+
+      foreach($post as $key => $value)
+      {
+         if ( substr($key, 0, 10) == "StartIssue")
+           $this->StartIssue[intval(substr($key, 10, 2))] = $value;
+         if ( substr($key, 0, 8)  == "EndIssue")
+           $this->EndIssue[intval(substr($key, 8, 2))] = $value;
+         if ( substr($key, 0, 5) == "RowId")
+           $this->RowId[intval(substr($key, 5, 2))] = $value;
+      }
    }
 
-   public function Get_Investor_Type()
+   public function Get_Issues()
    {
-	   return $this->investor_type;
+      return $this->Issues;
    }
 
-   public function Set_Default_Dates()
+   public function Get_StartIssue()
    {
-       $this->from = date('d-m-Y',time()-7*24*3600); //week ago
-       $this->to = date('d-m-Y');
+      return $this->StartIssue;
    }
 
+   public function Get_EndIssue()
+   {
+      return $this->EndIssue;
+   }
+
+   public function Get_RowId()
+   {
+      return $this->RowId;
+   }
 }
 ?>
