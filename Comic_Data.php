@@ -52,5 +52,15 @@ class Comic_Data
    {
       return $this->RowId;
    }
+
+   public function SplitTrade($Connection)
+   {
+      foreach ($this->RowId as $key => $rowid)
+      {
+         if ( isset($this->StartIssue[$key]) && isset($this->EndIssue[$key]) )
+           if ( $this->StartKey[$key] < $this->EndIssue[$key] )
+              $Connection->SplitTrade($rowid, $this->StartIssue[$key], $this->EndIssue[$key]);
+      }
+   }
 }
 ?>
