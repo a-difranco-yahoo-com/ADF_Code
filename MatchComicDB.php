@@ -24,7 +24,8 @@ $Connection->Log_Post_Details('GET',  $_GET);
   } elseif ($Data->TradeId != '') {
     $Data->Option = 'SplitTrade';
   } elseif ($Data->SplitIssue != '') {
-    $Data->Option = 'SplitIssue';
+    $Data->SplitTrade($Connection);
+    $Data->Option = "CompareComicDB";
   } elseif ($Data->Option == '') {
     $Data->Option = 'ViewSummary';
   }
@@ -35,13 +36,9 @@ $Connection->Log_Post_Details('GET',  $_GET);
     $smarty->display('ViewComicDBSummary.tpl');
   } elseif ($Data->Option == 'SplitTrade')  {
 	  $trades  = $Connection->Get_ComicDB_Trades($Data->TradeId);
+    $smarty->assign('search',     $Data->Search);
     $smarty->assign('trades',     $trades);
     $smarty->display('SplitTrade.tpl');
-  } elseif ($Data->Option == 'SplitIssue')  {
-    $smarty->assign('startissue', $Data->Get_StartIssue() );
-    $smarty->assign('endissue',   $Data->Get_EndIssue() );
-    $smarty->assign('rowid',      $Data->Get_RowId() );
-    $smarty->display('SplitIssue.tpl');
   } elseif ($Data->Option == 'CompareComicDB')  {
     $Connection->Match_ComicDB($Data->Search);
 	  $runs  = $Connection->Get_ComicDB_Compare($Data->Search);
