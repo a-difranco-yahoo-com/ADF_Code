@@ -339,5 +339,18 @@ class Comic_Oracle
       oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
       return $rows;
     }
+
+   public function SplitTrade($RowId, $StartIssue, $EndIssue) {
+      $PLSQL = " BEGIN"
+             . "   COMICS.Split_Trade(:RowId, :StartIssue, :EndIssue);"
+             . "   COMMIT;"
+             . " END;";
+
+      $stmt = oci_parse($this->Connection, $PLSQL);
+      oci_bind_by_name($stmt, ":RowId",      $RowId);
+      oci_bind_by_name($stmt, ":StartIssue", $StartIssue);
+      oci_bind_by_name($stmt, ":EndIssue",   $EndIssue);
+      oci_execute($stmt);
+   }
 }
 ?>
