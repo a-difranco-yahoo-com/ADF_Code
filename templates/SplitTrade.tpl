@@ -10,14 +10,6 @@
    <form name="data" action="MatchComicDB.php" method="post">
    {include file="ComicDBMenu.tpl"}
 
-   <label for="SearchTitle">Search Title Text:</label>
-   <input class="Search" type="text" id="SearchTitle" name="SearchTitle"     value="{$title}">
-   <label for="SearchTitle">Start Year</label>
-   <input class="Search" type="number" id="SearchTitle" name="SearchStartYear" value={$startYear}>
-   <label for="SearchTitle">End Year</label>
-   <input class="Search" type="number" id="SearchTitle" name="SearchEndYear"   value={$endYear}>
-   <p>
-
    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
    <tr bgcolor="#e6eef1">
       <th>TITLE</th>
@@ -28,13 +20,17 @@
       <th>ACTION</th>
     </tr>
   
+   <input type="hidden" name="SearchTitle"     value="{$search["Title"]}">
+   <input type="hidden" name="SearchStartYear" value="{$search["StartYear"]}">
+   <input type="hidden" name="SearchEndYear"   value="{$search["EndYear"]}">
+
     {foreach $trades as $t}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
     <td>{$t.TITLE}</td>
     <td>{$t.VOLUME}</td>
     <td>{$t.ISSUE}</td>
-    <td><input class="Input" type="number" name="StartIssue{$t@iteration}" value="{$t@iteration}"></TD>
-    <td><input class="Input" type="number" name="EndIssue{$t@iteration}"   value="{$t@iteration}"></TD>
+    <td><input class="Input" type="number" name="StartIssue{$t@iteration}" value=""></TD>
+    <td><input class="Input" type="number" name="EndIssue{$t@iteration}"   value=""></TD>
         <input               type="hidden" name="RowId{$t@iteration}"      value="{$t.ROWID_CB}">
     <td><button              type="submit" name='SplitIssue'               value='Y'>Split Issue</button></td>
     {/foreach}
