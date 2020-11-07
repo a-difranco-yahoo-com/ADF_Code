@@ -33,7 +33,7 @@
     <button value='{$d.COMICDB_TITLE_ID},{$d.DIGITAL_TITLE_ID}'  name='AddSeriesRun'  type="submit">Add Series Run</button>
     </td>
     {foreachelse}
-    <tr><td ALIGN=Centre COLSPAN=7>No Rows</td></tr>
+    <tr><td Style="TEXT-ALIGN:CENTER;" COLSPAN=7>No Rows</td></tr>
     {/foreach}
    </table>
    <p>
