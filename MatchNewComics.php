@@ -7,6 +7,7 @@ $err=error_reporting(E_ALL & ~E_NOTICE);
 $Connection    = new Comic_Oracle();
 $Option        =$_POST['Option'];
 $PullMatch     =$_POST['MatchToPull'];
+$MatchLevel    =$_POST['MatchLevel'];
 $WishMatch     =$_POST['MatchToWish'];
 $DigitalSeries =$_POST['DigitalSeries'];
 $OneShot       =$_POST['OneShot'];
@@ -44,9 +45,11 @@ $Connection->Log_Post_Details('GET',  $_GET);
   }
 
   if ($Option == 'MatchPull')  {
-   	$Connection->Run_Match(80);
+    if ( $MatchLevel == "") $MatchLevel = 80;
+   	$Connection->Run_Match($MatchLevel);
 	  $pulls = $Connection->Get_Match_Pull_List();
     $smarty->assign('pulls', $pulls);
+    $smarty->assign('level', $MatchLevel);
     $smarty->display('MatchPullList.tpl');
   } elseif ($Option == 'MatchWish')  {
 	  $Connection->Run_Match(80);
