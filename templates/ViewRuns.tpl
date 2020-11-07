@@ -10,10 +10,6 @@
    <form name="data" action="ViewComicDatabase.php" method="post">
    {include file="ViewMenu.tpl"}
 
-   <table class="form" border-width="1" border="1" cellspacing="0" cellpadding="1">
-   <tr>
-   </tr>
-   </table>
    <label for="Search">Search Text:</label>
    <input class="Search" type="text" id="Search" name="Search" value="{$title}"><br>
 
