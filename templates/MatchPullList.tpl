@@ -27,6 +27,8 @@
     <td>{$p.PULL_ISSUE}</td>
     <td><button value='{$p.MATCH_ID}'  name='MatchToPull'  type="submit">Match Comics</button></td>
     </tr>
+    {foreachelse}
+    <tr><td COLSPAN=5 Style="TEXT-ALIGN:CENTER;">No Rows</td></tr>
     {/foreach}
    </table>
    </form>
