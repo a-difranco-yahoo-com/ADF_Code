@@ -21,17 +21,19 @@
       <th>ACTION</th>
     </tr>
 	
-    {section name=rows loop=$wishs}
+    {foreach $wishs as $w}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$wishs[rows]["NEW_TITLE"]}</td>
-    <td>{$wishs[rows]["NEW_VOLUME"]}</td>
-    <td>{$wishs[rows]["NEW_ISSUE"]}</td>
-    <td>{$wishs[rows]["WISH_TITLE"]}</td>
-    <td>{$wishs[rows]["WISH_VOLUME"]}</td>
-    <td>{$wishs[rows]["WISH_ISSUE"]}</td>
-    <td><button value='{$wishs[rows]["MATCH_ID"]}'  name='MatchToWish'  type="submit">Match Comics</button></td>
+    <td>{$w.NEW_TITLE}</td>
+    <td>{$w.NEW_VOLUME}</td>
+    <td>{$w.NEW_ISSUE}</td>
+    <td>{$w.WISH_TITLE}</td>
+    <td>{$w.WISH_VOLUME}</td>
+    <td>{$w.WISH_ISSUE}</td>
+    <td><button value='{$w.MATCH_ID}'  name='MatchToWish'  type="submit">Match Comics</button></td>
     </tr>
-    {/section}
+    {foreachelse}
+    <tr><td COLSPAN=7 Style="TEXT-ALIGN:CENTER;">No Rows</td></tr>
+    {/foreach}
    </table>
    <p>
    </form>
