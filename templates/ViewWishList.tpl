@@ -14,8 +14,8 @@
    <tr bgcolor="#e6eef1">
       <th>TITLE</th>
       <th>VOLUME</th>
-      <th>YEAR</th>
-      <th>ISSUE</th>
+      <th>START ISSUE</th>
+      <th>END ISSUE</th>
       <th>SUBISSUE</th>
       <th>SERIES_RUN</th>
     </tr>
@@ -24,8 +24,8 @@
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
     <td>{$w.TITLE}</td>
     <td>{$w.VOLUME}</td>
-    <td>{$w.YEAR}</td>
-    <td>{$w.ISSUE}</td>
+    <td>{$w.START_ISSUE}</td>
+    <td>{$w.END_ISSUE}</td>
     <td>{$w.SUBISSUE}</td>
     <td>{$w.SERIES_RUN}</td>
     </tr>

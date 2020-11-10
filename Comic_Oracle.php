@@ -139,9 +139,10 @@ class Comic_Oracle
    }
 
    public function Get_Wish_List() {
-      $SQL = " SELECT   Title,  Volume,  Issue, SubIssue, Series_Run"
-           . " FROM     WISH_LIST"
-           . " ORDER BY Title,  Volume, Issue";
+      $SQL = " SELECT   Title,  Volume,  Start_Issue, End_Issue, SubIssue, Series_Run"
+           . " FROM     V_ALL_COMIC_RUN"
+           . " WHERE    Comic_Type = 'WISHLIST'"
+           . " ORDER BY Title,  Volume, Start_Issue";
 
       $stmt = oci_parse($this->Connection, $SQL);
       oci_execute($stmt);
