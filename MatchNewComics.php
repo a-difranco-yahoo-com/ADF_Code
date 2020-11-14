@@ -47,26 +47,21 @@ $Connection->Log_Post_Details('GET',  $_GET);
   if ($Option == 'MatchPull')  {
     if ( $MatchLevel == "") $MatchLevel = 80;
    	$Connection->Run_Match($MatchLevel);
-	  $pulls = $Connection->Get_Match_Pull_List();
-    $smarty->assign('pulls', $pulls);
+    $smarty->assign('pulls', $Connection->Get_Match_Pull_List() );
     $smarty->assign('level', $MatchLevel);
     $smarty->display('MatchPullList.tpl');
   } elseif ($Option == 'MatchWish')  {
 	  $Connection->Run_Match(80);
-	  $wishs = $Connection->Get_Match_Wish_List();
-    $smarty->assign('wishs', $wishs);
+    $smarty->assign('wishs', $Connection->Get_Match_Wish_List() );
 	  $smarty->display('MatchWishList.tpl');
   } elseif ($Option == 'ViewNew')  {
-	  $new = $Connection->Get_New_Comics();
-    $smarty->assign('new', $new);
+    $smarty->assign('new', $Connection->Get_New_Comics() );
 	  $smarty->display('ViewNewComics.tpl');
   } elseif ($Option == 'ViewPull')  {
-	  $pull = $Connection->Get_Pull_List();
-    $smarty->assign('pull', $pull);
+    $smarty->assign('pull', $Connection->Get_Pull_List() );
 	  $smarty->display('ViewPullList.tpl');
   } elseif ($Option == 'ViewWish')  {
-	  $wish = $Connection->Get_Wish_List();
-    $smarty->assign('wish', $wish);
+    $smarty->assign('wish', $Connection->Get_Wish_List() );
 	  $smarty->display('ViewWishList.tpl');
   }
 
