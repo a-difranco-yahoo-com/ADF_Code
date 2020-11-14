@@ -205,6 +205,18 @@ class Comic_Oracle
       oci_execute($stmt);
    }
 
+   public function Add_Complete_Run($TitleId, $StartIssue, $EndIssue) {
+      $PLSQL = " BEGIN"
+             . "  COMICS.Add_Complete_Run(:TitleId, :StartIssue, :EndIssue);"
+             . " END;";
+
+      $stmt = oci_parse($this->Connection, $PLSQL);
+      oci_bind_by_name($stmt, ":TitleId",     $TitleId);
+      oci_bind_by_name($stmt, ":StartIssue",  $StartIssue);
+      oci_bind_by_name($stmt, ":EndIssue",    $EndIssue);
+      oci_execute($stmt);
+   }
+
    public function Get_Run_Details($Search) {
       $SQL = " SELECT   Title,  Volume,  Start_Issue, End_Issue, SubIssue, Series_Run"
            . " FROM     V_ALL_COMIC_RUN"
