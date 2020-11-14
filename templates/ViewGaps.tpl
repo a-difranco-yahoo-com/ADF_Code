@@ -10,6 +10,7 @@
    <form name="data" action="ViewComicDatabase.php" method="post">
    {include file="ViewMenu.tpl"}
 
+   <input type="hidden" name="Origin" value="ViewGaps">
    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
    <tr bgcolor="#e6eef1">
       <th>TITLE</th>
@@ -29,7 +30,10 @@
     <td>{$g.END_ISSUE}</td>
     <td>{$g.SUBISSUE}</td>
     <td>{$g.SERIES_RUN}</td>
-    <td><button value='{$g.TITLE_ID}'  name='AddWishList'  type="submit">Add Wish List</button></td>
+    <td>
+    <button value='{$g.TITLE_ID}'                                  name='AddWishList'    type="submit">Add Wish List</button>
+    <button value='{$g.TITLE_ID},{$g.START_ISSUE},{$g.END_ISSUE}'  name='AddCompleteRun' type="submit">Add Complete Run</button>
+    </td>
     {/foreach}
    </table>
    <p>
