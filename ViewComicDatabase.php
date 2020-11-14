@@ -4,12 +4,14 @@ require_once("D:\Php_Code\Smarty\libs\Smarty.class.php");
 include 'Comic_Oracle.php';
 
 $err=error_reporting(E_ALL & ~E_NOTICE);
-$Connection = new Comic_Oracle();
-$Option     =$_POST['Option'];
-$Search     =$_POST['Search'];
-$WishList   =$_POST['AddWishList'];
-$AddSeries  =$_POST['AddSeriesRun'];
-$smarty     = new Smarty;
+$Connection  = new Comic_Oracle();
+$Option      =$_POST['Option'];
+$Origin      =$_POST['Origin'];
+$Search      =$_POST['Search'];
+$WishList    =$_POST['AddWishList'];
+$AddSeries   =$_POST['AddSeriesRun'];
+$AddComplete =$_POST['AddCompleteRun'];
+$smarty      = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
@@ -22,7 +24,13 @@ $Connection->Log_Post_Details('GET',  $_GET);
     $ComicDBTitleId = $Titles[0];
     $DigitalTitleId = $Titles[1];
 	  $Connection->Add_Series_Run($ComicDBTitleId, $DigitalTitleId);
-    $Option = 'ViewDiffs';
+  } elseif ($AddComplete != '')  {
+    $Details = explode(",", $AddComplete);
+    $TitleId    = $Details[0];
+    $StartIssue = $Details[1];
+    $EndIssue   = $Details[2];
+	  $Connection->Add_Complete_Run($TitleId, $StartIssue, $EndIssue);
+    $Option = $Origin;
   }
 
   if ($Option == '')  $Option = 'ViewGaps';
