@@ -32,6 +32,8 @@
     <button value='{$s.TITLE_ID},{$s.START_ISSUE},{$s.END_ISSUE}'  name='AddCompleteRun' type="submit">Add Complete Run</button>
     <button value='{$s.TITLE_ID}'                                  name='TitleToDelete'  type="submit">Delete Series</button>
     </td>
+    {foreachelse}
+    <tr><td Style="TEXT-ALIGN:CENTER;" COLSPAN=6>No Rows</td></tr>
     {/foreach}
    </table>
    <p>
