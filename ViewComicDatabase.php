@@ -11,6 +11,7 @@ $Search      =$_POST['Search'];
 $WishList    =$_POST['AddWishList'];
 $AddSeries   =$_POST['AddSeriesRun'];
 $AddComplete =$_POST['AddCompleteRun'];
+$DeleteTitle =$_POST['TitleToDelete'];
 $smarty      = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
@@ -19,6 +20,9 @@ $Connection->Log_Post_Details('GET',  $_GET);
   if ($WishList != '')  {
 	  $Connection->Add_Wish_List($WishList);
     $Option = 'ViewGaps';
+  } elseif ($DeleteTitle != "" ) {
+    $Connection->Delete_Title($DeleteTitle);
+    $Option = "ViewSplits";
   } elseif ($AddSeries != '')  {
     $Titles = explode(",", $AddSeries);
     $ComicDBTitleId = $Titles[0];

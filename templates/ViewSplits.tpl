@@ -28,7 +28,10 @@
     <td>{$s.START_ISSUE}</td>
     <td>{$s.END_ISSUE}</td>
     <td>{$s.SERIES_RUN}</td>
-    <td><button value='{$s.TITLE_ID},{$s.START_ISSUE},{$s.END_ISSUE}'  name='AddCompleteRun' type="submit">Add Complete Run</button></td>
+    <td>
+    <button value='{$s.TITLE_ID},{$s.START_ISSUE},{$s.END_ISSUE}'  name='AddCompleteRun' type="submit">Add Complete Run</button>
+    <button value='{$s.TITLE_ID}'                                  name='TitleToDelete'  type="submit">Delete Series</button>
+    </td>
     {/foreach}
    </table>
    <p>
