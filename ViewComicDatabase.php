@@ -40,23 +40,18 @@ $Connection->Log_Post_Details('GET',  $_GET);
   if ($Option == '')  $Option = 'ViewGaps';
 
   if ($Option == 'ViewGaps')  {
-	  $gaps = $Connection->Get_Run_Gaps();
-    $smarty->assign('gaps', $gaps);
+    $smarty->assign('gaps', $Connection->Get_Run_Gaps() );
     $smarty->display('ViewGaps.tpl');
   } elseif ($Option == 'ViewSplits')  {
-	  $split  = $Connection->Get_Run_Splits();
-    $smarty->assign('split', $split);
+    $smarty->assign('split', $Connection->Get_Run_Splits() );
     $smarty->display('ViewSplits.tpl');
   } elseif ($Option == 'ViewDiffs')  {
-	  $diff  = $Connection->Get_Run_Diffs();
-    $smarty->assign('diff', $diff);
+    $smarty->assign('diff', $Connection->Get_Run_Diffs() );
     $smarty->display('ViewDiffs.tpl');
   } elseif ($Option == 'ViewRuns')  {
-	  $runs = $Connection->Get_Run_Details($Search);
-	  $wish = $Connection->Get_Wish_Details($Search);
     $smarty->assign('title', $Search);
-    $smarty->assign('runs', $runs);
-    $smarty->assign('wish', $wish);
+    $smarty->assign('runs', $Connection->Get_Run_Details($Search) );
+    $smarty->assign('wish', $Connection->Get_Wish_Details($Search) );
     $smarty->display('ViewRuns.tpl');
   }
 
