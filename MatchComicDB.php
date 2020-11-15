@@ -31,21 +31,17 @@ $Connection->Log_Post_Details('GET',  $_GET);
   }
 
   if ($Data->Option == 'ViewSummary')  {
-	  $summary = $Connection->Get_ComicDB_Summary();
-    $smarty->assign('summary', $summary);
+    $smarty->assign('summary', $Connection->Get_ComicDB_Summary() );
     $smarty->display('ViewComicDBSummary.tpl');
   } elseif ($Data->Option == 'SplitTrade')  {
-	  $trades  = $Connection->Get_ComicDB_Trades($Data->TradeId);
-    $smarty->assign('search',     $Data->Search);
-    $smarty->assign('trades',     $trades);
+    $smarty->assign('search',  $Data->Search);
+    $smarty->assign('trades',  $Connection->Get_ComicDB_Trades($Data->TradeId) );
     $smarty->display('SplitTrade.tpl');
   } elseif ($Data->Option == 'CompareComicDB')  {
     $Connection->Match_ComicDB($Data->Search);
-	  $runs  = $Connection->Get_ComicDB_Compare($Data->Search);
-    $match = $Connection->Get_Match_ComicDB();
-    $smarty->assign('search',    $Data->Search);
-    $smarty->assign('runs',      $runs);
-    $smarty->assign('match',     $match);
+    $smarty->assign('search',  $Data->Search);
+    $smarty->assign('runs',    $Connection->Get_ComicDB_Compare($Data->Search) );
+    $smarty->assign('match',   $Connection->Get_Match_ComicDB() );
     $smarty->display('CompareComicDB.tpl');
   }
 
