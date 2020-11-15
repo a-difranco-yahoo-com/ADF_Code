@@ -29,15 +29,13 @@ $Connection->Log_Post_Details('GET',  $_GET);
   }
 
   if ($Option == 'ViewSummary')  {
-  	  $summary = $Connection->Get_Archive_Difference_Summary();
-      $smarty->assign('summary', $summary);
+      $smarty->assign('summary', $Connection->Get_Archive_Difference_Summary() );
       $smarty->display('ViewArchiveDifferenceSummary.tpl');
   } elseif ($Option == 'ViewDetails')  {
-	    $detail = $Connection->Get_Archive_Detail($SearchTitle, $SearchStartYear, $SearchEndYear);
       $smarty->assign('title',     $SearchTitle);
       $smarty->assign('startYear', $SearchStartYear);
       $smarty->assign('endYear',   $SearchEndYear);
-      $smarty->assign('detail',    $detail);
+      $smarty->assign('detail',    $Connection->Get_Archive_Detail($SearchTitle, $SearchStartYear, $SearchEndYear) );
       $smarty->display('ViewArchiveDetail.tpl');
   }
 
