@@ -7,8 +7,9 @@ $err=error_reporting(E_ALL & ~E_NOTICE);
 $Connection    = new Comic_Oracle();
 $Option        =$_POST['Option'];
 $PullMatch     =$_POST['MatchToPull'];
-$MatchLevel    =$_POST['MatchLevel'];
 $WishMatch     =$_POST['MatchToWish'];
+$ExistMatch    =$_POST['MatchToExist'];
+$MatchLevel    =$_POST['MatchLevel'];
 $DigitalSeries =$_POST['DigitalSeries'];
 $OneShot       =$_POST['OneShot'];
 $NewSeries     =$_POST['NewSeries'];
@@ -25,6 +26,9 @@ $Connection->Log_Post_Details('GET',  $_GET);
   } elseif ($WishMatch != '') {
 	  $Connection->Commit_Match_To_Wish_List($WishMatch);
     $Option      = "MatchWish";
+  } elseif ($ExistMatch != '') {
+	  $Connection->Remove_Existing_Comic($ExistMatch);
+    $Option      = "MatchExist";
   } elseif ($DigitalSeries != '') {
 	  $Connection->Clear_New_Digital_Comic($DigitalSeries);
     $Option = 'ViewNew';
@@ -54,6 +58,9 @@ $Connection->Log_Post_Details('GET',  $_GET);
 	  $Connection->Run_Match(80);
     $smarty->assign('wishs', $Connection->Get_Match_Wish_List() );
 	  $smarty->display('MatchWishList.tpl');
+  } elseif ($Option == 'MatchExist')  {
+    $smarty->assign('exist', $Connection->Get_Match_Existing() );
+	  $smarty->display('MatchExisting.tpl');
   } elseif ($Option == 'ViewNew')  {
     $smarty->assign('new', $Connection->Get_New_Comics() );
 	  $smarty->display('ViewNewComics.tpl');
