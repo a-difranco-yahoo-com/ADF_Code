@@ -88,6 +88,26 @@ class Comic_Oracle
       oci_execute($stmt);
    }
 
+   public function Get_Match_Existing() {
+      $SQL = " SELECT   ComicId, Title,  Volume,  Issue "
+           . " FROM     V_EXISTING_NEW_DIGITAL_COMIC"
+           . " ORDER BY Title,  Volume,  Issue";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+       oci_execute($stmt);
+       oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+       return $rows;
+   }
+
+   public function Remove_Existing_Comic($ComicId) {
+      $PLSQL = " BEGIN"
+             . "    COMICS.Remove_New_Digital_Comic($ComicId);"
+             . " END;";
+
+      $stmt = oci_parse($this->Connection, $PLSQL);
+      oci_execute($stmt);
+   }
+
    public function Get_New_Comics() {
       $SQL = " SELECT   ComicId, Title,  Volume,  Year, Issue, SubIssue, Series_Run"
            . " FROM     NEW_DIGITAL_COMIC"
