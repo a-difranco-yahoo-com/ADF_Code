@@ -385,5 +385,54 @@ class Comic_Oracle
       oci_bind_by_name($stmt, ":EndIssue",   $EndIssue);
       oci_execute($stmt);
    }
+
+   public function Get_List_Hierarchy() {
+      $SQL = " SELECT First_List, Second_List, Level"
+           . " FROM   LIST_HIERARCHY"
+           . " CONNECT BY PRIOR Second_List = First_List AND Second_List != First_List"
+           . " START WITH First_List = Second_List"
+           . " ORDER BY Level";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
+    }
+
+   public function Get_List_Summary() {
+      $SQL = " SELECT List, Count(*) Comics, count(Distinct Title) Titles"
+           . " FROM   MERGED_READING_ORDER"
+           . " GROUP BY List"
+           . " ORDER BY Count(*)";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
+    }
+
+   public function Get_List_Title_Summary() {
+      $SQL = " SELECT List, Title, min(Issue) Min_Issue, max(Issue) Max_Issue"
+           . " FROM   MERGED_READING_ORDER"
+           . " GROUP BY List, Title"
+           . " ORDER BY List, Title";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
+    }
+
+   public function Get_List_Detail() {
+      $SQL = " SELECT List, Sequence_Number, Title, Issue"
+           . " FROM   MERGED_READING_ORDER"
+           . " ORDER BY List, Sequence_Number";
+
+      $stmt = oci_parse($this->Connection, $SQL);
+      oci_execute($stmt);
+      oci_fetch_all($stmt, $rows, 0, 500, OCI_FETCHSTATEMENT_BY_ROW + OCI_RETURN_NULLS + OCI_ASSOC);
+      return $rows;
+    }
+
 }
 ?>

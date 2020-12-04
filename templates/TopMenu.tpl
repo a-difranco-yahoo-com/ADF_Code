@@ -6,7 +6,8 @@
        <a href="/Comics_Website/MatchNewComics.php"   > Match New Comics |</a>
        <a href="/Comics_Website/MatchComicDB.php"     > Match Comics DB  |</a>
        <a href="/Comics_Website/ViewComicDatabase.php"> View Comics Runs |</a>
-       <a href="/Comics_Website/CheckArchive.php"     > Check Archive     </a>
+       <a href="/Comics_Website/CheckArchive.php"     > Check Archive    |</a>
+       <a href="/Comics_Website/ReadingOrder.php"     > Reading Order     </a>
        </td>
      </tr>
      </table>
