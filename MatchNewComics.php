@@ -11,6 +11,7 @@ $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
   $MatchLevel = 80;
+  $Option     = 'MatchPull';
   if ( isset($_POST['Option'])     ) $Option     =$_POST['Option'];
   if ( isset($_POST['MatchLevel']) ) $MatchLevel =$_POST['MatchLevel'];
 
@@ -29,8 +30,6 @@ $Connection->Log_Post_Details('GET',  $_GET);
   } elseif ( isset($_POST['DigitalPull']) ) {
 	  $Connection->Clear_Pull_List($_POST['DigitalPull']);
     $Option = 'ViewPull';
-  } elseif ($Option == '') {
-    $Option = 'MatchPull';
   }
 
   if ($Option == 'MatchPull')  {
