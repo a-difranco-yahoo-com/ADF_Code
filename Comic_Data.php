@@ -5,13 +5,16 @@ class Comic_Data
    public function __construct()
    {
       $this->Option         ="";
-      $this->Commit         ="";
-      $this->SearchTitle    ="";
-      $this->SearchStartYear="";
-      $this->SearchEndYear  ="";
       $this->Compare        ="";
       $this->DBMatch        ="";
       $this->TradeId        ="";
+      $this->SplitIssue     ="";
+
+      $this->Search             = array();
+      $this->Search['Title']    ="";
+      $this->Search['StartYear']="";
+      $this->Search['EndYear']  ="";
+
       $this->StartIssue     = array();
       $this->EndIssue       = array();
       $this->RowId          = array();
@@ -19,14 +22,14 @@ class Comic_Data
 
    public function Set_MatchComicDB($post)
    {
-      $this->Option             =$_POST['Option'];
-      $this->Search["Title"]    =$_POST['SearchTitle'];
-      $this->Search["StartYear"]=$_POST['SearchStartYear'];
-      $this->Search["EndYear"]  =$_POST['SearchEndYear'];
-      $this->Compare            =$_POST['ViewComicDBCompare'];
-      $this->DBMatch            =$_POST['MatchComicDB'];
-      $this->TradeId            =$_POST['SplitTrade'];
-      $this->SplitIssue         =$_POST['SplitIssue'];
+      if ( isset($post['Option']))             $this->Option             =$post['Option'];
+      if ( isset($post['SearchTitle']))        $this->Search["Title"]    =$post['SearchTitle'];
+      if ( isset($post['SearchStartYear']))    $this->Search["StartYear"]=$post['SearchStartYear'];
+      if ( isset($post['SearchEndYear']))      $this->Search["EndYear"]  =$post['SearchEndYear'];
+      if ( isset($post['ViewComicDBCompare'])) $this->Compare            =$post['ViewComicDBCompare'];
+      if ( isset($post['MatchComicDB']))       $this->DBMatch            =$post['MatchComicDB'];
+      if ( isset($post['SplitTrade']))         $this->TradeId            =$post['SplitTrade'];
+      if ( isset($post['SplitIssue']))         $this->SplitIssue         =$post['SplitIssue'];
 
       foreach($post as $key => $value)
       {
