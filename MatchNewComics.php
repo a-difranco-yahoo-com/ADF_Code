@@ -10,10 +10,7 @@ $PullMatch     =$_POST['MatchToPull'];
 $WishMatch     =$_POST['MatchToWish'];
 $ExistMatch    =$_POST['MatchToExist'];
 $MatchLevel    =$_POST['MatchLevel'];
-$DigitalSeries =$_POST['DigitalSeries'];
-$OneShot       =$_POST['OneShot'];
-$NewSeries     =$_POST['NewSeries'];
-$BackIssue     =$_POST['BackIssue'];
+$NotOnPullList =$_POST['NotOnPullList'];
 $DigitalPull   =$_POST['DigitalPull'];
 $smarty        = new Smarty;
 
@@ -29,17 +26,8 @@ $Connection->Log_Post_Details('GET',  $_GET);
   } elseif ($ExistMatch != '') {
 	  $Connection->Remove_Existing_Comic($ExistMatch);
     $Option      = "MatchExist";
-  } elseif ($DigitalSeries != '') {
-	  $Connection->Clear_New_Digital_Comic($DigitalSeries);
-    $Option = 'ViewNew';
-  } elseif ($OneShot != '') {
-	  $Connection->Clear_New_Digital_Comic($OneShot);
-    $Option = 'ViewNew';
-  } elseif ($NewSeries != '') {
-	  $Connection->Clear_New_Digital_Comic($NewSeries);
-    $Option = 'ViewNew';
-  } elseif ($BackIssue != '') {
-	  $Connection->Clear_New_Digital_Comic($BackIssue);
+  } elseif ($NotOnPullList != '') {
+	  $Connection->Clear_New_Digital_Comic($NotOnPullList);
     $Option = 'ViewNew';
   } elseif ($DigitalPull != '') {
 	  $Connection->Clear_Pull_List($DigitalPull);

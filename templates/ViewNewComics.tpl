@@ -30,10 +30,7 @@
     <td>{$n.SUBISSUE}</td>
     <td>{$n.SERIES_RUN}</td>
     <td>
-    <button value='{$n.COMICID}'  name='DigitalSeries' type="submit">Digital Series</button>
-    <button value='{$n.COMICID}'  name='OneShot'       type="submit">One-shot      </button>
-    <button value='{$n.COMICID}'  name='NewSeries'     type="submit">New Series    </button>
-    <button value='{$n.COMICID}'  name='BackIssue'     type="submit">Back Issue    </button>
+    <button value='{$n.COMICID}'  name='NotOnPullList' type="submit">Not On Pull List</button>
     </td>
     </tr>
     {/foreach}
