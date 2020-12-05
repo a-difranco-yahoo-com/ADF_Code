@@ -4,40 +4,36 @@ require_once("D:\Php_Code\Smarty\libs\Smarty.class.php");
 include 'Comic_Oracle.php';
 
 $err=error_reporting(E_ALL & ~E_NOTICE);
-$Connection    = new Comic_Oracle();
-$Option        =$_POST['Option'];
-$PullMatch     =$_POST['MatchToPull'];
-$WishMatch     =$_POST['MatchToWish'];
-$ExistMatch    =$_POST['MatchToExist'];
-$MatchLevel    =$_POST['MatchLevel'];
-$NotOnPullList =$_POST['NotOnPullList'];
-$DigitalPull   =$_POST['DigitalPull'];
-$smarty        = new Smarty;
+$Connection = new Comic_Oracle();
+$smarty     = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-  if ($PullMatch != "") {
-	  $Connection->Commit_Match_To_Pull_List($PullMatch);
-    $Option      = "MatchPull";
-  } elseif ($WishMatch != '') {
-	  $Connection->Commit_Match_To_Wish_List($WishMatch);
-    $Option      = "MatchWish";
-  } elseif ($ExistMatch != '') {
-	  $Connection->Remove_Existing_Comic($ExistMatch);
+  $MatchLevel = 80;
+  if ( isset($_POST['Option'])     ) $Option     =$_POST['Option'];
+  if ( isset($_POST['MatchLevel']) ) $MatchLevel =$_POST['MatchLevel'];
+
+  if ( isset($_POST['MatchToPull'] ) ) {
+	  $Connection->Commit_Match_To_Pull_List($_POST['MatchToPull']);
+    $Option = "MatchPull";
+  } elseif ( isset($_POST['MatchToWish']) ) {
+	  $Connection->Commit_Match_To_Wish_List($_POST['MatchToWish']);
+    $Option = "MatchWish";
+  } elseif ( isset($_POST['MatchToExist']) ) {
+	  $Connection->Remove_Existing_Comic($_POST['MatchToExist']);
     $Option      = "MatchExist";
-  } elseif ($NotOnPullList != '') {
-	  $Connection->Clear_New_Digital_Comic($NotOnPullList);
+  } elseif ( isset( $_POST['NotOnPullList'] ) ) {
+	  $Connection->Clear_New_Digital_Comic($_POST['NotOnPullList']);
     $Option = 'ViewNew';
-  } elseif ($DigitalPull != '') {
-	  $Connection->Clear_Pull_List($DigitalPull);
+  } elseif ( isset($_POST['DigitalPull']) ) {
+	  $Connection->Clear_Pull_List($_POST['DigitalPull']);
     $Option = 'ViewPull';
   } elseif ($Option == '') {
     $Option = 'MatchPull';
   }
 
   if ($Option == 'MatchPull')  {
-    if ( $MatchLevel == "") $MatchLevel = 80;
    	$Connection->Run_Match($MatchLevel);
     $smarty->assign('pulls', $Connection->Get_Match_Pull_List() );
     $smarty->assign('level', $MatchLevel);
