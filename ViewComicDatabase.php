@@ -5,36 +5,34 @@ include 'Comic_Oracle.php';
 
 $err=error_reporting(E_ALL & ~E_NOTICE);
 $Connection  = new Comic_Oracle();
-$Option      =$_POST['Option'];
-$Origin      =$_POST['Origin'];
-$Search      =$_POST['Search'];
-$WishList    =$_POST['AddWishList'];
-$AddSeries   =$_POST['AddSeriesRun'];
-$AddComplete =$_POST['AddCompleteRun'];
-$DeleteTitle =$_POST['TitleToDelete'];
 $smarty      = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-  if ($WishList != '')  {
-	  $Connection->Add_Wish_List($WishList);
+$Option = '';
+$Search = '';
+if ( isset($_POST['Option']) ) $Option = $_POST['Option'];
+if ( isset($_POST['Search']) ) $Search = $_POST['Search'];
+
+  if (  isset($_POST['AddWishList']) )  {
+	  $Connection->Add_Wish_List($_POST['AddWishList']);
     $Option = 'ViewGaps';
-  } elseif ($DeleteTitle != "" ) {
-    $Connection->Delete_Title($DeleteTitle);
+  } elseif ( isset($_POST['TitleToDelete']) ) {
+    $Connection->Delete_Title($_POST['TitleToDelete']);
     $Option = "ViewSplits";
-  } elseif ($AddSeries != '')  {
-    $Titles = explode(",", $AddSeries);
+  } elseif ( isset($_POST['AddSeriesRun']) )  {
+    $Titles = explode(",", $_POST['AddSeriesRun']);
     $ComicDBTitleId = $Titles[0];
     $DigitalTitleId = $Titles[1];
 	  $Connection->Add_Series_Run($ComicDBTitleId, $DigitalTitleId);
-  } elseif ($AddComplete != '')  {
-    $Details = explode(",", $AddComplete);
+  } elseif ( isset($_POST['AddCompleteRun']) )  {
+    $Details = explode(",", $_POST['AddCompleteRun']);
     $TitleId    = $Details[0];
     $StartIssue = $Details[1];
     $EndIssue   = $Details[2];
 	  $Connection->Add_Complete_Run($TitleId, $StartIssue, $EndIssue);
-    $Option = $Origin;
+    $Option = $_POST['Origin'];
   }
 
   if ($Option == '')  $Option = 'ViewGaps';
