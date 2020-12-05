@@ -4,14 +4,14 @@ require_once("D:\Php_Code\Smarty\libs\Smarty.class.php");
 include 'Comic_Oracle.php';
 
 $err=error_reporting(E_ALL & ~E_NOTICE);
-$Connection  = new Comic_Oracle();
-$Option      =$_POST['Option'];
-$smarty      = new Smarty;
+$Connection = new Comic_Oracle();
+$smarty     = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-  if ($Option == '')  $Option = 'ViewListHierarchy';
+  $Option = 'ViewListHierarchy';
+  if (isset($_POST['Option']) )  $Option = $_POST['Option'];
 
   if ($Option == 'ViewListHierarchy')  {
     $smarty->assign('hier', $Connection->Get_List_Hierarchy() );
