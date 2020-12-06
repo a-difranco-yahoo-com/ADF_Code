@@ -5,27 +5,26 @@ include 'Comic_Oracle.php';
 
 $err=error_reporting(E_ALL & ~E_NOTICE);
 $Connection     = new Comic_Oracle();
-$Option         =$_POST['Option'];
-$SearchTitle    =$_POST['SearchTitle'];
-$SearchStartYear=$_POST['SearchStartYear'];
-$SearchEndYear  =$_POST['SearchEndYear'];
-$Detail         =$_POST['ViewArchiveDetail'];
-$DeleteTitle    =$_POST['TitleToDelete'];
 $smarty         = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-  if ($DeleteTitle != "" ) {
-    $Connection->Delete_Title($DeleteTitle);
+$Option          = 'ViewSummary';
+$SearchTitle     = '';
+$SearchStartYear = 1960;
+$SearchEndYear   = 2100;
+if ( isset($_POST['Option'])          ) $Option          = $_POST['Option'];
+if ( isset($_POST['SearchTitle'])     ) $SearchTitle     = $_POST['SearchTitle'];
+if ( isset($_POST['SearchStartYear']) ) $SearchStartYear = $_POST['SearchStartYear'];
+if ( isset($_POST['SearchEndYear'])   ) $SearchEndYear   = $_POST['SearchEndYear'];
+
+  if ( isset($_POST['TitleToDelete']) ) {
+    $Connection->Delete_Title($_POST['TitleToDelete']);
     $Option = "ViewDetails";
-  } elseif ($Detail != "" ) {
-    $SearchTitle    = $Detail;
-    $SearchStartYear= 1960;
-    $SearchEndYear  = 2100;
+  } elseif ( isset($_POST['ViewArchiveDetail']) ) {
+    $SearchTitle = $_POST['ViewArchiveDetail'];
     $Option      = "ViewDetails";
-  } elseif ($Option == '') {
-    $Option = 'ViewSummary';
   }
 
   if ($Option == 'ViewSummary')  {
