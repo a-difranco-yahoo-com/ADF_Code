@@ -27,14 +27,19 @@ class Comic_Oracle
       return $rows;
    }
  
+   public function Execute_PLSQL_Code($PLSQL, $Bind) {
+      $stmt = oci_parse($this->Connection, $PLSQL);
+      foreach($Bind as $key => $value) oci_bind_by_name($stmt, $key,  $Bind[$key]);
+      oci_execute($stmt);
+   }
+ 
 
    public function Run_Match($Level) {
       $PLSQL = " BEGIN"
-             . "    COMICS.Find_Matches($Level);"
+             . "    COMICS.Find_Matches(:Level);"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_execute($stmt);
+      $this->Execute_PLSQL_Code($PLSQL, array(":Level"=>$Level) );
    }
 
    public function Get_Match_Pull_List() {
@@ -47,27 +52,22 @@ class Comic_Oracle
  
    public function Commit_Match_To_Pull_List($Id) {
       $PLSQL = " BEGIN"
-             . "    COMICS.Update_Matched_Pull_List($Id);"
+             . "    COMICS.Update_Matched_Pull_List(:Id);"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_execute($stmt);
-   }
+      $this->Execute_PLSQL_Code($PLSQL, array(":Id"=>$Id) );
+}
 
    public function Log_Post_Details($type, $array) {
-      $SQL = " DELETE FROM POST_DETAILS WHERE Post_Date < SysDate - 1";
-      $stmt = oci_parse($this->Connection, $SQL);
-      oci_execute($stmt);
+      $PLSQL = " DELETE FROM POST_DETAILS WHERE Post_Date < SysDate - 1";
+      $this->Execute_PLSQL_Code($PLSQL, array() );
 
-      $SQL = " INSERT INTO POST_DETAILS (Post_Type, Post_Date, Post_Key, Post_Value) "
-           . " VALUES (:type, sysdate, :key, :value)";
-      $stmt = oci_parse($this->Connection, $SQL);
+      $PLSQL = " INSERT INTO POST_DETAILS (Post_Type, Post_Date, Post_Key, Post_Value) "
+             . " VALUES (:type, sysdate, :key, :value)";
 
       foreach($array as $key => $value) {
-         oci_bind_by_name($stmt, ":type",   $type);
-         oci_bind_by_name($stmt, ":key",    $key);
-         oci_bind_by_name($stmt, ":value",  $value);
-         oci_execute($stmt);
+         $this->Execute_PLSQL_Code($PLSQL, 
+             array(":type"=>$type, ":key"=>$key, ":value"=>$value) );
       }
    }
  
@@ -79,15 +79,14 @@ class Comic_Oracle
            . " ORDER BY New_Title,  New_Volume,  New_Issue";
 
       return $this->Execute_DB_Select($SQL, array() );
-   }
+}
 
    public function Commit_Match_To_Wish_List($MatchId) {
       $PLSQL = " BEGIN"
-             . "    COMICS.Update_Matched_Wish_List($MatchId);"
+             . "    COMICS.Update_Matched_Wish_List(:MatchId);"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_execute($stmt);
+      $this->Execute_PLSQL_Code($PLSQL, array(":MatchId", $MatchId) );
    }
 
    public function Get_Match_Existing() {
@@ -100,11 +99,10 @@ class Comic_Oracle
 
    public function Remove_Existing_Comic($ComicId) {
       $PLSQL = " BEGIN"
-             . "    COMICS.Remove_New_Digital_Comic($ComicId);"
+             . "    COMICS.Remove_New_Digital_Comic(:ComicId);"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_execute($stmt);
+      return $this->Execute_DB_Select($SQL, array(":ComicId"=>$ComicId) );
    }
 
    public function Get_New_Comics() {
@@ -117,29 +115,26 @@ class Comic_Oracle
 
    public function Clear_New_Digital_Comic($ComicId) {
       $PLSQL = " BEGIN"
-             . "    COMICS.Process_New_Digital_Comic($ComicId);"
+             . "    COMICS.Process_New_Digital_Comic(:ComicId);"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_execute($stmt);
+      $this->Execute_PLSQL_Code($PLSQL, array(":ComicId"=>$ComicId) );
    }
 
    public function Clear_Pull_List($ComicId) {
       $PLSQL = " BEGIN"
-             . "    COMICS.Process_Pull_List($ComicId);"
+             . "    COMICS.Process_Pull_List(:ComicId);"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_execute($stmt);
+      $this->Execute_PLSQL_Code($PLSQL, array(":ComicId"=>$ComicId) );
    }
 
    public function Delete_Title($TitleId) {
       $PLSQL = " BEGIN"
-             . "    COMICS.Delete_Title($TitleId);"
+             . "    COMICS.Delete_Title(:TitleId);"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_execute($stmt);
+      $this->Execute_PLSQL_Code($PLSQL, array(":TitleId"=>$TitleId) );
    }
 
    public function Get_Pull_List() {
@@ -190,9 +185,7 @@ class Comic_Oracle
              . "  COMICS.Add_Wish_List(:TitleId);"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_bind_by_name($stmt, ":TitleId",  $TitleId);
-      oci_execute($stmt);
+      $this->Execute_PLSQL_Code($PLSQL, array(":TitleId"=>$TitleId) );
    }
 
    public function Add_Series_Run($ComicDBTitleId, $DigitalTitleId) {
@@ -200,10 +193,8 @@ class Comic_Oracle
              . "  COMICS.Add_ComicDB_Series_Run(:ComicDBTitleId, :DigitalTitleId);"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_bind_by_name($stmt, ":ComicDBTitleId",  $ComicDBTitleId);
-      oci_bind_by_name($stmt, ":DigitalTitleId",  $DigitalTitleId);
-      oci_execute($stmt);
+      $this->Execute_PLSQL_Code($PLSQL, 
+        array(":ComicDBTitleId"=>$ComicDBTitleId, ":DigitalTitleId"=>$DigitalTitleId) );
    }
 
    public function Add_Complete_Run($TitleId, $StartIssue, $EndIssue) {
@@ -211,31 +202,28 @@ class Comic_Oracle
              . "  COMICS.Add_Complete_Run(:TitleId, :StartIssue, :EndIssue);"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_bind_by_name($stmt, ":TitleId",     $TitleId);
-      oci_bind_by_name($stmt, ":StartIssue",  $StartIssue);
-      oci_bind_by_name($stmt, ":EndIssue",    $EndIssue);
-      oci_execute($stmt);
+      $this->Execute_PLSQL_Code($PLSQL,
+      array(":TitleId"=>$TitleId, ":StartIssue"=>$StartIssue, ":EndIssue"=>$EndIssue) );
    }
 
    public function Get_Run_Details($Search) {
       $SQL = " SELECT   Title,  Volume,  Start_Issue, End_Issue, SubIssue, Series_Run"
            . " FROM     V_ALL_COMIC_RUN"
-           . " WHERE    upper(Title) Like upper('%$Search%')"
+           . " WHERE    upper(Title) Like '%' || upper(:Search) || '%'"
            . " AND      Comic_Type = 'DIGITAL'"
            . " ORDER BY Title,  Volume, Start_Issue";
 
-      return $this->Execute_DB_Select($SQL, array() );
+      return $this->Execute_DB_Select($SQL, array(":Search"=>$Search) );
    }
 
    public function Get_Wish_Details($Search) {
       $SQL = " SELECT   Title,  Volume,  Start_Issue, End_Issue, SubIssue, Series_Run"
            . " FROM     V_ALL_COMIC_RUN"
-           . " WHERE    upper(Title) Like upper('%$Search%')"
+           . " WHERE    upper(Title) Like '%' || upper(:Search) || '%'"
            . " AND      Comic_Type = 'WISHLIST'"
            . " ORDER BY Title,  Volume, Start_Issue";
 
-      return $this->Execute_DB_Select($SQL, array() );
+      return $this->Execute_DB_Select($SQL, array(":Search"=>"$Search") );
    }
 
    public function Get_Archive_Difference_Summary() {
@@ -255,11 +243,8 @@ class Comic_Oracle
            . " AND      Comic_Type IN ('ARCHIVE', 'DIGITAL')"
            . " ORDER BY Title, Volume, Start_Issue";
 
-      $Bind = array();
-      $Bind[":Title"]     =  $Title;
-      $Bind[":StartYear"] =  $StartYear;
-      $Bind[":EndYear"]   =  $EndYear;
-      return $this->Execute_DB_Select($SQL, $Bind);
+      return $this->Execute_DB_Select($SQL, 
+         array(":Title"=>$Title, ":StartYear"=>$StartYear, ":EndYear"=>$EndYear) );
    }
 
    public function Get_ComicDB_Summary() {
@@ -279,12 +264,8 @@ class Comic_Oracle
            . " AND      Volume BETWEEN :StartYear AND :EndYear"
            . " ORDER BY Title, Volume, Start_Issue";
 
-      $Bind = array();
-      $Bind[":Title"]     = $Search["Title"];
-      $Bind[":StartYear"] = $Search["StartYear"];
-      $Bind[":EndYear"]   = $Search["EndYear"];
-      
-      return $this->Execute_DB_Select($SQL, $Bind);
+      return $this->Execute_DB_Select($SQL, 
+         array(":Title"=>$Title, ":StartYear"=>$StartYear, ":EndYear"=>$EndYear) );
    }
 
    public function Get_ComicDB_Trades($TitleId) {
@@ -296,22 +277,18 @@ class Comic_Oracle
            . " WHERE    CT.Title_Id = :TitleId"
            . " ORDER BY Title, Volume, Issue";
 
-      $Bind = array();
-      $Bind[":TitleId"] = $TitleId;
-      return $this->Execute_DB_Select($SQL, $Bind);
+      return $this->Execute_DB_Select($SQL, array(":TitleId"=>$TitleId) );
    }
 
    public function Match_ComicDB($Search) {
       $PLSQL = " BEGIN"
-             . "   COMICS.Find_ComicDB_Matches(:TitleId, :StartYear, :EndYear);"
+             . "   COMICS.Find_ComicDB_Matches(:Title, :StartYear, :EndYear);"
              . "   COMMIT;"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_bind_by_name($stmt, ":TitleId",   $Search["Title"]);
-      oci_bind_by_name($stmt, ":StartYear", $Search["StartYear"]);
-      oci_bind_by_name($stmt, ":EndYear",   $Search["EndYear"]);
-      oci_execute($stmt);
+      $this->Execute_PLSQL_Code($PLSQL, array(":Title"=>$Search["Title"], 
+                                              ":StartYear"=>$Search["StartYear"],
+                                              ":EndYear"=>$Search["EndYear"]) );
    }
 
    public function Match_To_ComicDB($MatchId) {
@@ -320,9 +297,7 @@ class Comic_Oracle
              . "   COMMIT;"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_bind_by_name($stmt, ":MatchId",   $MatchId);
-      oci_execute($stmt);
+      $this->Execute_PLSQL_Code($PLSQL, array(":MatchId"=>$MatchId) );
    }
 
    public function Get_Match_ComicDB() {
@@ -340,11 +315,8 @@ class Comic_Oracle
              . "   COMMIT;"
              . " END;";
 
-      $stmt = oci_parse($this->Connection, $PLSQL);
-      oci_bind_by_name($stmt, ":RowId",      $RowId);
-      oci_bind_by_name($stmt, ":StartIssue", $StartIssue);
-      oci_bind_by_name($stmt, ":EndIssue",   $EndIssue);
-      oci_execute($stmt);
+      $this->Execute_PLSQL_Code($PLSQL,
+         array(":RowId"=>$RowId, ":StartIssue"=>$StartIssue, ":EndIssue"=>$EndIssue) );
    }
 
    public function Get_List_Hierarchy() {
