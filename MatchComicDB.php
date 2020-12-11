@@ -1,11 +1,11 @@
 <?php
 require_once("HTTP.php");
 require_once("D:\Php_Code\Smarty\libs\Smarty.class.php");
-include 'Comic_Oracle.php';
+include 'MatchComicDB_Oracle.php';
 include 'Comic_Data.php';
 
 $err=error_reporting(E_ALL & ~E_NOTICE);
-$Connection     = new Comic_Oracle();
+$Connection     = new MatchComicDB_Oracle();
 $Data           = new Comic_Data();
 $smarty         = new Smarty;
 

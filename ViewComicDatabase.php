@@ -1,10 +1,10 @@
 <?php
 require_once("HTTP.php");
 require_once("D:\Php_Code\Smarty\libs\Smarty.class.php");
-include 'Comic_Oracle.php';
+include 'ViewComicDatabase_Oracle.php';
 
 $err=error_reporting(E_ALL & ~E_NOTICE);
-$Connection  = new Comic_Oracle();
+$Connection  = new ViewComicDatabase_Oracle();
 $smarty      = new Smarty;
 
 $Connection->Log_Post_Details('POST', $_POST);
