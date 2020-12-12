@@ -9,13 +9,6 @@ class CheckArchive_Data
       $this->SearchStartYear   = 1960;
       $this->SearchEndYear     = 2100;
       $this->TitleToDelete     = "";
-
-      $this->Origin         = '';
-      $this->Search         = '';
-      $this->AddWishList    = "";
-      $this->AddSeriesRun   = "";
-      $this->ComicDBTitleId = "";
-      $this->DigitalTitleId = "";
    }
 
    public function Set_Data($post)
@@ -29,24 +22,6 @@ class CheckArchive_Data
       if ( isset($post['ViewArchiveDetail']) ) {
          $this->SearchTitle = $post['ViewArchiveDetail'];
          $this->Option      = "ViewDetails";
-      }
-
-      if ( isset($post['Origin']))        $this->Origin        = $post['Origin'];
-      if ( isset($post['AddWishList']))   $this->AddWishList   = $post['AddWishList'];
-
-      if ( isset($post['AddSeriesRun'])) {
-            $this->AddSeriesRun =$post['AddSeriesRun'];
-            $Titles = explode(",", $this->AddSeriesRun);
-            $this->ComicDBTitleId = $Titles[0];
-            $this->DigitalTitleId = $Titles[1];
-      }
-
-      if ( isset($post['AddCompleteRun'])) {
-            $this->AddCompleteRun =$post['AddCompleteRun'];
-            $Details = explode(",", $this->AddCompleteRun);
-            $this->TitleId    = $Details[0];
-            $this->StartIssue = $Details[1];
-            $this->EndIssue   = $Details[2];
       }
    }
 }
