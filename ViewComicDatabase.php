@@ -2,54 +2,43 @@
 require_once("HTTP.php");
 require_once("D:\Php_Code\Smarty\libs\Smarty.class.php");
 include 'ViewComicDatabase_Oracle.php';
+include 'ViewComicDatabase_Data.php';
 
 $err=error_reporting(E_ALL & ~E_NOTICE);
 $Connection  = new ViewComicDatabase_Oracle();
+$Data        = new ViewComicDatabase_Data();
 $smarty      = new Smarty;
 
+$Data->Set_Data($_POST);
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-$Option = '';
-$Search = '';
-if ( isset($_POST['Option']) ) $Option = $_POST['Option'];
-if ( isset($_POST['Search']) ) $Search = $_POST['Search'];
-
-  if (  isset($_POST['AddWishList']) )  {
-	  $Connection->Add_Wish_List($_POST['AddWishList']);
-    $Option = 'ViewGaps';
-  } elseif ( isset($_POST['TitleToDelete']) ) {
-    $Connection->Delete_Title($_POST['TitleToDelete']);
-    $Option = "ViewSplits";
-  } elseif ( isset($_POST['AddSeriesRun']) )  {
-    $Titles = explode(",", $_POST['AddSeriesRun']);
-    $ComicDBTitleId = $Titles[0];
-    $DigitalTitleId = $Titles[1];
-	  $Connection->Add_Series_Run($ComicDBTitleId, $DigitalTitleId);
-  } elseif ( isset($_POST['AddCompleteRun']) )  {
-    $Details = explode(",", $_POST['AddCompleteRun']);
-    $TitleId    = $Details[0];
-    $StartIssue = $Details[1];
-    $EndIssue   = $Details[2];
-	  $Connection->Add_Complete_Run($TitleId, $StartIssue, $EndIssue);
-    $Option = $_POST['Origin'];
+  if ( $Data->AddWishList != "" )  {
+	  $Connection->Add_Wish_List($Data->AddWishList);
+    $Data->Option = 'ViewGaps';
+  } elseif ($Data->TitleToDelete != "") {
+    $Connection->Delete_Title($Data->TitleToDelete);
+    $Data->Option = "ViewSplits";
+  } elseif ( $Data->AddSeriesRun != "")  {
+	  $Connection->Add_Series_Run($this->ComicDBTitleId, $this->DigitalTitleId);
+  } elseif ( $Data->AddCompleteRun != "")  {
+	  $Connection->Add_Complete_Run($Data->TitleId, $Data->StartIssue, $Data->EndIssue);
+    $Data->Option = $Data->Origin;
   }
 
-  if ($Option == '')  $Option = 'ViewGaps';
-
-  if ($Option == 'ViewGaps')  {
+  if ($Data->Option == 'ViewGaps')  {
     $smarty->assign('gaps', $Connection->Get_Run_Gaps() );
     $smarty->display('ViewGaps.tpl');
-  } elseif ($Option == 'ViewSplits')  {
+  } elseif ($Data->Option == 'ViewSplits')  {
     $smarty->assign('split', $Connection->Get_Run_Splits() );
     $smarty->display('ViewSplits.tpl');
-  } elseif ($Option == 'ViewDiffs')  {
+  } elseif ($Data->Option == 'ViewDiffs')  {
     $smarty->assign('diff', $Connection->Get_Run_Diffs() );
     $smarty->display('ViewDiffs.tpl');
-  } elseif ($Option == 'ViewRuns')  {
-    $smarty->assign('title', $Search);
-    $smarty->assign('runs', $Connection->Get_Run_Details($Search) );
-    $smarty->assign('wish', $Connection->Get_Wish_Details($Search) );
+  } elseif ($Data->Option == 'ViewRuns')  {
+    $smarty->assign('title', $Data->Search);
+    $smarty->assign('runs', $Connection->Get_Run_Details($Data->Search) );
+    $smarty->assign('wish', $Connection->Get_Wish_Details($Data->Search) );
     $smarty->display('ViewRuns.tpl');
   }
 
