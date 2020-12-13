@@ -12,11 +12,11 @@
    {include file="ArchiveMenu.tpl"}
 
    <label for="SearchTitle">Search Title Text:</label>
-   <input class="Search" type="text" id="SearchTitle"       name="SearchTitle" value='{$title}'>
+   <input class="Search" type="text" id="SearchTitle"       name="SearchTitle" value='{$search['Title']}'>
    <label for="SearchTitle">Start Year</label>
-   <input class="Search" type="number" id="SearchStartYear" name="SearchStartYear" value={$startYear}>
+   <input class="Search" type="number" id="SearchStartYear" name="SearchStartYear" value={$search['StartYear']}>
    <label for="SearchTitle">End Year</label>
-   <input class="Search" type="number" id="SearchEndYear"   name="SearchEndYear"   value={$endYear}>
+   <input class="Search" type="number" id="SearchEndYear"   name="SearchEndYear"   value={$search['EndYear']}>
 
    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
    <tr bgcolor="#e6eef1">

@@ -14,20 +14,21 @@ $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
 
-  if ( $Data->TitleToDelete != "" ) {
-    $Connection->Delete_Title($Data->TitleToDelete);
-    $Data->Option = "ViewDetails";
+  switch ($Data->Action) {
+  case "TitleToDelete" : $Connection->Delete_Title($Data->TitleId);
+    break;
   }
 
-  if ($Data->Option == 'ViewSummary')  {
-      $smarty->assign('summary', $Connection->Get_Archive_Difference_Summary() );
-      $smarty->display('ViewArchiveDifferenceSummary.tpl');
-  } elseif ($Data->Option == 'ViewDetails')  {
-      $smarty->assign('title',     $Data->SearchTitle);
-      $smarty->assign('startYear', $Data->SearchStartYear);
-      $smarty->assign('endYear',   $Data->SearchEndYear);
-      $smarty->assign('detail',    $Connection->Get_Archive_Detail($Data->SearchTitle, $Data->SearchStartYear, $Data->SearchEndYear) );
-      $smarty->display('ViewArchiveDetail.tpl');
+  switch ($Data->Display) {
+  case "ViewSummary" :
+    $smarty->assign('summary', $Connection->Get_Archive_Difference_Summary() );
+    $smarty->display('ViewArchiveDifferenceSummary.tpl');
+    break;
+  case "ViewDetails" :
+    $smarty->assign('search',     $Data->Search);
+    $smarty->assign('detail',    $Connection->Get_Archive_Detail($Data->Search) );
+    $smarty->display('ViewArchiveDetail.tpl');
+    break;
   }
 
 ?>

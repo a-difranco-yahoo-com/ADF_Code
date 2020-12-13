@@ -14,7 +14,7 @@ class CheckArchive_Oracle extends Comic_Oracle
       return $this->Execute_DB_Select($SQL, array() );
    }
 
-   public function Get_Archive_Detail($Title, $StartYear, $EndYear) {
+   public function Get_Archive_Detail($Search) {
       $SQL = " SELECT   Title_Id, Comic_Type, Title,  Volume,  Start_Issue, End_Issue, Series_Run"
            . " FROM     V_ALL_COMIC_RUN"
            . " WHERE    upper(Title) Like '%' || upper(:Title) || '%'"
@@ -23,7 +23,9 @@ class CheckArchive_Oracle extends Comic_Oracle
            . " ORDER BY Title, Volume, Start_Issue";
 
       return $this->Execute_DB_Select($SQL, 
-         array(":Title"=>$Title, ":StartYear"=>$StartYear, ":EndYear"=>$EndYear) );
+         array(":Title"     => $Search['Title'], 
+               ":StartYear" => $Search['StartYear'],
+               ":EndYear"   => $Search['EndYear']) );
    }
 
 }
