@@ -13,18 +13,23 @@ $Data->Set_Data($_POST);
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-  if ($Data->Option == 'ViewListHierarchy')  {
+  switch ($Data->Display):
+  case == 'ViewListHierarchy' :
     $smarty->assign('hier', $Connection->Get_List_Hierarchy() );
     $smarty->display('ROListHierarchy.tpl');
-  } elseif ($Data->Option == 'ViewListSummary')  {
+    break;
+  case 'ViewListSummary' :
     $smarty->assign('summ', $Connection->Get_List_Summary() );
     $smarty->display('ROListSummary.tpl');
-  } elseif ($Data->Option == 'ViewListTitleSummary')  {
+    break;
+  case 'ViewListTitleSummary' :
     $smarty->assign('summ', $Connection->Get_List_Title_Summary() );
     $smarty->display('ROListTitleSummary.tpl');
-  } elseif ($Data->Option == 'ViewListDetail')  {
+    break;
+  case 'ViewListDetail' :
     $smarty->assign('det', $Connection->Get_List_Detail() );
     $smarty->display('ROListDetail.tpl');
+    break;
   }
 
 ?>
