@@ -9,48 +9,51 @@ $Connection = new MatchNewComic_Oracle();
 $Data       = new MatchNewComic_Data();
 $smarty     = new Smarty;
 
-$Data->Set_MatchNewComic($_POST);
+$Data->Set_Data($_POST);
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-  if ( $Data->MatchToPull != ""  ) {
-	  $Connection->Commit_Match_To_Pull_List($Data->MatchToPull);
-    $Data->Option = "MatchPull";
-  } elseif ( $Data->MatchToWish != "" ) {
-	  $Connection->Commit_Match_To_Wish_List($Data->MatchToWish);
-    $Data->Option = "MatchWish";
-  } elseif ( $Data->MatchToExist != "" ) {
-	  $Connection->Remove_Existing_Comic($Data->MatchToExist);
-    $Data->Option = "MatchExist";
-  } elseif ( $Data->NotOnPullList != "" ) {
-	  $Connection->Clear_New_Digital_Comic($Data->NotOnPullList);
-    $Data->Option = 'ViewNew';
-  } elseif ( $Data->DigitalPull != "" ) {
-	  $Connection->Clear_Pull_List($Data->DigitalPull);
-    $Data->Option = 'ViewPull';
+  switch ($Data->Action) {
+  case "MatchToPull"   : $Connection->Commit_Match_To_Pull_List($Data->MatchId);
+    break;
+  case "MatchToWish"   : $Connection->Commit_Match_To_Wish_List($Data->MatchId);
+    break;
+  case "MatchToExist"  : $Connection->Remove_Existing_Comic($Data->MatchId);
+    break;
+  case "NotOnPullList" : $Connection->Clear_New_Digital_Comic($Data->MatchId);
+    break;
+  case "DigitalPull"   : $Connection->Clear_Pull_List($Data->MatchId);
+    break;
   }
 
-  if ($Data->Option == 'MatchPull')  {
+  switch ($Data->Display) {
+  case 'MatchPull' :
    	$Connection->Run_Match($Data->MatchLevel);
     $smarty->assign('pulls', $Connection->Get_Match_Pull_List() );
     $smarty->assign('level', $Data->MatchLevel);
     $smarty->display('MatchPullList.tpl');
-  } elseif ($Data->Option == 'MatchWish')  {
+    break;
+  case 'MatchWish' :
    	$Connection->Run_Match($Data->MatchLevel);
     $smarty->assign('wishs', $Connection->Get_Match_Wish_List() );
 	  $smarty->display('MatchWishList.tpl');
-  } elseif ($Data->Option == 'MatchExist')  {
+    break;
+  case 'MatchExist' :
     $smarty->assign('exist', $Connection->Get_Match_Existing() );
 	  $smarty->display('MatchExisting.tpl');
-  } elseif ($Data->Option == 'ViewNew')  {
+    break;
+  case 'ViewNew' :
     $smarty->assign('new', $Connection->Get_New_Comics() );
 	  $smarty->display('ViewNewComics.tpl');
-  } elseif ($Data->Option == 'ViewPull')  {
+    break;
+  case 'ViewPull' :
     $smarty->assign('pull', $Connection->Get_Pull_List() );
 	  $smarty->display('ViewPullList.tpl');
-  } elseif ($Data->Option == 'ViewWish')  {
+    break;
+  case 'ViewWish' :
     $smarty->assign('wish', $Connection->Get_Wish_List() );
 	  $smarty->display('ViewWishList.tpl');
+    break;
   }
 
 ?>
