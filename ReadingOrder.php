@@ -13,8 +13,8 @@ $Data->Set_Data($_POST);
 $Connection->Log_Post_Details('POST', $_POST);
 $Connection->Log_Post_Details('GET',  $_GET);
 
-  switch ($Data->Display):
-  case == 'ViewListHierarchy' :
+  switch ($Data->Display) {
+  case 'ViewListHierarchy' :
     $smarty->assign('hier', $Connection->Get_List_Hierarchy() );
     $smarty->display('ROListHierarchy.tpl');
     break;

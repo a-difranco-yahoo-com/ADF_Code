@@ -4,12 +4,12 @@ class ReadingOrder_Data
 {
    public function __construct()
    {
-      $this->Option = 'ViewListHierarchy';
+      $this->Display = 'ViewListHierarchy';
    }
 
    public function Set_Data($post)
    {
-      if ( isset($post['Option']) ) $this->Option = $post['Option'];
+      if ( isset($post['Display']) ) $this->Display = $post['Display'];
    }
 }
 ?>
