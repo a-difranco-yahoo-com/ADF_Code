@@ -33,6 +33,8 @@
     <button value='{$n.COMICID}'  name='NotOnPullList' type="submit">Not On Pull List</button>
     </td>
     </tr>
+    {foreachelse}
+    <tr><td COLSPAN=7 Style="TEXT-ALIGN:CENTER;">No Rows</td></tr>
     {/foreach}
    </table>
    <p>
