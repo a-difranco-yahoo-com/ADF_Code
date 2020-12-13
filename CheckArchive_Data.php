@@ -29,8 +29,8 @@ class CheckArchive_Data
       }
 
       if ( isset($post['ViewArchiveDetail']) ) {
-         $this->SearchTitle = $post['ViewArchiveDetail'];
-         $this->Display     = "ViewDetails";
+         $this->Display         = "ViewDetails";
+         $this->Search['Title'] = $post['ViewArchiveDetail'];
       }
    }
 }
