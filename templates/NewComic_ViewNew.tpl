@@ -8,7 +8,7 @@
   {include file="TopMenu.tpl"}
   <div id="main" align="center">
    <form name="data" action="NewComic.php" method="post">
-   {include file="MatchMenu.tpl"}
+   {include file="NewComic_Menu.tpl"}
 
    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
    <tr bgcolor="#e6eef1">

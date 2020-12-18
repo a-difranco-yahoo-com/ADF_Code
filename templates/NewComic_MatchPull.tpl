@@ -8,7 +8,7 @@
   {include file="TopMenu.tpl"}
   <div id="main" align="center">
    <form name="data" action="NewComic.php" method="post">
-   {include file="MatchMenu.tpl"}
+   {include file="NewComic_Menu.tpl"}
 
    <label for="Search">Match Quality</label>
    <input class="Match" type="number" name="MatchLevel" value="{$level}"><br>
