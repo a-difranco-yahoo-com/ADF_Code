@@ -1,9 +1,5 @@
 <html>
- <head>
-  <link rel="stylesheet" type="text/css" href="css/comics.css" />
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-  
- </head>
+{include file="Header.tpl"}
  <body>
   {include file="TopMenu.tpl"}
   <div id="main" align="center">
