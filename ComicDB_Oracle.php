@@ -2,7 +2,7 @@
 
 include 'Comic_Oracle.php';
 
-class MatchComicDB_Oracle extends Comic_Oracle
+class ComicDB_Oracle extends Comic_Oracle
 {
 
    public function Match_To_ComicDB($MatchId) {

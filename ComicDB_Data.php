@@ -1,6 +1,6 @@
 <?php
 
-class MatchComicDB_Data
+class ComicDB_Data
 {
    public function __construct()
    {

@@ -7,8 +7,8 @@
  <body>
   {include file="TopMenu.tpl"}
   <div id="main" align="center">
-   <form name="data" action="MatchComicDB.php" method="post">
-   {include file="ComicDBMenu.tpl"}
+   <form name="data" action="ComicDB.php" method="post">
+   {include file="ComicDB_Menu.tpl"}
 
    <label for="SearchTitle">Search Title Text:</label>
    <input class="Search" type="text" id="SearchTitle" name="SearchTitle"     value="{$search["Title"]}">
@@ -76,6 +76,6 @@
    </table>
    </form>
   </div>
-  <script src='js/CompareComicDB.js'></script>
+  <script src='js/ComicDB_Compare.js'></script>
  </body>
 </html>
