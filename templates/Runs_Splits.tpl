@@ -7,8 +7,8 @@
  <body>
   {include file="TopMenu.tpl"}
   <div id="main" align="center">
-   <form name="data" action="ViewComicDatabase.php" method="post">
-   {include file="ViewMenu.tpl"}
+   <form name="data" action="Runs.php" method="post">
+   {include file="Runs_Menu.tpl"}
 
    <input type="hidden" name="Origin" value="ViewSplits">
    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">

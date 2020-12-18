@@ -2,7 +2,7 @@
 
 include 'Comic_Oracle.php';
 
-class ViewComicDatabase_Oracle extends Comic_Oracle
+class Runs_Oracle extends Comic_Oracle
 {
 
    public function Add_Wish_List($TitleId) {

@@ -1,6 +1,6 @@
 <?php
 
-class ViewComicDatabase_Data
+class Runs_Data
 {
    public function __construct()
    {
