@@ -8,8 +8,8 @@
  <body>
   {include file="TopMenu.tpl"}
   <div id="main" align="center">
-   <form name="data" action="CheckArchive.php" method="post">
-   {include file="ArchiveMenu.tpl"}
+   <form name="data" action="Archive.php" method="post">
+   {include file="Archive_Menu.tpl"}
 
    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
    <tr bgcolor="#e6eef1">

@@ -8,8 +8,8 @@
  <body>
   {include file="TopMenu.tpl"}
   <div id="main" align="center">
-   <form name="data" action="CheckArchive.php" method="post">
-   {include file="ArchiveMenu.tpl"}
+   <form name="data" action="Archive.php" method="post">
+   {include file="Archive_Menu.tpl"}
 
    <label for="SearchTitle">Search Title Text:</label>
    <input class="Search" type="text" id="SearchTitle"       name="SearchTitle" value='{$search['Title']}'>
@@ -45,6 +45,6 @@
    <p>
    </form>
   </div>
-  <script src='js/ViewArchiveDetail.js'></script>
+  <script src='js/Archive_Detail.js'></script>
  </body>
 </html>

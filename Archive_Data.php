@@ -1,6 +1,6 @@
 <?php
 
-class CheckArchive_Data
+class Archive_Data
 {
    public function __construct()
    {

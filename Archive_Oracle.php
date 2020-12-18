@@ -2,7 +2,7 @@
 
 include 'Comic_Oracle.php';
 
-class CheckArchive_Oracle extends Comic_Oracle
+class Archive_Oracle extends Comic_Oracle
 {
 
    public function Get_Archive_Difference_Summary() {

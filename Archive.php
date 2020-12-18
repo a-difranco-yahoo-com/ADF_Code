@@ -1,12 +1,12 @@
 <?php
 require_once("HTTP.php");
 require_once("D:\Php_Code\Smarty\libs\Smarty.class.php");
-include 'CheckArchive_Oracle.php';
-include 'CheckArchive_Data.php';
+include 'Archive_Oracle.php';
+include 'Archive_Data.php';
 
 $err=error_reporting(E_ALL & ~E_NOTICE);
-$Connection = new CheckArchive_Oracle();
-$Data       = new CheckArchive_Data();
+$Connection = new Archive_Oracle();
+$Data       = new Archive_Data();
 $smarty     = new Smarty;
 
 $Data->Set_Data($_POST);
@@ -22,12 +22,12 @@ $Connection->Log_Post_Details('GET',  $_GET);
   switch ($Data->Display) {
   case "ViewSummary" :
     $smarty->assign('summary', $Connection->Get_Archive_Difference_Summary() );
-    $smarty->display('ViewArchiveDifferenceSummary.tpl');
+    $smarty->display('Archive_Summary.tpl');
     break;
   case "ViewDetails" :
     $smarty->assign('search',     $Data->Search);
     $smarty->assign('detail',    $Connection->Get_Archive_Detail($Data->Search) );
-    $smarty->display('ViewArchiveDetail.tpl');
+    $smarty->display('Archive_Detail.tpl');
     break;
   }
 
