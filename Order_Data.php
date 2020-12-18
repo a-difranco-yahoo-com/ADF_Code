@@ -1,6 +1,6 @@
 <?php
 
-class ReadingOrder_Data
+class Order_Data
 {
    public function __construct()
    {

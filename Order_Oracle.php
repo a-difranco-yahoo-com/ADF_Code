@@ -2,7 +2,7 @@
 
 include 'Comic_Oracle.php';
 
-class ReadingOrder_Oracle extends Comic_Oracle
+class Order_Oracle extends Comic_Oracle
 {
    public function Get_List_Hierarchy() {
       $SQL = " SELECT First_List, Second_List, Level"
