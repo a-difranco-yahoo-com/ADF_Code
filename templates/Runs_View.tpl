@@ -61,6 +61,6 @@
 
    </form>
   </div>
-  <script src='js/ViewRuns.js'></script>
+  <script src='js/Runs_View.js'></script>
  </body>
 </html>
