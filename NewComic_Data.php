@@ -1,6 +1,6 @@
 <?php
 
-class MatchNewComic_Data
+class NewComic_Data
 {
    public function __construct()
    {

@@ -7,34 +7,28 @@
  <body>
   {include file="TopMenu.tpl"}
   <div id="main" align="center">
-   <form name="data" action="MatchNewComics.php" method="post">
+   <form name="data" action="NewComic.php" method="post">
    {include file="MatchMenu.tpl"}
 
    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
    <tr bgcolor="#e6eef1">
       <th>TITLE</th>
       <th>VOLUME</th>
-      <th>YEAR</th>
-      <th>ISSUE</th>
+      <th>START ISSUE</th>
+      <th>END ISSUE</th>
       <th>SUBISSUE</th>
       <th>SERIES_RUN</th>
-      <th>ACTION</th>
     </tr>
 	
-    {foreach $new as $n}
+    {foreach $wish as $w}
     <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
-    <td>{$n.TITLE}</td>
-    <td>{$n.VOLUME}</td>
-    <td>{$n.YEAR}</td>
-    <td>{$n.ISSUE}</td>
-    <td>{$n.SUBISSUE}</td>
-    <td>{$n.SERIES_RUN}</td>
-    <td>
-    <button value='{$n.COMICID}'  name='NotOnPullList' type="submit">Not On Pull List</button>
-    </td>
+    <td>{$w.TITLE}</td>
+    <td>{$w.VOLUME}</td>
+    <td>{$w.START_ISSUE}</td>
+    <td>{$w.END_ISSUE}</td>
+    <td>{$w.SUBISSUE}</td>
+    <td>{$w.SERIES_RUN}</td>
     </tr>
-    {foreachelse}
-    <tr><td COLSPAN=7 Style="TEXT-ALIGN:CENTER;">No Rows</td></tr>
     {/foreach}
    </table>
    <p>

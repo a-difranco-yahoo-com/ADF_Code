@@ -7,7 +7,7 @@
  <body>
   {include file="TopMenu.tpl"}
   <div id="main" align="center">
-   <form name="data" action="MatchNewComics.php" method="post">
+   <form name="data" action="NewComic.php" method="post">
    {include file="MatchMenu.tpl"}
 
    <label for="Search">Match Quality</label>

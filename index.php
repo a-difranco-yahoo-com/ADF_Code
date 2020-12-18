@@ -1,3 +1,3 @@
 <?php
-header("Location: MatchNewComics.php");
+header("Location: NewComic.php");
 ?>

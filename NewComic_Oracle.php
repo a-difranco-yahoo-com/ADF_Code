@@ -2,7 +2,7 @@
 
 include 'Comic_Oracle.php';
 
-class MatchNewComic_Oracle extends Comic_Oracle
+class NewComic_Oracle extends Comic_Oracle
 {
    public function Run_Match($Level) {
       $PLSQL = " BEGIN"
