@@ -46,26 +46,6 @@ class Comic_Oracle
       }
    }
  
-   public function Match_ComicDB($Search) {
-      $PLSQL = " BEGIN"
-             . "   COMICS.Find_ComicDB_Matches(:Title, :StartYear, :EndYear);"
-             . "   COMMIT;"
-             . " END;";
-
-      $this->Execute_PLSQL_Code($PLSQL, array(":Title"=>$Search["Title"], 
-                                              ":StartYear"=>$Search["StartYear"],
-                                              ":EndYear"=>$Search["EndYear"]) );
-   }
-
-   public function Get_Match_ComicDB() {
-      $SQL = " SELECT   Match_Id, ComicDB_Title,  ComicDB_Volume,  Digital_Title, Digital_Volume, "
-           . "          Sim, ComicDB_Comics, Digital_Comics, Matches, SubMatches, Matched"
-           . " FROM     V_MATCH_COMICDB"
-           . " ORDER BY ComicDB_Title,  ComicDB_Volume,  Digital_Title, Digital_Volume";
-
-      return $this->Execute_DB_Select($SQL, array() );
-    }
-
 
 }
 ?>
