@@ -1,37 +1,62 @@
-   #menu {
-        position: absolute;
-        width: auto;
-        height: 70px;
-        top:    0px;
-        right: 0;
-        bottom: 0;
-        left: 10px;
-	  }
-   A       {           color: navy;   font-size: 15px; text-decoration: none;}
-   A:hover {background-color: yellow; font-size: 17px; text-decoration: underline;}
 
-   #main {
-        position: absolute;
-        width:    auto;
-        height:   auto;
-        top:      50px;
-        right:    0;
-        bottom:   0;
-        left:     0
-	 }
-   BODY {
-	   background-color: #c9dae2;
-   	   font-family: arial
-	   }
-   H1 { font-size: 18px }
-   H2 { font-size: 16px }
-   H3 { font-size: 14px }
-   .form {
-	font-size: 12px;
-	}
+#menu {
+   position: absolute;
+   width:    auto;
+   height:   70px;
+   top:      0px;
+   right:    0;
+   bottom:   0;
+   left:     10px;
+}
+
+A       {           color: navy;   font-size: 15px; text-decoration: none;}
+A:hover {background-color: yellow; font-size: 17px; text-decoration: underline;}
+
+#main {
+   position: absolute;
+   width:    auto;
+   height:   auto;
+   top:      50px;
+   right:    0;
+   bottom:   0;
+   left:     0
+}
+
+BODY {
+   background-color: #c9dae2;
+   font-family: arial
+}
+
+.form {
+   font-size: 12px;
+}
+
    TABLE.form TD {
    	text-align: left
 	}
    TABLE.form INPUT[type="text"] {
    	width: 200px
-	}
+   }
+
+   .data {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: auto;
+   }
+
+   .data td, .data th {
+      border: 1px solid black;
+      padding: 4px;
+      font-size: 12px;
+   }
+
+   .data tr:nth-child(even){background-color: #f2f2f2;}
+   .data tr:hover          {background-color: #ddd;}
+
+.data th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}

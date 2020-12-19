@@ -6,8 +6,8 @@
    <form name="data" action="ComicDB.php" method="post">
    {include file="ComicDB_Menu.tpl"}
 
-   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
-   <tr bgcolor="#e6eef1">
+   <table class="data">
+   <tr>
       <th>TITLE</th>
       <th>VOLUME</th>
       <th>ISSUES</th>
@@ -15,7 +15,7 @@
     </tr>
 	
     {foreach $summary as $s}
-    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
+    <tr>
     <td>{$s.TITLE}</td>
     <td>{$s.VOLUME}</td>
     <td>{$s.ISSUES}</td>

@@ -9,8 +9,8 @@
    <label for="Search">Match Quality</label>
    <input class="Match" type="number" name="MatchLevel" value="{$level}"><br>
 
-    <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
-   <tr bgcolor="#e6eef1">
+   <table class="data">
+   <tr>
       <th>NEW_TITLE</th>
       <th>NEW_ISSUE</th>
       <th>PULL_TITLE</th>
@@ -19,7 +19,7 @@
     </tr>
 	
     {foreach $pulls as $p }
-    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
+    <tr>
     <td>{$p.NEW_TITLE}</td>
     <td>{$p.NEW_ISSUE}</td>
     <td>{$p.PULL_TITLE}</td>

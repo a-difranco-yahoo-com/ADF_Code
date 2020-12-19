@@ -14,7 +14,7 @@
    <input class="Search" type="number" id="SearchTitle" name="SearchEndYear"   value={$search["EndYear"]}>
    <p>
 
-   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
+   <table class="data">
    <tr bgcolor="#e6eef1">
       <th>SOURCE</th>
       <th>TITLE</th>
@@ -25,7 +25,7 @@
     </tr>
 	
     {foreach $runs as $r}
-    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
+    <tr>
     <td>{$r.COMIC_TYPE}</td>
     <td>{$r.TITLE}</td>
     <td>{$r.VOLUME}</td>
@@ -36,8 +36,8 @@
        {/foreach}
    </table>
    <p>
-   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
-   <tr bgcolor="#e6eef1">
+   <table class="data">
+   <tr>
       <th>COMICDB_TITLE</th>
       <th>COMICDB_VOLUME</th>
       <th>DIGITAL_TITLE</th>
@@ -52,7 +52,7 @@
     </tr>
 	
     {foreach $match as $m}
-    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
+    <tr>
     <td>{$m.COMICDB_TITLE}</td>
     <td>{$m.COMICDB_VOLUME}</td>
     <td>{$m.DIGITAL_TITLE}</td>

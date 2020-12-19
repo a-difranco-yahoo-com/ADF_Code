@@ -6,8 +6,8 @@
    <form name="data" action="NewComic.php" method="post">
    {include file="NewComic_Menu.tpl"}
 
-   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
-   <tr bgcolor="#e6eef1">
+   <table class="data">
+   <tr>
       <th>TITLE</th>
       <th>VOLUME</th>
       <th>START ISSUE</th>
@@ -17,7 +17,7 @@
     </tr>
 	
     {foreach $wish as $w}
-    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
+    <tr>
     <td>{$w.TITLE}</td>
     <td>{$w.VOLUME}</td>
     <td>{$w.START_ISSUE}</td>

@@ -6,8 +6,8 @@
    <form name="data" action="ComicDB.php" method="post">
    {include file="ComicDB_Menu.tpl"}
 
-   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
-   <tr bgcolor="#e6eef1">
+   <table class="data">
+   <tr>
       <th>TITLE</th>
       <th>VOLUME</th>
       <th>ISSUE</th>
@@ -21,7 +21,7 @@
    <input type="hidden" name="SearchEndYear"   value="{$search["EndYear"]}">
 
     {foreach $trades as $t}
-    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
+    <tr>
     <td>{$t.TITLE}</td>
     <td>{$t.VOLUME}</td>
     <td>{$t.ISSUE}</td>

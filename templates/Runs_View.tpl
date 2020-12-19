@@ -9,8 +9,8 @@
    <label for="Search">Search Text:</label>
    <input class="Search" type="text" id="Search" name="Search" value="{$title}"><br>
 
-   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
-   <tr bgcolor="#e6eef1">
+   <table class="data">
+   <tr>
       <th>TITLE</th>
       <th>VOLUME</th>
       <th>START_ISSUE</th>
@@ -20,7 +20,7 @@
     </tr>
 	
     {foreach $runs as $r }
-    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
+    <tr>
     <td>{$r.TITLE}</td>
     <td>{$r.VOLUME}</td>
     <td>{$r.START_ISSUE}</td>
@@ -32,8 +32,8 @@
     {/foreach}
    </table>
    <p>
-   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
-   <tr bgcolor="#e6eef1">
+   <table class="data">
+   <tr>
       <th>TITLE</th>
       <th>VOLUME</th>
       <th>START_ISSUE</th>
@@ -43,7 +43,7 @@
     </tr>
 	
     {foreach $wish as $w }
-    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
+    <tr>
     <td>{$w.TITLE}</td>
     <td>{$w.VOLUME}</td>
     <td>{$w.START_ISSUE}</td>

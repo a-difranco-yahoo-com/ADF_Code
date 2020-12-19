@@ -14,8 +14,8 @@
    <label for="SearchTitle">End Year</label>
    <input class="Search" type="number" id="SearchEndYear"   name="SearchEndYear"   value={$search['EndYear']}>
 
-   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
-   <tr bgcolor="#e6eef1">
+   <table class="data">
+   <tr>
       <th>COMIC_TYPE</th>
       <th>TITLE</th>
       <th>VOLUME</th>
@@ -26,7 +26,7 @@
     </tr>
 	
     {foreach $detail as $d}
-    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
+    <tr>
     <td>{$d.COMIC_TYPE}</td>
     <td>{$d.TITLE}</td>
     <td>{$d.VOLUME}</td>

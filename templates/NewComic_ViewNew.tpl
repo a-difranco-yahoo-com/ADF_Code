@@ -6,8 +6,8 @@
    <form name="data" action="NewComic.php" method="post">
    {include file="NewComic_Menu.tpl"}
 
-   <table class="form" border-width="1" border="1" cellspacing="1" cellpadding="2">
-   <tr bgcolor="#e6eef1">
+   <table class="data">
+   <tr>
       <th>TITLE</th>
       <th>VOLUME</th>
       <th>YEAR</th>
@@ -18,7 +18,7 @@
     </tr>
 	
     {foreach $new as $n}
-    <tr bgcolor="{cycle values="#c9dae2,#e6eef1"}">
+    <tr>
     <td>{$n.TITLE}</td>
     <td>{$n.VOLUME}</td>
     <td>{$n.YEAR}</td>
