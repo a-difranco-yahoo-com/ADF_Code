@@ -22,14 +22,6 @@
         left: 0
 	 }
    A {color: #4e6b95; font-size: 15px; text-decoration: none;}
-   SELECT.left { 
-   	width: 230px; 
-	font-size: 12px
-   	}
-   SELECT.right { 
-   	width: 230px; 
-	font-size: 12px
-   	}
    BODY {
 	   background-color: #c9dae2;
    	   font-family: arial
@@ -37,13 +29,6 @@
    H1 { font-size: 18px }
    H2 { font-size: 16px }
    H3 { font-size: 14px }
-   TABLE.report {
-	font-size: 12px;
-	}
-   TABLE.report TH {
-	font-size: 12px;
-	font-weight: bold;
-	}
    .form {
 	font-size: 12px;
 	}
@@ -53,24 +38,3 @@
    TABLE.form INPUT[type="text"] {
    	width: 200px
 	}
-   TABLE.form INPUT[type="password"] {
-   	width: 200px
-	}
-   TABLE.form SELECT {
-   	width: 200px;
-	}
-   TABLE.form INPUT.small_input {
-   	width: 30px
-	}
-   INPUT[type=button] {
-   	font-size: 12px
-	}
-   TEXTAREA.error {
-	font: bold 12px arial;
-	color: #FF0000;
-	background-color: transparent;
-   	width: 230px; 
-	border-width: 0px;
-	padding: 10px;
-	}
-
