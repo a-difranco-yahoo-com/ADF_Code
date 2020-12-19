@@ -22,6 +22,8 @@ A:hover {background-color: yellow; font-size: 17px; text-decoration: underline;}
    left:     0
 }
 
+H1 { font-size: 18px }
+
 BODY {
    background-color: #c9dae2;
    font-family: arial
