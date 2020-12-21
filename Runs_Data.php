@@ -44,7 +44,7 @@ class Runs_Data
 
       if ( isset($post['AddCompleteRun'])) {
          $this->Action  = "AddCompleteRun";
-         $Data->Display = $Data->Origin;
+         $this->Display = $this->Origin;
          $Details = explode(",", $post['AddCompleteRun']);
          $this->TitleId    = $Details[0];
          $this->StartIssue = $Details[1];
