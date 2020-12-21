@@ -1,6 +1,4 @@
-   <div id="menu">
-     <br>
-     <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+     <table width="100%" >
      <tr>
       <td align="center">
        <a href="/Comics_Website/NewComic.php"> Match New Comics |</a>
@@ -12,5 +10,3 @@
      </tr>
      </table>
      <hr>
-   </div>
-
