@@ -43,7 +43,7 @@ class NewComic_Oracle extends Comic_Oracle
              . "    COMICS.Update_Matched_Wish_List(:MatchId);"
              . " END;";
 
-      $this->Execute_PLSQL_Code($PLSQL, array(":MatchId", $MatchId) );
+      $this->Execute_PLSQL_Code($PLSQL, array(":MatchId"=>$MatchId) );
    }
 
    public function Get_Match_Existing() {
