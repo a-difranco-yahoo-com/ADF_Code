@@ -59,7 +59,7 @@ class NewComic_Oracle extends Comic_Oracle
              . "    COMICS.Remove_New_Digital_Comic(:ComicId);"
              . " END;";
 
-      return $this->Execute_DB_Select($SQL, array(":ComicId"=>$ComicId) );
+      return $this->Execute_PLSQL_Code($PLSQL, array(":ComicId"=>$ComicId) );
    }
 
    public function Get_New_Comics() {
