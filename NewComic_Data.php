@@ -6,6 +6,7 @@ class NewComic_Data
    {
       $this->Display       = 'MatchPull';
       $this->Action        = '';
+      $this->SortPullBy    = 'Date';
       $this->MatchLevel    = 80;
       $this->MatchId       = "";
    }
@@ -43,6 +44,18 @@ class NewComic_Data
          $this->Action  = "DigitalPull";
          $this->Display = "ViewPull";
          $this->MatchId = $post['DigitalPull'];
+      }
+
+      if ( isset($post['SortPullByDate'])) {
+         $this->Action     = "";
+         $this->Display    = "ViewPull";
+         $this->SortPullBy = 'Date';
+      }
+
+      if ( isset($post['SortPullByTitle'])) {
+         $this->Action     = "";
+         $this->Display    = "ViewPull";
+         $this->SortPullBy = 'Title';
       }
    }
 }

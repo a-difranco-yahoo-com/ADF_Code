@@ -8,11 +8,19 @@
 
    <table class="data">
    <tr>
-      <th>TITLE</th>
-      <th>VOLUME</th>
+   {if $sort eq 'Title'}
+      <th>TITLE <button name='SortPullByTitle' type="submit">&#9660;</button> </th>
+   {else}
+      <th>TITLE <button name='SortPullByTitle' type="submit">&#9679;</button> </th>
+   {/if}
+      <th>VOLUME {$sort}</th>
       <th>ISSUE</th>
       <th>FULL_NAME</th>
-      <th>RELEASE_DATE</th>
+   {if $sort eq 'Date'}
+      <th>RELEASE_DATE <button name='SortPullByDate' type="submit">&#9660;</button></th>
+   {else}
+      <th>RELEASE_DATE <button name='SortPullByDate' type="submit">&#9679;</button></th>
+   {/if}
       <th>ACTION</th>
     </tr>
 	

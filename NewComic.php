@@ -47,7 +47,8 @@ $Connection->Log_Post_Details('GET',  $_GET);
 	  $smarty->display('NewComic_ViewNew.tpl');
     break;
   case 'ViewPull' :
-    $smarty->assign('pull', $Connection->Get_Pull_List() );
+    $smarty->assign('pull', $Connection->Get_Pull_List($Data->SortPullBy) );
+    $smarty->assign('sort', $Data->SortPullBy );
 	  $smarty->display('NewComic_ViewPull.tpl');
     break;
   case 'ViewWish' :
