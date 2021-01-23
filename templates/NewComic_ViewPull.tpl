@@ -14,7 +14,6 @@
       <th>TITLE <button name='SortPullByTitle' type="submit">&#9679;</button> </th>
    {/if}
       <th>ISSUE</th>
-      <th>FULL_NAME</th>
    {if $sort eq 'Date'}
       <th>RELEASE_DATE <button name='SortPullByDate' type="submit">&#9660;</button></th>
    {else}
@@ -27,7 +26,6 @@
     <tr>
     <td>{$p.TITLE}</td>
     <td>{$p.ISSUE}</td>
-    <td>{$p.FULL_NAME}</td>
     <td>{$p.RELEASE_DATE}</td>
     <td>
     <button value='{$p.COMICID}'  name='DigitalPull' type="submit">Digital Series</button>
