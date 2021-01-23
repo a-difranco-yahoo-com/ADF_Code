@@ -13,7 +13,6 @@
    {else}
       <th>TITLE <button name='SortPullByTitle' type="submit">&#9679;</button> </th>
    {/if}
-      <th>VOLUME {$sort}</th>
       <th>ISSUE</th>
       <th>FULL_NAME</th>
    {if $sort eq 'Date'}
@@ -27,7 +26,6 @@
     {foreach $pull as $p}
     <tr>
     <td>{$p.TITLE}</td>
-    <td>{$p.VOLUME}</td>
     <td>{$p.ISSUE}</td>
     <td>{$p.FULL_NAME}</td>
     <td>{$p.RELEASE_DATE}</td>

@@ -87,14 +87,14 @@ class NewComic_Oracle extends Comic_Oracle
    }
 
    public function Get_Pull_List($OrderBy) {
-      $SQL = " SELECT   ComicId, Title,  Volume,  Issue, Full_Name, "
+      $SQL = " SELECT   ComicId, Title,  Issue, Full_Name, "
            . "          to_char(Release_Date, 'YYYY-MM-DD') Release_Date"
            . " FROM     PULL_LIST";
 
       if ($OrderBy == "Date")
-           $SQL .= " ORDER BY Release_Date Desc, Title,  Volume, Issue";
+           $SQL .= " ORDER BY Release_Date Desc, Title,  Issue";
       else
-           $SQL .= " ORDER BY Title,  Volume, Issue";
+           $SQL .= " ORDER BY Title,  Issue";
 
       return $this->Execute_DB_Select($SQL, array() );
    }
