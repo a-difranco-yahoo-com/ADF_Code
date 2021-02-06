@@ -1,6 +1,6 @@
 <?php
 require_once("HTTP.php");
-require_once("D:\Php_Code\Smarty\libs\Smarty.class.php");
+require_once("C:\My_Software\Smarty\libs\Smarty.class.php");
 include 'NewComic_Oracle.php';
 include 'NewComic_Data.php';
 
